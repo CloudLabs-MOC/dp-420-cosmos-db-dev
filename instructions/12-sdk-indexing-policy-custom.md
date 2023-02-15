@@ -26,7 +26,7 @@ If you have not already cloned the lab code repository for **DP-420** to the env
 
 The .NET SDK contains a suite of classes related to the parent [Microsoft.Azure.Cosmos.IndexingPolicy][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.indexingpolicy] class to build new indexing policies in code.
 
-1. In **Visual Studio Code**, in the **Explorer** pane, browse to the **12-custom-index-policy** folder.
+1. In **Visual Studio Code**, in the **Explorer** pane, browse to the **12-custom-index-policy** folder(C:\AllFiles\dp-420-cosmos-db-dev-main\12-custom-index-policy).
 
 1. Open the **script.cs** code file.
 
