@@ -18,6 +18,8 @@ In this lab, you'll connect to an Azure Cosmos DB SQL API account using the Azur
 
 4. Select the folder **dp-420-cosmos-db-dev** and click on **Select Folder**.
 
+ > Note:Click on Yes I trust the authors if the pop up window appears.
+
 
 ### Task 1: Create an Azure Cosmos DB SQL API account
 
