@@ -253,6 +253,8 @@ Bicep is an efficient domain-specific language that makes it simpler and easier 
 
 1. Open the empty **deploy.bicep** file.
 
+ > **Note** If you get a pop up to install bicep extension select ok in order to open the deploy.bicep file. 
+
 1. Within the file, add a new object to create a new Azure Cosmos DB account:
 
     ```
