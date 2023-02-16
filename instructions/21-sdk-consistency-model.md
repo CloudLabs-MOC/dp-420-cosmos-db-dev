@@ -296,7 +296,7 @@ The **ItemRequestOptions** class contains configuration properties on a per-requ
 
 1. Observe the output from the terminal. The request charge (in RUs) should be printed to the console.
 
-    > **Note:** The current request charge should be **1 RUs**. This is due to the eventual consistency only requiring a read from a single replica.
+    > **Note:** The current request charge should be **2 RUs**. This is due to the eventual consistency only requiring a read from a single replica.
 
 1. Close the integrated terminal.
 
