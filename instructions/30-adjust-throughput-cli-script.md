@@ -208,5 +208,6 @@ The Azure CLI can be used to migrate a container between manual and autoscale pr
 1. Observe the values within the **Scale** tab. Specifically, observe that the **Autoscale** option is selected in the **Throughput** section and that the provisioned throughput is set to **5,000** RU/s.
 
 1. Close your web browser window or tab.
+2. Delete Azure Cosmos DB account you created in this lab.
 
 [docs.microsoft.com/powershell/module/microsoft.powershell.utility/get-random]: https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/get-random
