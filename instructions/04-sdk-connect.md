@@ -31,6 +31,8 @@ In this lab, you will complete the following tasks:
 
 4. Select the folder **dp-420-cosmos-db-dev** and click on **Select Folder**.
 
+ > Note:Click on Yes I trust the authors if the pop up window appears.
+
 
 ### Task 2: Create an Azure Cosmos DB SQL API account
 

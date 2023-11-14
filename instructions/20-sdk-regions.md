@@ -124,7 +124,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 Using the credentials from the newly created account, you will connect with the SDK classes and access the database and container instance from a different region.
 
-1. In **Visual Studio Code**, in the **Explorer** pane, browse to the **20-sdk-regions** folder.
+1. In **Visual Studio Code**, in the **Explorer** pane, browse to the **20-sdk-regions** folder(C:\AllFiles\dp-420-cosmos-db-dev-main\20-sdk-regions).
 
 1. Open the context menu for the **20-sdk-regions** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
 
