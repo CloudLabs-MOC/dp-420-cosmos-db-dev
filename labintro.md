@@ -41,12 +41,12 @@ For convenience, you can open the lab guide in a separate window by selecting th
 
 ## Managing Your Virtual Machine
  
-Feel free to start, stop, or restart your virtual machine as needed from the **Resources** tab. Your experience is in your hands!
+1. Feel free to start, stop, or restart your virtual machine as needed from the **Resources** tab. Your experience is in your hands!
  
-![Manage Your Virtual Machine](./instructions/media/res.png)
+    ![Manage Your Virtual Machine](./instructions/media/res.png)
  
-Click "Next" from the bottom right corner to embark on your Lab journey!
+2. Click "Next" from the bottom right corner to embark on your Lab journey!
  
-![Start Your Azure Journey](./instructions/media/num.png)
+   ![Start Your Azure Journey](./instructions/media/num.png)
  
-Now you're all set to explore the powerful world of technology. Feel free to reach out if you have any questions along the way. Enjoy your workshop!
+3. Now you're all set to explore the powerful world of technology. Feel free to reach out if you have any questions along the way. Enjoy your workshop!
