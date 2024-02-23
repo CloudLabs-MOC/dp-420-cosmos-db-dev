@@ -60,7 +60,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Select **+ Create a resource**, search for *Cosmos DB*, select **Azure Cosmos DB**.
 
-1. Select **create** under **Azure Cosmos DB for NoSQL**. Then create a new **Azure Cosmos DB for NoSQL** account resource with the following settings, leaving all remaining settings to their default values, and select **Review + create**:
+1. Select **create** under **Azure Cosmos DB for NoSQL**. Then create a new **Azure Cosmos DB for NoSQL** account resource with the following settings, leaving all remaining settings to their default values, select **Review + create**, and **Create**:
 
     | **Setting** | **Value** |
     | ---: | :--- |
@@ -97,6 +97,12 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     1. Notice the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
 
 1. Return to **Visual Studio Code**.
+
+  > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
+   > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
+   > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+   > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+   > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
 
 ### Task 3: Run the test .NET application using the default indexing policy
 
@@ -158,6 +164,11 @@ This lab has a pre-built test .NET application that will take a large JSON objec
 
     >**Note:** You will re-use this terminal later in this exercise. It's important to leave the terminal open so you can compare the original and updated RU charges.
 
+    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
+   > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
+   > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+   > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+   > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
 
 ### Task 4: Update the indexing policy and rerun the .NET application
 
