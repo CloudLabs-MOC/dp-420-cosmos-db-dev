@@ -36,10 +36,6 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
    * Password: <inject key="AzureAdUserPassword"></inject>
    
      ![05](media/05.png)
-     
-        >**Note:** If you see the **Help us protect your account** dialog box, then select the **Skip for now** option.
-
-        ![06](media/06.png)
 
 1. If you see the pop-up **Action Required**, click **Ask Later**.
 
