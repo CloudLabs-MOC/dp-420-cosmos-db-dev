@@ -40,6 +40,10 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
         >**Note:** If you see the **Help us protect your account** dialog box, then select the **Skip for now** option.
 
         ![06](media/06.png)
+
+1. If you see the **Action required** pop-up , click **Ask later**.
+
+     ![07](media/imagescre.png)
   
 1. If you see the pop-up **Stay Signed in?**, click No
 
