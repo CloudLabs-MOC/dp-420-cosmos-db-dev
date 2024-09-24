@@ -19,6 +19,8 @@ In this lab, you will complete the following tasks:
 
 ### Task 1: Create and seed your Azure Cosmos DB for NoSQL account
 
+In this task, you'll create and configure an Azure Cosmos DB for NoSQL account, followed by seeding it with a database and container using a command-line utility.
+
 You will use a command-line utility that creates a **cosmicworks** database and a **products** container at **4,000** request units per second (RU/s). Once created, you will adjust the throughput down to 400 RU/s.
 
 To accompany the products container, you will create a **flatproducts** container manually that will be the target of the ETL transformation and load operation at the end of this lab.
@@ -55,7 +57,7 @@ To accompany the products container, you will create a **flatproducts** containe
 
 1. Once deployemet is completed select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys** pane.
 
-   ![06](media/New-image6.png)
+    ![06](media/New-image6.png)
 
 1. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys** pane.
 
@@ -75,7 +77,8 @@ To accompany the products container, you will create a **flatproducts** containe
 
     ![06](media/visualstudio.png)
 
-1. In **Visual Studio Code**, open the **Terminal** menu by selecting **... (ellipses) (1)** > **Terminal (2)** > **New Terminal (3)** to open a new terminal with your existing instance.
+1. In **Visual Studio Code**, open the **Terminal** menu by selecting **... (ellipses) (1)** > **Terminal (2)** > **New Terminal (3)** to open a new terminal with your 
+   existing instance.
 
     ![06](media/New-image36.png)
 
@@ -113,7 +116,8 @@ To accompany the products container, you will create a **flatproducts** containe
 
 1. Navigate to the **Azure portal**.
 
-1.  On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
+1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under 
+   services.
 
    ![06](media/New-image1.png)
 
@@ -162,6 +166,8 @@ To accompany the products container, you will create a **flatproducts** containe
     <validation step="4f0ebcc4-a71c-450a-b7e0-5099feed58d5" />
 
 ### Task 2: Create Azure Data Factory resource
+
+In this task, you will create an Azure Data Factory resource and configure it to perform a one-time ETL (Extract, Transform, Load) operation. The goal is to move data from one Azure Cosmos DB NoSQL container (products) to another container (flatproducts), applying a transformation during the process.
 
 Now that the Azure Cosmos DB for NoSQL resources are in place, you will create an Azure Data Factory resource and configure all of the necessary components and connections to perform a one-time data movement from one NoSQL API container to another to extract data, transform it, and load it to another NoSQL API container
 
@@ -260,7 +266,7 @@ Now that the Azure Cosmos DB for NoSQL resources are in place, you will create a
 
 1. Review the **Summary** of the steps you have selected in the wizard and then select **Next**.
 
-   ![06](media/New-image32.png)
+    ![06](media/New-image32.png)
 
 1. Observe the various steps in the deployment. When the deployment has finished, select **Finish**.
 
