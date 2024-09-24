@@ -14,7 +14,7 @@ In this lab, you will perform:
 
 ## Architecture diagram
 
-![](images/sc900module1.png)
+![](media/sc900module1.png)
 
 ### Exercise 1: Provision Azure relational database services
 
@@ -26,7 +26,7 @@ In this exercise, you'll provision and test an Azure SQL Database resource.
     
 1. Review the Azure SQL options that are available, and then in the  **SQL databases** (1)  tile, ensure  **Single database** (2)  is selected and select  **Create** (3).
     
-    ![Screenshot of the Azure portal showing the Azure SQL page.](images//DP-900sql.png)
+    ![Screenshot of the Azure portal showing the Azure SQL page.](media//DP-900sql.png)
     
 1. Enter the following values on the  **Create SQL Database**  page:
     
@@ -54,7 +54,7 @@ In this exercise, you'll provision and test an Azure SQL Database resource.
     
 1. Wait for deployment to complete. Then go to the resource that was deployed, which should look like this
     
-    ![Screenshot of the Azure portal showing the SQL Database page.](images//sql-database-portal.png)
+    ![Screenshot of the Azure portal showing the SQL Database page.](media//sql-database-portal.png)
     
 1. In the pane on the left side of the page, select  **Query editor (preview)**, and then sign in using the administrator login and password you specified for your server, then select **OK**.
     
@@ -62,7 +62,7 @@ In this exercise, you'll provision and test an Azure SQL Database resource.
     
    The query editor looks like this:
     
-   ![Screenshot of the Azure portal showing the query editor.](images//query-editor.png)
+   ![Screenshot of the Azure portal showing the query editor.](media//query-editor.png)
     
 1. Expand the  **Tables**  folder to see the tables in the database.
     
@@ -74,7 +74,7 @@ In this exercise, you'll provision and test an Azure SQL Database resource.
     
 1. Select  **▷ Run**  above the query to run it and view the results, which should include all columns for all rows in the  **SalesLT.Product**  table as shown here:
     
-     ![Screenshot of the Azure portal showing the query editor with query results.](images//sql-query-results.png)
+     ![Screenshot of the Azure portal showing the query editor with query results.](media//sql-query-results.png)
      
 1. Replace the existing code with the following code, and then select **&#9655; Run** to run the new query and review the results (which includes only the **ProductID**, **Name**, **ListPrice**, **ProductCategoryID** columns):
 
@@ -93,7 +93,7 @@ In this exercise, you'll provision and test an Azure SQL Database resource.
         ON p.ProductCategoryID = c.ProductCategoryID;
     ```
 
-    ![Screenshot of the Azure portal showing the Azure SQL page.](images//DP-900(result).png)
+    ![Screenshot of the Azure portal showing the Azure SQL page.](media//DP-900(result).png)
 
 1. Close the query editor pane, discarding your edits.
   
