@@ -160,7 +160,8 @@ Once the Azure Cosmos DB library from the Azure SDK for .NET has been imported, 
    ```
    string endpoint = "<cosmos-endpoint>";
    ```
-   >**Note**: For example, if your endpoint is: **https&shy;://dp420.documents.azure.com:443/**, then the C# statement would be: **string endpoint = "https&shy;://dp420.documents.azure.com:443/";**.
+   >**Note**: For example, if your endpoint is: **https&shy;://dp420.documents.azure.com:443/**, then the C# statement would be: **string endpoint = 
+   "https&shy;://dp420.documents.azure.com:443/";**.
 
 6. Add a **string** variable named **key** with its value set to the **key** of the Azure Cosmos DB account you created earlier.
    
@@ -169,45 +170,50 @@ Once the Azure Cosmos DB library from the Azure SDK for .NET has been imported, 
    ```
    >**Note**: For example, if your key is: **fDR2ci9QgkdkvERTQ==**, then the C# statement would be: **string key = "fDR2ci9QgkdkvERTQ==";**.
 
-7. Add a new variable named **client** of type [CosmosClient][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.cosmosclient] using the **endpoint** and **key** variables in the constructor:
+7. Add a new variable named **client** of type [CosmosClient][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.cosmosclient] using the **endpoint** and **key** 
+   variables in the constructor:
    
    ```
    CosmosClient client = new (endpoint, key);
    ```
-8. Add a new variable named **account** of type [AccountProperties][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.accountproperties] using the asynchronous result of invoking the [ReadAccountAsync][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.cosmosclient.readaccountasync] method of the **client** variable:
+8. Add a new variable named **account** of type [AccountProperties][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.accountproperties] using the asynchronous result 
+   of invoking the [ReadAccountAsync][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.cosmosclient.readaccountasync] method of the **client** variable:
    
    ```
    AccountProperties account = await client.ReadAccountAsync();
    ```
-9. Use the built-in **Console.WriteLine** static method to print the [Id][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.accountproperties.id] property of the AccountProperties class with a header titled **Account Name**:
+9. Use the built-in **Console.WriteLine** static method to print the [Id][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.accountproperties.id] property of the 
+   AccountProperties class with a header titled **Account Name**:
 
    ```
    Console.WriteLine($"Account Name:\t{account.Id}");
    ```
    
-10. Use the built-in **Console.WriteLine** static method to query the [WritableRegions][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.accountproperties.writableregions] property of the AccountProperties class and then print the [Name][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.accountregion.name] property of the first result with a header titled **Primary Region**:
+10. Use the built-in **Console.WriteLine** static method to query the [WritableRegions] 
+    [docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.accountproperties.writableregions] property of the AccountProperties class and then print the [Name] 
+    [docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.accountregion.name] property of the first result with a header titled **Primary Region**:
     
-   ```
-   Console.WriteLine($"Primary Region:\t{account.WritableRegions.FirstOrDefault()?.Name}");
-   ```
+      ```
+      Console.WriteLine($"Primary Region:\t{account.WritableRegions.FirstOrDefault()?.Name}");
+      ```     
 11. Once you are done, your code file should now include:
    
-   ```
-   using System;
-   using System.Linq;
+    ```
+    using System;
+    using System.Linq;
     
-   using Microsoft.Azure.Cosmos;
+    using Microsoft.Azure.Cosmos;
 
-   string endpoint = "<cosmos-endpoint>";
-   string key = "<cosmos-key>";
+    string endpoint = "<cosmos-endpoint>";
+    string key = "<cosmos-key>";
 
-   CosmosClient client = new (endpoint, key);
+    CosmosClient client = new (endpoint, key);
 
-   AccountProperties account = await client.ReadAccountAsync();
+    AccountProperties account = await client.ReadAccountAsync();
 
-   Console.WriteLine($"Account Name:\t{account.Id}");
-   Console.WriteLine($"Primary Region:\t{account.WritableRegions.FirstOrDefault()?.Name}");
-   ```
+    Console.WriteLine($"Account Name:\t{account.Id}");
+    Console.WriteLine($"Primary Region:\t{account.WritableRegions.FirstOrDefault()?.Name}");
+    ```
 12. **Save** the **script.cs** code file.
 
 ### Task 6: Test the script
