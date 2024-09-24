@@ -22,6 +22,8 @@ In this exercise, you'll provision and test an Azure SQL Database resource.
 
 #### Task 1: Provision an Azure SQL Database resource
 
+In this task, you will provision an Azure SQL Database by creating a new resource, configuring the server with SQL authentication, and setting network and security options. After deployment, you will connect to the database using the Query Editor in the Azure portal and run SQL queries to explore and retrieve data from the sample database.
+
 1. In the Azure portal, select  **＋ Create a resource**.
 
 1. On the **Create a resource** page, search and select **Azure SQL**.
@@ -115,7 +117,11 @@ In this exercise, you'll provision and test an Azure SQL Database resource.
 
     <validation step="8741822c-1290-45d5-9c7d-adb15c3dc8f5" />
 
-## Review
+
+### Summary 
+In this lab, you learnt how to provision an Azure SQL Database, configure network settings, and use the Query Editor to run SQL queries. You'll explore a sample database, retrieve product data, and perform SQL joins to combine information from multiple tables. This provides hands-on experience with managing and querying an Azure SQL Database in the Azure portal.
+
+### Review
 In this lab, you have completed:
 - Provision an Azure SQL Database resource
   
