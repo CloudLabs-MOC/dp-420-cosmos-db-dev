@@ -23,6 +23,8 @@ In this lab, you will complete the following tasks:
 
 ### Task 1: Prepare your development environment
 
+In this task, you will prepare your development environment for working with Azure Cosmos DB by setting up Visual Studio Code.
+
 1. Start Visual Studio Code from the desktop.
 
      ![Visual Studio Code Icon](./media/vscode1.jpg)
@@ -42,6 +44,8 @@ In this lab, you will complete the following tasks:
 5. If **When Do you trust the author of the files in this folder** click on **Yes, I trust the authors**.
 
 ### Task 2: Create an Azure Cosmos DB SQL API account
+
+In this task, you will provision an Azure Cosmos DB SQL API account, configuring essential settings and retrieving the necessary connection details for future development.
 
 Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **Mongo API** or **NoSQL API**). Once the Azure Cosmos DB SQL API account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB NoSQL API account using the Azure SDK for .NET or any other SDK of your choice.
 
@@ -92,6 +96,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     <validation step="ade422fd-22ef-466a-80b1-bd33186d9b51" />
     
 ### Task 3: View the Microsoft.Azure.Cosmos library on NuGet
+In this task, you will explore the NuGet website to review the Microsoft.Azure.Cosmos library, which is essential for working with Azure Cosmos DB in .NET applications. You'll learn about the capabilities of NuGet as a package manager, search for the specific library, and observe the command needed to import it into a .NET project. This task sets the stage for later steps in your development process by familiarizing you with accessing and managing library packages.
 
 The NuGet website contains a searchable index of packages that are available to import into your .NET applications. To import prerelease packages such as **Microsoft.Azure.Cosmos**, you can use the NuGet website to get the appropriate versions and commands to import the package into your applications.
 
@@ -110,8 +115,9 @@ The NuGet website contains a searchable index of packages that are available to 
 6. Close your web browser window or tab.
 
 ### Task 4: Import the Microsoft.Azure.Cosmos library into a .NET project
+In this task, you will open Visual Studio Code and navigate to your project directory. Then, you will access the integrated terminal and execute a command to import the Microsoft.Azure.Cosmos library into your .NET project. This library will allow you to interact with Azure Cosmos DB.
 
- The .NET CLI includes an [add package][docs.microsoft.com/dotnet/core/tools/dotnet-add-package] command to import packages from a pre-configured package feed. A .NET installation uses NuGet as its default package feed.
+The .NET CLI includes an [add package][docs.microsoft.com/dotnet/core/tools/dotnet-add-package] command to import packages from a pre-configured package feed. A .NET installation uses NuGet as its default package feed.
      
 1. Open the **Visual Studio Code**.
 
@@ -129,6 +135,8 @@ The NuGet website contains a searchable index of packages that are available to 
 4. Close the integrated terminal.
 
 ### Task 5: Use the Microsoft.Azure.Cosmos library
+
+In this task, you will connect to your Azure Cosmos DB account using the Microsoft.Azure.Cosmos library. You'll open the script.cs file in Visual Studio Code, define variables for the account's endpoint and key, and create a CosmosClient instance. Then, you'll retrieve and print the account name and primary region to the console, before saving the file.
 
 Once the Azure Cosmos DB library from the Azure SDK for .NET has been imported, you can immediately use its classes within the [Microsoft.Azure.Cosmos][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos] namespace to connect to an Azure Cosmos DB SQL API account. The [CosmosClient][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.cosmosclient] class is the core class that is used to make the initial connection to an Azure Cosmos DB SQL API account.
 
@@ -203,6 +211,7 @@ Once the Azure Cosmos DB library from the Azure SDK for .NET has been imported, 
 12. **Save** the **script.cs** code file.
 
 ### Task 6: Test the script
+In this task, you'll test your script by opening the integrated terminal in Visual Studio Code and running the project with the dotnet run command. The output will display the account name and the first writable region.
 
 Now that the .NET code to connect to the Azure Cosmos DB SQL API account is complete, you can test the script. This script will print the name of the account, and the name of the first writable region. When you created the account, you specified a location and you should expect to see that same location value printed as the result of this script.
 
@@ -218,6 +227,10 @@ Now that the .NET code to connect to the Azure Cosmos DB SQL API account is comp
 4. Close the integrated terminal.
 
 5. Close **Visual Studio Code**.
+
+### Summary 
+
+In this lab you have learned how to connect to an Azure Cosmos DB SQL API account using the Azure SDK for .NET. It begined with setting up Visual Studio Code, then provisioning a Cosmos DB account to obtain the endpoint and key. Participants explore the Microsoft.Azure.Cosmos library on NuGet and learn to import it into their .NET project. They write a script to connect to the Cosmos DB, retrieve the account name and primary writable region, and test the script to ensure it works.
 
 ### Review
 
