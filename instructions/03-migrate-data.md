@@ -35,13 +35,13 @@ To accompany the products container, you will create a **flatproducts** containe
 
 1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create**:
 
-    | **Setting** | **Value** |
-    | ---: | :--- |
-    | **Subscription** | *Your existing Azure subscription* |
-    | **Resource group** | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* |
-    | **Account Name** | *sql-<inject key="DeploymentID" enableCopy="false"/>* |
-    | **Location** | *Choose any available region* |
-    | **Capacity mode** | *Provisioned throughput* |
+    | **Setting**         | **Value** |
+    | --------------------|--------------------------------------------------- |
+    | **Subscription**    | *Your existing Azure subscription* |
+    | **Resource group**  | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* |
+    | **Account Name**    | *sql-<inject key="DeploymentID" enableCopy="false"/>* |
+    | **Location**        | *Choose any available region* |
+    | **Capacity mode**   | *Provisioned throughput* |
     | **Apply Free Tier Discount** | *Do Not Apply* |
     | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* |
 
@@ -91,11 +91,11 @@ To accompany the products container, you will create a **flatproducts** containe
 
 1. Run the following command cosmicworks to seed your Azure Cosmos DB account with the following command-line options:
 
-    | **Option** | **Value** |
-    | --- | --- |
-    | **--endpoint** | *The endpoint value you copied earlier in this lab* |
-    | **--key** | *The key value you coped earlier in this lab* |
-    | **--datasets** | *product* |
+    | **Option**       | **Value** |
+    | ---------------- | ----------|
+    | **--endpoint**   | *The endpoint value you copied earlier in this lab* |
+    | **--key**        | *The key value you coped earlier in this lab* |
+    | **--datasets**   | *product* |
 
     ```
     cosmicworks --endpoint <cosmos-endpoint> --key <cosmos-key> --datasets product
@@ -137,8 +137,8 @@ To accompany the products container, you will create a **flatproducts** containe
 
 1. In the **New Container** popup, enter the following values for each setting.
 
-    | **Setting** | **Value** |
-    | --- | --- |
+    | **Setting**   | **Value** |
+    | ------------- | --------- |
     | **Database id** | *Use existing* &vert; *cosmicworks* |
     | **Container id** | *`flatproducts`* |
     | **Partition key** | *`/category`* |
