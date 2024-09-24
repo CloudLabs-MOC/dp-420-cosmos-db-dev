@@ -312,7 +312,11 @@ Now that the Azure Cosmos DB for NoSQL resources are in place, you will create a
    > **Congratulations** on completing the task! Now, it's time to validate it.
 
    <validation step="e513aa34-ca14-4de5-a2f3-139f051e5c35" />
-   
+
+### Summary 
+
+This lab focuses on migrating data between two Azure Cosmos DB containers using Azure Data Factory. You will first set up an Azure Cosmos DB for NoSQL account and populate it with sample data. Then, you'll create an Azure Data Factory resource to perform a one-time ETL operation, extracting data from one container, transforming it, and loading it into another container. The lab demonstrates how to integrate Azure services for efficient data movement and transformation.
+ 
 ### Review
 
 In this lab, you have completed:
