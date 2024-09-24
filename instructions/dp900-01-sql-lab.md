@@ -26,6 +26,8 @@ In this task, you will provision an Azure SQL Database by creating a new resourc
 
 1. In the Azure portal, select  **＋ Create a resource**.
 
+     ![](media//New-image37.png)
+    
 1. On the **Create a resource** page, search and select **Azure SQL**.
 
      ![](media//New-image40.png)
