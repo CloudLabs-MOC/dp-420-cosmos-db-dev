@@ -51,10 +51,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
     ![06](media/New-image3.png)
 
-
-1. In the azure portal select **+ Create a resource**, search for *Cosmos DB*, select **Azure Cosmos DB**.
-
-1. Select **create** under **Azure Cosmos DB for NoSQL**. Then create a new **Azure Cosmos DB for NoSQL** account resource with the following settings, leaving all remaining settings to their default values, and select **Review + create**:
+1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create**:
   
     | **Setting** | **Value** |
     | --- | --- |
@@ -66,7 +63,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     | **Apply Free Tier Discount** | *Do Not Apply* |
     | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* |
    
-1. Click on **Review+ Create** and after validation click on **Create**.
+1. Once after validation passed click on **Create**.
 
 1. Wait for the deployment task to complete before continuing with this task.
 
@@ -78,12 +75,8 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
     1. Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
 
-    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Click the Lab Validation tab located at the upper right corner of the lab guide section and navigate to the Lab Validation Page.
-    > - Hit the Validate button for the corresponding task.
-    > - If you receive a success message, you can proceed to the next task. If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
-
+    > **Congratulations** on completing the task! Now, it's time to validate it. 
+    
     <validation step="ade422fd-22ef-466a-80b1-bd33186d9b51" />
     
 ### Task 3: View the Microsoft.Azure.Cosmos library on NuGet
@@ -112,9 +105,9 @@ The NuGet website contains a searchable index of packages that are available to 
 
 2. In **Visual Studio Code**, right-click on the **04-sdk-connect** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
 
-   ![06](media/2.png)
+     ![06](media/2.png)
 
-   >**Note**: This command will open the terminal with the starting directory already set to the **04-sdk-connect** folder.
+     >**Note**: This command will open the terminal with the starting directory already set to the **04-sdk-connect** folder.
 
 3. Add the [Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1] package from NuGet using the following command:
 
