@@ -25,6 +25,7 @@ In this lab, you will complete the following tasks:
 Your environment should already have the emulator pre-installed. If not, refer to the [installation instructions][docs.microsoft.com/azure/cosmos-db/local-emulator] to install the Azure Cosmos DB Emulator. Once the emulator has started, you can retrieve the connection string and use it to connect to the emulator using the Azure SDK for .NET or any other SDK of your choice.
 
 1. Search and Start the **Azure Cosmos DB Emulator** from Start Menu of window.
+     ![06](media/New-image55.png)
 
 1. Wait for 3 to 4 minutes to get started the emulator to automatically open your default browser and navigate to the **localhost:8081/_explorer/index.html** landing page.
 
@@ -34,9 +35,11 @@ Your environment should already have the emulator pre-installed. If not, refer t
 
     1. Record the value of the **Primary Connection String** field. You will use this **connection string** value later in this exercise.
 
-1. Navigate to the **Explorer** pane.
+         ![06](media/New-image56.png)
 
-1. In the **Data Explorer**, observe that there are no nodes within the **SQL API** navigation tree.
+1. Navigate to the **Explorer** pane. In the **Data Explorer**, observe that there are no nodes within the **SQL API** navigation tree.
+
+   ![06](media/New-image57.png)
 
 1. Close your web browser window or tab.
 
@@ -45,6 +48,7 @@ Your environment should already have the emulator pre-installed. If not, refer t
 The **Microsoft.Azure.Cosmos** library has already been pre-installed in the .NET script you will use in this exercise. Further, some of the boilerplate code has already been written to save you time. You will need to update the boilerplate connection string value and write a couple of lines of code to complete the script.
 
 1. In **Visual Studio Code**, Select the file option on the top left of the screen, from the pane options, select **Open Folder** and navigate to **C:\AllFiles\dp-420-cosmos-db-dev**
+
 1. Select the folder **05-sdk-offline** and click on Select Folder.
 
 1. Open the **script.cs** code file within the **05-sdk-offline** folder.
@@ -107,11 +111,7 @@ The **Microsoft.Azure.Cosmos** library has already been pre-installed in the .NE
 
 1. Close the integrated terminal.
 
-    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Click the Lab Validation tab located at the upper right corner of the lab guide section and navigate to the Lab Validation Page.
-    > - Hit the Validate button for the corresponding task.
-    > - If you receive a success message, you can proceed to the next task. If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
+    > **Congratulations** on completing the task! Now, it's time to validate it. 
 
     <validation step="1e23a88b-ed78-4557-8384-97cc0833dcbb" />
 
@@ -184,15 +184,11 @@ Creating a new container is similar to the pattern used to create a new database
 
 1. In the **Data Explorer**, expand the **cosmicworks** database node, then observe the new **products** container node within the **SQL API** navigation tree.
 
-   ![06](media/product.png)
+    ![06](media/New-image60.png)
    
 1. Close your web browser window or tab.
 
-    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Click the Lab Validation tab located at the upper right corner of the lab guide section and navigate to the Lab Validation Page.
-    > - Hit the Validate button for the corresponding task.
-    > - If you receive a success message, you can proceed to the next task. If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
+    > **Congratulations** on completing the task! Now, it's time to validate it.
 
     <validation step="d95b17d3-9a2e-4a03-adde-9ad042168bea" />
 
