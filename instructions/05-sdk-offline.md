@@ -21,6 +21,7 @@ In this lab, you will complete the following tasks:
 ![image](architecturedia/lab5.png)
 
 ### Task 1: Start the Azure Cosmos DB Emulator
+In this task, you will launch the Azure Cosmos DB Emulator, a local tool that simulates the Azure Cosmos DB environment. You'll retrieve the connection string from the emulator. The task involves verifying that the emulator is running and checking the initial state of the Data Explorer.
 
 Your environment should already have the emulator pre-installed. If not, refer to the [installation instructions][docs.microsoft.com/azure/cosmos-db/local-emulator] to install the Azure Cosmos DB Emulator. Once the emulator has started, you can retrieve the connection string and use it to connect to the emulator using the Azure SDK for .NET or any other SDK of your choice.
 
