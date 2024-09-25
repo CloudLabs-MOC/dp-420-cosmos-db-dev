@@ -45,6 +45,7 @@ Your environment should already have the emulator pre-installed. If not, refer t
 1. Close your web browser window or tab.
 
 ###  Task 2: Connect to the emulator from the SDK
+In this task, you'll connect to the Azure Cosmos DB Emulator using the Microsoft.Azure.Cosmos SDK. You'll update the connection string in the provided script and write code to create a new database within the emulator, then test the connection by running the script.
 
 The **Microsoft.Azure.Cosmos** library has already been pre-installed in the .NET script you will use in this exercise. Further, some of the boilerplate code has already been written to save you time. You will need to update the boilerplate connection string value and write a couple of lines of code to complete the script.
 
@@ -118,6 +119,8 @@ The **Microsoft.Azure.Cosmos** library has already been pre-installed in the .NE
 
 ###  Task 3: View the changes in the emulator
 
+In this task, you'll use the Data Explorer in the Azure Cosmos DB Emulator to view the new NoSQL database you created. By accessing the emulator through your browser, you can observe the new "cosmicworks" database in the SQL API navigation tree.
+
 Now that you have created a new database in the Azure Cosmos DB emulator, you will use the online **Data Explorer** to observe the new NoSQL API database within the emulator.
 
 1. Navigate to the emulator icon in the Windows system tray, open the context menu, and then select **Open Data Explorer...** to navigate to the **localhost:8081/_explorer/** landing page using your default browser.
@@ -129,6 +132,8 @@ Now that you have created a new database in the Azure Cosmos DB emulator, you wi
 1. Close your web browser window or tab.
 
 ###  Task 4: Create and view a new container
+
+In this task, you will expand the previous script to create a new container called "products" in the "cosmicworks" database. After running the script, you'll verify the creation by viewing the container in the Azure Cosmos DB Emulator's Data Explorer. This process is similar to creating a database, and the code can be reused for both cloud and emulator environments by changing the connection string.
 
 Creating a new container is similar to the pattern used to create a new database. The code you learn here will be relevant whether or not you create resources in the cloud or in the emulator, you simply need to change the connection string. You will expand the script file further to create a new container along with the database.
 
