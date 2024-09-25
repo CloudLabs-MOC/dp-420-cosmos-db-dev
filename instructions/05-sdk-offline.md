@@ -198,6 +198,10 @@ Creating a new container is similar to the pattern used to create a new database
 
     <validation step="d95b17d3-9a2e-4a03-adde-9ad042168bea" />
 
+### Summary
+
+In this lab, you have configured the Azure Cosmos DB Emulator for offline development with the NoSQL API. Key tasks include starting the emulator, connecting to it via the Azure SDK for .NET, creating a new database named "cosmicworks," and adding a container called "products." Finally, users will verify their changes using the Data Explorer within the emulator, providing hands-on experience with the Cosmos DB development environment.
+
 ### Review
 
 In this lab, you have completed:
