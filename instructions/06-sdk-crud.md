@@ -65,25 +65,32 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     | **Capacity mode**  | *Provisioned throughput* |
     | **Apply Free Tier Discount** | *Do Not Apply* |
 
+1. Once after validation passed click on **Create**.
+
 1. Wait for the deployment task to complete before continuing with this task.
 
-1. Select **Go to resource**. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys** pane.
+1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys** pane.
+
+    ![06](media/New-image6.png
+
+    ![06](media/New-image7.png)
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-    1. Notice the **URI** field. You will use this **endpoint** value later in this exercise.
+    1. Record the value of the **URI** field. You will use this **endpoint** value later in this exercise.
 
-    1. Notice the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
+    1. Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
 
+        ![06](media/New-image8.png)
+       
 1. Switch back to **Visual Studio Code**.
 
-    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
     > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help.
-
-    <validation step="185fcc24-d57e-4db3-a26d-1b9d4b61dbf2" />
+    > - If you need any assistance, please contact us at labs-support@spektrasystems.com.
+    
+<validation step="185fcc24-d57e-4db3-a26d-1b9d4b61dbf2" />
 
 ### Task 2: Connect to the Azure Cosmos DB NoSQL API account from the SDK
 
