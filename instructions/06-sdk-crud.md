@@ -122,13 +122,13 @@ In this task, you will connect to the Azure Cosmos DB NoSQL API account using th
 
     >**Note**: The **[Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1]** library has already been pre-imported from NuGet.
 
-1. Locate the **string** variable named **endpoint**. Replace "<cosmos-endpoint>" value with the **endpoint** of the Azure Cosmos DB account you created earlier.
+1. Locate the **string** variable named **endpoint**. Replace **<cosmos-endpoint>** value with the **endpoint** of the Azure Cosmos DB account you created earlier.
   
      ![06](media/New-image64.png)
 
     >**Note**: For example, if your endpoint is: **https&shy;://dp420.documents.azure.com:443/**, then the C# statement would be: **string endpoint = "https&shy;://dp420.documents.azure.com:443/";**.
 
-1. Locate the **string** variable named **key**. Replace "<cosmos-key>" value with the **key** of the Azure Cosmos DB account you created earlier.
+1. Locate the **string** variable named **key**. Replace **<cosmos-key>** value with the **key** of the Azure Cosmos DB account you created earlier.
 
     ![06](media/New-image65.png)
 
