@@ -55,13 +55,13 @@ Feel free to start, stop, or restart your virtual machine as needed from the **R
  
    - **Email/Username:** <inject key="AzureAdUserEmail"></inject>
 
-     ![](../media/intro1.png)
+     ![](media/intro1.png)
 
 1. Next, provide your password:
  
    - **Password:** <inject key="AzureAdUserPassword"></inject>
 
-     ![](../media/intro2.png)
+     ![](media/intro2.png)
 
 1. If prompted to stay signed in, you can click "No."
  
