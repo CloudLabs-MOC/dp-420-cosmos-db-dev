@@ -28,19 +28,17 @@ In this lab, you will complete the following tasks:
 
    ![Visual Studio Code Icon](./media/vscode1.jpg)
 
-2. Select the **Extension (1)** icon from the left pane. Enter **C# (2)** in the search bar and select the **Extension (3)** that shows up and finally **Install (4)** on the extension. 
+2. Select the **Extensions** blade from the left panel. Search with **C#** and select **Install** to install the extension.
 
-    ![](media/visualstudioo.png)
+    ![06](media/New-image50.png)
 
-3. Select the **file** option on the top left of the screen, from the pane options, select **Open Folder** and navigate to **C:\AllFiles**.
+3. Select the **file** option on the top left of the screen, from the pane options, select **Open Folder**. 
 
-4. Select the folder **dp-420-cosmos-db-dev-main** and click on **Select Folder**.
+4. Navigate to **C:\AllFiles\dp-420-cosmos-db-dev** select **dp-420-cosmos-db-dev** and click on **Select Folder**.
 
-   ![](media/lab12-1.png)
+    ![06](media/New-image54.png)
 
-    >**Note:** On **Do you trust the authors of the files in this folder?** pop-up, select **Yes, I trust authors**.
-
-    ![06](media/lab12-2.png)
+5. If when **Do you trust the author of the files in this folder** click on **Yes, I trust the authors**.
 
 ### Task 2: Create an Azure Cosmos DB NoSQL API account
 
