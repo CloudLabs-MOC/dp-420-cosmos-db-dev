@@ -31,7 +31,7 @@ In this lab, you will complete the following tasks:
 
 4. Select the **file** option on the top left of the screen, from the pane options, select **Open Folder** and navigate to **C:\AllFiles**.
 
-5. Select the folder **dp-420-cosmos-db-dev/08-sdk-bulk** and click on **Select Folder**.
+5. Select the folder **dp-420-cosmos-db-dev-main** and click on **Select Folder**.
 
    >**Note:** On **Do you trust the authors of the files in this folder?** pop-up, select **Yes, I trust authors**.
 
