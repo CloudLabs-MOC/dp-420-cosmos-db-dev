@@ -224,13 +224,12 @@ First, let’s create a simple transactional batch that makes two fictional prod
 
 1. Close the integrated terminal.
 
-    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
     > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help.
+    > - If you need any assistance, please contact us at labs-support@spektrasystems.com.
 
-    <validation step="c1661fb4-6a05-4936-b3ef-79573f26117e" />
+<validation step="c1661fb4-6a05-4936-b3ef-79573f26117e" />
     
 ### Task 3: Creating an errant transactional batch
 
@@ -255,13 +254,15 @@ Now, let’s create a transactional batch that will error purposefully. This bat
     Console.WriteLine($"Status:\t{response.StatusCode}");
     ```
 
-1. Create a **Product** variable named **light** with a unique identifier of **012B**, a name of **Flickering Strobe Light**, and a category identifier of **9603ca6c-9e28-4a02-9194-51cdb7fea816**:
+1. Create a **Product** variable named **light** with a unique identifier of **012B**, a name of **Flickering Strobe Light**, and a category identifier of **9603ca6c- 
+   9e28-4a02-9194-51cdb7fea816**:
 
     ```
     Product light = new("012B", "Flickering Strobe Light", "9603ca6c-9e28-4a02-9194-51cdb7fea816");
     ```
 
-1. Create a **Product** variable named **helmet** with a unique identifier of **012C**, a name of **New Helmet**, and a category identifier of **0feee2e4-687a-4d69-b64e-be36afc33e74**:
+1. Create a **Product** variable named **helmet** with a unique identifier of **012C**, a name of **New Helmet**, and a category identifier of **0feee2e4-687a-4d69-b64e- 
+   be36afc33e74**:
 
     ```
     Product helmet = new("012C", "New Helmet", "0feee2e4-687a-4d69-b64e-be36afc33e74");
@@ -273,7 +274,9 @@ Now, let’s create a transactional batch that will error purposefully. This bat
     PartitionKey partitionKey = new ("9603ca6c-9e28-4a02-9194-51cdb7fea816");
     ```
 
-1. Invoke the **CreateTransactionalBatch** method of the **container** variable passing in the **partitionkey** variable as a method parameter and using the fluent syntax to invoke the **CreateItem<>** generic methods passing in the **light** and **helmet** variables as items to create in individual operations and store the result in a variable named **batch** of type **TransactionalBatch**:
+1. Invoke the **CreateTransactionalBatch** method of the **container** variable passing in the **partitionkey** variable as a method parameter and using the fluent 
+   syntax to invoke the **CreateItem<>** generic methods passing in the **light** and **helmet** variables as items to create in individual operations and store the 
+   result in a variable named **batch** of type **TransactionalBatch**:
 
     ```
     TransactionalBatch batch = container.CreateTransactionalBatch(partitionKey)
@@ -281,7 +284,8 @@ Now, let’s create a transactional batch that will error purposefully. This bat
         .CreateItem<Product>(helmet);
     ```
 
-1. Within a using statement, asynchronously invoke the **ExecuteAsync** method of the **batch** variable and store the result in a variable of type **TransactionalBatchResponse** named **response**:
+1. Within a using statement, asynchronously invoke the **ExecuteAsync** method of the **batch** variable and store the result in a variable of type 
+   **TransactionalBatchResponse** named **response**:
 
     ```
     using TransactionalBatchResponse response = await batch.ExecuteAsync();
@@ -331,19 +335,19 @@ Now, let’s create a transactional batch that will error purposefully. This bat
     dotnet run
     ```
 
-1. Observe the output from the terminal. The status code should either be an HTTP 400 **Bad Request** or 409 **Conflict**. This occurred because all items within the transaction did not share the same partition key value as the transactional batch.
+1. Observe the output from the terminal. The status code should either be an HTTP 400 **Bad Request** or 409 **Conflict**. This occurred because all items within the 
+   transaction did not share the same partition key value as the transactional batch.
 
 1. Close the integrated terminal.
 
 1. Close **Visual Studio Code**.
 
-    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
     > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help.
-
-    <validation step="8a4cd53d-7379-400c-9b3a-905f14442e94" />
+    > - If you need any assistance, please contact us at labs-support@spektrasystems.com.
+    
+<validation step="8a4cd53d-7379-400c-9b3a-905f14442e94" />
     
 ### Review
 
