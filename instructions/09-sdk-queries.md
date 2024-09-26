@@ -138,7 +138,7 @@ The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys samp
 
 ### Task 4: Iterate over the results of a NoSQL query using the SDK
 
-In Task 4, you will modify a C# script to connect to your Cosmos DB, execute a SQL query to retrieve all products, and use an asynchronous loop to display each product's ID, name, and price. This task helps reinforce querying and data handling in a NoSQL environment with the Azure Cosmos DB SDK.
+In this task, you will modify a C# script to connect to your Cosmos DB, execute a SQL query to retrieve all products, and use an asynchronous loop to display each product's ID, name, and price. This task helps reinforce querying and data handling in a NoSQL environment with the Azure Cosmos DB SDK.
 
 You will now use an asynchronous stream to create a simple-to-understand for-each loop over paginated results from Azure Cosmos DB. Behind the scenes, the SDK will manage the feed iterator and make sure subsequent requests are invoked correctly.
 
