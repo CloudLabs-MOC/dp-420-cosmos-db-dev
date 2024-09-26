@@ -254,23 +254,27 @@ Now, let’s create a transactional batch that will error purposefully. This bat
                              
     Console.WriteLine($"Status:\t{response.StatusCode}");
     ```     
+
 1. Create a **Product** variable named **light** with a unique identifier of **012B**, a name of **Flickering Strobe Light**, and a category identifier of **9603ca6c- 
    9e28-4a02-9194-51cdb7fea816**:
 
     ```
     Product light = new("012B", "Flickering Strobe Light", "9603ca6c-9e28-4a02-9194-51cdb7fea816");
     ```
+
 1. Create a **Product** variable named **helmet** with a unique identifier of **012C**, a name of **New Helmet**, and a category identifier of **0feee2e4-687a-4d69-b64e- 
    be36afc33e74**:
 
     ```
     Product helmet = new("012C", "New Helmet", "0feee2e4-687a-4d69-b64e-be36afc33e74");
     ```
+
 1. Create a variable of type **PartitionKey** named **partitionKey** passing in **9603ca6c-9e28-4a02-9194-51cdb7fea816** as a constructor parameter:
 
      ```
      PartitionKey partitionKey = new ("9603ca6c-9e28-4a02-9194-51cdb7fea816");
      ```
+
 1. Invoke the **CreateTransactionalBatch** method of the **container** variable passing in the **partitionkey** variable as a method parameter and using the fluent 
    syntax to invoke the **CreateItem<>** generic methods passing in the **light** and **helmet** variables as items to create in individual operations and store the 
    result in a variable named **batch** of type **TransactionalBatch**:
@@ -280,17 +284,20 @@ Now, let’s create a transactional batch that will error purposefully. This bat
          .CreateItem<Product>(light)
          .CreateItem<Product>(helmet);
      ```
+
 1. Within a using statement, asynchronously invoke the **ExecuteAsync** method of the **batch** variable and store the result in a variable of type 
    **TransactionalBatchResponse** named **response**:
 
     ```
     using TransactionalBatchResponse response = await batch.ExecuteAsync();
     ```
+
 1. Invoke the static **Console.WriteLine** method to output the value of the **StatusCode** property of the **response** variable:
 
     ```
     Console.WriteLine($"Status:\t{response.StatusCode}");
     ```
+
 1. Once you are done, your code file should now include:
   
     ```
