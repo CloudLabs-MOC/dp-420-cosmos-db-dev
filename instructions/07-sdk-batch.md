@@ -91,8 +91,9 @@ In this lab, you will complete the following tasks:
     ```
     string endpoint = "<cosmos-endpoint>";
     ```
+    ![06](media/New-image64.png)
 
-    >**Note**: For example, if your endpoint is: **https&shy;://dp420.documents.azure.com:443/**, then the C# statement would be: **string endpoint = "https&shy;://dp420.documents.azure.com:443/";**.
+   >**Note**: For example, if your endpoint is: **https&shy;://dp420.documents.azure.com:443/**, then the C# statement would be: **string endpoint = "https&shy;://dp420.documents.azure.com:443/";**.
 
 1. Locate the **string** variable named **key**. Set its value to the **key** of the Azure Cosmos DB account you created in the previous lab.
 
@@ -100,6 +101,8 @@ In this lab, you will complete the following tasks:
     string key = "<cosmos-key>";
     ```
 
+    ![06](media/New-image65.png)
+   
     >**Note**: For example, if your key is: **fDR2ci9QgkdkvERTQ==**, then the C# statement would be: **string key = "fDR2ci9QgkdkvERTQ==";**.
 
 1. **Save** the **script.cs** code file.
@@ -122,13 +125,12 @@ In this lab, you will complete the following tasks:
 
 1. Close the integrated terminal.
 
-    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
     > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help.
-
-    <validation step="9388db32-62bd-416d-a11e-beba00d5bd19" />
+    > - If you need any assistance, please contact us at labs-support@spektrasystems.com.
+    
+<validation step="9388db32-62bd-416d-a11e-beba00d5bd19" />
 
 ### Task 2: Creating a transactional batch
 
