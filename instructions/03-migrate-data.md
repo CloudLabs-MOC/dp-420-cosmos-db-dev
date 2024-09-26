@@ -161,7 +161,10 @@ To accompany the products container, you will create a **flatproducts** containe
    
 1. Return to the **Home** of the Azure portal.
 
-    > **Congratulations** on completing the task! Now, it's time to validate it. 
+    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
+    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+    > - If you need any assistance, please contact us at labs-support@spektrasystems.com. 
 
     <validation step="4f0ebcc4-a71c-450a-b7e0-5099feed58d5" />
 
@@ -309,7 +312,10 @@ Now that the Azure Cosmos DB for NoSQL resources are in place, you will create a
 
 1. Close your web browser window or tab.
 
-   > **Congratulations** on completing the task! Now, it's time to validate it.
+    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
+    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+    > - If you need any assistance, please contact us at labs-support@spektrasystems.com.
 
    <validation step="e513aa34-ca14-4de5-a2f3-139f051e5c35" />
 
