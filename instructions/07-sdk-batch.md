@@ -21,6 +21,8 @@ In this lab, you will complete the following tasks:
 
 ## Prepare your development environment
 
+In this task, you will prepare your development environment for working with Azure Cosmos DB by setting up Visual Studio Code.
+
 1. Start Visual Studio Code from the desktop.
 
      ![Visual Studio Code Icon](./media/vscode1.jpg)
@@ -38,6 +40,8 @@ In this lab, you will complete the following tasks:
 5. If **When Do you trust the author of the files in this folder** click on **Yes, I trust the authors**.
 
 ## Task 1: Create an Azure Cosmos DB for NoSQL account and configure the SDK project
+
+In this task, you will provision an Azure Cosmos DB SQL account, configuring essential settings and retrieving the necessary connection details for future development.In this task, you will provision an Azure Cosmos DB SQL API account, configuring essential settings and retrieving the necessary connection details for future development.
 
 1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
 
@@ -133,6 +137,8 @@ In this lab, you will complete the following tasks:
 <validation step="9388db32-62bd-416d-a11e-beba00d5bd19" />
 
 ### Task 2: Creating a transactional batch
+
+In this task, you'll create a transactional batch in Azure Cosmos DB to insert two products (a "Worn Saddle" and a "Rusty Handlebar") into the same partition. The batch ensures that both items are inserted atomically, meaning either both succeed, or neither does. After creating the batch and executing it, you verify the result by checking the status code.
 
 First, let’s create a simple transactional batch that makes two fictional products. This batch will insert a worn saddle and a rusty handlebar into the container with the same “used accessories” category identifier. Both items have the same logical partition key, ensuring that we will have a successful batch operation.
 
@@ -233,6 +239,8 @@ First, let’s create a simple transactional batch that makes two fictional prod
 
     
 ### Task 3: Creating an errant transactional batch
+
+In this task, you intentionally cause an error by trying to insert two items with different partition keys (a "Flickering Strobe Light" and a "New Helmet"). Since Cosmos DB requires items in the same batch to share the same partition key, this transaction results in an error (HTTP 400 Bad Request).
 
 Now, let’s create a transactional batch that will error purposefully. This batch will attempt to insert two items that have different logical partition keys. We will create a flickering strobe light in the “used accessories” category and a new helmet in the “pristine accessories” category. By definition, this should be a bad request and return an error when performing this transaction.
 
