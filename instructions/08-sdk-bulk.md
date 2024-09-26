@@ -31,39 +31,27 @@ In this lab, you will complete the following tasks:
 
 4. Select the **file** option on the top left of the screen, from the pane options, select **Open Folder** and navigate to **C:\AllFiles**.
 
-5. Select the folder **dp-420-cosmos-db-dev/08-sdk-bulk** and click on **Select Folder**.
+5. Select the folder **dp-420-cosmos-db-dev-main** and click on **Select Folder**.
+
+   ![06](media/New-image54.png)
 
    >**Note:** On **Do you trust the authors of the files in this folder?** pop-up, select **Yes, I trust authors**.
 
 ### Task 1: Create an Azure Cosmos DB for NoSQL account and configure the SDK project
 
-1. Inside the LabVM, double-click on the **Azure Portal** shortcut.
+In this task, you will create an Azure Cosmos DB for NoSQL account, configure it with essential settings, and prepare the SDK project in Visual Studio Code to interact with your newly established database.
 
-    ![](media/azureportal.png)
+1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
 
-1. On the **Sign-in into Microsoft Azure** tab you will see the login screen, in that enter the following email/username and then click on **Next**. 
-   * Email/Username: <inject key="AzureAdUserEmail"></inject>
+   ![06](media/New-image1.png)
    
-     ![04](media/04.png)
-     
-1. Now enter the following password and click on **Sign in**.
-   * Password: <inject key="AzureAdUserPassword"></inject>
-   
-     ![05](media/05.png)
-     
-        >**Note:** If you see the **Help us protect your account** dialog box, then select the **Skip for now** option.
+1. Select **create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
 
-        ![06](media/06.png)
-  
-1. If you see the pop-up **Stay Signed in?**, click No
+    ![06](media/New-image2.png)
 
-1. If you see the pop-up **You have free Azure Advisor recommendations!**, close the window to continue the lab.
+    ![06](media/New-image3.png)
 
-1. If a **Welcome to Microsoft Azure** popup window appears, click **Maybe Later** to skip the tour.
-
-1. Select **+ Create a resource**, search for *Cosmos DB*, select **Azure Cosmos DB**.
-
-1. Select **Create** under **Azure Cosmos DB for NoSQL**. Then create a new **Azure Cosmos DB for NoSQL** account resource with the following settings, leaving all remaining settings to their default values, and select **Review + create**:
+1. Select **Create** under **Azure Cosmos DB for NoSQL**. Then create a new **Azure Cosmos DB for NoSQL** account resource with the following settings, leaving all remaining settings to their default values, and select **Review + create** and click on **Create**:
 
     | **Setting** | **Value** |
     | :--- | :--- |
@@ -77,15 +65,21 @@ In this lab, you will complete the following tasks:
    
 1. Wait for the deployment task to complete before continuing with this task.
 
-1. Go to the newly created **Azure Cosmos DB** account resource and navigate to the **Keys** pane.
+1. Go to the newly created **Azure Cosmos DB** account resource and from the left navigation pane under **Settings** click on **Keys**.
+
+    ![06](media/New-image7.png)
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-    1. Notice the **URI** field. You will use this **endpoint** value later in this exercise.
+   -  Copy the **URI** field. You will use this **endpoint** value later in this exercise.
 
-    1. Notice the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
+   - Copy the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
 
-1. On the **Azure Cosmos DB** account resource, navigate to the **Data Explorer** pane.
+       ![06](media/New-image9.png)
+
+1. On the **Azure Cosmos DB** account resource, click on **Overview** from the left navigation pane  and click on  the **Data Explorer** option from the top navigation pane.
+
+    ![](media/cosmosx1.png)
 
 1. In the **Data Explorer**, select **New Container**, and then create a new container with the following settings, leaving all remaining settings to their default values and click **OK**.
 
@@ -124,8 +118,10 @@ In this lab, you will complete the following tasks:
 1. Press **Ctrl+S** to **Save** the script.cs code file.
 
 1. Open the context menu for the **08-sdk-bulk** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+ 
+    ![](media/cosmos3.png)
 
-    >**Note**: This command will open the terminal with the starting directory already set to the **08-sdk-bulk** folder.
+   >**Note**: This command will open the terminal with the starting directory already set to the **08-sdk-bulk** folder.
 
 1. Add the [Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1] package from NuGet using the following command:
 
@@ -142,7 +138,6 @@ In this lab, you will complete the following tasks:
 1. Close the integrated terminal.
 
     > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
     > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
     > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
     > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help.
@@ -151,7 +146,7 @@ In this lab, you will complete the following tasks:
 
 ### Task 2: Bulk inserting twenty-five thousand documents
 
-Let's "go for the gusto" and try to insert a lot of documents to see how this works. In our internal testing, this can take approximately 1-2 minutes if the lab virtual machine and Azure Cosmos DB NoSQL API account are relatively close to each other geographically speaking.
+In this task, we will try to insert a lot of documents to see how this works. In our internal testing, this can take approximately 1-2 minutes if the lab virtual machine and Azure Cosmos DB NoSQL API account are relatively close to each other geographically speaking.
 
 1. Return to the editor tab for the **script.cs** code file.
 
@@ -284,7 +279,6 @@ Let's "go for the gusto" and try to insert a lot of documents to see how this wo
 1. Close **Visual Studio Code**.
 
     > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
     > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
     > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
     > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help.
@@ -295,9 +289,7 @@ Let's "go for the gusto" and try to insert a lot of documents to see how this wo
 
 Now that you have sent 25,000 items to Azure Cosmos DB let’s go and look at the Data Explorer.
 
-1. In a web browser, navigate to the Azure portal (``portal.azure.com``).
-
-1. Select **Resource groups**, then select the resource group you created or viewed earlier in this lab, and then select the **Azure Cosmos DB account** resource you created in this lab.
+1. Back in the  Azure portal (``portal.azure.com``) in the browser window, select the **Azure Cosmos DB account** resource you created in this lab.
 
 1. Within the **Azure Cosmos DB** account resource, navigate to the **Data Explorer** pane.
 
@@ -306,6 +298,8 @@ Now that you have sent 25,000 items to Azure Cosmos DB let’s go and look at th
 1. Expand the **products** node, and then select the **Items** node. Observe the list of items within your container.
 
 1. Select the **products** container node within the **NoSQL API** navigation tree, and click on **...** then select **New SQL Query**.
+
+   ![](media/cosmos4.png)
 
 1. Delete the contents of the editor area.
 
@@ -328,5 +322,8 @@ In this lab, you have completed:
 - Create an Azure Cosmos DB for NoSQL account and configure the SDK project
 - Bulk inserted twenty-five thousand documents.
 - Observed the results.
+
+### Summary
+In this lab, you have learnt to bulk insert 25,000 fictional documents into an Azure Cosmos DB for NoSQL account using the Azure Cosmos DB SDK and the Bogus library, while also configuring the necessary environment and observing the results
 
 ### You have successfully completed the lab
