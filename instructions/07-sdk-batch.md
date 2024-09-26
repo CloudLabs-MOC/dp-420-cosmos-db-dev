@@ -39,29 +39,6 @@ In this lab, you will complete the following tasks:
 
 ## Task 1: Create an Azure Cosmos DB for NoSQL account and configure the SDK project
 
-1. Inside the LabVM, double-click on the **Azure Portal** shortcut.
-
-    ![](media/azureportal.png)
-
-1. On the **Sign-in into Microsoft Azure** tab you will see the login screen, in that enter the following email/username and then click on **Next**. 
-   * Email/Username: <inject key="AzureAdUserEmail"></inject>
-   
-     ![04](media/04.png)
-     
-1. Now enter the following password and click on **Sign in**.
-   * Password: <inject key="AzureAdUserPassword"></inject>
-   
-     ![05](media/05.png)
-     
-        >**Note:** If you see the **Help us protect your account** dialog box, then select the **Skip for now** option.
-
-        ![06](media/06.png)
-  
-1. If you see the pop-up **Stay Signed in?**, click No
-
-1. If you see the pop-up **You have free Azure Advisor recommendations!**, close the window to continue the lab.
-
-1. If a **Welcome to Microsoft Azure** popup window appears, click **Maybe Later** to skip the tour.
 
 1. Select **+ Create a resource**, search for *Cosmos DB*, select **Azure Cosmos DB**.
 
