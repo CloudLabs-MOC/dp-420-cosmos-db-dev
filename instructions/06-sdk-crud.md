@@ -96,7 +96,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 ### Task 2: Connect to the Azure Cosmos DB NoSQL API account from the SDK
 
-Using the credentials from the newly created account, you will connect with the SDK classes and create a new database and container instance. Then, you will use the Data Explorer to validate that the instances exist in the Azure portal.
+In this task, you will connect to the Azure Cosmos DB NoSQL API account using the Azure SDK for .NET. You'll use Visual Studio Code to run a script that creates a new database and container within your Cosmos DB account. Once the database and container are created, you will validate their existence using the Data Explorer in the Azure portal.
 
 1. In **Visual Studio Code**, in the **Explorer** pane, browse to the **06-sdk-crud** folder.
 
@@ -206,7 +206,7 @@ Using the credentials from the newly created account, you will connect with the 
 
 ### Task 3: Perform create and read point operations on items with the SDK
 
-You will now use the set of asynchronous methods in the Microsoft.Azure.Cosmos.Container class to perform common operations on items within a NoSQL API container. These operations are all done using the task asynchronous programming model in C#.
+In this task, You'll now use the set of asynchronous methods in the Microsoft.Azure.Cosmos.Container class to perform common operations on items within a NoSQL API container. These operations are all done using the task asynchronous programming model in C#.
 
 1. Return to **Visual Studio Code**. Open the **product.cs** code file within the **06-sdk-crud** folder.
 
@@ -387,6 +387,8 @@ You will now use the set of asynchronous methods in the Microsoft.Azure.Cosmos.C
 
 ### Task 4: Perform update and delete point operations with the SDK
 
+In this task, you will update the product's price and name using the UpsertItemAsync method and verify the changes in the Azure portal. After confirming the update, you will delete the item with the DeleteItemAsync method and ensure the item is removed by checking the Data Explorer.
+
 While learning the SDK, it's not uncommon to use an online Azure Cosmos DB SDK account or the emulator to update an item and  oscillate back and forth between the Data Explorer and your IDE of choice as you perform an operation and check to see if your change has been applied. Here, you will do just that as you update and delete an item using the SDK.
 
 1. Navigate to the **Azure portal**.
@@ -533,6 +535,10 @@ While learning the SDK, it's not uncommon to use an online Azure Cosmos DB SDK a
 1. Close your web browser window or tab.
 
 1. Close **Visual Studio Code**.
+
+### Summary 
+
+In this lab, you explored how to perform essential CRUD operations using the Azure Cosmos DB NoSQL API SDK. You began by creating an Azure Cosmos DB NoSQL API account, followed by establishing a connection to the account using the SDK, and then creating a database and container. Next, you executed create and read operations on items within the container, which provided hands-on experience in managing data. Finally, you updated and deleted items, reinforcing your understanding of data manipulation in Cosmos DB. By the end of the lab, you gained valuable insights into integrating CRUD operations programmatically, enabling efficient data management within a NoSQL environment.
 
 ### Review
 
