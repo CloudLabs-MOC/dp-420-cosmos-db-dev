@@ -239,21 +239,20 @@ Now, let’s create a transactional batch that will error purposefully. This bat
 
 1. Delete the following lines of code:
 
-
-    ```
-    Product saddle = new("0120", "Worn Saddle", "9603ca6c-9e28-4a02-9194-51cdb7fea816");
-    Product handlebar = new("012A", "Rusty Handlebar", "9603ca6c-9e28-4a02-9194-51cdb7fea816");
+     ```
+     Product saddle = new("0120", "Worn Saddle", "9603ca6c-9e28-4a02-9194-51cdb7fea816");
+     Product handlebar = new("012A", "Rusty Handlebar", "9603ca6c-9e28-4a02-9194-51cdb7fea816");
                              
-    PartitionKey partitionKey = new ("9603ca6c-9e28-4a02-9194-51cdb7fea816");
+     PartitionKey partitionKey = new ("9603ca6c-9e28-4a02-9194-51cdb7fea816");
                              
-    TransactionalBatch batch = container.CreateTransactionalBatch(partitionKey)
-        .CreateItem<Product>(saddle)
-        .CreateItem<Product>(handlebar);
+     TransactionalBatch batch = container.CreateTransactionalBatch(partitionKey)
+         .CreateItem<Product>(saddle)
+         .CreateItem<Product>(handlebar);
                              
-    using TransactionalBatchResponse response = await batch.ExecuteAsync();
+     using TransactionalBatchResponse response = await batch.ExecuteAsync();
                              
-    Console.WriteLine($"Status:\t{response.StatusCode}");
-    ```     
+     Console.WriteLine($"Status:\t{response.StatusCode}");
+     ```     
 
 
 1. Create a **Product** variable named **light** with a unique identifier of **012B**, a name of **Flickering Strobe Light**, and a category identifier of **9603ca6c- 
