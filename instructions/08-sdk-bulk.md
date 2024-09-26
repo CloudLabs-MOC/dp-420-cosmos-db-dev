@@ -39,6 +39,8 @@ In this lab, you will complete the following tasks:
 
 ### Task 1: Create an Azure Cosmos DB for NoSQL account and configure the SDK project
 
+In this task, you will create an Azure Cosmos DB for NoSQL account, configure it with essential settings, and prepare the SDK project in Visual Studio Code to interact with your newly established database.
+
 1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
 
    ![06](media/New-image1.png)
@@ -144,7 +146,7 @@ In this lab, you will complete the following tasks:
 
 ### Task 2: Bulk inserting twenty-five thousand documents
 
-Let's "go for the gusto" and try to insert a lot of documents to see how this works. In our internal testing, this can take approximately 1-2 minutes if the lab virtual machine and Azure Cosmos DB NoSQL API account are relatively close to each other geographically speaking.
+In this task, we will try to insert a lot of documents to see how this works. In our internal testing, this can take approximately 1-2 minutes if the lab virtual machine and Azure Cosmos DB NoSQL API account are relatively close to each other geographically speaking.
 
 1. Return to the editor tab for the **script.cs** code file.
 
