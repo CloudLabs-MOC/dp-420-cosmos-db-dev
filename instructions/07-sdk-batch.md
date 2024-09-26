@@ -138,13 +138,15 @@ First, let’s create a simple transactional batch that makes two fictional prod
 
 1. Return to the editor tab for the **script.cs** code file.
 
-1. Create a **Product** variable named **saddle** with a unique identifier of **0120**, a name of **Worn Saddle**, and a category identifier of **9603ca6c-9e28-4a02-9194-51cdb7fea816**:
+1. Create a **Product** variable named **saddle** with a unique identifier of **0120**, a name of **Worn Saddle**, and a category identifier of **9603ca6c-9e28-4a02- 
+   9194-51cdb7fea816**:
 
     ```
     Product saddle = new("0120", "Worn Saddle", "9603ca6c-9e28-4a02-9194-51cdb7fea816");
     ```
 
-1. Create a **Product** variable named **handlebar** with a unique identifier of **012A**, a name of **Rusty Handlebar**, and a category identifier of **9603ca6c-9e28-4a02-9194-51cdb7fea816**:
+1. Create a **Product** variable named **handlebar** with a unique identifier of **012A**, a name of **Rusty Handlebar**, and a category identifier of **9603ca6c-9e28- 
+   4a02-9194-51cdb7fea816**:
 
     ```
     Product handlebar = new("012A", "Rusty Handlebar", "9603ca6c-9e28-4a02-9194-51cdb7fea816");
@@ -156,7 +158,10 @@ First, let’s create a simple transactional batch that makes two fictional prod
     PartitionKey partitionKey = new ("9603ca6c-9e28-4a02-9194-51cdb7fea816");
     ```
 
-1. Invoke the [CreateTransactionalBatch][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.createtransactionalbatch] method of the **container** variable passing in the **partitionkey** variable as a method parameter and using the fluent syntax to invoke the [CreateItem<>][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.transactionalbatch.createitem] generic methods passing in the **saddle** and **handlebar** variables as items to create in individual operations and store the result in a variable named **batch** of type **TransactionalBatch**:
+1. Invoke the [CreateTransactionalBatch][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.createtransactionalbatch] method of the **container** variable 
+   passing in the **partitionkey** variable as a method parameter and using the fluent syntax to invoke the [CreateItem<>] 
+   [docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.transactionalbatch.createitem] generic methods passing in the **saddle** and **handlebar** variables as items to 
+   create in individual operations and store the result in a variable named **batch** of type **TransactionalBatch**:
 
     ```
     TransactionalBatch batch = container.CreateTransactionalBatch(partitionKey)
@@ -164,7 +169,8 @@ First, let’s create a simple transactional batch that makes two fictional prod
         .CreateItem<Product>(handlebar);
     ```
 
-1. Within a using statement, asynchronously invoke the **ExecuteAsync** method of the **batch** variable and store the result in a variable of type **TransactionalBatchResponse** named **response**:
+1. Within a using statement, asynchronously invoke the **ExecuteAsync** method of the **batch** variable and store the result in a variable of type 
+   **TransactionalBatchResponse** named **response**:
 
     ```
     using TransactionalBatchResponse response = await batch.ExecuteAsync();
