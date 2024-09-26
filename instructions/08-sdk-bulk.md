@@ -63,7 +63,7 @@ In this lab, you will complete the following tasks:
 
 1. Select **+ Create a resource**, search for *Cosmos DB*, select **Azure Cosmos DB**.
 
-1. Select **Create** under **Azure Cosmos DB for NoSQL**. Then create a new **Azure Cosmos DB for NoSQL** account resource with the following settings, leaving all remaining settings to their default values, and select **Review + create**:
+1. Select **Create** under **Azure Cosmos DB for NoSQL**. Then create a new **Azure Cosmos DB for NoSQL** account resource with the following settings, leaving all remaining settings to their default values, and select **Review + create** and click on **Create**:
 
     | **Setting** | **Value** |
     | :--- | :--- |
@@ -77,7 +77,9 @@ In this lab, you will complete the following tasks:
    
 1. Wait for the deployment task to complete before continuing with this task.
 
-1. Go to the newly created **Azure Cosmos DB** account resource and navigate to the **Keys** pane.
+1. Go to the newly created **Azure Cosmos DB** account resource and from the left navigation pane under **Settings** click on **Keys**.
+
+    ![](media/cosmos1.png)
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
@@ -85,7 +87,9 @@ In this lab, you will complete the following tasks:
 
     1. Notice the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
 
-1. On the **Azure Cosmos DB** account resource, navigate to the **Data Explorer** pane.
+1. On the **Azure Cosmos DB** account resource, click on **Overview** from the left navigation pane  and click on  the **Data Explorer** option from the top navigation pane.
+
+    ![](media/cosmos2.png)
 
 1. In the **Data Explorer**, select **New Container**, and then create a new container with the following settings, leaving all remaining settings to their default values and click **OK**.
 
@@ -124,8 +128,10 @@ In this lab, you will complete the following tasks:
 1. Press **Ctrl+S** to **Save** the script.cs code file.
 
 1. Open the context menu for the **08-sdk-bulk** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+ 
+    ![](media/cosmos3.png)
 
-    >**Note**: This command will open the terminal with the starting directory already set to the **08-sdk-bulk** folder.
+   >**Note**: This command will open the terminal with the starting directory already set to the **08-sdk-bulk** folder.
 
 1. Add the [Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1] package from NuGet using the following command:
 
@@ -142,7 +148,6 @@ In this lab, you will complete the following tasks:
 1. Close the integrated terminal.
 
     > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
     > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
     > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
     > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help.
@@ -284,7 +289,6 @@ Let's "go for the gusto" and try to insert a lot of documents to see how this wo
 1. Close **Visual Studio Code**.
 
     > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
     > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
     > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
     > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help.
@@ -295,9 +299,7 @@ Let's "go for the gusto" and try to insert a lot of documents to see how this wo
 
 Now that you have sent 25,000 items to Azure Cosmos DB let’s go and look at the Data Explorer.
 
-1. In a web browser, navigate to the Azure portal (``portal.azure.com``).
-
-1. Select **Resource groups**, then select the resource group you created or viewed earlier in this lab, and then select the **Azure Cosmos DB account** resource you created in this lab.
+1. Back in the  Azure portal (``portal.azure.com``) in the browser window, select the **Azure Cosmos DB account** resource you created in this lab.
 
 1. Within the **Azure Cosmos DB** account resource, navigate to the **Data Explorer** pane.
 
@@ -306,6 +308,8 @@ Now that you have sent 25,000 items to Azure Cosmos DB let’s go and look at th
 1. Expand the **products** node, and then select the **Items** node. Observe the list of items within your container.
 
 1. Select the **products** container node within the **NoSQL API** navigation tree, and click on **...** then select **New SQL Query**.
+
+   ![](media/cosmos4.png)
 
 1. Delete the contents of the editor area.
 
