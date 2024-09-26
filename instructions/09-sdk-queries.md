@@ -166,7 +166,7 @@ You will now use an asynchronous stream to create a simple-to-understand for-eac
 
     >**Note**: For example, if your key is: **fDR2ci9QgkdkvERTQ==**, then the C# statement would be: **string key = "fDR2ci9QgkdkvERTQ==";**.
 
-1. Create a new variable named **sql** of type *string* with a value of **SELECT * FROM products p**:
+1. At end of the script add the below command to create a new variable named **sql** of type *string* with a value of **SELECT * FROM products p**:
 
     ```
     string sql = "SELECT * FROM products p";
