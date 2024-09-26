@@ -76,7 +76,7 @@ In this lab, you will complete the following tasks:
 
     1. Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
 
-        ![06](media/New-image8.png)
+        ![06](media/New-image9.png)
 
 1. Switch back to **Visual Studio Code**.
 
