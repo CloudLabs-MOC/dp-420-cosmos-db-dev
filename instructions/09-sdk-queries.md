@@ -99,7 +99,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 ### Task 3: Seed the Azure Cosmos DB NoSQL API account with data
 
-In Task 3, you will install the cosmicworks command-line tool to seed your Azure Cosmos DB NoSQL API account with sample product data by running a command that includes your account's endpoint and key.
+In this task, you will install the cosmicworks command-line tool to seed your Azure Cosmos DB NoSQL API account with sample product data by running a command that includes your account's endpoint and key.
 
 The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys sample data to any Azure Cosmos DB SQL API account. The tool is open-source and available through NuGet. You will install this tool to the Azure Cloud Shell and then use it to seed your database.
 
