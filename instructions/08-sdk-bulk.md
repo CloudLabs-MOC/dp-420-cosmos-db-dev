@@ -323,4 +323,7 @@ In this lab, you have completed:
 - Bulk inserted twenty-five thousand documents.
 - Observed the results.
 
+### Summary
+In this lab, you have learnt to bulk insert 25,000 fictional documents into an Azure Cosmos DB for NoSQL account using the Azure Cosmos DB SDK and the Bogus library, while also configuring the necessary environment and observing the results
+
 ### You have successfully completed the lab
