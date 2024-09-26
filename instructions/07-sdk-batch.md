@@ -358,6 +358,9 @@ Now, let’s create a transactional batch that will error purposefully. This bat
     
 <validation step="8a4cd53d-7379-400c-9b3a-905f14442e94" />
 
+### Summary 
+
+In this lab, you gained hands-on experience using the Azure Cosmos DB NoSQL API SDK to batch multiple operations within a single transactional unit. By leveraging the TransactionalBatch and TransactionalBatchResponse classes, you learned how to group multiple point operations to ensure atomicity, meaning all operations succeed or fail together. This lab emphasized the importance of using partition keys for batch operations, as Cosmos DB requires items within a transaction to share the same partition key.
     
 ### Review
 
