@@ -32,8 +32,6 @@ In this lab, you will complete the following tasks:
 
 3. Select the **file** option on the top left of the screen, from the pane options, select **Open Folder**. navigate to **C:\AllFiles\dp-420-cosmos-db-dev**.
 
-     ![06](media/New-image51.png)
-
 4. Navigate to **C:\AllFiles\dp-420-cosmos-db-dev** select **dp-420-cosmos-db-dev** and click on **Select Folder**.
 
     ![06](media/New-image54.png)
