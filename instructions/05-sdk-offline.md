@@ -21,10 +21,12 @@ In this lab, you will complete the following tasks:
 ![image](architecturedia/lab5.png)
 
 ### Task 1: Start the Azure Cosmos DB Emulator
+In this task, you will launch the Azure Cosmos DB Emulator, a local tool that simulates the Azure Cosmos DB environment. You'll retrieve the connection string from the emulator. The task involves verifying that the emulator is running and checking the initial state of the Data Explorer.
 
 Your environment should already have the emulator pre-installed. If not, refer to the [installation instructions][docs.microsoft.com/azure/cosmos-db/local-emulator] to install the Azure Cosmos DB Emulator. Once the emulator has started, you can retrieve the connection string and use it to connect to the emulator using the Azure SDK for .NET or any other SDK of your choice.
 
 1. Search and Start the **Azure Cosmos DB Emulator** from Start Menu of window.
+     ![06](media/New-image55.png)
 
 1. Wait for 3 to 4 minutes to get started the emulator to automatically open your default browser and navigate to the **localhost:8081/_explorer/index.html** landing page.
 
@@ -34,17 +36,21 @@ Your environment should already have the emulator pre-installed. If not, refer t
 
     1. Record the value of the **Primary Connection String** field. You will use this **connection string** value later in this exercise.
 
-1. Navigate to the **Explorer** pane.
+         ![06](media/New-image56.png)
 
-1. In the **Data Explorer**, observe that there are no nodes within the **SQL API** navigation tree.
+1. Navigate to the **Explorer** pane. In the **Data Explorer**, observe that there are no nodes within the **SQL API** navigation tree.
+
+   ![06](media/New-image57.png)
 
 1. Close your web browser window or tab.
 
 ###  Task 2: Connect to the emulator from the SDK
+In this task, you'll connect to the Azure Cosmos DB Emulator using the Microsoft.Azure.Cosmos SDK. You'll update the connection string in the provided script and write code to create a new database within the emulator, then test the connection by running the script.
 
 The **Microsoft.Azure.Cosmos** library has already been pre-installed in the .NET script you will use in this exercise. Further, some of the boilerplate code has already been written to save you time. You will need to update the boilerplate connection string value and write a couple of lines of code to complete the script.
 
 1. In **Visual Studio Code**, Select the file option on the top left of the screen, from the pane options, select **Open Folder** and navigate to **C:\AllFiles\dp-420-cosmos-db-dev**
+
 1. Select the folder **05-sdk-offline** and click on Select Folder.
 
 1. Open the **script.cs** code file within the **05-sdk-offline** folder.
@@ -107,15 +113,13 @@ The **Microsoft.Azure.Cosmos** library has already been pre-installed in the .NE
 
 1. Close the integrated terminal.
 
-    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Click the Lab Validation tab located at the upper right corner of the lab guide section and navigate to the Lab Validation Page.
-    > - Hit the Validate button for the corresponding task.
-    > - If you receive a success message, you can proceed to the next task. If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
+    > **Congratulations** on completing the task! Now, it's time to validate it. 
 
     <validation step="1e23a88b-ed78-4557-8384-97cc0833dcbb" />
 
 ###  Task 3: View the changes in the emulator
+
+In this task, you'll use the Data Explorer in the Azure Cosmos DB Emulator to view the new NoSQL database you created. By accessing the emulator through your browser, you can observe the new "cosmicworks" database in the SQL API navigation tree.
 
 Now that you have created a new database in the Azure Cosmos DB emulator, you will use the online **Data Explorer** to observe the new NoSQL API database within the emulator.
 
@@ -128,6 +132,8 @@ Now that you have created a new database in the Azure Cosmos DB emulator, you wi
 1. Close your web browser window or tab.
 
 ###  Task 4: Create and view a new container
+
+In this task, you will expand the previous script to create a new container called "products" in the "cosmicworks" database. After running the script, you'll verify the creation by viewing the container in the Azure Cosmos DB Emulator's Data Explorer. This process is similar to creating a database, and the code can be reused for both cloud and emulator environments by changing the connection string.
 
 Creating a new container is similar to the pattern used to create a new database. The code you learn here will be relevant whether or not you create resources in the cloud or in the emulator, you simply need to change the connection string. You will expand the script file further to create a new container along with the database.
 
@@ -184,17 +190,17 @@ Creating a new container is similar to the pattern used to create a new database
 
 1. In the **Data Explorer**, expand the **cosmicworks** database node, then observe the new **products** container node within the **SQL API** navigation tree.
 
-   ![06](media/product.png)
+    ![06](media/New-image60.png)
    
 1. Close your web browser window or tab.
 
-    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Click the Lab Validation tab located at the upper right corner of the lab guide section and navigate to the Lab Validation Page.
-    > - Hit the Validate button for the corresponding task.
-    > - If you receive a success message, you can proceed to the next task. If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
+    > **Congratulations** on completing the task! Now, it's time to validate it.
 
     <validation step="d95b17d3-9a2e-4a03-adde-9ad042168bea" />
+
+### Summary
+
+In this lab, you have configured the Azure Cosmos DB Emulator for offline development with the NoSQL API. Key tasks include starting the emulator, connecting to it via the Azure SDK for .NET, creating a new database named "cosmicworks," and adding a container called "products." Finally, users will verify their changes using the Data Explorer within the emulator, providing hands-on experience with the Cosmos DB development environment.
 
 ### Review
 
