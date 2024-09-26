@@ -39,10 +39,17 @@ In this lab, you will complete the following tasks:
 
 ## Task 1: Create an Azure Cosmos DB for NoSQL account and configure the SDK project
 
+1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
 
-1. Select **+ Create a resource**, search for *Cosmos DB*, select **Azure Cosmos DB**.
+   ![06](media/New-image1.png)
+   
+1. Select **create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
 
-1. Select **create** under **Azure Cosmos DB for NoSQL**. Then create a new **Azure Cosmos DB for NoSQL** account resource with the following settings, leaving all remaining settings to their default values, and select **Review + create**:
+    ![06](media/New-image2.png)
+
+    ![06](media/New-image3.png)
+   
+1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create**:
 
     | **Setting** | **Value** |
     | ---: | :--- |
@@ -53,17 +60,26 @@ In this lab, you will complete the following tasks:
     | **Capacity mode** | *Provisioned throughput* |
     | **Apply Free Tier Discount** | *Do Not Apply* |
 
+
+1. Once after validation passed click on **Create**.
+
 1. Wait for the deployment task to complete before continuing with this task.
 
 1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys** pane.
 
+    ![06](media/New-image6.png
+
+    ![06](media/New-image7.png)
+
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-    1. Notice the **URI** field. You will use this **endpoint** value later in this exercise.
+    1. Record the value of the **URI** field. You will use this **endpoint** value later in this exercise.
 
-    1. Notice the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
+    1. Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
 
-1. Return to **Visual Studio Code**.
+        ![06](media/New-image8.png)
+
+1. Switch back to **Visual Studio Code**.
 
 1. In **Visual Studio Code**, in the **Explorer** pane, browse to the **07-sdk-batch** folder.
 
