@@ -65,13 +65,15 @@ In this lab, you will complete the following tasks:
 
 1. Go to the newly created **Azure Cosmos DB** account resource and from the left navigation pane under **Settings** click on **Keys**.
 
-    ![](media/cosmos1.png)
+    ![06](media/New-image7.png)
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-    1. Notice the **URI** field. You will use this **endpoint** value later in this exercise.
+   -  Copy the **URI** field. You will use this **endpoint** value later in this exercise.
 
-    1. Notice the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
+   - Copy the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
+
+       ![06](media/New-image9.png)
 
 1. On the **Azure Cosmos DB** account resource, click on **Overview** from the left navigation pane  and click on  the **Data Explorer** option from the top navigation pane.
 
