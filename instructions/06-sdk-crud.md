@@ -36,7 +36,7 @@ In this lab, you will complete the following tasks:
 
     ![06](media/New-image54.png)
 
-5. If **When Do you trust the author of the files in this folder** click on **Yes, I trust the authors**.
+5. If when **Do you trust the author of the files in this folder** click on **Yes, I trust the authors**.
 
 ### Task 1: Create an Azure Cosmos DB NoSQL API account
 
