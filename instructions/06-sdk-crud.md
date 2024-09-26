@@ -57,12 +57,12 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create**:
 
     | **Setting** | **Value** |
-    | ---: | :--- |
-    | **Subscription** | *Your existing Azure subscription* |
+    | -------------------|------------------------------------------|
+    | **Subscription**   | *Your existing Azure subscription* |
     | **Resource group** | *Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* |
-    | **Account Name** | *sql-<inject key="DeploymentID" enableCopy="false"/>* |
-    | **Location** | *Choose any available region* |
-    | **Capacity mode** | *Provisioned throughput* |
+    | **Account Name**   | *sql-<inject key="DeploymentID" enableCopy="false"/>* |
+    | **Location**       | *Choose any available region* |
+    | **Capacity mode**  | *Provisioned throughput* |
     | **Apply Free Tier Discount** | *Do Not Apply* |
 
 1. Wait for the deployment task to complete before continuing with this task.
