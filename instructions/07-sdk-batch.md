@@ -229,7 +229,7 @@ First, let’s create a simple transactional batch that makes two fictional prod
     > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
     > - If you need any assistance, please contact us at labs-support@spektrasystems.com.
 
-<validation step="c1661fb4-6a05-4936-b3ef-79573f26117e" />
+    <validation step="c1661fb4-6a05-4936-b3ef-79573f26117e" />
     
 ### Task 3: Creating an errant transactional batch
 
