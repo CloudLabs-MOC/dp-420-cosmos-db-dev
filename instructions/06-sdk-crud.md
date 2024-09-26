@@ -42,6 +42,8 @@ In this lab, you will complete the following tasks:
 
 ### Task 1: Create an Azure Cosmos DB NoSQL API account
 
+In this task, you will create an Azure Cosmos DB account using the NoSQL API. After provisioning the account, you'll retrieve the necessary connection details, including the endpoint (URI) and primary key. These credentials will allow you to connect to the Cosmos DB account using the Azure SDK or another SDK of your choice.
+
 Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **Mongo API** or **SQL API**). Once the Azure Cosmos DB SQL API account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB SQL API account using the Azure SDK for .NET or any other SDK of your choice.
 
 1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
