@@ -79,7 +79,7 @@ In this task, you will create an Azure Cosmos DB for NoSQL account, configure it
 
 1. On the **Azure Cosmos DB** account resource, click on **Overview** from the left navigation pane  and click on  the **Data Explorer** option from the top navigation pane.
 
-    ![](media/cosmos2.png)
+    ![](media/cosmosx1.png)
 
 1. In the **Data Explorer**, select **New Container**, and then create a new container with the following settings, leaving all remaining settings to their default values and click **OK**.
 
