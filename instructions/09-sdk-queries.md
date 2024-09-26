@@ -97,6 +97,8 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 ### Task 3: Seed the Azure Cosmos DB NoSQL API account with data
 
+In Task 3, you will install the cosmicworks command-line tool to seed your Azure Cosmos DB NoSQL API account with sample product data by running a command that includes your account's endpoint and key.
+
 The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys sample data to any Azure Cosmos DB SQL API account. The tool is open-source and available through NuGet. You will install this tool to the Azure Cloud Shell and then use it to seed your database.
 
 1. In **Visual Studio Code**, open the **Terminal** menu by selecting **... (ellipses) (1)** > **Terminal (2)** > **New Terminal (3)** to open a new terminal with your existing instance.
@@ -135,6 +137,8 @@ The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys samp
 1. Close the integrated terminal.
 
 ### Task 4: Iterate over the results of a NoSQL query using the SDK
+
+In Task 4, you will modify a C# script to connect to your Cosmos DB, execute a SQL query to retrieve all products, and use an asynchronous loop to display each product's ID, name, and price. This task helps reinforce querying and data handling in a NoSQL environment with the Azure Cosmos DB SDK.
 
 You will now use an asynchronous stream to create a simple-to-understand for-each loop over paginated results from Azure Cosmos DB. Behind the scenes, the SDK will manage the feed iterator and make sure subsequent requests are invoked correctly.
 
