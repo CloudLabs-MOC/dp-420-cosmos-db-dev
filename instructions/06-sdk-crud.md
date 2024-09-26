@@ -26,11 +26,9 @@ In this lab, you will complete the following tasks:
 
      ![Visual Studio Code Icon](./media/vscode1.jpg)
 
-2. Select the **Extensions** blade from the left panel.
+2. Select the **Extensions** blade from the left panel. Search with **C#** and select **Install** to install the extension.
 
-3. Search with **C#** and select **Install** to install the extension.
-
-    ![](./media/Csharp.png)
+    ![06](media/New-image50.png)
 
 3. Select the **file** option on the top left of the screen, from the pane options, select **Open Folder** and navigate to **C:\AllFiles\dp-420-cosmos-db-dev**.
 
