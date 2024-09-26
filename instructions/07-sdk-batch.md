@@ -52,14 +52,13 @@ In this lab, you will complete the following tasks:
 1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create**:
 
     | **Setting** | **Value** |
-    | ---: | :--- |
+    | ---------------- |---------------------------------- |
     | **Subscription** | *Your existing Azure subscription* |
     | **Resource group** | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* |
     | **Account Name** | *sql-<inject key="DeploymentID" enableCopy="false"/>* |
     | **Location** | *Choose any available region* |
     | **Capacity mode** | *Provisioned throughput* |
     | **Apply Free Tier Discount** | *Do Not Apply* |
-
 
 1. Once after validation passed click on **Create**.
 
