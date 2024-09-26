@@ -239,6 +239,7 @@ Now, let’s create a transactional batch that will error purposefully. This bat
 
 1. Delete the following lines of code:
 
+
     ```
     Product saddle = new("0120", "Worn Saddle", "9603ca6c-9e28-4a02-9194-51cdb7fea816");
     Product handlebar = new("012A", "Rusty Handlebar", "9603ca6c-9e28-4a02-9194-51cdb7fea816");
@@ -254,12 +255,15 @@ Now, let’s create a transactional batch that will error purposefully. This bat
     Console.WriteLine($"Status:\t{response.StatusCode}");
     ```     
 
+
 1. Create a **Product** variable named **light** with a unique identifier of **012B**, a name of **Flickering Strobe Light**, and a category identifier of **9603ca6c- 
    9e28-4a02-9194-51cdb7fea816**:
+
 
     ```
     Product light = new("012B", "Flickering Strobe Light", "9603ca6c-9e28-4a02-9194-51cdb7fea816");
     ```
+
 
 1. Create a **Product** variable named **helmet** with a unique identifier of **012C**, a name of **New Helmet**, and a category identifier of **0feee2e4-687a-4d69-b64e- 
    be36afc33e74**:
