@@ -25,33 +25,18 @@ In this lab, you will complete the following tasks:
 
 Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **Mongo API** or **NoSQL API**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
 
-1. Inside the LabVM, double-click on the **Azure Portal** shortcut.
+1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
 
-    ![](media/azureportal.png)
-
-1. On the **Sign-in into Microsoft Azure** tab you will see the login screen, in that enter the following email/username and then click on **Next**. 
-   * Email/Username: <inject key="AzureAdUserEmail"></inject>
+   ![06](media/New-image1.png)
    
-     ![04](media/04.png)
-     
-1. Now enter the following password and click on **Sign in**.
-   * Password: <inject key="AzureAdUserPassword"></inject>
-   
-     ![05](media/05.png)
-     
-        >**Note:** If you see the **Help us protect your account** dialog box, then select the **Skip for now** option.
+1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
 
-        ![06](media/06.png)
-  
-1. If you see the pop-up **Stay Signed in?**, click No
+    ![06](media/New-image2.png)
 
-1. If you see the pop-up **You have free Azure Advisor recommendations!**, close the window to continue the lab.
+    ![06](media/New-image3.png)
 
-1. If a **Welcome to Microsoft Azure** popup window appears, click **Maybe Later** to skip the tour.
 
-1. Select **+ Create a resource**, search for *Cosmos DB*, select **Azure Cosmos DB**.
-
-1. Select **Create** under **Azure Cosmos DB for NoSQL**. Then create a new **Azure Cosmos DB for NoSQL** account resource with the following settings, leaving all remaining settings to their default values, and select **Review + create**:
+1.  Create the resource with the following settings, leaving all remaining settings to their default values, and select **Review + create**:
 
     | **Setting** | **Value** |
     | :--- | :--- |
@@ -67,13 +52,19 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys** pane.
 
+    ![06](media/New-image6.png)
+
+    ![06](media/New-image7.png)
+
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-    1. Note the **URI** field, in the notepad. You will use this **endpoint** value later in this exercise.
+    - Record the value of the **URI** field. You will use this **endpoint** value later in this exercise.
 
-    1. Note the **PRIMARY KEY** field, in the notepad. You will use this **key** value later in this exercise.
+    - Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
 
-1. From the left navigation menu, select **Data Explorer** from the resource menu.
+        ![06](media/New-image9.png)
+
+1. From the left navigation menu,click on the **Overview** option and select **Data Explorer** from the top navigation pane.
 
 1. In the **Data Explorer** pane, select **New Container**.
 
@@ -90,7 +81,6 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     ![06](media/cosmosdbproducts.png)
 
     > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
     > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
     > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
     > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help.
@@ -146,9 +136,7 @@ You will use a command-line utility that creates a **cosmicworks** database and 
 
 Before continuing with this exercise, you must first create a new Azure Cognitive Search instance.
 
-1. In a new web browser window or tab, navigate to the Azure portal. Go back to the **Home** page.
-
-1. Sign into the portal using the Microsoft credentials associated with your subscription.
+1. Back in the Azure portal, go back to the **Home** page.
 
 1. Select **+ Create a resource**, search for *AI Search*, and then create a new **Azure AI Search** account resource with the following settings, leaving all remaining settings to their default values:
 
@@ -169,7 +157,6 @@ Before continuing with this exercise, you must first create a new Azure Cognitiv
 1. Go to the newly created **Azure AI Search** account resource.
 
 > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-> - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
 > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
 > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
 > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help.
@@ -246,7 +233,7 @@ You will create an indexer that indexes a subset of data in a specific Azure Cos
 
     >**Note:** You may be required to dismiss a survey popup after creating your first indexer.
 
-1. From the **AI Search** resource blade, from the left navigation menu, select the **Indexers (1)** tab to observe the result of your first indexing operation.
+1. From the **AI Search** resource blade, from the left navigation menu, select the **Indexers (1)** under **Search Management**tab to observe the result of your first indexing operation.
 
 1. Wait for the **products-cosmosdb-indexer** indexer to have a status of **Success (2)** before continuing with this task.
 
@@ -254,10 +241,9 @@ You will create an indexer that indexes a subset of data in a specific Azure Cos
 
     ![06](media/indexers.png)
 
-1. Navigate to the **Indexes** tab and then select the **products-index** index.
+1. Navigate to the **Indexes** tab under **Search Management** in the left navigation pane and then select the **products-index** index.
 
 > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-> - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
 > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
 > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
 > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help.
@@ -368,5 +354,9 @@ In this lab, you have completed:
 - Created an Azure AI Search resource.
 - Built indexer and index for Azure Cosmos DB for NoSQL data.
 - Validated index with example search queries.
+
+### Summary
+
+This lab guides you through integrating Azure AI Search with Azure Cosmos DB for NoSQL, where you'll create a Cosmos DB account, populate it with sample data, set up an Azure Cognitive Search resource, and build an indexer. 
 
 ### You have successfully completed the lab
