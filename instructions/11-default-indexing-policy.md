@@ -19,7 +19,7 @@ In this lab, you will complete the following tasks:
 
 ![image](architecturedia/lab11.png)
 
-## Exercise 1: Review the default index policy for an Azure Cosmos DB SQL API container with the portal
+## Task 1: Review the default index policy for an Azure Cosmos DB SQL API container with the portal
 
 In this task, you will provision an Azure Cosmos DB SQL account, configuring essential settings and retrieving the necessary connection details for future development.In this task, you will provision an Azure Cosmos DB SQL API account, configuring essential settings and retrieving the necessary connection details for future development.
 
@@ -79,6 +79,8 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 ### Task 2: Seed the Azure Cosmos DB NoSQL API account with data
 
+In this task, you'll use the CosmicWorks tool to seed your Azure Cosmos DB NoSQL account with sample product data. After installing the tool in Visual Studio Code's terminal, you'll provide your Cosmos DB endpoint and key to run the seeding command. The tool will create a database, container, and insert product data into your account.
+
 The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys sample data to any Azure Cosmos DB SQL API account. The tool is open-source and available through NuGet. You will install this tool to the Azure Cloud Shell and then use it to seed your database.
 
 1. Start Visual Studio Code (the program icon is pinned to the Desktop).
@@ -133,6 +135,8 @@ The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys samp
 
 ### Task 3: View and manipulate the default indexing policy
 
+In this task, you'll view and modify the default indexing policy of a Cosmos DB container. After navigating to the Azure Cosmos DB in the Azure portal, you'll observe the default indexing policy, which indexes all paths except _etag. You'll then modify the policy to only index the /price path. After making the changes, you'll run SQL queries to compare the request charge before and after the indexing change, noting how the efficiency of queries changes based on which fields are indexed.
+
 When a container is created by code, portal, or a tool; the indexing policy is set to an intelligent default if you do not specify it otherwise. You will observe that default indexing policy and make a change to the policy.
 
 1. Navigate to the **Azure portal**.
@@ -146,29 +150,29 @@ When a container is created by code, portal, or a tool; the indexing policy is s
 
 1. Within the **Azure Cosmos DB** account resource, navigate to the **Data Explorer** pane.
 
-1. In the **Data Explorer**, expand the **cosmicworks** database node, then observe the new **products** container node within the **NoSQL API** navigation tree.
+1. In the **Data Explorer**, expand the **cosmicworks** database node, then observe the new **products** container node within navigation tree and then select **New SQL Query**.
 
-1. Select the **products** container node within the **NoSQL API** navigation tree, and then select **New SQL Query**.
+     ![06](media/New-image74.png)
 
 1. Delete the contents of the editor area.
 
-1. Create a new SQL query that will return all documents where the **name** is equivalent to **HL Headset**:
+1. Create a new SQL query that will return all documents where the **name** is equivalent to **HL Headset** and select Select **Execute Query**.
 
     ```
     SELECT * FROM p WHERE p.name = 'HL Headset'
     ```
 
-1. Select **Execute Query**.
+   ![06](media/New-image75.png)
 
 1. Observe the results of the query.
 
-1. In the **Query** tab, select **Query Stats**.
+1. Select **Query Stats**. observe the value of the **Request Charge** field within the **Query Statistics** section.
 
-1. Still in the **Query** tab, observe the value of the **Request Charge** field within the **Query Statistics** section.
-
+     ![06](media/New-image76.png)
+   
     > &#128221; All paths are currently indexed, so this query should be relatively efficient.
 
-1. Within the **products** container node of the **NoSQL API** navigation tree, select **Scale & Settings**.
+1. Within the **products** container node, select **Scale & Settings**.
 
 1. Observe the default indexing policy within the **Indexing Policy** section:
 
@@ -191,7 +195,7 @@ When a container is created by code, portal, or a tool; the indexing policy is s
 
     > &#128221; This default policy will index all possible paths with the exception of **_etag**.
 
-1. Within the editor, replace the content of the indexing policy to only index the **/price** path:
+1. Within the editor, replace the content of the indexing policy to only index the **/price** path and select **Save** to persist your changes.
 
     ```
     {
@@ -210,27 +214,27 @@ When a container is created by code, portal, or a tool; the indexing policy is s
     }
     ```
 
-1. Select **Save** to persist your changes.
+   ![06](media/New-image77.png)
 
 1. Select **New SQL Query**.
-
+  
 1. Delete the contents of the editor area.
 
-1. Create a new SQL query that will return all documents where the **name** is equivalent to **HL Headset**:
+1. Create a new SQL query that will return all documents where the **name** is equivalent to **HL Headset** then select **Execute Query**.
 
     ```
     SELECT * FROM p WHERE p.name = 'HL Headset'
     ```
 
-1. Select **Execute Query**.
-
+   ![06](media/New-image78.png)
+    
 1. Observe the results of the query.
 
-1. In the **Query** tab, select **Query Stats**.
-
-1. Still in the **Query** tab, observe the value of the **Request Charge** field within the **Query Statistics** section.
-
+1. Select **Query Stats**, observe the value of the **Request Charge** field within the **Query Statistics** section.
+     
     > &#128221; Now that the **name** property is not indexed, the request charge has increased.
+    
+    ![06](media/New-image79.png)
 
 1. Delete the contents of the editor area.
 
@@ -244,9 +248,7 @@ When a container is created by code, portal, or a tool; the indexing policy is s
 
 1. Observe the results of the query.
 
-1. In the **Query** tab, select **Query Stats**.
-
-1. Still in the **Query** tab, observe the value of the **Request Charge** field within the **Query Statistics** section.
+1. Select **Query Stats**, observe the value of the **Request Charge** field within the **Query Statistics** section.
 
 ### Review
 
