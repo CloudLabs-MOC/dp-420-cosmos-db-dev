@@ -123,14 +123,15 @@ This lab has a pre-built test .NET application that will take a large JSON objec
 
 1. Right-click on the **23-index-optimization** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
 
-    > **Note:** This command will open the terminal with the starting directory already set to the **23-index-optimization** folder.
+     > **Note:** This command will open the terminal with the starting directory already set to the **23-index-optimization** folder.
 
 1. Build the project using the [dotnet build][docs.microsoft.com/dotnet/core/tools/dotnet-build] command:
 
-   ```
-   dotnet build
-   ```
-    > **Note:** You may see a compiler warning that the **endpoint** and **key** variables are current unused. You can safely ignore this warning as you will use these variables in this task.
+    ```
+    dotnet build
+    ```
+
+   > **Note:** You may see a compiler warning that the **endpoint** and **key** variables are current unused. You can safely ignore this warning as you will use these variables in this task.
 
 1. Close the integrated terminal.
 
@@ -138,16 +139,16 @@ This lab has a pre-built test .NET application that will take a large JSON objec
 
 1. Locate the **string** variable named **endpoint**. Set its value to the **endpoint** of the Azure Cosmos DB account you created earlier.
   
-   ```
-   string endpoint = "<cosmos-endpoint>";
-   ```
-    > **For example:** if your endpoint is: **https&shy;://dp420.documents.azure.com:443/**, then the C# statement would be: **string endpoint = "https&shy;://dp420.documents.azure.com:443/";**.
+    ```
+    string endpoint = "<cosmos-endpoint>";
+    ```
+     > **For example:** if your endpoint is: **https&shy;://dp420.documents.azure.com:443/**, then the C# statement would be: **string endpoint = "https&shy;://dp420.documents.azure.com:443/";**.
 
 1. Locate the **string** variable named **key**. Set its value to the **key** of the Azure Cosmos DB account you created earlier.
 
-   ```
-   string key = "<cosmos-key>";
-   ```
+    ```
+    string key = "<cosmos-key>";
+    ```
     > **For example:** if your key is: **fDR2ci9QgkdkvERTQ==**, then the C# statement would be: **string key = "fDR2ci9QgkdkvERTQ==";**.
 
 1. **Save** the **script.cs** code file.
@@ -156,26 +157,26 @@ This lab has a pre-built test .NET application that will take a large JSON objec
 
 1. Build and run the project using the **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** command:
 
-   ```
-   dotnet run
-   ```
+    ```
+    dotnet run
+    ```
 
 1. Observe the output from the terminal. The item's unique identifier and the operation's request charge (in RUs) should be printed to the console.
 
 1. Build and run the project at least two more times using the **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** command. Observe the RU charge in the console output:
 
-   ```
-   dotnet run
-   ```
+    ```
+    dotnet run
+    ```
 
 1. Leave the integrated terminal open.
 
     > **Note:** You will re-use this terminal later in this exercise. It's important to leave the terminal open so you can compare the original and updated RU charges.
-    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+    
+    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
     > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help.
+    > - If you need any assistance, please contact us at labs-support@spektrasystems.com. 
 
     <validation step="e487cd8b-7edb-4b80-a103-3036d37a92b4" />
     
@@ -193,57 +194,57 @@ This lab scenario will assume that our future queries focus primarily on the nam
 
 1. Observe the default indexing policy:
 
-   ```
-   {
-      "indexingMode": "consistent",
-      "automatic": true,
-      "includedPaths": [
-        {
-          "path": "/*"
-        }
-      ],
-      "excludedPaths": [
-        {
-          "path": "/\"_etag\"/?"
-        }
-      ]
-   }    
-   ```
+      ```
+      {
+         "indexingMode": "consistent",
+         "automatic": true,
+         "includedPaths": [
+           {
+             "path": "/*"
+           }
+         ],
+         "excludedPaths": [
+           {
+             "path": "/\"_etag\"/?"
+           }
+         ]
+      }    
+      ```
 
 1. Replace the indexing policy with this modified JSON object and then **Save** the changes:
 
-   ```
-   {
-      "indexingMode": "consistent",
-      "automatic": true,
-      "includedPaths": [
-        {
-          "path": "/name/?"
-        },
-        {
-          "path": "/categoryName/?"
-        }
-      ],
-      "excludedPaths": [
-        {
-          "path": "/*"
-        },
-        {
-          "path": "/\"_etag\"/?"
-        }
-      ]
-   }
-   ```
+      ```
+      {
+         "indexingMode": "consistent",
+         "automatic": true,
+         "includedPaths": [
+           {
+             "path": "/name/?"
+           },
+           {
+             "path": "/categoryName/?"
+           }
+         ],
+         "excludedPaths": [
+           {
+             "path": "/*"
+           },
+           {
+             "path": "/\"_etag\"/?"
+           }
+         ]
+      }
+      ```
 
 1. Return to **Visual Studio Code**. Return to the open terminal.
 
 1. Build and run the project at least two more times using the **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** command. Observe the new RU charge in the console output, which should be significantly less than the original charge. Since you are not indexing all the item properties, your writes' cost is significantly lower when updating the index. This, however, can cost you greatly if your reads will need to query on properties that are not indexed.  
 
-   ```
-   dotnet run
-   ```
+    ```
+    dotnet run
+    ```
 
-    > **Note:** If you are not seeing an updated RU charge, you may need to wait a couple of minutes.
+     > **Note:** If you are not seeing an updated RU charge, you may need to wait a couple of minutes.
 
 1. Return to your web browser.
 
@@ -251,11 +252,11 @@ This lab scenario will assume that our future queries focus primarily on the nam
 
 1. Replace the indexing policy with this modified JSON object and then **Save** the changes:
 
-   ```
-   {
-     "indexingMode": "none"
-   }
-   ```
+    ```
+    {
+      "indexingMode": "none"
+    }
+    ```
 
 1. Close your web browser window or tab.
 
@@ -263,11 +264,11 @@ This lab scenario will assume that our future queries focus primarily on the nam
 
 1. Build and run the project at least two more times using the **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** command. Observe the new RU charge in the console output, which should be much less than the original charge.  How can this be? Since this script measures the RUs when you write the item, by choosing to have no index, there is no overhead in maintaining that index. The flip side to this is that while your writes will generate fewer RUs, your reads will be very costly.
 
-   ```
-   dotnet run
-   ```
+    ```
+    dotnet run
+    ```
 
-    > **Note:** If you are not seeing an updated RU charge, you may need to wait a couple of minutes.
+     > **Note:** If you are not seeing an updated RU charge, you may need to wait a couple of minutes.
 
 1. Close **Visual Studio Code**.
 
