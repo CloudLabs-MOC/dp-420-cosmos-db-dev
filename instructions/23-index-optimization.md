@@ -92,7 +92,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Back in the **Data Explorer** pane, expand the **cosmicworks** database node and then observe the **products** container node within the hierarchy.
 
-    ![06](media/cosmosdbproducts.png)
+    ![06](media/New-image109.png)
 
 1. From the left navigation menu under **Settings** section, navigate to the **Keys** pane.
 
