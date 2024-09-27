@@ -250,6 +250,10 @@ When a container is created by code, portal, or a tool; the indexing policy is s
 
 1. Select **Query Stats**, observe the value of the **Request Charge** field within the **Query Statistics** section.
 
+## Summary
+
+In this lab, you explored the indexing policy in Azure Cosmos DB, which controls how items in a container are indexed. By default, every property is indexed, providing efficient queries without requiring manual index management. The lab guided you through provisioning a Cosmos DB NoSQL account, seeding it with sample data, and reviewing the default indexing policy. You then modified the policy to index only the /price path and observed the effect on query efficiency and request charge. This exercise demonstrated the impact of customizing indexing policies on performance and query costs in Cosmos DB.
+
 ### Review
 
 In this lab, you have completed:
