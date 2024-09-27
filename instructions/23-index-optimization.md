@@ -123,7 +123,7 @@ This lab has a pre-built test .NET application that will take a large JSON objec
 
 1. Right-click on the **23-index-optimization** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
 
-   > **Note:** This command will open the terminal with the starting directory already set to the **23-index-optimization** folder.
+      > **Note:** This command will open the terminal with the starting directory already set to the **23-index-optimization** folder.
 
 1. Build the project using the [dotnet build][docs.microsoft.com/dotnet/core/tools/dotnet-build] command:
 
