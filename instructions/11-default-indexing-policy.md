@@ -85,9 +85,10 @@ The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys samp
 
    ![Visual Studio Code Icon](./media/vscode1.jpg)
 
-1. In **Visual Studio Code**, open the **Terminal** menu by selecting **... (ellipses) (1)** > **Terminal (2)** > **New Terminal (3)** to open a new terminal with your existing instance.
+1. In **Visual Studio Code**, open the **Terminal** menu by selecting **... (ellipses) (1)** > **Terminal (2)** > **New Terminal (3)** to open a new terminal with your 
+   existing instance.
 
-    ![06](media/terminal.png)
+    ![06](media/New-image36.png)
 
 1. Install the [cosmicworks][nuget.org/packages/cosmicworks] command-line tool for global use on your machine.
 
@@ -134,7 +135,14 @@ The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys samp
 
 When a container is created by code, portal, or a tool; the indexing policy is set to an intelligent default if you do not specify it otherwise. You will observe that default indexing policy and make a change to the policy.
 
-1. Select **Resource groups**, then select the resource group you created or viewed earlier in this lab, and then select the **Azure Cosmos DB account** resource you created in this lab.
+1. Navigate to the **Azure portal**.
+
+1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under 
+   services.
+
+   ![06](media/New-image1.png)
+
+1. Select **sql-<inject key="DeploymentID" enableCopy="false"/>**.
 
 1. Within the **Azure Cosmos DB** account resource, navigate to the **Data Explorer** pane.
 
