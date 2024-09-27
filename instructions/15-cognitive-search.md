@@ -355,4 +355,8 @@ In this lab, you have completed:
 - Built indexer and index for Azure Cosmos DB for NoSQL data.
 - Validated index with example search queries.
 
+### Summary
+
+This lab guides you through integrating Azure AI Search with Azure Cosmos DB for NoSQL, where you'll create a Cosmos DB account, populate it with sample data, set up an Azure Cognitive Search resource, and build an indexer. 
+
 ### You have successfully completed the lab
