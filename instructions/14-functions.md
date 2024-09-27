@@ -23,41 +23,17 @@ In this lab, you will complete the following tasks:
 
 Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **Mongo API** or **NoSQL API**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
 
-1. Inside the LabVM, double-click on the **Azure Portal** shortcut.
+1. On **Azure Portal** page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
 
-    ![](media/azureportal.png)
-
-1. On the **Sign-in into Microsoft Azure** tab you will see the login screen, in that enter the following email/username and then click on **Next**. 
-   * Email/Username: <inject key="AzureAdUserEmail"></inject>
+   ![06](media/New-image1.png)
    
-     ![04](media/04.png)
-     
-1. Now enter the following password and click on **Sign in**.
-   * Password: <inject key="AzureAdUserPassword"></inject>
-   
-     ![05](media/05.png)
-     
-        >**Note:** If you see the **Help us protect your account** dialog box, then select the **Skip for now** option.
+1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
 
-        ![06](media/06.png)
+    ![06](media/New-image2.png)
 
-1. If you see the **Action required** pop-up , click **Ask later**.
+    ![06](media/New-image3.png)
 
-     ![07](media/imagescre.png)
-  
-1. If you see the pop-up **Stay Signed in?**, click No
-
-1. If you see the pop-up **You have free Azure Advisor recommendations!**, close the window to continue the lab.
-
-1. If a **Welcome to Microsoft Azure** popup window appears, click **Maybe Later** to skip the tour.
-
-1. Select **+ Create a resource**, search for *Cosmos DB*, select **Azure Cosmos DB**.
-
-    > &#128161; Alternatively; expand the **&#8801;** menu, select **All Services**, in the **Databases** category, select **Azure Cosmos DB**, and then select **Create**.
-
-1. In the **Select API option** pane, select the **Create** option within the **Azure Cosmos DB for NoSQL** section.
-
-1. Select **Create** under **Azure Cosmos DB for NoSQL**. Then create a new **Azure Cosmos DB for NoSQL** account resource with the following settings, leaving all remaining settings to their default values, and select **Review + create**:
+1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create**:
 
     | **Setting** | **Value** |
     | :--- | :--- |
@@ -69,15 +45,23 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
     > &#128221; Your lab environments may have restrictions preventing you from creating a new resource group. If that is the case, use the existing pre-created resource group.
 
+1. Once after validation passed click on **Create**.
+
 1. Wait for the deployment task to complete before continuing with this task.
 
-1. Go to the newly created **Azure Cosmos DB** account resource and navigate to the **Keys** pane.
+1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys** pane.
+
+    ![06](media/New-image6.png
+
+    ![06](media/New-image7.png)
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-    1. Notice the **URI** field. You will use this **endpoint** value later in this exercise.
+    1. Record the value of the **URI** field. You will use this **endpoint** value later in this exercise.
 
-    1. Notice the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
+    1. Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
+
+        ![06](media/New-image9.png)
 
 1. Select **Data Explorer** from the resource menu.
 
