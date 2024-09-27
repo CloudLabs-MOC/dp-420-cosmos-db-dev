@@ -78,7 +78,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. In the **Data Explorer** pane, select **+ New Container** > **+ New Container**.
 
-     ![06](media/New-image83.png)
+     ![06](media/New-image107.png)
 
 1. In the **New Container** popup, enter the following values for each setting, and then select **OK**:
 
@@ -88,7 +88,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     | **Container id** | *``products``* |
     | **Partition key** | *``/categoryId``* |
 
-    ![06](media/New-image84.png)
+    ![06](media/New-image108.png)
 
 1. Back in the **Data Explorer** pane, expand the **cosmicworks** database node and then observe the **products** container node within the hierarchy.
 
