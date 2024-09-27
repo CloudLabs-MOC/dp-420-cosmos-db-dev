@@ -26,7 +26,7 @@ In this task, you will prepare your development environment for working with Azu
 
 1. Start Visual Studio Code (the program icon is pinned to the Desktop).
 
-   ![Visual Studio Code Icon](./media/vscode1.jpg)
+    ![Visual Studio Code Icon](./media/vscode1.jpg)
 
 2. Select the **Extensions** blade from the left panel. Search with **C#** and select **Install** to install the extension.
 
@@ -34,7 +34,7 @@ In this task, you will prepare your development environment for working with Azu
 
 3. Select the **file** option on the top left of the screen, from the pane options, select **Open Folder**. navigate to **C:\AllFiles\dp-420-cosmos-db-dev**.
 
-     ![06](media/New-image51.png)
+    ![06](media/New-image51.png)
 
 4. Navigate to **C:\AllFiles\dp-420-cosmos-db-dev** select **dp-420-cosmos-db-dev** and click on **Select Folder**.
 
@@ -52,7 +52,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. On **Azure Portal** page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
 
-   ![06](media/New-image1.png)
+    ![06](media/New-image1.png)
    
 1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
 
@@ -78,7 +78,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. In the **Data Explorer** pane, select **+ New Container** > **+ New Container**.
 
-     ![06](media/New-image107.png)
+    ![06](media/New-image107.png)
 
 1. In the **New Container** popup, enter the following values for each setting, and then select **OK**:
 
@@ -108,12 +108,12 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Return to **Visual Studio Code**.
 
-> **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
-> - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
-> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-> - If you need any assistance, please contact us at labs-support@spektrasystems.com. 
+    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
+    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+    > - If you need any assistance, please contact us at labs-support@spektrasystems.com. 
 
-<validation step="0e380f12-d3fe-4670-a788-3fa3a3687768" />
+    <validation step="0e380f12-d3fe-4670-a788-3fa3a3687768" />
     
 ### Task 3: Run the test .NET application using the default indexing policy
 
@@ -123,7 +123,7 @@ This lab has a pre-built test .NET application that will take a large JSON objec
 
 1. Right-click on the **23-index-optimization** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
 
-     > **Note:** This command will open the terminal with the starting directory already set to the **23-index-optimization** folder.
+    > **Note:** This command will open the terminal with the starting directory already set to the **23-index-optimization** folder.
 
 1. Build the project using the [dotnet build][docs.microsoft.com/dotnet/core/tools/dotnet-build] command:
 
@@ -131,7 +131,7 @@ This lab has a pre-built test .NET application that will take a large JSON objec
     dotnet build
     ```
 
-   > **Note:** You may see a compiler warning that the **endpoint** and **key** variables are current unused. You can safely ignore this warning as you will use these variables in this task.
+    > **Note:** You may see a compiler warning that the **endpoint** and **key** variables are current unused. You can safely ignore this warning as you will use these variables in this task.
 
 1. Close the integrated terminal.
 
@@ -142,7 +142,7 @@ This lab has a pre-built test .NET application that will take a large JSON objec
     ```
     string endpoint = "<cosmos-endpoint>";
     ```
-     > **For example:** if your endpoint is: **https&shy;://dp420.documents.azure.com:443/**, then the C# statement would be: **string endpoint = "https&shy;://dp420.documents.azure.com:443/";**.
+    > **For example:** if your endpoint is: **https&shy;://dp420.documents.azure.com:443/**, then the C# statement would be: **string endpoint = "https&shy;://dp420.documents.azure.com:443/";**.
 
 1. Locate the **string** variable named **key**. Set its value to the **key** of the Azure Cosmos DB account you created earlier.
 
@@ -194,26 +194,26 @@ This lab scenario will assume that our future queries focus primarily on the nam
 
 1. Observe the default indexing policy:
 
-      ```
-      {
-         "indexingMode": "consistent",
-         "automatic": true,
-         "includedPaths": [
-           {
-             "path": "/*"
-           }
-         ],
-         "excludedPaths": [
-           {
-             "path": "/\"_etag\"/?"
-           }
-         ]
+    ```
+     {
+        "indexingMode": "consistent",
+        "automatic": true,
+        "includedPaths": [
+          {
+            "path": "/*"
+          }
+        ],
+        "excludedPaths": [
+          {
+            "path": "/\"_etag\"/?"
+          }
+        ]
       }    
-      ```
+    ```
 
 1. Replace the indexing policy with this modified JSON object and then **Save** the changes:
 
-      ```
+    ```
       {
          "indexingMode": "consistent",
          "automatic": true,
@@ -235,7 +235,7 @@ This lab scenario will assume that our future queries focus primarily on the nam
          ]
       }
       ```
-
+      
 1. Return to **Visual Studio Code**. Return to the open terminal.
 
 1. Build and run the project at least two more times using the **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** command. Observe the new RU charge in the console output, which should be significantly less than the original charge. Since you are not indexing all the item properties, your writes' cost is significantly lower when updating the index. This, however, can cost you greatly if your reads will need to query on properties that are not indexed.  
@@ -244,7 +244,7 @@ This lab scenario will assume that our future queries focus primarily on the nam
     dotnet run
     ```
 
-     > **Note:** If you are not seeing an updated RU charge, you may need to wait a couple of minutes.
+    > **Note:** If you are not seeing an updated RU charge, you may need to wait a couple of minutes.
 
 1. Return to your web browser.
 
