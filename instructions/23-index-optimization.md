@@ -108,12 +108,12 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Return to **Visual Studio Code**.
 
-   > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
-   > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
-   > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-   > - If you need any assistance, please contact us at labs-support@spektrasystems.com. 
+    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
+    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+    > - If you need any assistance, please contact us at labs-support@spektrasystems.com. 
 
-<validation step="0e380f12-d3fe-4670-a788-3fa3a3687768" />
+    <validation step="0e380f12-d3fe-4670-a788-3fa3a3687768" />
     
 ### Task 3: Run the test .NET application using the default indexing policy
 
@@ -173,12 +173,12 @@ This lab has a pre-built test .NET application that will take a large JSON objec
 
     > **Note:** You will re-use this terminal later in this exercise. It's important to leave the terminal open so you can compare the original and updated RU charges.
     
-   > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
-   > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
-   > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-   > - If you need any assistance, please contact us at labs-support@spektrasystems.com. 
+    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
+    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+    > - If you need any assistance, please contact us at labs-support@spektrasystems.com. 
 
-<validation step="e487cd8b-7edb-4b80-a103-3036d37a92b4" />
+    <validation step="e487cd8b-7edb-4b80-a103-3036d37a92b4" />
     
 ### Task 4: Update the indexing policy and rerun the .NET application
 
@@ -194,7 +194,7 @@ This lab scenario will assume that our future queries focus primarily on the nam
 
 1. Observe the default indexing policy:
 
-    ```
+   ```
      {
         "indexingMode": "consistent",
         "automatic": true,
@@ -209,11 +209,11 @@ This lab scenario will assume that our future queries focus primarily on the nam
           }
         ]
       }    
-    ```
+   ``` 
 
 1. Replace the indexing policy with this modified JSON object and then **Save** the changes:
 
-    ```
+   ```
       {
          "indexingMode": "consistent",
          "automatic": true,
@@ -234,29 +234,29 @@ This lab scenario will assume that our future queries focus primarily on the nam
            }
          ]
       }
-      ```
+   ``` 
       
 1. Return to **Visual Studio Code**. Return to the open terminal.
 
 1. Build and run the project at least two more times using the **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** command. Observe the new RU charge in the console output, which should be significantly less than the original charge. Since you are not indexing all the item properties, your writes' cost is significantly lower when updating the index. This, however, can cost you greatly if your reads will need to query on properties that are not indexed.  
 
-    ```
+   ```
     dotnet run
-    ```
+   ```
 
-    > **Note:** If you are not seeing an updated RU charge, you may need to wait a couple of minutes.
+   > **Note:** If you are not seeing an updated RU charge, you may need to wait a couple of minutes.
 
 1. Return to your web browser.
 
-    >**Note:** If the **Indexing Policy** page is not open, go to **Data Explorer**, expand the **cosmicworks** database node, expand the **products** container node, select **Settings** and navigate to the **Indexing Policy** section.
+   >**Note:** If the **Indexing Policy** page is not open, go to **Data Explorer**, expand the **cosmicworks** database node, expand the **products** container node, select **Settings** and navigate to the **Indexing Policy** section.
 
 1. Replace the indexing policy with this modified JSON object and then **Save** the changes:
 
-    ```
+   ```
     {
       "indexingMode": "none"
     }
-    ```
+   ``` 
 
 1. Close your web browser window or tab.
 
@@ -264,10 +264,10 @@ This lab scenario will assume that our future queries focus primarily on the nam
 
 1. Build and run the project at least two more times using the **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** command. Observe the new RU charge in the console output, which should be much less than the original charge.  How can this be? Since this script measures the RUs when you write the item, by choosing to have no index, there is no overhead in maintaining that index. The flip side to this is that while your writes will generate fewer RUs, your reads will be very costly.
 
-    ```
+   ```
     dotnet run
-    ```
-
+   ```
+ 
      > **Note:** If you are not seeing an updated RU charge, you may need to wait a couple of minutes.
 
 1. Close **Visual Studio Code**.
