@@ -71,7 +71,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys** pane.
 
-    ![06](media/New-image6.png
+    ![06](media/New-image6.png)
 
     ![06](media/New-image7.png)
 
@@ -81,7 +81,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
     1. Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
 
-        ![06](media/New-image8.png)
+        ![06](media/New-image9.png)
        
 1. Switch back to **Visual Studio Code**.
 
