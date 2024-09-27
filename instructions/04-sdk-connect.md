@@ -53,7 +53,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
    ![06](media/New-image1.png)
    
-1. Select **create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
+1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
 
     ![06](media/New-image2.png)
 
@@ -89,7 +89,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
     1. Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
 
-        ![06](media/New-image8.png)
+        ![06](media/New-image9.png)
        
     > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
     > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
