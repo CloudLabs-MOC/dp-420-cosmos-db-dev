@@ -225,6 +225,10 @@ Before you can begin writing code, you will need to create the Azure Functions r
     | **Container name for leases** | *``productslease``* |
     | **Create lease container if it does not exist** | *No* |
 
+    ![06](media/New-image105.png)
+
+    ![06](media/New-image106.png)
+   
     > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
     > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
     > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
