@@ -42,8 +42,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     | **Account Name** | *sql-<inject key="DeploymentID" enableCopy="false"/>* |
     | **Location** | *Choose any available region* |
     | **Capacity mode** | *Serverless* |
-
-    
+   
 1. Once after validation passed click on **Create**.
 
 1. Wait for the deployment task to complete before continuing with this task.
@@ -66,17 +65,25 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
      >**Note**: Click the "X" button on the pop-up, which is commonly located at the top right corner.
 
-1. In the **Data Explorer** pane, expand **New Container** and then select **New Database**.
+1. In the **Data Explorer** pane, expand **+ New Container** and then select **+ New Database** from the drop down.
 
+    ![06](media/New-image80.png)
+      
 1. In the **New Database** popup, enter the following values for each setting, and then select **OK**:
 
     | **Setting** | **Value** |
     | :-- | :-- |
     | **Database id** | *``cosmicworks``* |
 
+    ![06](media/New-image81.png)
+
 1. Back in the **Data Explorer** pane, observe the **cosmicworks** database node within the hierarchy.
 
-1. In the **Data Explorer** pane, select **New Container**.
+      ![06](media/New-image82.png)
+   
+1. In the **Data Explorer** pane, select **+ New Container** > **+ New Container**.
+
+     ![06](media/New-image83.png)
 
 1. In the **New Container** popup, enter the following values for each setting, and then select **OK**:
 
@@ -86,9 +93,13 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     | **Container id** | *``products``* |
     | **Partition key** | *``/categoryId``* |
 
+     ![06](media/New-image84.png)
+
 1. Back in the **Data Explorer** pane, expand the **cosmicworks** database node and then observe the **products** container node within the hierarchy.
 
-1. In the **Data Explorer** pane, select **New Container** again.
+1. In the **Data Explorer** pane, select **+ New Container** > **+ New Container** again.
+
+    ![06](media/New-image85.png)
 
 1. In the **New Container** popup, enter the following values for each setting, and then select **OK**:
 
@@ -98,12 +109,15 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     | **Container id** | *``productslease``* |
     | **Partition key** | *``/id``* |
 
+      ![06](media/New-image86.png)
+   
 1. Back in the **Data Explorer** pane, expand the **cosmicworks** database node and then observe the **productslease** container node within the hierarchy.
 
+     ![06](media/New-image87.png)
+   
 1. Return to the **Home** of the Azure portal.
 
     > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
     > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
     > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
     > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help.
