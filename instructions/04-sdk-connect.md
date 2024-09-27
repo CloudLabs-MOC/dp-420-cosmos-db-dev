@@ -79,7 +79,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys** pane.
 
-    ![06](media/New-image6.png
+    ![06](media/New-image6.png)
 
     ![06](media/New-image7.png)
 
