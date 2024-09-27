@@ -52,7 +52,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
    ![06](media/New-image1.png)
    
-1. Select **create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
+1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
 
     ![06](media/New-image2.png)
 
