@@ -43,8 +43,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     | **Location** | *Choose any available region* |
     | **Capacity mode** | *Serverless* |
 
-    > &#128221; Your lab environments may have restrictions preventing you from creating a new resource group. If that is the case, use the existing pre-created resource group.
-
+    
 1. Once after validation passed click on **Create**.
 
 1. Wait for the deployment task to complete before continuing with this task.
