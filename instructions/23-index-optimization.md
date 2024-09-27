@@ -92,19 +92,24 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. From the left navigation menu under **Settings** section, navigate to the **Keys** pane.
 
+    ![06](media/New-image6.png0
+
+    ![06](media/New-image7.png)
+
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-    1. Notice the **URI** field. You will use this **endpoint** value later in this exercise.
+    1. Record the value of the **URI** field. You will use this **endpoint** value later in this exercise.
 
-    1. Notice the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
+    1. Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
+
+        ![06](media/New-image9.png)
 
 1. Return to **Visual Studio Code**.
 
-    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
     > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help.
+    > - If you need any assistance, please contact us at labs-support@spektrasystems.com. 
 
     <validation step="0e380f12-d3fe-4670-a788-3fa3a3687768" />
     
