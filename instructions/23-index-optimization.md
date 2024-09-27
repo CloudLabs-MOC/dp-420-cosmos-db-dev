@@ -108,13 +108,12 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Return to **Visual Studio Code**.
 
-     > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+      > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+      > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
+      > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+      > - If you need any assistance, please contact us at labs-support@spektrasystems.com. 
 
-         > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
-         > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-         > - If you need any assistance, please contact us at labs-support@spektrasystems.com. 
-
-     <validation step="0e380f12-d3fe-4670-a788-3fa3a3687768" />
+      <validation step="0e380f12-d3fe-4670-a788-3fa3a3687768" />
     
 ### Task 3: Run the test .NET application using the default indexing policy
 
@@ -124,7 +123,7 @@ This lab has a pre-built test .NET application that will take a large JSON objec
 
 1. Right-click on the **23-index-optimization** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
 
-    > **Note:** This command will open the terminal with the starting directory already set to the **23-index-optimization** folder.
+   > **Note:** This command will open the terminal with the starting directory already set to the **23-index-optimization** folder.
 
 1. Build the project using the [dotnet build][docs.microsoft.com/dotnet/core/tools/dotnet-build] command:
 
