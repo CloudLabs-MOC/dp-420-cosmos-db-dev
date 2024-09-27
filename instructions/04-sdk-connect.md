@@ -41,7 +41,7 @@ In this task, you will prepare your development environment for working with Azu
 
     ![06](media/New-image54.png)
 
-5. If **When Do you trust the author of the files in this folder** click on **Yes, I trust the authors**.
+5. If when **Do you trust the author of the files in this folder** click on **Yes, I trust the authors**.
 
 ### Task 2: Create an Azure Cosmos DB SQL API account
 
