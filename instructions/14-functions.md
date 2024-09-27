@@ -128,7 +128,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 ## Task 2: Create Application Insight
 
-Before you create the *Azure Function Application*, you will need to enable an *Azure Application Insight* so you can monitor the application function. The Application Insight will first need a *Log Analytics workspace*.
+In this task, you'll set up Azure Application Insights to monitor your Azure Function application. First, you'll create a Log Analytics workspace, which will store monitoring data. Then, you'll create an Application Insights instance and link it to the Log Analytics workspace, enabling you to track the performance and activity of your application.
 
 1. On **Azure Portal** page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Log Analytics workspaces**, and then select **Log Analytics workspaces** under services.
 
@@ -178,7 +178,7 @@ Before you create the *Azure Function Application*, you will need to enable an *
 
 ## Task 3: Create an Azure Function app and Azure Cosmos DB-triggered function
 
-Before you can begin writing code, you will need to create the Azure Functions resource and its dependent resources (Application Insights, Storage) using the creation wizard.
+In this task, you'll create an Azure Function app with a Cosmos DB-triggered function. First, you'll set up the Function app in the Azure portal by specifying necessary configurations. After deployment, you'll create a new function using the Azure Cosmos DB trigger template, linking it to your Cosmos DB account and specifying the database and container details. This allows the function to respond to changes in the Cosmos DB container.
 
 1. Select **+ Create a resource** on Azure portal home page.
 
@@ -244,6 +244,8 @@ Before you can begin writing code, you will need to create the Azure Functions r
     <validation step="3d866562-569f-41c5-8f1c-286e16e92767" />
 
 ## Task 4: Implement function code in .NET
+
+In this task, you'll implement the Azure Cosmos DB-triggered function by editing the run.csx script in the Azure portal. You'll reference necessary libraries, create a Run method to log the count of modified items, and iterate through each item to log its unique identifier. After saving the code, you'll connect to the streaming logs to observe the output when items are generated in the Cosmos DB container.
 
 The function you created earlier is a C# script that is edited in-portal. You will now use the portal to write a short function to output the unique identifier of any item inserted or updated in the container.
 
@@ -333,7 +335,7 @@ The function you created earlier is a C# script that is edited in-portal. You wi
 
 ## Task 5: Seed your Azure Cosmos DB for NoSQL account with sample data
 
-You will use a command-line utility that creates a **cosmicworks** database and a **products** container. The tool will then create a set of items that you will observe using the change feed processor running in your terminal window.
+In this task, You will use a command-line utility that creates a **cosmicworks** database and a **products** container. The tool will then create a set of items that you will observe using the change feed processor running in your terminal window.
 
 1. Start Visual Studio Code (the program icon is pinned to the Desktop).
 
@@ -373,6 +375,10 @@ You will use a command-line utility that creates a **cosmicworks** database and 
 1. Close the integrated terminal.
 
 1. Close your web browser window or tab.
+
+### Summary 
+
+By completing this lab, you gained practical experience in setting up Azure Cosmos DB, creating Azure Functions, and implementing a change feed processor to handle data changes. This knowledge equips you to build responsive applications that leverage Azure's serverless architecture and NoSQL capabilities effectively.
 
 ### Review
 
