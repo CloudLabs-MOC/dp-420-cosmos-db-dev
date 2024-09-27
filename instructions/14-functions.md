@@ -64,6 +64,8 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Select **Data Explorer** from the resource menu.
 
+     >**Note**: Click the "X" button on the pop-up, which is commonly located at the top right corner.
+
 1. In the **Data Explorer** pane, expand **New Container** and then select **New Database**.
 
 1. In the **New Database** popup, enter the following values for each setting, and then select **OK**:
