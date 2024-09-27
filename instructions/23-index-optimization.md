@@ -178,7 +178,7 @@ This lab has a pre-built test .NET application that will take a large JSON objec
     > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
     > - If you need any assistance, please contact us at labs-support@spektrasystems.com. 
 
-    <validation step="e487cd8b-7edb-4b80-a103-3036d37a92b4" />
+      <validation step="e487cd8b-7edb-4b80-a103-3036d37a92b4" />
     
 ### Task 4: Update the indexing policy and rerun the .NET application
 
