@@ -146,6 +146,8 @@ When a container is created by code, portal, or a tool; the indexing policy is s
 
 1. Select **sql-<inject key="DeploymentID" enableCopy="false"/>**.
 
+     ![06](media/New-image68.png)
+   
 1. Within the **Azure Cosmos DB** account resource, navigate to the **Data Explorer** pane.
 
 1. In the **Data Explorer**, expand the **cosmicworks** database node, then observe the new **products** container node within navigation tree and then select **New SQL Query**.
