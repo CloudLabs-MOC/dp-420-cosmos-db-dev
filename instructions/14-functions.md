@@ -188,9 +188,11 @@ Before you can begin writing code, you will need to create the Azure Functions r
 
     ![06](media/New-image96.png)
 
+    ![06](media/New-image97.png)
+
 1. On the **Function App** page click on **Create**.
 
-    ![06](media/New-image97.png)
+    ![06](media/New-image98.png)
    
 1. Specify the following settings, leaving all remaining settings to their default values and then select **Review + Create** and then select **Create**:
 
@@ -214,11 +216,14 @@ Before you can begin writing code, you will need to create the Azure Functions r
 
     ![06](media/New-image103.png)
 
-1. In the **Create function** popup, create a new function with the following settings, leaving all remaining settings to their default values and select **Create**:
+1. In the **Create function** popup on the **Select a template** tab choose **Azure Cosmos DB trigger** and click on **Next**
+
+    ![06](media/New-image104.png)
+   
+1. In the **Create function** popup, on the **Template details** tab create a new function with the following settings, leaving all remaining settings to their default values and select **Create**:
 
     | **Setting** | **Value** |
     | :--- | :--- |
-    | **select a template tab** | choose **Azure Cosmos DB trigger** and click on **Next** |
     | **Select a template** | *Azure Cosmos DB trigger* |
     | **Function Name** | *``ItemsListener``* |
     | **Cosmos DB account connection** | *Select New* &vert; *Select Azure Cosmos DB Account* &vert; *Select the Azure Cosmos DB account you created earlier* |
