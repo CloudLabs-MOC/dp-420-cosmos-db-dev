@@ -118,7 +118,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     
 ### Task 3: Run the test .NET application using the default indexing policy
 
-This lab has a pre-built test .NET application that will take a large JSON object and create a new item in the Azure Cosmos DB for NoSQL container. Once the single write operation is complete, the application will output the item’s unique identifier and RU charge to the console window.
+In this task, you will run a pre-built .NET application that inserts a large JSON object into an Azure Cosmos DB for NoSQL container.
 
 1. In the **Explorer** pane, browse to the **23-index-optimization** folder.
 
@@ -183,7 +183,7 @@ This lab has a pre-built test .NET application that will take a large JSON objec
     
 ### Task 4: Update the indexing policy and rerun the .NET application
 
-This lab scenario will assume that our future queries focus primarily on the name and categoryName properties. To optimize for our large JSON item, you will exclude all other fields from the index by creating an indexing policy that starts by excluding all paths. Then the policy will selectively include specific paths.
+In this task, you will assume that our future queries focus primarily on the name and categoryName properties. To optimize for our large JSON item, you will exclude all other fields from the index by creating an indexing policy that starts by excluding all paths. Then the policy will selectively include specific paths.
 
 1. Return to your web browser.
 
@@ -272,6 +272,10 @@ This lab scenario will assume that our future queries focus primarily on the nam
    > **Note:** If you are not seeing an updated RU charge, you may need to wait a couple of minutes.
 
 1. Close **Visual Studio Code**.
+
+### Summary
+
+In this lab, you explored how to optimize the indexing policy of an Azure Cosmos DB for NoSQL container for write-heavy workloads, particularly with large JSON objects. The goal was to enhance performance by limiting the fields that are indexed, reducing the RU (Request Unit) charge during write operations.
 
 ### Review
 
