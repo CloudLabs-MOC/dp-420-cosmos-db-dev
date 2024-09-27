@@ -178,7 +178,19 @@ Before you create the *Azure Function Application*, you will need to enable an *
 
 Before you can begin writing code, you will need to create the Azure Functions resource and its dependent resources (Application Insights, Storage) using the creation wizard.
 
-1. Select **+ Create a resource**, search for *Functions*, and on create a new **Create function App** page, select **App Service** then create a function app account resource with the following settings, leaving all remaining settings to their default values and then select **Review + Create** and then select **Create**:
+1. Select **+ Create a resource** on Azure portal home page.
+
+     ![06](media/New-image95.png)
+   
+1. Search for **Functions** and select **Function app**. then select a **Function app** on market place page.
+
+    ![06](media/New-image96.png)
+
+1. On the **Function App** page click on **Create**.
+
+    ![06](media/New-image97.png)
+   
+1. Specify the following settings, leaving all remaining settings to their default values and then select **Review + Create** and then select **Create**:
 
     | **Setting** | **Value** |
     | :--- | :--- |
@@ -189,9 +201,8 @@ Before you can begin writing code, you will need to create the Azure Functions r
     | **Runtime stack** | *.NET* |
     | **Version** | *6 (LTS) in-process model* |
     | **Region** | *Choose any available region* |
-    | **Storage account** | *Create a new storage account* |
 
-    > &#128221; Your lab environments may have restrictions preventing you from creating a new resource group. If that is the case, use the existing pre-created resource group.
+    ![06](media/New-image102.png)
 
 1. Wait for the deployment task to complete before continuing with this task.
 
@@ -199,13 +210,13 @@ Before you can begin writing code, you will need to create the Azure Functions r
 
 1. In the **Functions** pane, select **Create function**.
 
-    ![04](media/3.png)
+    ![06](media/New-image103.png)
 
 1. In the **Create function** popup, create a new function with the following settings, leaving all remaining settings to their default values and select **Create**:
 
     | **Setting** | **Value** |
     | :--- | :--- |
-    | **Development environment** | *Develop in portal* |
+    | **select a template tab** | choose **Azure Cosmos DB trigger** and click on **Next** |
     | **Select a template** | *Azure Cosmos DB trigger* |
     | **Function Name** | *``ItemsListener``* |
     | **Cosmos DB account connection** | *Select New* &vert; *Select Azure Cosmos DB Account* &vert; *Select the Azure Cosmos DB account you created earlier* |
@@ -215,7 +226,6 @@ Before you can begin writing code, you will need to create the Azure Functions r
     | **Create lease container if it does not exist** | *No* |
 
     > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
     > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
     > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
     > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help.
