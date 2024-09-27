@@ -123,6 +123,8 @@ To accompany the products container, you will create a **flatproducts** containe
 
 1. Select **sql-<inject key="DeploymentID" enableCopy="false"/>**.
 
+     ![06](media/New-image68.png)
+
 1. Within the **Azure Cosmos DB** account resource, navigate to the **Data Explorer** pane. In the **Data Explorer**, expand the **cosmicworks** database node, expand the **products** container node, and then select **Items**.
 
     ![06](media/New-image11.png)
