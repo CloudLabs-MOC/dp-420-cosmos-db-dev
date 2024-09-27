@@ -174,10 +174,6 @@ This lab has a pre-built test .NET application that will take a large JSON objec
 
 1. Leave the integrated terminal open.
 
-   > **Note:** You will re-use this terminal later in this exercise. It's important to leave the terminal open so you can compare the original and updated RU charges.
-
-### Validation
-
 > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
 > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
 > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
