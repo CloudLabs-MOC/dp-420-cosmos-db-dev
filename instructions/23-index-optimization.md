@@ -22,21 +22,25 @@ In this lab, you will complete the following tasks:
 
 ### Task 1: Prepare your development environment
 
+In this task, you will prepare your development environment for working with Azure Cosmos DB by setting up Visual Studio Code.
+
 1. Start Visual Studio Code (the program icon is pinned to the Desktop).
 
    ![Visual Studio Code Icon](./media/vscode1.jpg)
 
-2. Select the **Extension (1)** icon from the left pane. Enter **C# (2)** in the search bar and select the **extension (3)** that shows up and finally **Install (4)** on the extension. 
+2. Select the **Extensions** blade from the left panel. Search with **C#** and select **Install** to install the extension.
 
-    ![](media/chash.png)
+    ![06](media/New-image50.png)
 
-3. Select the **file** option on the top left of the screen, from the pane options, select **Open Folder** and navigate to **C:\AllFiles**.
+3. Select the **file** option on the top left of the screen, from the pane options, select **Open Folder**. navigate to **C:\AllFiles\dp-420-cosmos-db-dev**.
 
-4. Select the folder **dp-420-cosmos-db-dev-main** and click on **Select Folder**.
+     ![06](media/New-image51.png)
 
-   ![](media/lab12-1.png)
+4. Navigate to **C:\AllFiles\dp-420-cosmos-db-dev** select **dp-420-cosmos-db-dev** and click on **Select Folder**.
 
-    >**Note:** On **Do you trust the authors of the files in this folder?** pop-up, select **Yes, I trust authors**.
+    ![06](media/New-image54.png)
+
+5. If when **Do you trust the author of the files in this folder** click on **Yes, I trust the authors**.
 
     ![06](media/lab12-2.png)
 
