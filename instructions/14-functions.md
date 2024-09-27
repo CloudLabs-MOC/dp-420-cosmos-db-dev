@@ -128,9 +128,13 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 Before you create the *Azure Function Application*, you will need to enable an *Azure Application Insight* so you can monitor the application function. The Application Insight will first need a *Log Analytics workspace*.
 
-1. In the search box search for **Log Analytics workspaces**.
+1. On **Azure Portal** page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Log Analytics workspaces**, and then select **Log Analytics workspaces** under services.
 
+    ![06](media/New-image88.png)
+        
 1. Select to **+ Create** a new *Log Analytics* workspace.
+
+    ![06](media/New-image89.png)
 
 1. In the **Log Analytics workspace** dialog, enter the following values for each setting, and then select **Review + Create** and then select **Create**:
 
@@ -141,7 +145,11 @@ Before you create the *Azure Function Application*, you will need to enable an *
     | **Name** | *``lab14laworkspace``* |
     | **Location** | *Choose any available region* |
 
+     ![06](media/New-image90.png)
+   
 1. Once your *Log Analytics workspace* is created, in the search box search for **Application Insights**.
+
+    ![06](media/New-image91.png)
 
 1. Select to **+ Create** a new *Application Insight*.
 
@@ -150,15 +158,16 @@ Before you create the *Azure Function Application*, you will need to enable an *
     | **Setting** | **Value** |
     | :--- | :--- |
     | **Subscription (both entries)** | *Your existing Azure subscription* |
-    | **Resource group** | *Select an existing or create a new resource group* |
+    | **Resource group** | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* |
     | **Name** | *``lab14appinsight``* |
     | **Location** | *Choose any available region* |
     | **Log Analytics Workspace** | *lab14laworkspace* |
-   
+
+     ![06](media/New-image92.png)
+     
 1. You should now be able to monitor your application function.
 
     > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
     > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
     > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
     > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help.
