@@ -21,9 +21,9 @@ In this lab, you will complete the following tasks:
 
 ![image](architecturedia/lab25.png)
 
-## Exercise 1: Use Azure Monitor to analyze an Azure Cosmos DB SQL API account
-
 ### Task 1: Prepare your development environment
+
+In this task, you will set up your development environment in Visual Studio Code. 
 
 1. Start Visual Studio Code (the program icon is pinned to the Desktop).
 
@@ -81,7 +81,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. In the Create an Azure Cosmos DB account page, select **Create** under the **Azure Cosmos DB for NoSQL** tab.
 
-     ![05](media/lab12-5.png)
+     ![05](media/T2S9.png)
 
 1. Within the **Create Azure Cosmos DB Account** pane, observe the **Basics** tab:
 
@@ -190,7 +190,7 @@ We're now ready to run a workload to monitor its usage of the Azure Cosmos DB Ac
 
 ### Task 5: Use Azure Monitor to Analyze the Azure Cosmos DB account usage
 
-In this part of the exercise, we'll go back to the browser and review some of the Azure Monitor Insight and Metric reports.
+In this task, we'll go back to the browser and review some of the Azure Monitor Insight and Metric reports.
 
 #### Subtask 1: Azure Monitor Metrics's reports
 
