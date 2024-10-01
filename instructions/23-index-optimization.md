@@ -63,7 +63,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create**:
 
    | **Setting** | **Value** |
-   | :--- | :--- |
+   | ---------------- | ---------------------------------- |
    | **Subscription** | *Your existing Azure subscription* |
    | **Resource group** | **DP-420-<inject key="DeploymentID" enableCopy="false"/>** |
    | **Account Name** | *Enter a globally unique name* |
