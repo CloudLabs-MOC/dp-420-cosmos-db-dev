@@ -69,11 +69,15 @@ Stored procedures are authored in language-integrated JavaScript and support the
     | **Indexing** | *Automatic* |
     | **Partition key** | */categoryId* |
 
-1. Still within the **Data Explorer**, expand the **cosmicworks** database node, then select the new **products** container node within the **NOSQL API** navigation tree.
+1. Still within the **Data Explorer**, expand the **cosmicworks** database node, then select the new **products** container node within the navigation tree.
 
 1. Select **New Stored Procedure**.
 
+   ![06](media/New-image123.png)
+
 1. In the **Stored Procedure Id** field, enter the value **createDoc**.
+
+    ![06](media/New-image124.png)
 
 1. Delete the contents of the editor area.
 
@@ -138,6 +142,8 @@ Stored procedures are authored in language-integrated JavaScript and support the
     ```
 
 1. Select **Save** to persist the changes to the stored procedure.
+
+    ![06](media/New-image125.png)
 
 1. Select **Execute** and then execute the stored procedure using the following input parameters:
 
