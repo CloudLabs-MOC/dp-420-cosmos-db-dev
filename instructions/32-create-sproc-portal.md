@@ -25,12 +25,17 @@ In this lab, you will complete the following tasks:
 
 Stored procedures are authored in language-integrated JavaScript and support the execution of basic CRUD operations inside of the database engine. JavaScript running within the database engine is made possible using the server-side JavaScript SDK for Azure Cosmos DB and a series of helper methods.
 
+1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
 
-1. Select **+ Create a resource**, search for *Cosmos DB*, select **Azure Cosmos DB**.
+   ![06](media/New-image1.png)
+   
+1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
 
-1. Select **Create** under **Azure Cosmos DB for NoSQL**.
+    ![06](media/New-image2.png)
 
-1. Within the **Create Azure Cosmos DB Account** pane, observe the **Basics** tab:
+    ![06](media/New-image3.png)
+
+1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create**:
 
     | **Setting** | **Value** |
     | :--- | :--- |
@@ -41,7 +46,7 @@ Stored procedures are authored in language-integrated JavaScript and support the
     | **Capacity mode** | *Provisioned throughput* |
     | **Apply Free Tier Discount** | *Do Not Apply* |
 
-1. Click on **Review + create** and after validation get Success click on **Create**.
+1. After validation get Success click on **Create**.
 
 1. Wait for the deployment task to complete before continuing with this task.
 
