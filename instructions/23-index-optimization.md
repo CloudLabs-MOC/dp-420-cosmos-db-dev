@@ -38,7 +38,7 @@ In this task, you will prepare your development environment for working with Azu
 
 4. Navigate to **C:\AllFiles\dp-420-cosmos-db-dev** select **dp-420-cosmos-db-dev** and click on **Select Folder**.
 
-   ![06](media/New-image54.png)
+    ![06](media/New-image54.png)
 
 5. If when **Do you trust the author of the files in this folder** click on **Yes, I trust the authors**.
 
@@ -53,7 +53,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 1. On **Azure Portal** page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
 
    ![06](media/New-image1.png)
-   
+
 1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
 
    ![06](media/New-image2.png)
@@ -108,15 +108,14 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Return to **Visual Studio Code**.
 
-    
-> **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-> - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
-> - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
-> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-> - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help.
+   > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
+   > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
+   > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+   > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+   > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help.
 
-<validation step="0e380f12-d3fe-4670-a788-3fa3a3687768" />
-    
+   <validation step="0e380f12-d3fe-4670-a788-3fa3a3687768" />
+
 ### Task 3: Run the test .NET application using the default indexing policy
 
 In this task, you will run a pre-built .NET application that inserts a large JSON object into an Azure Cosmos DB for NoSQL container.
@@ -134,14 +133,14 @@ In this task, you will run a pre-built .NET application that inserts a large JSO
    ```
 
    > **Note:** You may see a compiler warning that the **endpoint** and **key** variables are current unused. You can safely ignore this warning as you will use these 
-     variables in this task.
+   variables in this task.
 
 1. Close the integrated terminal.
 
 1. Open the **script.cs** code file.
 
 1. Locate the **string** variable named **endpoint**. Set its value to the **endpoint** of the Azure Cosmos DB account you created earlier.
-  
+
    ```
    string endpoint = "<cosmos-endpoint>";
    ```
@@ -166,7 +165,6 @@ In this task, you will run a pre-built .NET application that inserts a large JSO
    ```
    dotnet run
    ```
-
 1. Observe the output from the terminal. The item's unique identifier and the operation's request charge (in RUs) should be printed to the console.
 
 1. Build and run the project at least two more times using the **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** command. Observe the RU charge in the 
@@ -175,17 +173,15 @@ In this task, you will run a pre-built .NET application that inserts a large JSO
    ```
    dotnet run
    ```
-
 1. Leave the integrated terminal open.
 
+   > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+   > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
+   > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+   > - If you need any assistance, please contact us at labs-support@spektrasystems.com. 
 
-> **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
-> - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
-> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-> - If you need any assistance, please contact us at labs-support@spektrasystems.com. 
+   <validation step="e487cd8b-7edb-4b80-a103-3036d37a92b4" />
 
-<validation step="e487cd8b-7edb-4b80-a103-3036d37a92b4" />
-    
 ### Task 4: Update the indexing policy and rerun the .NET application
 
 In this task, you will assume that our future queries focus primarily on the name and categoryName properties. To optimize for our large JSON item, you will exclude all other fields from the index by creating an indexing policy that starts by excluding all paths. Then the policy will selectively include specific paths.
@@ -215,7 +211,7 @@ In this task, you will assume that our future queries focus primarily on the nam
           }
         ]
       }    
-   ``` 
+   ```
 
 1. Replace the indexing policy with this modified JSON object and then **Save** the changes:
 
@@ -240,13 +236,13 @@ In this task, you will assume that our future queries focus primarily on the nam
            }
          ]
       }
-   ``` 
-      
+   ```
+
 1. Return to **Visual Studio Code**. Return to the open terminal.
 
 1. Build and run the project at least two more times using the **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** command. Observe the new RU charge in 
    the console output, which should be significantly less than the original charge. Since you are not indexing all the item properties, your writes' cost is 
-   significantly lower when updating the index. This, however, can cost you greatly if your reads will need to query on properties that are not indexed.  
+   significantly lower when updating the index. This, however, can cost you greatly if your reads will need to query on properties that are not indexed.
 
    ```
    dotnet run
@@ -265,7 +261,7 @@ In this task, you will assume that our future queries focus primarily on the nam
     {
       "indexingMode": "none"
     }
-   ``` 
+   ```
 
 1. Close your web browser window or tab.
 
@@ -278,8 +274,8 @@ In this task, you will assume that our future queries focus primarily on the nam
    ```
    dotnet run
    ```
- 
-   > **Note:** If you are not seeing an updated RU charge, you may need to wait a couple of minutes.
+
+    > **Note:** If you are not seeing an updated RU charge, you may need to wait a couple of minutes.
 
 1. Close **Visual Studio Code**.
 
