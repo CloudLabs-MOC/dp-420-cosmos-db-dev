@@ -23,6 +23,8 @@ In this lab, you will complete the following tasks:
 
 ### Task 1: Author a stored procedure
 
+In this task, you will provision an Azure Cosmos DB SQL API account
+
 Stored procedures are authored in language-integrated JavaScript and support the execution of basic CRUD operations inside of the database engine. JavaScript running within the database engine is made possible using the server-side JavaScript SDK for Azure Cosmos DB and a series of helper methods.
 
 1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
@@ -156,6 +158,8 @@ Stored procedures are authored in language-integrated JavaScript and support the
 
 ### Task 2: Implement best practices for a stored procedure
 
+In this task, you're enhancing a stored procedure by implementing best practices to improve error handling, response handling, and parameter management. 
+
 While the stored procedure authored earlier in this lab has basic functionality, it is also missing some common error-handling techniques that should be implemented in all stored procedures. First, the stored procedure assumes that it will always have time to complete the operation and doesn't check the return value of the **createDocument** method to ensure it has enough time. Second, the stored procedure assumes that all documents are successfully inserted without checking or throwing any potential error messages. Finally, the stored procedure doesn't return the newly created document as the HTTP response for the request that originally invoked the stored procedure. You will make these three changes to the stored procedure to implement common best practices.
 
 1. Return to the editor for the **createDoc** stored procedure.
@@ -246,7 +250,7 @@ While the stored procedure authored earlier in this lab has basic functionality,
 
 ### Task 3: Query documents
 
-To wrap up things, you will use the Data Explorer to issue a SQL query that will return the two documents created in this lab.
+In this task, to wrap up things, you will use the Data Explorer to issue a SQL query that will return the two documents created in this lab.
 
 1. In the **Data Explorer**, expand the **cosmicworks** database node, then select the **products** container node within the **NOSQL API** navigation tree.
 
