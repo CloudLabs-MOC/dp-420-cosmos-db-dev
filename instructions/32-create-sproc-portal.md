@@ -282,4 +282,8 @@ In this lab, you have completed:
 - Task 2: Implemented best practices for a stored procedure.
 - Task 3: Queried documents.
 
+### Summary 
+
+In this lab, you learned how to create a stored procedure in Azure Cosmos DB for NoSQL, implement best practices for error handling, and validate the procedure using SQL queries. Stored procedures enable you to execute server-side logic on multiple documents within a single transactional scope, which is useful for performing CRUD operations in Azure Cosmos DB.
+
 ### You have successfully completed the lab
