@@ -52,7 +52,11 @@ Stored procedures are authored in language-integrated JavaScript and support the
 
 1. Go to the newly created **Azure Cosmos DB** account resource and from the left navigation menu, navigate to the **Data Explorer** pane.
 
-1. In the **Data Explorer**, select **New Container**, and then create a new container with the following settings, leaving all remaining settings to their default values, and select **OK**:
+1. In the **Data Explorer**, select **+ New Container** > **+ New Container**.
+
+     ![06](media/New-image85.png)
+
+ 1. Create a new container with the following settings, leaving all remaining settings to their default values, and select **OK**:
 
     | **Setting** | **Value** |
     | :--- | :--- |
