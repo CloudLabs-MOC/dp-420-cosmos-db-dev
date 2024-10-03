@@ -157,15 +157,13 @@ We're now ready to run a workload to monitor its usage of the Azure Cosmos DB Ac
     > &#128221; You will notice a couple of warnings in yellow since the compiler detects that the script runs many operations synchronously and does not wait for a reply of the operations. You can ignore these warnings since that is the expected behaviour to run multiple SQL scripts simultaneously.
 
     >**Note**: Visual Studio Code might crash after running the above command, you can rerun the command and continue to the next task. If Visual Studio is crashing more 
-      than 2 time uninstall and install the visual studio by following the next step.
+      than 2 time uninstall and install the visual studio by following the below steps.
 
-1. From the start meanu search and select **Control Panel**:
-    
-    - Under **Programs** select **Uninstall a program** link and locate the **Microsoft visual studio code (user)** right click and select **Uninstall**.
-    - Back to **Microsoft edge** in address bar enter https://code.visualstudio.com/download and   click on download icon under **Windows**.
-    - Once downloded is completed, open the downloded file and install the visual studio code.
-
-1. Once installation is done open visual studio code and re-perform step no 7. 
+      - From the start meanu search and select **Control Panel**.
+      - Under **Programs** select **Uninstall a program** link and locate the **Microsoft visual studio code (user)** right click and select **Uninstall**.
+      - Back to **Microsoft edge** in address bar enter https://code.visualstudio.com/download and   click on download icon under **Windows**.
+      - Once downloded is completed, open the downloded file and install the visual studio code.
+      - Once installation is done open visual studio code and re-perform step no 7. 
           
     > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
     > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
