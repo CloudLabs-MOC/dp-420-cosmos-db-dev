@@ -47,29 +47,7 @@ In this task, you will set up your development environment in Visual Studio Code
 
 Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **Mongo API** or **NoSQL API**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
 
-1. Inside the LabVM, double-click on the **Azure Portal** shortcut.
-
-    ![](media/azureportal.png)
-
-1. On the **Sign-in into Microsoft Azure** tab you will see the login screen, in that enter the following email/username and then click on **Next**. 
-   * Email/Username: <inject key="AzureAdUserEmail"></inject>
-   
-     ![04](media/04.png)
-     
-1. Now enter the following password and click on **Sign in**.
-   * Password: <inject key="AzureAdUserPassword"></inject>
-   
-     ![05](media/05.png)
-     
-        >**Note:** If you see the **Help us protect your account** dialog box, then select the **Skip for now** option.
-
-        ![06](media/06.png)
-  
-1. If you see the pop-up **Stay Signed in?**, click No
-
-1. If you see the pop-up **You have free Azure Advisor recommendations!**, close the window to continue the lab.
-
-1. If a **Welcome to Microsoft Azure** popup window appears, click **Cancel** to skip the tour.
+1. Navigate back to **Azure Portal**.
 
 1. Search for *Azure Cosmos DB (1)*, select **Azure Cosmos DB (2)**.
 
@@ -178,7 +156,17 @@ We're now ready to run a workload to monitor its usage of the Azure Cosmos DB Ac
 
     > &#128221; You will notice a couple of warnings in yellow since the compiler detects that the script runs many operations synchronously and does not wait for a reply of the operations. You can ignore these warnings since that is the expected behaviour to run multiple SQL scripts simultaneously.
 
-    >**Note**: Visual Studio Code might crash after running the above command, you can rerun the command and continue to the next task.
+    >**Note**: Visual Studio Code might crash after running the above command, you can rerun the command and continue to the next task. If Visual Studio is crashing more 
+      than 2 time uninstall and install the visual studio by following the next step.
+
+1. From the start meanu search and select **Control Panel**:
+    
+    - Under **Programs** select **Uninstall a program** link and locate the **Microsoft visual studio code (user)** right click and select **Uninstall**.
+    - Back to **Microsoft edge** in address bar enter https://code.visualstudio.com/download and   click on download icon under **Windows**.
+    - Once downloded is completed, open the downloded file and install the visual studio code.
+
+1. Once installation is done open visual studio code and re-perform step no 7. 
+          
     > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
     > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
     > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
