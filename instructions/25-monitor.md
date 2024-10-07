@@ -101,7 +101,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 ### Task 3: Import the Microsoft.Azure.Cosmos and Newtonsoft.Json libraries into a .NET script
 
-The .NET CLI includes an [add package][docs.microsoft.com/dotnet/core/tools/dotnet-add-package] command to import packages from a pre-configured package feed. A .NET installation uses NuGet as its default package feed.
+In this task, you will use the .NET CLI includes an [add package][docs.microsoft.com/dotnet/core/tools/dotnet-add-package] command to import packages from a pre-configured package feed. A .NET installation uses NuGet as its default package feed.
 
 1. In **Visual Studio Code**, in the **Explorer** pane, browse to the **25-monitor** folder.
 
@@ -122,6 +122,8 @@ The .NET CLI includes an [add package][docs.microsoft.com/dotnet/core/tools/dotn
     ```
 
 ### Task 4: Run a script to create the containers and the workload
+
+In this task, you will run a script to create and monitor a workload using your Azure Cosmos DB account. The script will set up three containers, load data, and simulate multiple user applications querying the database with SQL queries. This will help you monitor usage and performance metrics in Azure Cosmos DB.
 
 We're now ready to run a workload to monitor its usage of the Azure Cosmos DB Account.  The script we'll be running, behind the scenes. This script will create three containers and load some data into those containers. The script will then run some SQL queries randomly to emulate multiple user applications hitting the Azure Cosmos DB account. 
 
@@ -239,6 +241,10 @@ We might need to spend some time fine-tuning our Azure Monitor Metrics diagnosti
 1. Close the integrated terminal.
 
 1. Close **Visual Studio Code**.
+
+### Summary
+
+In this lab, you explored how Azure Monitor integrates with Azure Cosmos DB for NoSQL to provide detailed monitoring and performance insights. By running a simulated workload against your Cosmos DB containers, you observed how various metrics and telemetry data were captured and analyzed using Azure Monitor.
 
 ### Review
 
