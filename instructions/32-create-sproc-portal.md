@@ -154,11 +154,10 @@ Stored procedures are authored in language-integrated JavaScript and support the
 1. Observe the empty result. While the stored procedure was executed successfully, the JavaScript code never returned a human-readable response.
 
 
-> **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-> - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
-> - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+> **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+> - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
 > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-> - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
     
 <validation step="f6406f6b-cf21-4093-a8e1-512fadade041" />
 
@@ -274,6 +273,11 @@ In this task, to wrap up things, you will use the Data Explorer to issue a SQL q
 
 1. Observe the two documents you created in this lab as the results of executing this query.
 
+
+### Summary 
+
+In this lab, you learned how to create a stored procedure in Azure Cosmos DB for NoSQL, implement best practices for error handling, and validate the procedure using SQL queries. Stored procedures enable you to execute server-side logic on multiple documents within a single transactional scope, which is useful for performing CRUD operations in Azure Cosmos DB.
+
 ### Review
 
 In this lab, you have completed:
@@ -282,8 +286,5 @@ In this lab, you have completed:
 - Task 2: Implemented best practices for a stored procedure.
 - Task 3: Queried documents.
 
-### Summary 
-
-In this lab, you learned how to create a stored procedure in Azure Cosmos DB for NoSQL, implement best practices for error handling, and validate the procedure using SQL queries. Stored procedures enable you to execute server-side logic on multiple documents within a single transactional scope, which is useful for performing CRUD operations in Azure Cosmos DB.
 
 ### You have successfully completed the lab
