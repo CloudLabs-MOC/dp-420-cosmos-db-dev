@@ -93,7 +93,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
     > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
     > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at labs-support@spektrasystems.com.
+    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
 
     <validation step="1365501c-f12d-434e-9c4f-6262ecb20955" />
 
@@ -238,7 +238,7 @@ You will now use an asynchronous stream to create a simple-to-understand for-eac
     > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
     > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
     > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at labs-support@spektrasystems.com.
+    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
 
     <validation step="88a70215-bb54-497c-aa33-c02d56cf91d6" />
 
