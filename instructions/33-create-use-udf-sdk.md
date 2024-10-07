@@ -92,11 +92,10 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Without closing the browser window, open **Visual Studio Code**.
 
-    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
     > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help.
+    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
     
     <validation step="74eda0bf-4b7b-47d2-9d83-0bb7e6bc8ffa" />
 
@@ -146,11 +145,10 @@ The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys samp
 
 1. Close the integrated terminal.
 
-    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
     > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help.
+    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
     
     <validation step="dd92f2ca-c14f-4181-8374-d60868d94589" />
 
@@ -262,11 +260,10 @@ The [Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] 
 
 1. Close **Visual Studio Code**.
 
-    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
     > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help.
+    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
     
     <validation step="01aa9434-9775-4fd0-baa1-1dcfc60bdba6" />
 
