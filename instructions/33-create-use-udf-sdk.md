@@ -46,35 +46,18 @@ In this lab, you will complete the following tasks:
 
 Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **Mongo API** or **NoSQL API**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
 
-1. Inside the LabVM, double-click on the **Azure Portal** shortcut.
+1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure 
+   Cosmos DB** under services.
 
-    ![](media/azureportal.png)
-
-1. On the **Sign-in into Microsoft Azure** tab you will see the login screen, in that enter the following email/username and then click on **Next**. 
-   * Email/Username: <inject key="AzureAdUserEmail"></inject>
+   ![06](media/New-image1.png)
    
-     ![04](media/04.png)
-     
-1. Now enter the following password and click on **Sign in**.
-   * Password: <inject key="AzureAdUserPassword"></inject>
-   
-     ![05](media/05.png)
-     
-        >**Note:** If you see the **Help us protect your account** dialog box, then select the **Skip for now** option.
+1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
 
-        ![06](media/06.png)
-  
-1. If you see the pop-up **Stay Signed in?**, click No
+    ![06](media/New-image2.png)
 
-1. If you see the pop-up **You have free Azure Advisor recommendations!**, close the window to continue the lab.
+    ![06](media/New-image3.png)
 
-1. If a **Welcome to Microsoft Azure** popup window appears, click **Maybe Later** to skip the tour.
-
-1. Select **+ Create a resource**, search for *Cosmos DB*, select **Azure Cosmos DB**.
-
-1. Select **Create** under **Azure Cosmos DB for NoSQL**.
-
-1. Within the **Create Azure Cosmos DB Account** pane, observe the **Basics** tab:
+1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create**:
 
     | **Setting** | **Value** |
     | ---: | :--- |
@@ -85,19 +68,23 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     | **Capacity mode** | *Provisioned throughput* |
     | **Apply Free Tier Discount** | *Do Not Apply* |
 
-1. Click on **Review + Create** and after validation get Success click on **Create**.
+1. Once after validation get Success click on **Create**.
 
 1. Wait for the deployment task to complete before continuing with this task.
 
-1. Go to the newly created **Azure Cosmos DB** account resource and navigate to the **Keys** pane.
+1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys** pane.
+
+    ![06](media/New-image6.png)
+
+    ![06](media/New-image7.png)
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-    - Notice the **URI** field. You will use this **endpoint** value later in this exercise.
+    1. Record the value of the **URI** field. You will use this **endpoint** value later in this exercise.
 
-    - Notice the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
-  
-    - Notice the **PRIMARY CONNNECTION STRING** field. You will use this **string** value later in this exercise.
+    1. Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
+
+        ![06](media/New-image9.png)
 
 1. Without closing the browser window, open **Visual Studio Code**.
 
