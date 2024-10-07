@@ -219,7 +219,7 @@ The [Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] 
 
     Database database = await client.CreateDatabaseIfNotExistsAsync("cosmicworks");
 
-    Container container = await database.CreateContainerIfNotExistsAsync("products", "/categoryId");
+    Container container = await database.CreateContainerIfNotExistsAsync("products", "/category/name");
 
     UserDefinedFunctionProperties props = new ();
     props.Id = "tax";
