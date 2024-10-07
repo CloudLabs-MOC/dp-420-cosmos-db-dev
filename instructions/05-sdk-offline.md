@@ -113,7 +113,10 @@ The **Microsoft.Azure.Cosmos** library has already been pre-installed in the .NE
 
 1. Close the integrated terminal.
 
-    > **Congratulations** on completing the task! Now, it's time to validate it. 
+    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
+    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out. 
 
     <validation step="1e23a88b-ed78-4557-8384-97cc0833dcbb" />
 
@@ -194,7 +197,10 @@ Creating a new container is similar to the pattern used to create a new database
    
 1. Close your web browser window or tab.
 
-    > **Congratulations** on completing the task! Now, it's time to validate it.
+    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
+    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
 
     <validation step="d95b17d3-9a2e-4a03-adde-9ad042168bea" />
 
