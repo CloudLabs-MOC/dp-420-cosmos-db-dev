@@ -128,7 +128,11 @@ The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys samp
 
     >**For example:** if your endpoint is: **https&shy;://dp420.documents.azure.com:443/** and your key is: **fDR2ci9QgkdkvERTQ==**, then the command would be:
     > ``cosmicworks --endpoint https://dp420.documents.azure.com:443/ --key fDR2ci9QgkdkvERTQ== --datasets product``
-    >**Note**: If ask for **What is your connection string** then copy the primary string and right-click on the mouse to enter the primary string inside Visual Studio.
+    
+    >**Note**: If ask for **What is your connection string** then navigate back to Azure cosmos db in left navigation pane select **Key** copy the **primary connection 
+     string** and right-click on the mouse to enter the primary string inside Visual Studio.
+
+     ![06](media/New-image127.png)
     
 1. Wait for the **cosmicworks** command to finish populating the account with a database, container, and items.
    
