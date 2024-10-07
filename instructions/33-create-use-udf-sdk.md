@@ -23,6 +23,8 @@ In this lab, you will complete the following tasks:
 
 ### Task 1: Prepare your development environment
 
+In this task, you will prepare your development environment for working with Azure Cosmos DB by setting up Visual Studio Code.
+
 1. Start Visual Studio Code (the program icon is pinned to the Desktop).
 
    ![Visual Studio Code Icon](./media/vscode1.jpg)
@@ -43,6 +45,8 @@ In this lab, you will complete the following tasks:
 
 
 ### Task 2: Create an Azure Cosmos DB for NoSQL account
+
+In this task, you will provision an Azure Cosmos DB SQL account, configuring essential settings and retrieving the necessary connection details for future development.
 
 Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **Mongo API** or **NoSQL API**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
 
@@ -98,6 +102,8 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 ### Task 3: Seed the Azure Cosmos DB SQL API account with data
 
+In this task, you will use the cosmicworks command-line tool to deploy sample data into your Azure Cosmos DB SQL API account. This tool is installed via NuGet and allows you to quickly populate the database with predefined datasets, such as product data, to facilitate testing and development.
+
 The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys sample data to any Azure Cosmos DB SQL API account. The tool is open-source and available through NuGet. You will install this tool to the Azure Cloud Shell and then use it to seed your database.
 
 1. In **Visual Studio Code**, open the **Terminal** menu by selecting **... (ellipses) (1)** > **Terminal (2)** > **New Terminal (3)** to open a new terminal with your existing instance.
@@ -149,6 +155,8 @@ The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys samp
     <validation step="dd92f2ca-c14f-4181-8374-d60868d94589" />
 
 ### Task 4: Create a user-defined function (UDF) using the .NET SDK
+
+In this task, you will use the Azure Cosmos DB .NET SDK to create a UDF that calculates the product price with tax. This task involves writing a C# script to define and deploy the UDF to an Azure Cosmos DB SQL API container, enabling tax-based queries on product prices.
 
 The [Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] class in the .NET SDK includes a [Scripts][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.scripts] property that is used to perform CRUD operations against Stored Procedures, UDFs, and Triggers directly from the SDK. You will use this property to create a new UDF and then push that UDF to an Azure Cosmos DB SQL API container. The UDF that we will create using the SDK, will compute the price of the product with the tax, which will let us run SQL queries on the products using their price with the tax.
 
@@ -264,7 +272,7 @@ The [Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] 
 
 ### Task 5: Test the UDF using the Data Explorer
 
-Now that a new UDF has been created in the Azure Cosmos DB container, you will use the Data Explorer to validate that the UDF is working as expected.
+In this task, you will validate the user-defined function (UDF) created earlier in Azure Cosmos DB by running a SQL query in the Data Explorer.
 
 1. Return to your web browser.
 
@@ -291,6 +299,10 @@ Now that a new UDF has been created in the Azure Cosmos DB container, you will u
     >**Note:** The **priceWithTax** field should have a value that is 25% larger than the **price** field.
 
 1. Close your web browser window or tab.
+
+### Summary
+
+In this lab, you successfully implemented and tested user-defined functions (UDFs) in Azure Cosmos DB using the .NET SDK. The main objectives were to familiarize yourself with the development environment, create and configure an Azure Cosmos DB for NoSQL account, seed it with data, and develop a UDF that computes the price of products with tax.
 
 ### Review
 
