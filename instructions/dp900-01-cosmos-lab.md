@@ -113,6 +113,10 @@ This task demonstrates how to create, view, and query items in a Cosmos DB conta
 
     <validation step="0c506d8c-06e7-4eb7-aa88-fed3d24ffcfc" />
 
+## Summary 
+
+In this lab you gained hands-on experience with creating, viewing, modifying, and querying data in Azure Cosmos DB, which is valuable for storing non-relational data in real-world applications.
+
 ## Review
 In this lab, you have completed:
 - Create a Cosmos DB account
