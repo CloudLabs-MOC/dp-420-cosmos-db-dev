@@ -23,12 +23,19 @@ In this lab, you will perform the following tasks:
 To use Cosmos DB, you must provision a Cosmos DB account in your Azure subscription. In this exercise, you'll provision a Cosmos DB account that uses the core (SQL) API.
 
 #### Task 1: Create a Cosmos DB account
+In this task, you will provision an Azure Cosmos DB SQL account, configuring essential settings and retrieving the necessary connection details for future development.
 
-1.  In the Azure portal, select  **+ Create a resource** (1)  at the top left, and search for  **Azure Cosmos DB** (2). In the results, select  **Azure Cosmos DB** (3) and select  **Create** (4).
+1. On **Azure Portal** page, in Search resources, services and docs (G+/) box at the top of the portal, enter Azure Cosmos DB, and then select Azure Cosmos DB under services.
 
-2.  In the  **Azure Cosmos DB for NoSQL**  tile, select  **Create**.
+   ![06](media/New-image1.png)
+   
+1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
 
-3.  Enter the following details, and then select  **Review + Create**:
+    ![06](media/New-image2.png)
+
+    ![06](media/New-image3.png)
+
+1.  Enter the following details, and then select  **Review + Create**:
     -   **Subscription**: Select your **Azure subscription.**
     -   **Resource group**: Select existing resource group **DP-900-Module-3-<inject key="DeploymentID" enableCopy="false"/>**
     -   **Account Name**: Enter **cosmosdb-<inject key="DeploymentID" enableCopy="false"/>**
@@ -37,12 +44,13 @@ To use Cosmos DB, you must provision a Cosmos DB account in your Azure subscript
     -   **Apply Free-Tier Discount**: Select Apply
     -   **Limit total account throughput**: Unselected
 
-4.  When the configuration has been validated, select  **Create**.
+1.  When the configuration has been validated, select  **Create**.
 
-5.  Wait for deployment to complete. Then go to the deployed resource.
+1.  Wait for deployment to complete. Then go to the deployed resource.
 
 ### Task 2 : Create a sample database
 
+This task involves reviewing pre-configured settings and observing the creation process of the SampleDB database and its container.
 *Throughout this procedure, close any tips that are displayed in the portal*.
 
 1. On the page for your new Cosmos DB account, in the pane on the left, select **Data Explorer**.
@@ -54,7 +62,7 @@ To use Cosmos DB, you must provision a Cosmos DB account in your Azure subscript
 
 1.  In the Data Explorer page, expand the  **SampleDB**  database and the **SampleContainer**, and select  **Items**  to see a list of items in the container. The items represent people, each with a unique id, a first name, an age, and other properties.
 
-2.  Select any of the items in the list to see a JSON representation of the item data.
+2.  Select any of the items in the list to see a JSON representation of the item data then unselect and procced with next step to create blank item.
 
 3.  At the top of the page, select  **New Item**  to create a new blank item.
 
@@ -75,6 +83,8 @@ To use Cosmos DB, you must provision a Cosmos DB account in your Azure subscript
 5.  After saving the new item, notice that additional metadata properties are added automatically.
 
 ### Task 4  : Query the database
+
+This task demonstrates how to create, view, and query items in a Cosmos DB container using the Data Explorer interface, simulating how developers would interact with the database using SDKs in real-world applications.
 
 1.  In the  **Data Explorer**  page, select the  **New SQL Query**  icon.
 
