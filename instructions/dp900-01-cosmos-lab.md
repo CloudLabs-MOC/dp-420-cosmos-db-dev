@@ -16,7 +16,7 @@ In this lab, you will perform the following tasks:
 
 ## Architecture diagram
 
-![](images/dp900lab3.png)
+![](media/dp900lab3.png)
 
 ### Exercise 1: Explore Azure Cosmos DB
 
