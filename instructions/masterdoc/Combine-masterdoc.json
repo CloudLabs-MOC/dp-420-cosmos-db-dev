@@ -1,0 +1,73 @@
+[
+  {
+    "Name": "Developing Cloud-Native Applications Using Microsoft Azure Cosmos DB",
+    "Language": "English",
+    "BaseURL": "https://github.com/CloudLabs-MOC/dp-420-cosmos-db-dev/tree/guided-labs",
+    "Files": [
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/dp-420-cosmos-db-dev/guided-labs/labintro.md",
+        "Order": 1
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/dp-420-cosmos-db-dev/guided-labs/instructions/dp900-01-cosmos-lab.md",
+        "Order": 2
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/dp-420-cosmos-db-dev/guided-labs/instructions/03-migrate-data.md",
+        "Order": 3
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/dp-420-cosmos-db-dev/guided-labs/instructions/04-sdk-connect.md",
+        "Order": 4
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/dp-420-cosmos-db-dev/guided-labs/instructions/05-sdk-offline.md",
+        "Order": 5
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/dp-420-cosmos-db-dev/guided-labs/instructions/06-sdk-crud.md",
+        "Order": 6
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/dp-420-cosmos-db-dev/guided-labs/instructions/07-sdk-batch.md",
+        "Order": 7
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/dp-420-cosmos-db-dev/guided-labs/instructions/08-sdk-bulk.md",
+        "Order": 8
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/dp-420-cosmos-db-dev/guided-labs/instructions/09-sdk-queries.md",
+        "Order": 9
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/dp-420-cosmos-db-dev/guided-labs/instructions/11-default-indexing-policy.md",
+        "Order": 10
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/dp-420-cosmos-db-dev/guided-labs/instructions/14-functions.md",
+        "Order": 11
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/dp-420-cosmos-db-dev/guided-labs/instructions/15-cognitive-search.md",
+        "Order": 12
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/dp-420-cosmos-db-dev/guided-labs/instructions/23-index-optimization.md",
+        "Order": 13
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/dp-420-cosmos-db-dev/guided-labs/instructions/25-monitor.md",
+        "Order": 14
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/dp-420-cosmos-db-dev/guided-labs/instructions/32-create-sproc-portal.md",
+        "Order": 15
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/dp-420-cosmos-db-dev/guided-labs/instructions/33-create-use-udf-sdk.md",
+        "Order": 16
+      }
+    ]
+  }
+]
