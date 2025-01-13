@@ -11,12 +11,6 @@ In this lab, you will complete the following tasks:
 - Task 1: Create and seed your Azure Cosmos DB SQL API account.
 - Task 2: Create Azure Data Factory resource.
 
-### Estimated Timing: 30 minutes
-
-## Architecture Diagram
-
-![image](architecturedia/lab3.png)
-
 ### Task 1: Create and seed your Azure Cosmos DB for NoSQL account
 
 In this task, you'll create and configure an Azure Cosmos DB for NoSQL account, followed by seeding it with a database and container using a command-line utility.

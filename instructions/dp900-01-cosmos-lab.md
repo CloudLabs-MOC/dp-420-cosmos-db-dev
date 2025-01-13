@@ -12,12 +12,6 @@ In this lab, you will perform the following tasks:
 + Task 3: View and create items
 + Task 4: Query the database
 
-## Estimated timing: 15 minutes
-
-## Architecture diagram
-
-![](media/dp900lab3.png)
-
 ### Exercise 1: Explore Azure Cosmos DB
 
 To use Cosmos DB, you must provision a Cosmos DB account in your Azure subscription. In this exercise, you'll provision a Cosmos DB account that uses the core (SQL) API.
