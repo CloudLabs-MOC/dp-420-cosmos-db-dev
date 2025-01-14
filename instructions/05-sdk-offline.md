@@ -1,5 +1,7 @@
 # Configure the Azure Cosmos DB NoSQL API SDK for offline development
 
+### Estimated Duration: 60 Minutes
+
 ## Lab scenario
 
 The Azure Cosmos DB Emulator is a local tool that emulates the Azure Cosmos DB service for development and testing. The emulator supports the NoSQL API and can be used in place of the cloud service when developing code using the Azure SDK for .NET.
@@ -13,12 +15,6 @@ In this lab, you will complete the following tasks:
 - Task 2: Connect to the emulator from the SDK.
 - Task 3: View the changes in the emulator.
 - Task 4: Create and view a new container.
-
-## Estimated Timing: 30 minutes
-
-## Architecture Diagram
-
-![image](architecturedia/lab5.png)
 
 ### Task 1: Start the Azure Cosmos DB Emulator
 In this task, you will launch the Azure Cosmos DB Emulator, a local tool that simulates the Azure Cosmos DB environment. You'll retrieve the connection string from the emulator. The task involves verifying that the emulator is running and checking the initial state of the Data Explorer.
@@ -38,7 +34,7 @@ Your environment should already have the emulator pre-installed. If not, refer t
 
          ![06](media/New-image56.png)
 
-1. Navigate to the **Explorer** pane. In the **Data Explorer**, observe that there are no nodes within the **SQL API** navigation tree.
+1. Navigate to the **Explorer** pane. In the **Data Explorer**, observe that there are no nodes within the **NoSQL API** navigation tree.
 
    ![06](media/New-image57.png)
 
@@ -110,6 +106,8 @@ The **Microsoft.Azure.Cosmos** library has already been pre-installed in the .NE
     ```
     dotnet run
     ```
+
+    >**Note:** If the VS Code crashes while running the application, please close all the apps once and re perform this step.
 
 1. Close the integrated terminal.
 
@@ -191,7 +189,7 @@ Creating a new container is similar to the pattern used to create a new database
 
 1. In the **Azure Cosmos DB Emulator** landing page, navigate to the **Explorer** pane.
 
-1. In the **Data Explorer**, expand the **cosmicworks** database node, then observe the new **products** container node within the **SQL API** navigation tree.
+1. In the **Data Explorer**, expand the **cosmicworks** database node, then observe the new **products** container node within the **NoSQL API** navigation tree.
 
     ![06](media/New-image60.png)
    

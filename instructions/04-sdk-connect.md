@@ -1,5 +1,7 @@
 # Connect to Azure Cosmos DB for NoSQL with the SDK
 
+### Estimated Duration: 60 Minutes
+
 ## Lab scenario
 
 The Azure SDK for .NET is a suite of libraries that provides a consistent developer interface to interact with many Azure services. The Azure SDK for .NET is built to the .NET Standard 2.0 specification ensuring that it can be used in .NET Framework (4.6.1 or above), .NET Core (2.1 or above), and .NET (5 or above) applications. <br>
@@ -14,12 +16,6 @@ In this lab, you will complete the following tasks:
 - Task 4: Import the Microsoft.Azure.Cosmos library into a .NET project.
 - Task 5: Use the Microsoft.Azure.Cosmos library.
 - Task 6: Test the script.
-
-## Estimated Timing: 30 minutes
-
-## Architecture Diagram
-
-![image](architecturedia/lab4.png)
 
 ### Task 1: Prepare your development environment
 
@@ -225,6 +221,12 @@ In this task, you'll test your script by opening the integrated terminal in Visu
 Now that the .NET code to connect to the Azure Cosmos DB SQL API account is complete, you can test the script. This script will print the name of the account, and the name of the first writable region. When you created the account, you specified a location and you should expect to see that same location value printed as the result of this script.
 
 1. In **Visual Studio Code**, right-click on the **04-sdk-connect** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+
+2. Install Newtonsoft.JSON package using the below command.
+
+   ```
+   dotnet add package Newtonsoft.Json --version 13.0.3
+   ```
 
 2. Build and run the project using the [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] command:
 
