@@ -1,6 +1,6 @@
 # Connect to Azure Cosmos DB for NoSQL with the SDK
 
-### Estimated Duration: 1 Hour
+### Estimated Duration: 60 Minutes
 
 ## Lab scenario
 
