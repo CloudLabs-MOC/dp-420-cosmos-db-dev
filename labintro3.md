@@ -1,6 +1,6 @@
-# Developing Cloud-Native Applications Using Microsoft Azure Cosmos DB - Migrate existing data using Azure Data Factory
+# Developing Cloud-Native Applications Using Microsoft Azure Cosmos DB - Connect & Configure to Azure Cosmos DB for NoSQL with the SDK
 
-### Overall Estimated Duration: 90 Minutes
+### Overall Estimated Duration: 120 Minutes
 
 ## Overview
 
@@ -12,7 +12,7 @@ Equip participants with the skills to connect to an Azure Cosmos DB SQL API acco
 
 - **Connect to Azure Cosmos DB for NoSQL with the SDK:** The objective of this lab is to enable participants to connect to an Azure Cosmos DB SQL API account using the Azure SDK for .NET, integrate the Microsoft.Azure.Cosmos library into a .NET project, and build and test scripts to interact with Azure Cosmos DB for managing non-relational data.
 
-- **Configure the Azure Cosmos DB NoSQL API SDK for offline development:**  
+- **Configure the Azure Cosmos DB NoSQL API SDK for offline development:** The objective of this lab is to connect to an Azure Cosmos DB SQL API account using the Azure SDK for .NET and interact with non-relational data through the Azure Cosmos DB Emulator.
 
 ## Prerequisites
 
@@ -24,17 +24,17 @@ Participants should have:
 
 ## Architechture
 
-This architecture illustrates the process of integrating Azure Cosmos DB with Azure Data Factory for data management and transformation. In this lab, the user will create a Cosmos DB account, set up a sample database, and use Azure Data Factory to move data between containers. The lab provides a practical understanding of how to use these services to efficiently manage, populate, and transform non-relational data in the cloud.
+This diagram illustrates the process of integrating and interacting with Azure Cosmos DB for NoSQL development using the Azure SDK and Emulator. The first workflow demonstrates how to connect to an Azure Cosmos DB NoSQL API account, set up the development environment, and test scripts using the Microsoft.Azure.Cosmos library. The second workflow highlights offline development by configuring the Azure Cosmos DB Emulator, connecting to it from the SDK, and creating and managing containers locally.
 
 ## Architechture Diagram
 
-![](/instructions/architecturedia/lab3.png)
+![](/instructions/architecturedia/archm3.png)
 
 ## Explanation of Components
 
 - **Azure Cosmos DB:** A globally distributed, multi-model database service that supports MongoDB API for seamless integration. Cosmos DB provides scalability, high availability, and low latency. 
 
-- **Azure Data Factory:** A cloud-based data integration service that enables users to create, schedule, and orchestrate data workflows. It supports data movement and transformation across various sources, both on-premises and in the cloud, and is designed for building scalable data pipelines.
+- **Visual Studio Code (VS Code):** A lightweight, versatile, and open-source code editor developed by Microsoft. It supports multiple programming languages, features extensions for enhanced functionality, and offers debugging, Git integration, and intelligent code completion.
 
 ## Getting started with the lab
 
