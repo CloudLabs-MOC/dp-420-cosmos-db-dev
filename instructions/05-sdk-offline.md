@@ -1,6 +1,6 @@
 # Configure the Azure Cosmos DB NoSQL API SDK for offline development
 
-### Estimated Duration: 1 Hour
+### Estimated Duration: 60 Minutes
 
 ## Lab scenario
 
