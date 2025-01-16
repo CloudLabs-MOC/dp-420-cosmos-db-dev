@@ -1,5 +1,7 @@
 # Batch multiple point operations together with the Azure Cosmos DB NoSQL API SDK
 
+### Estimated Duration: 30 minutes
+
 ## Lab scenario
 
 The [TransactionalBatch][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.transactionalbatch] and [TransactionalBatchResponse][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.transactionalbatchresponse] classes together are the key to composing and decomposing operations into a single logical step. Using these classes, you can write your code to perform multiple operations and then determine if they were completed successfully server-side.
@@ -12,12 +14,6 @@ In this lab, you will complete the following tasks:
 - Task 1: Create an Azure Cosmos DB for NoSQL account and configure the SDK project
 - Task 2: Creating a transactional batch.
 - Task 3: Creating an errant transactional batch.
-
-## Estimated Timing: 30 minutes
-
-## Architecture Diagram
-
-![image](architecturedia/lab7.png)
 
 ## Prepare your development environment
 
