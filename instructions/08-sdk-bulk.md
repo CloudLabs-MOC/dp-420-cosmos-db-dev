@@ -1,5 +1,7 @@
 # Move multiple documents in bulk with the Azure Cosmos DB for NoSQL SDK
 
+### Estimated Duration: 30 minutes
+
 ## Lab scenario
 
 The easiest way to learn how to perform a bulk operation is to attempt to push many documents to an Azure Cosmos DB for NoSQL account in the cloud. Using the bulk features of the SDK, this can be done with some minor help from the [System.Threading.Tasks][docs.microsoft.com/dotnet/api/system.threading.tasks] namespace.
@@ -12,12 +14,6 @@ In this lab, you will complete the following tasks:
 - Task 1: Create an Azure Cosmos DB for NoSQL account and configure the SDK project.
 - Task 2: Bulk inserting twenty-five thousand documents.
 - Task 3: Observe the results.
-
-## Estimated Timing: 30 minutes
-
-## Architecture Diagram
-
-![image](architecturedia/lab8.png)
 
 ## Prepare your development environment
 
