@@ -1,5 +1,7 @@
 # Execute a query with the Azure Cosmos DB for NoSQL SDK
 
+### Estimated Duration: 30 minutes
+
 ## Lab scenario
 
 The latest version of the .NET SDK for Azure Cosmos DB for NoSQL makes it easier than ever to query a container and asynchronously iterate over result sets using the latest best practices and language features from C#.
@@ -15,12 +17,6 @@ In this lab, you will complete the following tasks:
 - Task 2: Create an Azure Cosmos DB NoSQL API account.
 - Task 3: Seed the Azure Cosmos DB NoSQL API account with data.
 - Task 4: Iterate over the results of a SQL query using the SDK.
-
-## Estimated Timing: 30 minutes
-
-## Architecture Diagram
-
-![image](architecturedia/lab9.png)
 
 ### Task 1: Prepare your development environment
 
@@ -76,7 +72,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys** pane.
 
-    ![06](media/New-image6.png
+    ![06](media/New-image6.png)
 
     ![06](media/New-image7.png)
 
