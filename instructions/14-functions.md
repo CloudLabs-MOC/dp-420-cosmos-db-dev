@@ -1,5 +1,7 @@
 # Process Azure Cosmos DB for NoSQL data using Azure Functions
 
+### Estimated Duration: 60 minutes
+
 ## Lab scenario
 
 The Azure Cosmos DB trigger for Azure Functions is implemented using a change feed processor. You can create functions that respond to create and update operations in your Azure Cosmos DB for NoSQL container with this knowledge. If you have implemented a change feed processor manually, the setup for Azure Functions is similar.
@@ -12,12 +14,6 @@ In this lab, you will complete the following tasks:
 - Task 3: Create an Azure Function app and Azure Cosmos DB-triggered function
 - Task 4: Implement function code in .NET
 - Task 5: Seed your Azure Cosmos DB for NoSQL account with sample data
-
-## Estimated Timing: 60 minutes
-
-## Architecture Diagram
-
-![image](architecturedia/lab14.png)
 
 ## Task 1: Create an Azure Cosmos DB for NoSQL account
 
@@ -51,7 +47,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys** pane.
 
-    ![06](media/New-image6.png
+    ![06](media/New-image6.png)
 
     ![06](media/New-image7.png)
 
