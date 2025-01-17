@@ -1,5 +1,7 @@
 # Optimize an Azure Cosmos DB for NoSQL container's indexing policy for common operations
 
+### Estimated Duration: 60 minutes
+
 ## Lab scenario
 
 For write-heavy workloads or workloads with large JSON objects, it can be advantageous to optimize the indexing policy to only index properties that you know you will want to use in your queries.
@@ -13,12 +15,6 @@ In this lab, you will complete the following tasks:
 - Task 2: Create an Azure Cosmos DB for NoSQL account.
 - Task 3: Run the test .NET application using the default indexing policy.
 - Task 4: Update the indexing policy and rerun the .NET application.
-
-### Estimated Timing: 60 minutes
-
-## Architecture Diagram
-
-![image](architecturedia/lab23.png)
 
 ### Task 1: Prepare your development environment
 
