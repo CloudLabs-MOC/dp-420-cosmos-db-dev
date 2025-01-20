@@ -1,5 +1,7 @@
 # Process Azure Cosmos DB for NoSQL data using Azure Functions
 
+### Estimated Duration: 60 minutes
+
 ## Lab scenario
 
 The Azure Cosmos DB trigger for Azure Functions is implemented using a change feed processor. You can create functions that respond to create and update operations in your Azure Cosmos DB for NoSQL container with this knowledge. If you have implemented a change feed processor manually, the setup for Azure Functions is similar.
@@ -12,12 +14,6 @@ In this lab, you will complete the following tasks:
 - Task 3: Create an Azure Function app and Azure Cosmos DB-triggered function
 - Task 4: Implement function code in .NET
 - Task 5: Seed your Azure Cosmos DB for NoSQL account with sample data
-
-## Estimated Timing: 60 minutes
-
-## Architecture Diagram
-
-![image](architecturedia/lab14.png)
 
 ## Task 1: Create an Azure Cosmos DB for NoSQL account
 
@@ -51,7 +47,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys** pane.
 
-    ![06](media/New-image6.png
+    ![06](media/New-image6.png)
 
     ![06](media/New-image7.png)
 
@@ -193,6 +189,8 @@ In this task, you'll create an Azure Function app with a Cosmos DB-triggered fun
 1. On the **Function App** page click on **Create**.
 
     ![06](media/New-image98.png)
+
+1. In the **Select a Hosting Option**, select **App Service** Plan.
    
 1. Specify the following settings, leaving all remaining settings to their default values and then select **Review + Create** and then select **Create**:
 
@@ -203,7 +201,7 @@ In this task, you'll create an Azure Function app with a Cosmos DB-triggered fun
     | **Name** | *functionapp-<inject key="DeploymentID" enableCopy="false"/>* |
     | **Publish** | *Code* |
     | **Runtime stack** | *.NET* |
-    | **Version** | *6 (LTS) in-process model* |
+    | **Version** | *8 (LTS) in-process model* |
     | **Region** | *Choose any available region* |
 
     ![06](media/New-image102.png)
@@ -319,19 +317,11 @@ The function you created earlier is a C# script that is edited in-portal. You wi
     }
     ```
 
-1. Expand the **Logs** section to connect to the streaming logs for the current function.
+1. Expand the **Logs** section and change the connection from Application Insights to File System Logs for the current function.
 
     > &#128161; It can take a couple of seconds to connect to the streaming log service. You will see a message in the log output once you are connected.
 
 1. **Save** the current function code.
-
-1. Observe the result of the C# code compilation. You should expect to see a **Compilation succeeded** message at the end of the log output.
-
-    > &#128221; You may see warning messages in the log output. These warnings will not impact this lab.
-
-1. **Maximize** the log section to expand the output window to fill the maximum available space.
-
-    > &#128221; You will use another tool to generate items in your Azure Cosmos DB for NoSQL container. Once you generate the items, you will return to this browser window to observe the output. Do not close the browser window prematurely.
 
 ## Task 5: Seed your Azure Cosmos DB for NoSQL account with sample data
 

@@ -1,5 +1,7 @@
 # Review the default index policy for an Azure Cosmos DB for NoSQL container with the portal
 
+### Estimated Duration: 30 minutes
+
 ## Lab scenario
 
 Every container in Azure Cosmos DB has an indexing policy that directs the service on how to index items within the container. By default, this indexing policy indexes every property of every item. The default indexing policy makes it easy to get started with Azure Cosmos DB quickly as you don't have to think about indexing, performance, and management at the start of a project.
@@ -12,12 +14,6 @@ In this lab, you will complete the following tasks:
 - Task 1: Create an Azure Cosmos DB NoSQL API account.
 - Task 2: Seed the Azure Cosmos DB NoSQL API account with data.
 - Task 3: View and manipulate the default indexing policy.
-
-## Estimated Timing: 30 minutes
-
-## Architecture Diagram
-
-![image](architecturedia/lab11.png)
 
 ## Task 1: Review the default index policy for an Azure Cosmos DB SQL API container with the portal
 
@@ -55,7 +51,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys** pane.
 
-    ![06](media/New-image6.png
+    ![06](media/New-image6.png)
 
     ![06](media/New-image7.png)
 

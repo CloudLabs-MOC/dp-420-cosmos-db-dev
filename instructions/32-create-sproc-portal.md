@@ -1,5 +1,7 @@
 # Create a stored procedure with the Azure portal
 
+### Estimated Duration: 30 minutes
+
 ## Lab scenario
 
 Stored procedures are one of the ways you can execute business logic server-side in Azure Cosmos DB. With a stored procedure, you can perform basic CRUD (Create, Read, Update, Delete) operations with a container on multiple documents within a single transactional scope.
@@ -12,12 +14,6 @@ In this lab, you will complete the following tasks:
 - Task 1: Author a stored procedure.
 - Task 2: Implement best practices for a stored procedure.
 - Task 3: Query documents.
-
-## Estimated Timing: 30 minutes
-
-## Architecture Diagram
-
-![image](architecturedia/lab31.png)
 
 ## Exercise 1: 
 

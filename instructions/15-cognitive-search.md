@@ -1,5 +1,7 @@
 # Search data using Azure AI Search and Azure Cosmos DB for NoSQL
 
+### Estimated Duration: 30 Minutes
+
 ## Lab scenario
 
 Azure Cognitive Search combines a search engine as a service with deep integration with AI capabilities to enrich the information in the search index.
@@ -14,12 +16,6 @@ In this lab, you will complete the following tasks:
 - Task 3: Create an Azure AI Search resource.
 - Task 4: Build indexer and index for Azure Cosmos DB for NoSQL data.
 - Task 5: Validate the index with example search queries.
-
-## Estimated Timing: 30 minutes
-
-## Architecture Diagram
-
-![image](architecturedia/lab15.png)
 
 ### Task 1: Create an Azure Cosmos DB for NoSQL account
 

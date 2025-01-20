@@ -1,5 +1,7 @@
 # Create and update documents with the Azure Cosmos DB NoSQL API SDK
 
+### Estimated Duration: 60 Minutes
+
 ## Lab scenario
 
 The [Microsoft.Azure.Cosmos.Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] class includes a set of member methods to create, retrieve, update, and delete items within an Azure Cosmos DB for NoSQL container. Together, these methods perform some of the most common “CRUD” operations across various items within NoSQL API containers.
@@ -13,12 +15,6 @@ In this lab, you will complete the following tasks:
 - Task 2: Connect to the Azure Cosmos DB NoSQL API account from the SDK.
 - Task 3: Perform create and read point operations on items with the SDK.
 - Task 4: Perform update and delete point operations with the SDK.
-
-## Estimated Timing: 60 minutes
-
-## Architecture Diagram
-
-![image](architecturedia/lab6.png)
 
 ## Prepare your development environment
 

@@ -1,5 +1,7 @@
 # Use Azure Monitor to analyze an Azure Cosmos DB for NoSQL account
 
+### Estimated Duration: 30 minutes
+
 ## Lab scenario
 
 Azure Monitor is a full-stack monitoring service in Azure that provides a complete set of features to monitor Azure resources. Azure Cosmos DB creates monitoring data using Azure Monitor. Azure Monitor captures Cosmos DB's metrics and telemetry data.
@@ -14,12 +16,6 @@ In this lab, you will complete the following tasks:
 - Task 3: Import the Microsoft.Azure.Cosmos and Newtonsoft.Json libraries into a .NET script.
 - Task 4: Run a script to create the containers and the workload.
 - Task 5: Use Azure Monitor to Analyze the Azure Cosmos DB account usage
-
-## Estimated Timing: 30 minutes
-
-## Architecture Diagram
-
-![image](architecturedia/lab25.png)
 
 ### Task 1: Prepare your development environment
 
@@ -89,6 +85,8 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
     1. Record the value of the **PRIMARY KEY** field by selecting the show primary key icon. You'll use this **key** value later in this exercise.
 
+       ![06](media/New-image9.png)
+
 1. Minimize, but don't close your browser window. We'll come back to the Azure portal a few minutes after we start a background workload in the next steps.
 
     > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
@@ -106,7 +104,7 @@ In this task, you will use the .NET CLI includes an [add package][docs.microsoft
 
 1. Right-click on the **25-monitor** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
 
-    >**Note:** This command will open the terminal with the starting directory already set to the **25-monitor** folder.
+   ![](./media/m12img1.png)
 
 1. Add the [Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1] package from NuGet by running the following command:
 
@@ -146,6 +144,10 @@ We're now ready to run a workload to monitor its usage of the Azure Cosmos DB Ac
 
     > &#128221; For example, if your key is: **fDR2ci9QgkdkvERTQ==**, then the C# statement would be: **private static readonly string key = "fDR2ci9QgkdkvERTQ==";**.
 
+1. Once updated, the file will look like this.
+
+   ![](./media/m12img2.png)
+
 1. Save the **Program.cs** file.
 
 1. Return to the *Integrated Terminal*.
@@ -182,19 +184,31 @@ In this task, we'll go back to the browser and review some of the Azure Monitor 
 
 #### Subtask 1: Azure Monitor Metrics's reports
 
-1. Go back to the opened browser window we minimized earlier. If you closed it, open a new one and go to your Azure Cosmos DB account page under [Azure Portal](portal.azure.com).
+1. Navigate back to Azure Cosmos DB resource from the portal.
 
 1. In the Azure Cosmos DB left-hand menu, under *Monitoring*, select **Metrics**. You'll notice that the **Scope** and **Metric Namespace** fields are prepopulated with the correct information. In the following steps, we'll take a look at a few **Metric** options and the *Add filter* and *Apply splitting* features.
 
+   ![](./media/m12img3.png)
+
 1. By default, the *Metrics* section will show us diagnostic information for the last 24 hours. We need to get more granular to look at the metrics during the workload we created in the previous step. On the upper right-hand corner, select the button labeled ***Local time: Last 24 hours (Automatic)***, we'll then get a window with multiple radio button time range options.  Choose the radio button labeled **Last 30 minutes** and select the **Apply** button. If needed, you can get much more granular by choosing the *Custom* radio button and picking a start and end date and time. 
+
+   ![](./media/m12img4.png)
 
 1. Now that we have a good time range for our diagnostic charts, let's take a look at some Metrics. We'll start with a common metric. From the *Metric* pulldown, choose **Total Request Units**. By default, this metric will be displayed as the total sum of RUs. Or, you can change the Aggregation pulldown to average or max. Once you check out those two aggregations, set it back to *Sum* for the following steps.
 
+   ![](./media/m12img5.png)
+
 1. This metric gives us a good idea of how many request units have been used in our Azure Cosmos DB Account. However, our current chart, might not help us home in on an issue when we have multiple databases or containers in our account. Let's change that, let's review how our RU consumption was done by Database. In the menu under the char title, select **Apply splitting**, under the **Values** pulldown choose **DatabaseName**, and select anywhere on the chart to accept the changes. A **Split by = DatabaseName** button will now be placed right above the chart. 
+
+   ![](./media/m12img6.png)
+
+   ![](./media/m12img7.png)
 
 1. Much better, now we know which database is doing most of the work. While this information is good, we have no idea which container is doing all the work.  Select the **Split by = DatabaseName** button to change the Split condition and choose **CollectionName** from the *Values* pulldown. Great, we now should have data for our **customer** and **salesOrder** collections. There's only one problem with this chart, the **salesOrder** collection exists in two databases **database-v2** and **database-v3**, so this value is an aggregation of that collection name in both databases.
 
 1. It should be an easy fix, select the **Add filter** button, under the *Property* Pulldown choose **DatabaseName**, and under *Values* choose **database-V3**.
+
+   ![](./media/m12img8.png)
 
 1. Let's look at two more metrics. We'll edit the existing chart, you can also create a new chart if you like. Above the chart, select the button with the *Azure Cosmos DB account name* and the **Total Request Unit** label. Choose **Total Requests** from the *Metric* pulldown, notice that the only aggregation available is *Count*.
 
@@ -202,11 +216,9 @@ In this task, we'll go back to the browser and review some of the Azure Monitor 
 
 1. Let's keep on looking ot the **Total Request**, but lets change the split to **OperationType**.  This property will help us determine which read or write operations are doing the bulk of the work. Again, this property could be also used similarly against **Total Request Units**
 
+   ![](./media/m12img9.png)
+
 1. Like we did with the **Total Request Units**, experiment with choosing different filters and splitting options. 
-
-1. The final metric we'll look at in this exercise is the **normalised RU Consumption** metric. Change your split to **PartitionKeyRangeId**. This metric helps us identify which partition key range usage is warmer. The metric gives us the skew of throughput towards a partition key range. Go ahead and choose that Metric from the *Metric* pulldown. This chart should now show us a very unhealthy system, hitting a constant 100% **Normalied RU Consumption**.
-
-> &#128221; If you would like to look at more than one chart at a time, click on the **+ New Chart** option above the chart name. 
 
 > &#128221; While we can not directly save our metrics, you can create or use an existing dashboard and add this chart to it by clicking on the **Pin to dashboard** button on the upper right-hand corner of the chart.  Click on the button and choose the **Create new** tab, give it the name *DP-420 labs* and click on **Create and pin**. To view your private dashboards, you should go to the Portal Menu in the upper left-hand corner, and choose Dashboard from your Azure Resource options. The dashboard could take a few minutes to appear the first time.
 
@@ -218,9 +230,13 @@ We might need to spend some time fine-tuning our Azure Monitor Metrics diagnosti
 
 1. In the Azure Cosmos DB left-hand menu, under *Monitoring*, select **Insights**. You'll notice that there are multiple tabs from Overview to Management Options. We'll look at a few of these **Insight** charts. The first tab, the Overview tab, provides a summary of the most common charts you might use. For example, charts like, total request, Data and Index usage, 429 exceptions and Normalized RU consumption.  We saw most of these charts in the previous section.
 
+   ![](./media/m12img10.png)
+
 1. Note on the top of the charts, on the **Time Range**, select either *15* or *30* minutes to evaluate the workload in this exercise.
 
 1. On the upper right-hand corner of *each* chart, you'll notice an option to ***Open Metric Explorer***. Let's go ahead and select the  **Open Metric Explorer** option for the **Total Requests** chart. You'll notice that when you select this option will take you to the Metric reports we reviewed earlier. The advantage of opening the Metric Explorer is that a good portion of the chart has already been built for us.
+
+   ![](./media/m12img11.png)
 
 1. Let's get back to the Insights page by selecting the **X** on the upper right of the Metric chart.
 
@@ -228,7 +244,11 @@ We might need to spend some time fine-tuning our Azure Monitor Metrics diagnosti
 
 1. Select the Requests Tab. These charts are great for both analysing the number of limiting events the account has experienced (429 vs. 200) and reviewing the number of requests per operation type.  
 
+   ![](./media/m12img12.png)
+
 1. Select the Storage Tab. These charts show us both the growth of our collections and the data and index usage.  
+
+   ![](./media/m12img14.png)
 
 1. Select the System Tab. If your application was creating, deleting, or querying the account metadata frequently, it's possible to have 429 exceptions. These charts help us determine if frequent metadata access is the cause of our 429 exceptions. Additionally, we can determine the status of our metadata requests.  
 
