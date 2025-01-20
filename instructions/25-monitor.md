@@ -1,5 +1,7 @@
 # Use Azure Monitor to analyze an Azure Cosmos DB for NoSQL account
 
+## Estimated Duration: 30 minutes
+
 ## Lab scenario
 
 Azure Monitor is a full-stack monitoring service in Azure that provides a complete set of features to monitor Azure resources. Azure Cosmos DB creates monitoring data using Azure Monitor. Azure Monitor captures Cosmos DB's metrics and telemetry data.
@@ -14,12 +16,6 @@ In this lab, you will complete the following tasks:
 - Task 3: Import the Microsoft.Azure.Cosmos and Newtonsoft.Json libraries into a .NET script.
 - Task 4: Run a script to create the containers and the workload.
 - Task 5: Use Azure Monitor to Analyze the Azure Cosmos DB account usage
-
-## Estimated Timing: 30 minutes
-
-## Architecture Diagram
-
-![image](architecturedia/lab25.png)
 
 ### Task 1: Prepare your development environment
 
