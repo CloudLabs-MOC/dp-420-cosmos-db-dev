@@ -57,7 +57,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
     1. Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
 
-        ![06](media/New-image9.png)
+
 
 1. Select **Data Explorer** from the resource menu.
 
