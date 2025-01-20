@@ -1,6 +1,6 @@
 # Create a stored procedure with the Azure portal
 
-## Estimated Duration: 30 minutes
+### Estimated Duration: 30 minutes
 
 ## Lab scenario
 

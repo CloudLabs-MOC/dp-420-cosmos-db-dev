@@ -1,6 +1,6 @@
 # Use Azure Monitor to analyze an Azure Cosmos DB for NoSQL account
 
-## Estimated Duration: 30 minutes
+### Estimated Duration: 30 minutes
 
 ## Lab scenario
 
