@@ -33,6 +33,7 @@ To accompany the products container, you will create a **flatproducts** containe
 
     | **Setting**         | **Value** |
     | --------------------|--------------------------------------------------- |
+    | **Workload Type**   | *Production* |
     | **Subscription**    | *Your existing Azure subscription* |
     | **Resource group**  | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* |
     | **Account Name**    | *sql-<inject key="DeploymentID" enableCopy="false"/>* |
@@ -79,7 +80,7 @@ To accompany the products container, you will create a **flatproducts** containe
 1. In the terminal run the following commad to install the [cosmicworks][nuget.org/packages/cosmicworks] command-line tool for global use on your machine.
 
     ```
-    dotnet tool install cosmicworks --global --version 1.*
+    dotnet tool install cosmicworks --global --version 2.*
     ```
 
     > **Note:** This command may take a couple of minutes to complete. This command will output the warning message (*Tool 'cosmicworks' is already installed') if you have already installed the latest version of this tool in the past.
@@ -90,16 +91,12 @@ To accompany the products container, you will create a **flatproducts** containe
 
     | **Option**       | **Value** |
     | ---------------- | ----------|
-    | **--endpoint**   | *The endpoint value you copied earlier in this lab* |
-    | **--key**        | *The key value you coped earlier in this lab* |
-    | **--datasets**   | *product* |
+    | **CONNECTION STRING**   | *The Primary Connection String value you copied earlier in this lab* |
 
     ```
-    cosmicworks --endpoint <cosmos-endpoint> --key <cosmos-key> --datasets product
+    cosmicworks --connection-string "<API_FOR_NOSQL_CONNECTION_STRING>"
     ```
 
-    > &#128221; For example, if your endpoint is: **https&shy;://dp420.documents.azure.com:443/** and your key is: **fDR2ci9QgkdkvERTQ==**, then the command would be:
-    > ``cosmicworks --endpoint https://dp420.documents.azure.com:443/ --key fDR2ci9QgkdkvERTQ== --datasets product``
     > **Note:** If you get an error while running the above command, close the visual studio code and re-open to run the above command.
 
 1. Wait for the **cosmicworks** command to finish populating the account with a database, container, and items.
