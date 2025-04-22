@@ -29,20 +29,26 @@ To accompany the products container, you will create a **flatproducts** containe
 
     ![06](media/New-image3.png)
 
-1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create**:
+1. Specify the following settings, leaving all remaining settings to their default values, and select **Next: Global Distribution (9)**:
 
     | **Setting**         | **Value** |
     | --------------------|--------------------------------------------------- |
-    | **Workload Type**   | *Production* |
-    | **Subscription**    | *Your existing Azure subscription* |
-    | **Resource group**  | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* |
-    | **Account Name**    | *sql-<inject key="DeploymentID" enableCopy="false"/>* |
-    | **Location**        | *Choose any available region* |
-    | **Capacity mode**   | *Provisioned throughput* |
-    | **Apply Free Tier Discount** | *Do Not Apply* |
-    | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* |
+    | **Workload Type**   | *Production* (1) |
+    | **Subscription**    | *Your existing Azure subscription* (2) |
+    | **Resource group**  | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* (3) |
+    | **Account Name**    | *sql-<inject key="DeploymentID" enableCopy="false"/>* (4) |
+    | **Location**        | *Choose the default region* (5) |
+    | **Capacity mode**   | *Provisioned throughput* (6) |
+    | **Apply Free Tier Discount** | *Do Not Apply* (7) |
+    | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* (8) |
 
-     ![06](media/New-image4.png)
+     ![06](media/create-cosmosdb1.1-2304.png)
+
+     ![06](media/create-cosmosdb2.2-2304.png)
+
+1. Click on **Next: Networking** on the Global Distribution page. Select **All networks (1)** for the **Connectivity method** and click on **Review + Create (2)**. 
+
+     ![06](media/select-networking-2304.png)
 
 1. Click on **Create**.
 
@@ -50,7 +56,7 @@ To accompany the products container, you will create a **flatproducts** containe
 
 1. Wait for the deployment task to complete before continuing with this task.
 
-1. Once deployemet is completed select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys** pane.
+1. Once deployment is completed, select **Go to resources**. 
 
     ![06](media/New-image6.png)
 
@@ -60,11 +66,9 @@ To accompany the products container, you will create a **flatproducts** containe
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-    1. Notice the **URI** field. Copy the value you will use this **endpoint** value later in this exercise.
+    1. Notice the **Primary Connection String** field. Copy the value you will use this **connection string** value later in this exercise.
 
-    1. Notice the **PRIMARY KEY** field. Copy the value uou will use this **key** value later in this exercise.
-
-        ![06](media/New-image9.png)
+        ![06](media/conn-string-2304.png)
 
 1. Keep the browser tab open, as we will return to it later.
 
@@ -118,15 +122,15 @@ To accompany the products container, you will create a **flatproducts** containe
 
 1. Within the **Azure Cosmos DB** account resource, navigate to the **Data Explorer** pane. In the **Data Explorer**, expand the **cosmicworks** database node, expand the **products** container node, and then select **Items**.
 
-    ![06](media/New-image11.png)
+    ![06](media/step21-2304.png)
 
 1. Observe and select the various JSON items in the **products** container. These are the items created by the command-line tool used in previous steps.
 
    ![06](media/New-image12.png)
 
-1. Select the **Scale & Settings** node. In the **Scale & Settings** tab, select **Manual**, update the **required throughput** setting from **4000 RU/s** to **400 RU/s** and then **Save** your changes**.
+1. Select the **Scale** tab. In the Scale tab, select **Manual**, update the **required throughput** setting from **4000 RU/s** to **400 RU/s** and then **Save** your changes**.
 
-    ![06](media/New-image13.png)
+    ![06](media/step23-2304.png)
 
 1. In the **Data Explorer** pane, select **+ New Container** > **+ New Container**.
 
@@ -136,13 +140,14 @@ To accompany the products container, you will create a **flatproducts** containe
 
     | **Setting**   | **Value** |
     | ------------- | --------- |
-    | **Database id** | *Use existing* &vert; *cosmicworks* |
-    | **Container id** | *`flatproducts`* |
-    | **Partition key** | *`/category`* |
-    | **Container throughput (autoscale)** | *Manual* |
-    | **RU/s** | *`400`* |
+    | **Database id** | *Use existing (1)* &vert; *cosmicworks (2)* |
+    | **Container id** | *`flatproducts` (3)* |
+    | **Partition key** | *`/category` (4)* |
+    | **Check** the **Provision dedicated throughput for this container** (5)  |
+    | **Container throughput (autoscale)** | *Manual (6)* |
+    | **RU/s** | *`400` (7)* |
     
-    ![06](media/New-image15.png)
+    ![06](media/step25-2304.png)
 
 1. Scroll down and click on **OK**.
 
