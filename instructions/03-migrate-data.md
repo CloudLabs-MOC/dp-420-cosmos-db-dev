@@ -98,10 +98,10 @@ To accompany the products container, you will create a **flatproducts** containe
     | **CONNECTION STRING**   | *The Primary Connection String value you copied earlier in this lab* |
 
     ```
-    cosmicworks --connection-string "<API_FOR_NOSQL_CONNECTION_STRING>"
+    cosmicworks --connection-string "<CONNECTION_STRING>" --disable-hierarchical-partition-keys 
     ```
 
-    > **Note:** If you get an error while running the above command, close the visual studio code and re-open to run the above command.
+    > **Note:** If you get an error while running the above command, **close** the visual studio code and **re-open** to run the above command.
 
 1. Wait for the **cosmicworks** command to finish populating the account with a database, container, and items.
 
@@ -223,10 +223,10 @@ Now that the Azure Cosmos DB for NoSQL resources are in place, you will create a
 
     | **Setting** | **Value** |
     | --- | --- |
-    | **Name** | *`CosmosSqlConn`* |
-    | **Connect via integration runtime** | *AutoResolveIntegrationRuntime* |
-    | **Authentication method** | *Account key* &vert; *Connection string* |
-    | **Account selection method** | *From Azure subscription* |
+    | **Name** | *`CosmosSqlConn`* **(1)** |
+    | **Connect via integration runtime** | *AutoResolveIntegrationRuntime* **(2)** |
+    | **Authentication method** | *Account key* **(3)** &vert; *Connection string* **(4)** |
+    | **Account selection method** | *From Azure subscription* **(5)** |
     | **Azure subscription** | *Your existing Azure subscription* |
     | **Azure Cosmos DB account name** | *Your existing Azure Cosmos DB account name you chose earlier in this lab* |
     | **Database name** | *cosmicworks* |
@@ -248,7 +248,7 @@ Now that the Azure Cosmos DB for NoSQL resources are in place, you will create a
         products p
     ```
 
-1. Select **Preview data** to test the query's validity. Select **Next** to move to the **Destination** step of the wizard.
+1.  Scroll down and select **Preview data** to test the query's validity. Select **Next** to move to the **Destination** step of the wizard.
 
     ![06](media/New-image28.png)
    
@@ -256,7 +256,9 @@ Now that the Azure Cosmos DB for NoSQL resources are in place, you will create a
    **CosmosSqlConn** then in **Custom query** choose **flatproducts** and then select **Next** to move to the **Settings** step of the wizard.
 
    ![06](media/New-image29.png)
-   
+
+   >**Note:** It will take a minute to appear.
+
 1. In the **Settings** step of the wizard, in the **Task name** field, enter **`FlattenAndMoveData`**.
 
     ![06](media/New-image30.png)
