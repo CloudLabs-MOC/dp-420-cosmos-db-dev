@@ -58,7 +58,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
     ![06](media/New-image3.png)
 
-1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create**:
+1. Specify the following settings, leaving all remaining settings to their default values, and select **Next: Global Distribution**.
 
     | **Setting** | **Value** |
     | --- | --- |
@@ -69,6 +69,10 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     | **Capacity mode** | *Provisioned throughput* |
     | **Apply Free Tier Discount** | *Do Not Apply* |
     | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* |
+
+1. Click on **Next: Networking** on the Global Distribution page. Select **All networks (1)** for the **Connectivity method** and click on **Review + Create (2)**. 
+
+    ![06](media/select-networking-2304.png)
 
 1. Once after validation passed click on **Create**.
 
@@ -82,11 +86,11 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-    1. Record the value of the **URI** field. You will use this **endpoint** value later in this exercise.
+1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-    1. Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
+    1. Notice the **Primary Connection String** field. Copy the value you will use this **connection string** value later in this exercise.
 
-        ![06](media/New-image9.png)
+        ![06](media/conn-string-2304.png)
        
 1. Switch back to **Visual Studio Code**.
 
@@ -117,20 +121,17 @@ The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys samp
 
 1. Once the Installation is completed, make sure to close the **Visual Studio Code** and re-open it to perform the below command.
 
-1. Run cosmicworks to seed your Azure Cosmos DB account with the following command-line options:
+1. Run the following command cosmicworks to seed your Azure Cosmos DB account with the following command-line options:
 
-    | **Option** | **Value** |
-    | --- | --- |
-    | **--endpoint** | *The endpoint value you copied earlier in this lab* |
-    | **--key** | *The key value you coped earlier in this lab* |
-    | **--datasets** | *product* |
+    | **Option**       | **Value** |
+    | ---------------- | ----------|
+    | **CONNECTION STRING**   | *The Primary Connection String value you copied earlier in this lab* |
 
     ```
-    cosmicworks --endpoint <cosmos-endpoint> --key <cosmos-key> --datasets product
+    cosmicworks --connection-string "<CONNECTION_STRING>" --disable-hierarchical-partition-keys 
     ```
 
-    >**Note**: For example, if your endpoint is: **https&shy;://dp420.documents.azure.com:443/** and your key is: **fDR2ci9QgkdkvERTQ==**, then the command would be:
-    > ``cosmicworks --endpoint https://dp420.documents.azure.com:443/ --key fDR2ci9QgkdkvERTQ== --datasets product``
+    > **Note:** If you get an error while running the above command, **close** the visual studio code and **re-open** to run the above command.
 
 1. Wait for the **cosmicworks** command to finish populating the account with a database, container, and items.
    
