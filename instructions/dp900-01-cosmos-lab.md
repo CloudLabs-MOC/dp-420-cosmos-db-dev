@@ -1,7 +1,7 @@
 # Lab 01: Explore Azure Cosmos DB
 
 ## Lab scenario
-In this lab, you'll provision an Azure Cosmos DB database in your Azure subscription, and explore the various ways you can use it to store non-relational data.
+In this lab, you'll provision an Azure Cosmos DB database in your Azure subscription and explore the various ways you can use it to store non-relational data.
 
 ## Lab objectives
 
@@ -16,52 +16,69 @@ In this lab, you will perform the following tasks:
 
 To use Cosmos DB, you must provision a Cosmos DB account in your Azure subscription. In this exercise, you'll provision a Cosmos DB account that uses the core (SQL) API.
 
-#### Task 1: Create a Cosmos DB account
-In this task, you will provision an Azure Cosmos DB SQL account, configuring essential settings and retrieving the necessary connection details for future development.
+### Task 1: Create a Cosmos DB account
+In this task, you will provision an Azure Cosmos DB SQL account, configure essential settings, and retrieve the necessary connection details for future development.
 
-1. On **Azure Portal** page, in Search resources, services and docs (G+/) box at the top of the portal, enter Azure Cosmos DB, and then select Azure Cosmos DB under services.
+1. On the **Azure Portal** page, in the **Search resources, services and docs (G+/)** box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
    ![06](media/New-image1.png)
    
-1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
+1. Select **+ Create (1)** in the Azure Cosmos DB panel, then under **Azure Cosmos DB for NoSQL**, click **Create (2)** to initiate the creation of a NoSQL account.
 
     ![06](media/New-image2.png)
 
     ![06](media/New-image3.png)
 
-1.  Enter the following details, and then select  **Review + Create**:
-    -   **Subscription**: Select your **Azure subscription.**
-    -   **Resource group**: Select existing resource group **DP-900-Module-3-<inject key="DeploymentID" enableCopy="false"/>**
-    -   **Account Name**: Enter **cosmosdb-<inject key="DeploymentID" enableCopy="false"/>**
-    -   **Location**: Choose any available location
-    -   **Capacity mode**: Provisioned throughput
-    -   **Apply Free-Tier Discount**: Select Apply
-    -   **Limit total account throughput**: Unselected
+1.  Enter the following details, and then select  **Review + Create (9)**:
+    -   **Workload Type (1)**: Learning
+    -   **Subscription (2)**: Select your **Azure subscription.**
+    -   **Resource group (3)**: Select existing resource group **DP-900-Module-3-<inject key="DeploymentID" enableCopy="false"/>**
+    -   **Account Name (4)**: Enter **cosmosdb-<inject key="DeploymentID" enableCopy="false"/>**
+    -   **Location (5)**: Choose any available location
+    -   **Capacity mode (6)**: Provisioned throughput
+    -   **Apply Free-Tier Discount (7)**: Select Apply
+    -   **Limit total account throughput (8)**: Unselected
 
-1.  When the configuration has been validated, select  **Create**.
+        ![06](media/25-06-25-l1-1.png)
 
-1.  Wait for deployment to complete. Then go to the deployed resource.
+        ![06](media/25-06-25-l1-2.png)
 
-### Task 2 : Create a sample database
+1.  When the configuration has been validated, select  **Create (10)**.
+
+    ![06](media/25-06-25-l1-3.png)
+
+1.  Once the deployment is complete, click **Go to resource** to access the deployed Azure Cosmos DB account.
+
+    ![06](media/25-06-25-l1-4.png)
+
+### Task 2: Create a sample database
 
 This task involves reviewing pre-configured settings and observing the creation process of the SampleDB database and its container.
-*Throughout this procedure, close any tips that are displayed in the portal*.
+*Throughout this procedure, close any tabs that are displayed in the portal.*
 
-1. On the page for your new Cosmos DB account, in the pane on the left, select **Data Explorer**.
-1. In the **Data Explorer** page, select **Launch quick start**.
+1. On the page for your new Cosmos DB account, in the pane on the left, select **Data Explorer (1)**.
+   
+1. In the **Data Explorer** page, select **Launch quick start (2)**.
+
+   ![06](media/25-06-25-l1-5.png)
+
 1. In the **New container** tab, review the pre-populated settings for the sample database, and then select **OK**.
-1. Observe the status in the panel at the bottom of the screen until the **SampleDB** database and its **SampleContainer** container has been created (which may take a minute or so).
 
-### Task 3 : View and create items
+1. Observe the status in the panel at the bottom of the screen until the **SampleDB** database and its **SampleContainer** container have been created (which may take a minute or so).
 
-1.  In the Data Explorer page, expand the  **SampleDB**  database and the **SampleContainer**, and select  **Items**  to see a list of items in the container. The items represent people, each with a unique id, a first name, an age, and other properties.
+### Task 3: View and create items
 
-2.  Select any of the items in the list to see a JSON representation of the item data then unselect and procced with next step to create blank item.
+1. In the **Data Explorer** page, expand the  **SampleDB (1)**  database and the **SampleContainer (2)**, and select  **Items (3)**  to see a list of items in the container. The items represent people, each with a unique ID, a first name, an age, and other properties.
 
-3.  At the top of the page, select  **New Item**  to create a new blank item.
+   ![06](media/25-06-25-l1-6.png)
 
-4.  Modify the JSON for the new item as follows, and then select  **Save**.
+1.  Select any of the items in the list to see a JSON representation of the item data, then unselect and proceed with the next step to create a blank item.
 
+1.  At the top of the page, select  **New Item (1)**  to create a new blank item.
+
+1.  **Modify the JSON for the new item as follows  (2)**, and then select  **Save (3)**.
+
+    ![06](media/25-06-25-l1-7.png)
     
     ```json
     {
@@ -74,19 +91,23 @@ This task involves reviewing pre-configured settings and observing the creation 
     }
     ```
     
-5.  After saving the new item, notice that additional metadata properties are added automatically.
+1.  After saving the new item, notice that additional metadata properties are added automatically.
 
-### Task 4  : Query the database
+    ![06](media/25-06-25-l1-8.png)
+
+### Task 4: Query the database
 
 This task demonstrates how to create, view, and query items in a Cosmos DB container using the Data Explorer interface, simulating how developers would interact with the database using SDKs in real-world applications.
 
-1.  In the  **Data Explorer**  page, select the  **New SQL Query**  icon.
+1. In the  **Data Explorer**  page, select the  **New SQL Query (1)**  icon.
 
-2.  In the SQL Query editor, review the default query (`SELECT * FROM c`) and use the  **Execute Query**  button to run it.
+1. In the SQL Query editor, review the default query (`SELECT * FROM c`) and use the  **Execute Query (2)**  button to run it.
 
-3.  Review the results, which includes the full JSON representation of all items.
+   ![06](media/25-06-25-l1-9.png)
 
-4.  Modify the query as follows:
+1.  Review the results, which include the full JSON representation of all items.
+
+1.  Modify the query as follows:
    
     ```sql
     SELECT *
@@ -94,11 +115,13 @@ This task demonstrates how to create, view, and query items in a Cosmos DB conta
     WHERE CONTAINS(c.name,"Helmet")
     ```
 
-5. Use the **Execute Query** button to run the revised query and review the results, which includes JSON entities for any items with a **name** field containing the text "Helmet".
+1. Use the **Execute Query (2)** button to run the revised query and review the **Result (3)**, which includes JSON entities for any items with a **name** field containing the text "Helmet".
+
+   ![06](media/25-06-25-l1-10.png)
     
-6.  Close the SQL Query editor, discarding your changes.
+1.  Close the SQL Query editor, discarding your changes.
     
-    >**Note**: You've seen how to create and query JSON entities in a Cosmos DB database by using the data explorer interface in the Azure portal. In a real scenario, an application developer would use one of the many programming language specific software development kits (SDKs) to call the core (SQL) API and work with data in the database.
+    >**Note**: You've seen how to create and query JSON entities in a Cosmos DB database by using the data explorer interface in the Azure portal. In a real scenario, an application developer would use one of the many programming language-specific software development kits (SDKs) to call the core (SQL) API and work with data in the database.
     
     > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
     > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
@@ -109,7 +132,7 @@ This task demonstrates how to create, view, and query items in a Cosmos DB conta
 
 ## Summary 
 
-In this lab you gained hands-on experience with creating, viewing, modifying, and querying data in Azure Cosmos DB, which is valuable for storing non-relational data in real-world applications.
+In this lab, you gained hands-on experience with creating, viewing, modifying, and querying data in Azure Cosmos DB, which is valuable for storing non-relational data in real-world applications.
 
 ## Review
 In this lab, you have completed:
