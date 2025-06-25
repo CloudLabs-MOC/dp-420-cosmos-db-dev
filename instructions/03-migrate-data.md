@@ -134,7 +134,7 @@ To accompany the product's container, you will create a **flatproducts** contain
 
     ![06](media/25-06-l2-14.png)
 
-1. In the **Data Explorer** pane, select **+ New Container** > **+ New Container**.
+1. In the **Data Explorer** pane, select **+ New Container (1)** > **+ New Container (2)**.
 
     ![06](media/New-image14.png)
 
@@ -142,22 +142,22 @@ To accompany the product's container, you will create a **flatproducts** contain
 
     | **Setting**   | **Value** |
     | ------------- | --------- |
-    | **Database id** | *Use existing (1)* &vert; *cosmicworks (2)* |
-    | **Container id** | *`flatproducts` (3)* |
-    | **Partition key** | *`/category` (4)* |
-    | **Check** the **Provision dedicated throughput for this container** (5)  |
-    | **Container throughput (autoscale)** | *Manual (6)* |
-    | **RU/s** | *`400` (7)* |
+    | **Database id** | **Use existing (1)** &vert; **cosmicworks (2)** |
+    | **Container id** | **`flatproducts` (3)** |
+    | **Partition key** | **`/category` (4)** |
+    | **Check** the **Provision dedicated throughput for this container (5)**  |
+    | **Container throughput (autoscale)** | **Manual (6)** |
+    | **RU/s** | **`400` (7)** |
     
-    ![06](media/step25-2304.png)
+    ![06](media/25-06-l2-15.png)
 
 1. Scroll down and click on **OK**.
 
-   ![06](media/New-image16.png)
+   ![06](media/25-06-l2-16.png)
 
-1. Back in the **Data Explorer** pane, expand the **cosmicworks** database node and then observe the **flatproducts** container node within the hierarchy.
+1. Back in the **Data Explorer (1)** pane, expand the **cosmicworks (2)** database node and then observe the **flatproducts (3)** container node within the hierarchy.
 
-     ![06](media/New-image17.png)
+     ![06](media/25-06-l2-17.png)
    
 1. Return to the **Home** of the Azure portal.
 
@@ -168,21 +168,21 @@ To accompany the product's container, you will create a **flatproducts** contain
 
     <validation step="4f0ebcc4-a71c-450a-b7e0-5099feed58d5" />
 
-### Task 2: Create Azure Data Factory resource
+### Task 2: Create an Azure Data Factory resource
 
 In this task, you will create an Azure Data Factory resource and configure it to perform a one-time ETL (Extract, Transform, Load) operation. The goal is to move data from one Azure Cosmos DB NoSQL container (products) to another container (flatproducts), applying a transformation during the process.
 
-Now that the Azure Cosmos DB for NoSQL resources are in place, you will create an Azure Data Factory resource and configure all of the necessary components and connections to perform a one-time data movement from one NoSQL API container to another to extract data, transform it, and load it to another NoSQL API container
+Now that the Azure Cosmos DB for NoSQL resources are in place, you will create an Azure Data Factory resource and configure all of the necessary components and connections to perform a one-time data movement from one NoSQL API container to another to extract data, transform it, and load it into another NoSQL API container
 
-1. On Azure portal home page select **+ Create a resource**.
+1. On the Azure portal home page, select **+ Create a resource**.
   
-     ![06](media/New-image37.png)
+     ![06](media/25-06-l2-18.png)
    
-1. On **Create a resource** page search and select **Azure Data Factory**, and then create a new **Azure Data Factory** resource with the following settings, leaving
-
+1. In the **Create a resource** page, type `Azure Data Factory` in the search bar **(1)**. From the dropdown list, select **azure data factory** **(2)** to proceed with creating a new Azure Data Factory resource.
+   
     ![06](media/New-image18.png)
 
-1. On **Data Factory** select **Create** > **Data Factory**.
+1. On **Data Factory** select **Create (1)** > **Data Factory (2)**.
 
     ![06](media/New-image19.png)
 
@@ -190,20 +190,21 @@ Now that the Azure Cosmos DB for NoSQL resources are in place, you will create a
 
     | **Setting** | **Value** |
     | --- | --- |
-    | **Subscription** | *Your existing Azure subscription* |
-    | **Resource group** | *Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* |
-    | **Name** | *datafactory-<inject key="DeploymentID" enableCopy="false"/>* |
-    | **Region** | *Choose any available region* |
-    | **Version** | *V2* |
+    | **Subscription** | **Your existing Azure subscription (1)** |
+    | **Resource group** | **Cosmosdb-<inject key="DeploymentID" enableCopy="false"/> (2)** |
+    | **Name** | **datafactory-<inject key="DeploymentID" enableCopy="false"/> (3)** |
+    | **Region** | **Choose any available region (4)** |
+    | **Version** | **V2 (5)** |
 
-    ![06](media/New-image20.png)
+    ![06](media/25-06-l2-19.png)
 
 1. In **Git configuration** blade select the checkbox for **Configure Git later** and click on  **Review + Create** > **Create**.
-    ![06](media/New-image38.png)
+
+   ![06](media/25-06-l2-20.png)
 
 1. Once resource deployement is completed click on **Go to resource** and select **Launch studio** under **Azure Data Factory Studio**.
 
-    ![06](media/New-image21.png)
+    ![06](media/25-06-l2-21.png)
 
     ![06](media/25-06-25-l2-11.png)
    
