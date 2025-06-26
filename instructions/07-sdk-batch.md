@@ -2,9 +2,9 @@
 
 ## Lab scenario
 
-The [TransactionalBatch][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.transactionalbatch] and [TransactionalBatchResponse][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.transactionalbatchresponse] classes together are the key to composing and decomposing operations into a single logical step. Using these classes, you can write your code to perform multiple operations and then determine if they were completed successfully server-side.
+The [`TransactionalBatch`](https://docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.transactionalbatch) and [`TransactionalBatchResponse`](https://docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.transactionalbatchresponse) classes together are the key to composing and decomposing operations into a single logical step. Using these classes, you can write your code to perform multiple operations and then determine if they were completed successfully on the server side.
 
-In this lab, you’ll use the SDK, to perform two dual-item operations where you attempt to create two items as a single logical unit.
+In this lab, you’ll use the SDK to perform two dual-item operations where you attempt to create two items as a single logical unit.
 
 ## Lab objectives
 
@@ -13,7 +13,7 @@ In this lab, you will complete the following tasks:
 - Task 2: Creating a transactional batch.
 - Task 3: Creating an errant transactional batch.
 
-## Estimated Timing: 30 minutes
+## Estimated Timing: 30 Minutes
 
 ## Architecture Diagram
 
@@ -27,68 +27,86 @@ In this task, you will prepare your development environment for working with Azu
 
      ![Visual Studio Code Icon](./media/vscode1.jpg)
 
-2. Select the **Extensions** blade from the left panel. Search with **C#** and select **Install** to install the extension.
+1. Click on the **Extensions** view icon on the left sidebar **(1)**, type `C#` in the search bar **(2)**, select the **C# extension by Microsoft** **(3)**, and click **Install (4)** to add language support for C# in Visual Studio Code.
 
     ![06](media/New-image50.png)
 
-3. Select the **file** option on the top left of the screen, from the pane options, select **Open Folder**. 
+1. Click **File (1)** on the top left of Visual Studio Code, then choose **Open Folder... (2)** 
 
-4. Navigate to **C:\AllFiles\dp-420-cosmos-db-dev** select **dp-420-cosmos-db-dev** and click on **Select Folder**.
+   ![06](media/New-image51.png)
+     
+1. Navigate to **C:\AllFiles**, select **dp-420-cosmos-db-dev-main**, and click on **Select Folder**.
 
     ![06](media/New-image54.png)
 
-5. If **When Do you trust the author of the files in this folder** click on **Yes, I trust the authors**.
+1. When **Do you trust the author of the files in this folder**, click on **Yes, I trust the authors**.
+
+   ![06](media/25-06-25-l3-1.png)
 
 ## Task 1: Create an Azure Cosmos DB for NoSQL account and configure the SDK project
 
-In this task, you will provision an Azure Cosmos DB SQL account, configuring essential settings and retrieving the necessary connection details for future development.
+In this task, you will provision an Azure Cosmos DB SQL account, configure essential settings, and retrieve the necessary connection details for future development.
 
-1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
+1. Navigate back to the Azure Portal page, in the **Search resources, services and docs (G+/)** box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
    ![06](media/New-image1.png)
    
 1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
 
-    ![06](media/New-image2.png)
+   ![06](media/25-06-l2-1.png)
 
-    ![06](media/New-image3.png)
+   ![06](media/25-06-l2-2.png)
    
-1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create**:
+1. Specify the following settings, leaving all remaining settings to their default values, and select **Next: Global Distribution (9)**:
+  
+    | **Setting**         | **Value** |
+    | --------------------|--------------------------------------------------- |
+    | **Workload Type**   | *Production* (1) |
+    | **Subscription**    | *Your existing Azure subscription* (2) |
+    | **Resource group**  | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* (3) |
+    | **Account Name**    | *sql-<inject key="DeploymentID" enableCopy="false"/>* (4) |
+    | **Location**        | *Choose the default region* (6) |
+    | **Capacity mode**   | *Provisioned throughput* (7) |
+    | **Apply Free Tier Discount** | *Do Not Apply* (8) |
+    | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* |
 
-    | **Setting** | **Value** |
-    | ---------------- |---------------------------------- |
-    | **Subscription** | *Your existing Azure subscription* |
-    | **Resource group** | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* |
-    | **Account Name** | *sql-<inject key="DeploymentID" enableCopy="false"/>* |
-    | **Location** | *Choose any available region* |
-    | **Capacity mode** | *Provisioned throughput* |
-    | **Apply Free Tier Discount** | *Do Not Apply* |
+     ![06](media/25-06-l2-3.png)
 
-1. Once after validation passed click on **Create**.
+     ![06](media/25-06-l2-4.png)
+
+1. Click on **Next: Networking** on the Global Distribution page. Select **All networks (1)** for the **Connectivity method** and click on **Review + Create (2)**. 
+
+   ![06](media/25-06-l2-5.png)
+   
+1. Once validation has passed, click on **Create**.
+
+   ![06](media/25-06-l2-6.png)
 
 1. Wait for the deployment task to complete before continuing with this task.
 
-1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys** pane.
+1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings (1)**, navigate to the **Keys (2)** pane.
 
-    ![06](media/New-image6.png)
+    ![06](media/25-06-l2-7.png)
 
-    ![06](media/New-image7.png)
+    ![06](media/25-06-l2-8.png)
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-    1. Record the value of the **URI** field. You will use this **endpoint** value later in this exercise.
+    - Record the value of the **URI** field. You will use this **endpoint** value later in this exercise.
 
-    1. Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
+    - Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
 
-        ![06](media/New-image9.png)
+      ![06](media/25-06-25-l3-3.png)
 
 1. Switch back to **Visual Studio Code**.
 
-1. In **Visual Studio Code**, in the **Explorer** pane, browse to the **07-sdk-batch** folder.
+1. In **Visual Studio Code**, in the **Explorer** pane, browse to the **07-sdk-batch (1)** folder.
 
-1. Open the **script.cs** code file within the **07-sdk-batch** folder.
+1. Open the **script.cs (2)** code file within the **07-sdk-batch** folder.
 
-    >**Note**: The **[Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1]** library has already been pre-imported from NuGet.
+   ![06](media/25-06-25-l5-1.png)
+
+   > **Note**: The [`Microsoft.Azure.Cosmos`](https://www.nuget.org/packages/Microsoft.Azure.Cosmos/3.22.1) library has already been pre-imported from NuGet.
 
 1. Locate the **string** variable named **endpoint**. Set its value to the **endpoint** of the Azure Cosmos DB account you created in the previous lab.
   
@@ -111,18 +129,20 @@ In this task, you will provision an Azure Cosmos DB SQL account, configuring ess
 
 1. **Save** the **script.cs** code file.
 
-1. Open the context menu for the **07-sdk-batch** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+1. Open the context menu for the **07-sdk-batch (1)** folder and then select **Open in Integrated Terminal (2)** to open a new terminal instance.
 
-    >**Note**: This command will open the terminal with the starting directory already set to the **07-sdk-batch** folder.
+   ![06](media/25-06-25-l5-2.png)
 
-1. Add the [Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1] package from NuGet using the following command:
+   >**Note**: This command will open the terminal with the starting directory already set to the **07-sdk-batch** folder.
+
+1. Add the [`Microsoft.Azure.Cosmos`](https://www.nuget.org/packages/Microsoft.Azure.Cosmos/3.22.1) package from NuGet using the following command:
 
     ```
     dotnet add package Microsoft.Azure.Cosmos --version 3.22.1
     ```
 
-1. Build the project using the [dotnet build][docs.microsoft.com/dotnet/core/tools/dotnet-build] command:
-
+1. Build the project using the [`dotnet build`](https://docs.microsoft.com/dotnet/core/tools/dotnet-build) command:
+   
     ```
     dotnet build
     ```
@@ -164,10 +184,7 @@ First, let’s create a simple transactional batch that makes two fictional prod
     PartitionKey partitionKey = new ("9603ca6c-9e28-4a02-9194-51cdb7fea816");
     ```
 
-1. Invoke the [CreateTransactionalBatch][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.createtransactionalbatch] method of the **container** variable 
-   passing in the **partitionkey** variable as a method parameter and using the fluent syntax to invoke the [CreateItem<>] 
-   [docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.transactionalbatch.createitem] generic methods passing in the **saddle** and **handlebar** variables as items to 
-   create in individual operations and store the result in a variable named **batch** of type **TransactionalBatch**:
+1. Invoke the [`CreateTransactionalBatch`](https://docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.createtransactionalbatch) method of the **container** variable,  passing in the **partitionkey** variable as a method parameter and using the fluent syntax to invoke the [`CreateItem<T>`](https://docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.transactionalbatch.createitem) generic methods. Pass in the **saddle** and **handlebar** variables as items to create in individual operations and store the result in a variable named **batch** of type **TransactionalBatch**:
 
     ```
     TransactionalBatch batch = container.CreateTransactionalBatch(partitionKey)
@@ -175,8 +192,7 @@ First, let’s create a simple transactional batch that makes two fictional prod
         .CreateItem<Product>(handlebar);
     ```
 
-1. Within a using statement, asynchronously invoke the **ExecuteAsync** method of the **batch** variable and store the result in a variable of type 
-   **TransactionalBatchResponse** named **response**:
+1. Within a using statement, asynchronously invoke the **ExecuteAsync** method of the **batch** variable and store the result in a variable of type **TransactionalBatchResponse** named **response**:
 
     ```
     using TransactionalBatchResponse response = await batch.ExecuteAsync();
@@ -220,13 +236,17 @@ First, let’s create a simple transactional batch that makes two fictional prod
 
 1. In **Visual Studio Code**, open the context menu for the **07-sdk-batch** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
 
-1. Build and run the project using the **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** command:
+   ![06](media/25-06-25-l5-2.png)
+
+1. Build and run the project using the **[`dotnet run`](https://docs.microsoft.com/dotnet/core/tools/dotnet-run)** command:
 
     ```
     dotnet run
     ```
 
 1. Observe the output from the terminal. The status code should be an HTTP 200 **OK**.
+
+   ![06](media/25-06-25-l5-3.png)
 
 1. Close the integrated terminal.
 
@@ -263,15 +283,13 @@ Now, let’s create a transactional batch that will error purposefully. This bat
      Console.WriteLine($"Status:\t{response.StatusCode}");
      ```     
 
-1. Create a **Product** variable named **light** with a unique identifier of **012B**, a name of **Flickering Strobe Light**, and a category identifier of **9603ca6c- 
-   9e28-4a02-9194-51cdb7fea816**:
+1. Create a **Product** variable named **light** with a unique identifier of **012B**, a name of **Flickering Strobe Light**, and a category identifier of **9603ca6c-9e28-4a02-9194-51cdb7fea816**:
 
     ```
     Product light = new("012B", "Flickering Strobe Light", "9603ca6c-9e28-4a02-9194-51cdb7fea816");
     ```
 
-1. Create a **Product** variable named **helmet** with a unique identifier of **012C**, a name of **New Helmet**, and a category identifier of **0feee2e4-687a-4d69-b64e- 
-   be36afc33e74**:
+1. Create a **Product** variable named **helmet** with a unique identifier of **012C**, a name of **New Helmet**, and a category identifier of **0feee2e4-687a-4d69-b64e- be36afc33e74**:
 
     ```
     Product helmet = new("012C", "New Helmet", "0feee2e4-687a-4d69-b64e-be36afc33e74");
@@ -283,9 +301,7 @@ Now, let’s create a transactional batch that will error purposefully. This bat
      PartitionKey partitionKey = new ("9603ca6c-9e28-4a02-9194-51cdb7fea816");
      ```
 
-1. Invoke the **CreateTransactionalBatch** method of the **container** variable passing in the **partitionkey** variable as a method parameter and using the fluent 
-   syntax to invoke the **CreateItem<>** generic methods passing in the **light** and **helmet** variables as items to create in individual operations and store the 
-   result in a variable named **batch** of type **TransactionalBatch**:
+1. Invoke the **CreateTransactionalBatch** method of the **container** variable passing in the **partitionkey** variable as a method parameter and using the fluent syntax to invoke the **CreateItem<>** generic methods, passing in the **light** and **helmet** variables as items to create in individual operation,s and store the result in a variable named **batch** of type **TransactionalBatch**:
 
      ```
      TransactionalBatch batch = container.CreateTransactionalBatch(partitionKey)
@@ -293,8 +309,7 @@ Now, let’s create a transactional batch that will error purposefully. This bat
          .CreateItem<Product>(helmet);
      ```
 
-1. Within a using statement, asynchronously invoke the **ExecuteAsync** method of the **batch** variable and store the result in a variable of type 
-   **TransactionalBatchResponse** named **response**:
+1. Within a using statement, asynchronously invoke the **ExecuteAsync** method of the **batch** variable and store the result in a variable of type **TransactionalBatchResponse** named **response**:
 
     ```
     using TransactionalBatchResponse response = await batch.ExecuteAsync();
@@ -336,16 +351,19 @@ Now, let’s create a transactional batch that will error purposefully. This bat
 
 1. **Save** the **script.cs** code file.
 
-1. In **Visual Studio Code**, open the context menu for the **07-sdk-batch** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+1. In **Visual Studio Code**, open the context menu for the **07-sdk-batch (1)** folder and then select **Open in Integrated Terminal (2)** to open a new terminal instance.
 
-1. Build and run the project using the **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** command:
+   ![06](media/25-06-25-l5-2.png)
+
+1. Build and run the project using the **[`dotnet run`](https://docs.microsoft.com/dotnet/core/tools/dotnet-run)** command:
 
     ```
     dotnet run
     ```
 
-1. Observe the output from the terminal. The status code should either be an HTTP 400 **Bad Request** or 409 **Conflict**. This occurred because all items within the 
-   transaction did not share the same partition key value as the transactional batch.
+1. Observe the output from the terminal. The status code should either be an HTTP 400 **Bad Request** or 409 **Conflict**. This occurred because all items within the transaction did not share the same partition key value as the transactional batch.
+
+   ![06](media/25-06-25-l5-4.png)
 
 1. Close the integrated terminal.
 
