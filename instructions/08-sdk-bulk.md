@@ -2,9 +2,9 @@
 
 ## Lab scenario
 
-The easiest way to learn how to perform a bulk operation is to attempt to push many documents to an Azure Cosmos DB for NoSQL account in the cloud. Using the bulk features of the SDK, this can be done with some minor help from the [System.Threading.Tasks][docs.microsoft.com/dotnet/api/system.threading.tasks] namespace.
+The easiest way to learn how to perform a bulk operation is to attempt to push many documents to an Azure Cosmos DB for NoSQL account in the cloud. Using the bulk features of the SDK, this can be done with some minor help from the [`System.Threading.Tasks`](https://docs.microsoft.com/dotnet/api/system.threading.tasks) namespace.
 
-In this lab, you'll use the [Bogus][nuget.org/packages/bogus/33.1.1] library from NuGet to generate fictional data and place that into an Azure Cosmos DB account.
+In this lab, you'll use the **[`Bogus`](https://www.nuget.org/packages/bogus/33.1.1)** library from NuGet to generate fictional data and place that into an Azure Cosmos DB account.
 
 ## Lab objectives
 
@@ -25,79 +25,110 @@ In this lab, you will complete the following tasks:
 
    ![Visual Studio Code Icon](./media/vscode1.jpg)
 
-3. Select the **Extension (1)** icon from the left pane. Enter **C# (2)** in the search bar and select the **Extension (3)** that shows up and finally **Install (4)** on the extension. 
+1. Click on the **Extensions** view icon on the left sidebar **(1)**, type `C#` in the search bar **(2)**, select the **C# extension by Microsoft** **(3)**, and click **Install (4)** to add language support for C# in Visual Studio Code.
 
     ![](media/visualstudioo.png)
 
-4. Select the **file** option on the top left of the screen, from the pane options, select **Open Folder** and navigate to **C:\AllFiles**.
+1. Click **File (1)** on the top left of Visual Studio Code, then choose **Open Folder... (2)**.
 
-5. Select the folder **dp-420-cosmos-db-dev-main** and click on **Select Folder**.
+    ![06](media/New-image51.png)
 
-   ![06](media/New-image54.png)
+1.  Navigate to **C:\AllFiles**, select **dp-420-cosmos-db-dev-main**, and click on **Select Folder**.
 
-   >**Note:** On **Do you trust the authors of the files in this folder?** pop-up, select **Yes, I trust authors**.
+    ![06](media/New-image54.png)
 
+1. When **Do you trust the author of the files in this folder**, click on **Yes, I trust the authors**.
+
+   ![06](media/25-06-25-l3-1.png)
+   
 ### Task 1: Create an Azure Cosmos DB for NoSQL account and configure the SDK project
 
 In this task, you will create an Azure Cosmos DB for NoSQL account, configure it with essential settings, and prepare the SDK project in Visual Studio Code to interact with your newly established database.
 
-1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
+1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
    ![06](media/New-image1.png)
    
 1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
 
-    ![06](media/New-image2.png)
+    ![06](media/25-06-l2-1.png)
 
-    ![06](media/New-image3.png)
-
-1. Select **Create** under **Azure Cosmos DB for NoSQL**. Then create a new **Azure Cosmos DB for NoSQL** account resource with the following settings, leaving all remaining settings to their default values, and select **Review + create** and click on **Create**:
-
-    | **Setting** | **Value** |
-    | :--- | :--- |
-    | **Subscription** | *Your existing Azure subscription* |
-    | **Resource group** | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* |
-    | **Account Name** | *sql-<inject key="DeploymentID" enableCopy="false"/>* |
-    | **Location** | *Choose any available region* |
-    | **Capacity mode** | *Provisioned throughput* |
-    | **Apply Free Tier Discount** | *Do Not Apply* |
-    | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* |
+    ![06](media/25-06-l2-2.png)
    
+1.  Specify the following settings, leaving all remaining settings to their default values, and select **Next: Global Distribution (9)**:
+  
+    | **Setting**         | **Value** |
+    | --------------------|--------------------------------------------------- |
+    | **Workload Type**   | *Production* (1) |
+    | **Subscription**    | *Your existing Azure subscription* (2) |
+    | **Resource group**  | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* (3) |
+    | **Account Name**    | *sql-<inject key="DeploymentID" enableCopy="false"/>* (4) |
+    | **Location**        | *Choose the default region* (6) |
+    | **Capacity mode**   | *Provisioned throughput* (7) |
+    | **Apply Free Tier Discount** | *Do Not Apply* (8) |
+    | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* |
+
+     ![06](media/25-06-l2-3.png)
+
+     ![06](media/25-06-l2-4.png)
+
+1. Click on **Next: Networking** on the Global Distribution page. Select **All networks (1)** for the **Connectivity method** and click on **Review + Create (2)**. 
+
+   ![06](media/25-06-l2-5.png)
+   
+1. Once after validation passed click on **Create**.
+
+   ![06](media/25-06-l2-6.png)
+      
 1. Wait for the deployment task to complete before continuing with this task.
 
-1. Go to the newly created **Azure Cosmos DB** account resource and from the left navigation pane under **Settings** click on **Keys**.
+1.  Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings (1)**, navigate to the **Keys (2)** pane.
 
-    ![06](media/New-image7.png)
+    ![06](media/25-06-l2-7.png)
+
+    ![06](media/25-06-l2-8.png)
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-   -  Copy the **URI** field. You will use this **endpoint** value later in this exercise.
+   - Copy the **URI** field. You will use this **endpoint (1)** value later in this exercise.
 
-   - Copy the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
+   - Copy the **PRIMARY KEY** field. You will use this **key (2)** value later in this exercise.
 
-       ![06](media/New-image9.png)
+     ![06](media/25-06-25-l3-3.png)
 
 1. On the **Azure Cosmos DB** account resource, click on **Overview** from the left navigation pane  and click on  the **Data Explorer** option from the top navigation pane.
 
     ![](media/cosmosx1.png)
 
-1. In the **Data Explorer**, select **New Container**, and then create a new container with the following settings, leaving all remaining settings to their default values and click **OK**.
+1. In the **Data Explorer** pane, select **+ New Container (1)** > **+ New Container (2)**.
+
+    ![06](media/New-image14.png)
+
+1.In the **New Container** popup, enter the following values for each setting and leaving all remaining settings to their default values.
 
     | **Setting** | **Value** |
     | :--- | :--- |
-    | **Database id** | *Create new* &vert; *`cosmicworks`* |
-    | **Share throughput across containers** | *Unchecked* |
-    | **Container id** | *`products`* |
-    | **Partition key** | *`/categoryId`* |
-    | **Container throughput** | *Autoscale* &vert; *`4000`* |
+    | **Database id** | **Create new (1)** &vert; **cosmicworks (2)** |
+    | **Share throughput across containers** | **Unchecked (3)** |
+    | **Container id** | **products (4)** |
+    | **Partition key** | **/categoryId` (5)** |
+    | **Container throughput** | **Autoscale (6)** &vert; **`4000` (7)** |
+    
+    ![06](media/25-06-25-l6-1.png)
 
+1. Scroll down and click on **OK**.
+
+   ![06](media/25-06-25-l6-2.png)
+   
 1. Return to **Visual Studio Code**.. 
 
-1. In **Visual Studio Code**, in the **Explorer** pane, browse to the **08-sdk-bulk** folder.
+1. In **Visual Studio Code**, in the **Explorer** pane, browse to the **08-sdk-bulk (1)** folder.
 
-1. Open the **script.cs** code file within the **08-sdk-bulk** folder.
+1. Open the **script.cs (2)** code file within the **08-sdk-bulk** folder.
 
-    >**Note**: The **[Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1]** library has already been pre-imported from NuGet.
+   ![06](media/25-06-25-l6-3.png)
+
+   > **Note**: The **[`Microsoft.Azure.Cosmos`](https://www.nuget.org/packages/microsoft.azure.cosmos/3.22.1)** library has already been pre-imported from NuGet.
 
 1. Locate the **string** variable named **endpoint**. Set its value to the **endpoint** of the Azure Cosmos DB account you created in the previous lab.
   
@@ -123,13 +154,13 @@ In this task, you will create an Azure Cosmos DB for NoSQL account, configure it
 
    >**Note**: This command will open the terminal with the starting directory already set to the **08-sdk-bulk** folder.
 
-1. Add the [Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1] package from NuGet using the following command:
+1. Add the [`Microsoft.Azure.Cosmos`](https://www.nuget.org/packages/microsoft.azure.cosmos/3.22.1) package from NuGet using the following command:
 
     ```
     dotnet add package Microsoft.Azure.Cosmos --version 3.22.1
     ```
 
-1. Build the project using the [dotnet build][docs.microsoft.com/dotnet/core/tools/dotnet-build] command:
+1. Build the project using the [`dotnet build`](https://docs.microsoft.com/dotnet/core/tools/dotnet-build) command:
 
     ```
     dotnet build
@@ -150,7 +181,7 @@ In this task, we will try to insert a lot of documents to see how this works. In
 
 1. Return to the editor tab for the **script.cs** code file.
 
-1. Create a new instance of the [CosmosClientOptions][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.cosmosclientoptions] named **options** class with the **AllowBulkExecution** property set to a value of **true**:
+1. Create a new instance of the [`CosmosClientOptions`](https://docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.cosmosclientoptions) named `options` with the `AllowBulkExecution` property set to `true`:
 
     ```
     CosmosClientOptions options = new () 
@@ -165,7 +196,7 @@ In this task, we will try to insert a lot of documents to see how this works. In
     CosmosClient client = new (endpoint, key, options); 
     ```
 
-1. Use the [GetContainer][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.cosmosclient.getcontainer] method of the **client** variable to retrieve the existing container using the name of the database (*cosmicworks*) and the name of the container (*products*):
+1. Use the [`GetContainer`](https://docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.cosmosclient.getcontainer) method of the **client** variable to retrieve the existing container using the name of the database (*cosmicworks*) and the name of the container (*products*):
 
     ```
     Container container = client.GetContainer("cosmicworks", "products");
@@ -183,7 +214,7 @@ In this task, we will try to insert a lot of documents to see how this works. In
         .Generate(25000);
     ```
 
-    >**Note**: The [Bogus][nuget.org/packages/bogus/33.1.1] library is an open-source library used to design fictitious data to test user interface applications and is great for learning how to develop bulk import/export applications.
+    >**Note**: The [Bogus](https://www.nuget.org/packages/bogus/33.1.1) library is an open-source library used to design fictitious data to test user interface applications and is great for learning how to develop bulk import/export applications.
 
 1. Create a new generic **List<>** of type **Task** named **concurrentTasks**:
 
@@ -266,7 +297,9 @@ In this task, we will try to insert a lot of documents to see how this works. In
 
 1. In **Visual Studio Code**, open the context menu for the **08-sdk-bulk** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
 
-1. Build and run the project using the **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** command:
+   ![](media/cosmos3.png)
+
+1. Build and run the project using the **[dotnet run](https://docs.microsoft.com/dotnet/core/tools/dotnet-run)** command:
 
     ```
     dotnet run
@@ -289,13 +322,27 @@ In this task, we will try to insert a lot of documents to see how this works. In
 
 Now that you have sent 25,000 items to Azure Cosmos DB let’s go and look at the Data Explorer.
 
-1. Back in the  Azure portal (``portal.azure.com``) in the browser window, select the **Azure Cosmos DB account** resource you created in this lab.
+1. Navigate to the **Azure portal**.
 
-1. Within the **Azure Cosmos DB** account resource, navigate to the **Data Explorer** pane.
+1. On the Azure Portal page, in the **Search resources, services and docs (G+/)** box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under 
+   services.
 
-1. In the **Data Explorer**, expand the **cosmicworks** database node, then observe the **products** container node within the **NoSQL API** navigation tree.
+   ![06](media/New-image1.png)
+
+1. Select **sql-<inject key="DeploymentID" enableCopy="false"/>**.
+
+     ![06](media/New-image68.png)
+
+1. Within the **Azure Cosmos DB** account resource, navigate to the **Data Explorer (1)** pane.
+
+1. In the **Data Explorer**, expand the **cosmicworks (2)** database node, then observe the **products (3)** container node within the **NoSQL API** navigation tree.
+
+   ![06](media/25-06-25-l4-4.png)
+
 
 1. Expand the **products** node, and then select the **Items** node. Observe the list of items within your container.
+
+   ![06](media/25-06-25-l6-4.png)
 
 1. Select the **products** container node within the **NoSQL API** navigation tree, and click on **...** then select **New SQL Query**.
 
@@ -309,9 +356,11 @@ Now that you have sent 25,000 items to Azure Cosmos DB let’s go and look at th
     SELECT COUNT(1) FROM items
     ```
 
-1. Select **Execute Query**.
+1. Select **Execute Query (2)**.
 
 1. Observe the count of the items in your container.
+
+   ![06](media/25-06-25-l6-5.png)
 
 1. Close your web browser window or tab.
 
