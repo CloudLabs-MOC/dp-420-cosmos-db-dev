@@ -49,33 +49,33 @@ In the integrated environment, the lab VM serves as the designated workspace, wh
 ## Exploring Your Lab Resources
  
 To get a better understanding of your lab resources and credentials, navigate to the **Environment** tab.
- 
-![Explore Lab Resources](./instructions/media/24-06-25-g2.1.png)
+
+![Explore Lab Resources](./instructions/25-06-25-g2.1.png)
 
 ## Utilizing the Split Window Feature
  
 For convenience, you can open the guide in a separate window by selecting the **Split Window** button from the Top right corner.
  
-![Use the Split Window Feature](./instructions/media/24-06-25-g3.png)
+![Use the Split Window Feature](./instructions/25-06-25-g3.png)
 
 ## Managing Your Virtual Machine
  
 Feel free to **start, stop, or restart** your virtual machine as needed from the **Resources** tab. Your experience is in your hands!
  
-![Manage Your Virtual Machine](./instructions/media/24-06-25-g4.png)
+![Manage Your Virtual Machine](./instructions/25-06-25-g4 .png)
 
 ## Lab Guide Zoom In/Zoom Out
 
 To adjust the zoom level for the environment page, click the **A↕: 100%** icon located next to the timer in the lab environment.
 
-![](./instructions/media/24-06-25-g5.png)
+![](./instructions/24-06-25-g5.png)
 
  
 ## **Lab Duration Extension**
 
 1. To extend the duration of the lab, kindly click the **Hourglass** icon in the top right corner of the lab environment. 
 
-   ![Use the Split Window Feature](./instructions/media/24-06-25-g1-hr.png)   
+   ![Use the Split Window Feature](./instructions/25-06-25-g1-hr.png)   
 
    >**Note:** You will get the **Hourglass** icon when 10 minutes are remaining in the lab.
 
