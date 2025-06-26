@@ -68,7 +68,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     | **Location**        | *Choose the default region* (6) |
     | **Capacity mode**   | *Provisioned throughput* (7) |
     | **Apply Free Tier Discount** | *Do Not Apply* (8) |
-    | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* (9) |
+    | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* |
 
      ![06](media/25-06-l2-3.png)
 
