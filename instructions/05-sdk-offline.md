@@ -21,18 +21,19 @@ In this task, you will launch the Azure Cosmos DB Emulator, a local tool that si
 
 Your environment should already have the emulator pre-installed. If not, refer to the [installation instructions][docs.microsoft.com/azure/cosmos-db/local-emulator] to install the Azure Cosmos DB Emulator. Once the emulator has started, you can retrieve the connection string and use it to connect to the emulator using the Azure SDK for .NET or any other SDK of your choice.
 
-1. Search and Start the **Azure Cosmos DB Emulator** from Start Menu of window.
-     ![06](media/New-image55.png)
+1. Search and start the **Azure Cosmos DB Emulator** from the Start Menu of window.
 
-1. Wait for 3 to 4 minutes to get started the emulator to automatically open your default browser and navigate to the **localhost:8081/_explorer/index.html** landing page.
+   ![06](media/New-image55.png)
+
+1. Wait for 3 to 4 minutes to get the emulator started to automatically open your default browser and navigate to the **localhost:8081/_explorer/index.html** landing page.
 
 1. In the **Azure Cosmos DB Emulator** landing page, navigate to the **Quickstart** pane.
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-    1. Record the value of the **Primary Connection String** field. You will use this **connection string** value later in this exercise.
+    - Record the value of the **Primary Connection String** field. You will use this **connection string** value later in this exercise.
 
-         ![06](media/New-image56.png)
+      ![06](media/New-image56.png)
 
 1. Navigate to the **Explorer** pane. In the **Data Explorer**, observe that there are no nodes within the **NoSQL API** navigation tree.
 
@@ -41,15 +42,18 @@ Your environment should already have the emulator pre-installed. If not, refer t
 1. Close your web browser window or tab.
 
 ###  Task 2: Connect to the emulator from the SDK
+
 In this task, you'll connect to the Azure Cosmos DB Emulator using the Microsoft.Azure.Cosmos SDK. You'll update the connection string in the provided script and write code to create a new database within the emulator, then test the connection by running the script.
 
 The **Microsoft.Azure.Cosmos** library has already been pre-installed in the .NET script you will use in this exercise. Further, some of the boilerplate code has already been written to save you time. You will need to update the boilerplate connection string value and write a couple of lines of code to complete the script.
 
-1. In **Visual Studio Code**, Select the file option on the top left of the screen, from the pane options, select **Open Folder** and navigate to **C:\AllFiles\dp-420-cosmos-db-dev**
+1. Open Visual Studio Code.
 
 1. Select the folder **05-sdk-offline** and click on Select Folder.
 
-1. Open the **script.cs** code file within the **05-sdk-offline** folder.
+1. Open the **script.cs (2)** code file within the **05-sdk-offline (1)** folder.
+
+   ![06](media/25-06-25-l3-11.png)
 
 1. Update the existing variable named **connectionString** with its value set to the **connection string** of the Azure Cosmos DB Emulator.
   
@@ -59,9 +63,9 @@ The **Microsoft.Azure.Cosmos** library has already been pre-installed in the .NE
 
     >**Note**: The URI for the emulator is typically ***localhost:[port]*** using SSL with the default port set to **8081**.
 
-     >**Note**: *C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==* is the default key for all installations of the emulator. This key can be changed using command line options.
+    >**Note**: *C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==* is the default key for all installations of the emulator. This key can be changed using command line options.
 
-1. Asynchronously invoke the [CreateDatabaseIfNotExistsAsync][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.cosmosclient.createdatabaseifnotexistsasync] method of the **client** variable passing in the name of the new database (**cosmicworks**) you would like to create within the emulator and storing the result in a variable of type [Database][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.database]:
+1. Asynchronously invoke the [CreateDatabaseIfNotExistsAsync][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.cosmosclient.createdatabaseifnotexistsasync] method of the **client** variable, passing in the name of the new database (**cosmicworks**) you would like to create within the emulator and storing the result in a variable of type [Database][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.database]:
 
     ```
     Database database = await client.CreateDatabaseIfNotExistsAsync("cosmicworks");
@@ -89,7 +93,7 @@ The **Microsoft.Azure.Cosmos** library has already been pre-installed in the .NE
 
 1. **Save** the **script.cs** code file.
 
-1. In **Visual Studio Code**, right-click on **05-sdk-offline** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+1. In **Visual Studio Code**, right-click on **05-sdk-offline (1)** folder and then select **Open in Integrated Terminal (2)** to open a new terminal instance.
     
     ![06](media/1.png)
     
@@ -100,14 +104,16 @@ The **Microsoft.Azure.Cosmos** library has already been pre-installed in the .NE
     ```
     dotnet add package Microsoft.Azure.Cosmos --version 3.22.1
     ```
+    ![06](media/25-06-25-l3-12.png)
 
 1. Build and run the project using the [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] command:
 
     ```
     dotnet run
     ```
+    ![06](media/25-06-25-l3-13.png)
 
-    >**Note:** If the VS Code crashes while running the application, please close all the apps once and re perform this step.
+    >**Note:** If the VS Code crashes while running the application, please close all the apps once and re-perform this step.
 
 1. Close the integrated terminal.
 
@@ -124,11 +130,15 @@ In this task, you'll use the Data Explorer in the Azure Cosmos DB Emulator to vi
 
 Now that you have created a new database in the Azure Cosmos DB emulator, you will use the online **Data Explorer** to observe the new NoSQL API database within the emulator.
 
-1. Navigate to the emulator icon in the Windows system tray, open the context menu, and then select **Open Data Explorer...** to navigate to the **localhost:8081/_explorer/** landing page using your default browser.
+1. Click the **up arrow (1)** in the system tray to expand hidden icons. Locate and **right-click the emulator icon (2)**. Select **Open Data Explorer... (3)** to launch the Cosmos DB Emulator in your browser at `http://localhost:8081/_explorer/`.
 
-1. In the **Azure Cosmos DB Emulator** landing page, navigate to the **Explorer** pane.
+   ![06](media/25-06-25-l3-14.png)
 
-1. In the **Data Explorer**, observe the new **cosmicworks** database node within the **SQL API** navigation tree.
+1. In the **Azure Cosmos DB Emulator** landing page, navigate to the **Explorer (1)** pane.
+
+1. In the **Data Explorer**, observe the new **cosmicworks (2)** database node within the **SQL API** navigation tree.
+
+   ![06](media/25-06-25-l3-15.png)
 
 1. Close your web browser window or tab.
 
@@ -136,11 +146,13 @@ Now that you have created a new database in the Azure Cosmos DB emulator, you wi
 
 In this task, you will expand the previous script to create a new container called "products" in the "cosmicworks" database. After running the script, you'll verify the creation by viewing the container in the Azure Cosmos DB Emulator's Data Explorer. This process is similar to creating a database, and the code can be reused for both cloud and emulator environments by changing the connection string.
 
-Creating a new container is similar to the pattern used to create a new database. The code you learn here will be relevant whether or not you create resources in the cloud or in the emulator, you simply need to change the connection string. You will expand the script file further to create a new container along with the database.
+Creating a new container is similar to the pattern used to create a new database. The code you learn here will be relevant whether or not you create resources in the cloud or in the emulator; you simply need to change the connection string. You will expand the script file further to create a new container along with the database.
 
 1. In **Visual Studio Code**, in the **Explorer** pane, browse to the **05-sdk-offline** folder.
 
-1. Open the **script.cs** code file within the **05-sdk-offline** folder again.
+1. Open the **script.cs (2)** code file within the **05-sdk-offline (1)** folder again.
+
+   ![06](media/25-06-25-l3-11.png)
 
 1. Asynchronously invoke the [CreateContainerIfNotExistsAsync][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.database.createcontainerifnotexistsasync] method of the **database** variable passing in the name of the new container (**products**), the partition key path (**/categoryId**), and the throughput (**400**) you would like to create within the **cosmicworks** database and storing the result in a variable of type [Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container]:
 
@@ -173,13 +185,16 @@ Creating a new container is similar to the pattern used to create a new database
 
 1. **Save** the **script.cs** code file.
 
-1. In **Visual Studio Code**, open the context menu for the **05-sdk-offline** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+1. In **Visual Studio Code**, right-click on **05-sdk-offline (1)** folder and then select **Open in Integrated Terminal (2)** to open a new terminal instance.
+
+   ![06](media/1.png)
 
 1. Build and run the project using the [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] command:
 
     ```
     dotnet run
     ```
+   ![06](media/25-06-25-l3-16.png)
 
 1. Close the integrated terminal.
 
