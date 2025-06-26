@@ -273,7 +273,7 @@ Now that the Azure Cosmos DB for NoSQL resources are in place, you will create a
 
 1. Observe the various steps in the deployment. When the deployment has finished, select **Finish**.
 
-   ![06](media/25-06-25-l2-2.png.png)
+   ![06](media/25-06-25-l2-2.png)
 
 1. Close your web browser window or tab.
 
