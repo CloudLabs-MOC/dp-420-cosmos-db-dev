@@ -104,7 +104,7 @@ In this task, you will create an Azure Cosmos DB for NoSQL account, configure it
 
     ![06](media/New-image14.png)
 
-1.In the **New Container** popup, enter the following values for each setting and leaving all remaining settings to their default values.
+1. In the **New Container** popup, enter the following values for each setting and leaving all remaining settings to their default values.
 
     | **Setting** | **Value** |
     | :--- | :--- |
@@ -113,8 +113,8 @@ In this task, you will create an Azure Cosmos DB for NoSQL account, configure it
     | **Container id** | **products (4)** |
     | **Partition key** | **/categoryId` (5)** |
     | **Container throughput** | **Autoscale (6)** &vert; **`4000` (7)** |
-    
-    ![06](media/25-06-25-l6-1.png)
+       
+     ![06](media/25-06-25-l6-1.png)
 
 1. Scroll down and click on **OK**.
 
