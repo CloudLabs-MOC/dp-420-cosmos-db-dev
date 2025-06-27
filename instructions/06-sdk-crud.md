@@ -14,7 +14,7 @@ In this lab, you will complete the following tasks:
 - Task 3: Perform create and read point operations on items with the SDK.
 - Task 4: Perform update and delete point operations with the SDK.
 
-## Estimated Timing: 60 minutes
+## Estimated Timing: 60 Minutes
 
 ## Architecture Diagram
 
