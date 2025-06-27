@@ -45,19 +45,19 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     | **Resource group**  | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* (3) |
     | **Account Name**    | *sql-<inject key="DeploymentID" enableCopy="false"/>* (4) |
     | **Location**        | *Choose the default region* (6) |
-    | **Capacity mode**   | *Serverless* (7) |
+    | **Capacity mode**   | *Provisioned throughput* (7)|
 
      ![06](media/25-06-l2-3.png)
 
-     ![06](media/25-06-25-l9-1.png)
+     ![06](media/25-06-l2-4.png)
 
 1. Click on **Next: Networking** on the Global Distribution page. Select **All networks (1)** for the **Connectivity method** and click on **Review + Create (2)**. 
 
    ![06](media/25-06-l2-5.png)
-   
-1. Once after validation passed click on **Create**.
 
-   ![06](media/25-06-25-l9-2.png)
+1. Once validation passed, click on **Create**.
+
+   ![06](media/25-06-l2-6.png)
 
 1. Wait for the deployment task to complete before continuing with this task.
 
