@@ -10,7 +10,7 @@ This lab focuses on connecting to an Azure Cosmos DB SQL API account using the A
 
 Equip participants with the skills to connect to an Azure Cosmos DB SQL API account using the Azure SDK for .NET. By the end of this lab, you will be able to:
 
-- **Connect to Azure Cosmos DB for NoSQL with the SDK:** The objective of this lab is to enable participants to connect to an Azure Cosmos DB SQL API account using the Azure SDK for .NET, integrate the Microsoft.Azure.Cosmos library into a .NET project, and build and test scripts to interact with Azure Cosmos DB for managing non-relational data.
+- **Connect to Azure Cosmos DB for NoSQL with the SDK:** The objective of this lab is to enable participants to connect to an Azure Cosmos DB SQL API account using the Azure SDK for .NET, and integrate the Microsoft.Azure.Cosmos library into a .NET project, and build and test scripts to interact with Azure Cosmos DB for managing non-relational data.
 
 - **Configure the Azure Cosmos DB NoSQL API SDK for offline development:** The objective of this lab is to connect to an Azure Cosmos DB SQL API account using the Azure SDK for .NET and interact with non-relational data through the Azure Cosmos DB Emulator.
 
@@ -26,7 +26,7 @@ Participants should have:
 
 This diagram illustrates the process of integrating and interacting with Azure Cosmos DB for NoSQL development using the Azure SDK and Emulator. The first workflow demonstrates how to connect to an Azure Cosmos DB NoSQL API account, set up the development environment, and test scripts using the Microsoft.Azure.Cosmos library. The second workflow highlights offline development by configuring the Azure Cosmos DB Emulator, connecting to it from the SDK, and creating and managing containers locally.
 
-## Architechture Diagram
+## Architecture Diagram
 
 ![](/instructions/architecturedia/archm3.png)
 
@@ -42,32 +42,46 @@ Welcome to your Developing Cloud-Native Applications Using Microsoft Azure Cosmo
  
 ## Accessing Your Lab Environment
  
-Once you're ready to dive in, your virtual machine and lab guide will be right at your fingertips within your web browser.
+Once you're ready to dive in, your virtual machine and guide will be right at your fingertips within your web browser.
  
-![Access Your VM and Lab Guide](./instructions/media/labguide.png)
+![Access Your VM and Lab Guide](./instructions/media/25-06-25-g3-1.png)
 
 ### Virtual Machine & Lab Guide
  
-Your virtual machine is your workhorse throughout the workshop. The lab guide is your roadmap to success.
+In the integrated environment, the lab VM serves as the designated workspace, while the guide is accessible on the right side of the screen.
+
+**Note**: Kindly ensure that you are following the instructions carefully to ensure the lab runs smoothly and provides an optimal user experience.
  
 ## Exploring Your Lab Resources
  
-To get a better understanding of your lab resources and credentials, navigate to the **Environment Details** tab.
- 
-![Explore Lab Resources](./instructions/media/env.png)
+To get a better understanding of your lab resources and credentials, navigate to the **Environment** tab.
+
+![Explore Lab Resources](./instructions/25-06-25-g2.1.png)
 
 ## Utilizing the Split Window Feature
  
-For convenience, you can open the lab guide in a separate window by selecting the **Split Window** button from the Top right corner.
+For convenience, you can open the guide in a separate window by selecting the **Split Window** button from the Top right corner.
  
-![Use the Split Window Feature](./instructions/media/spl.png)
+![Use the Split Window Feature](./instructions/25-06-25-g3.png)
+
+## Managing Your Virtual Machine
  
+Feel free to **start, stop, or restart** your virtual machine as needed from the **Resources** tab. Your experience is in your hands!
+ 
+![Manage Your Virtual Machine](./instructions/25-06-25-g4 .png)
+
+## Lab Guide Zoom In/Zoom Out
+
+To adjust the zoom level for the environment page, click the **A↕: 100%** icon located next to the timer in the lab environment.
+
+![](./instructions/24-06-25-g5.png)
+
 ## **Lab Duration Extension**
 
 1. To extend the duration of the lab, kindly click the **Hourglass** icon in the top right corner of the lab environment. 
 
-   ![Use the Split Window Feature](./instructions/media/gext.png)   
-
+   ![Use the Split Window Feature](./instructions/25-06-25-g1-hr.png)
+   
    >**Note:** You will get the **Hourglass** icon when 10 minutes are remaining in the lab.
 
 3. Click **OK** to extend your lab duration.
@@ -76,34 +90,29 @@ For convenience, you can open the lab guide in a separate window by selecting th
 
 4. If you have not extended the duration prior to when the lab is about to end, a pop-up will appear, giving you the option to extend. Click **OK** to proceed.
 
-## Managing Your Virtual Machine
- 
-Feel free to start, stop, or restart your virtual machine as needed from the **Resources** tab. Your experience is in your hands!
- 
-![Manage Your Virtual Machine](./instructions/media/res.png)
-
 ## Let's Get Started with Azure Portal
  
-1. On your virtual machine, click on the Azure Portal icon as shown below:
-   ![](media/azureportal.png)
+1. In the **JumpVM**, click on the **Azure portal shortcut** of the Microsoft Edge browser, which is created on the desktop.
 
-1. Log in to Azure Portal.
+   ![](./instructions/media/azureportal.png)
 
-1. You'll see the **Sign into Microsoft Azure** tab. Here, enter your credentials:
+1. On the **Sign in to Microsoft Azure** tab, you will see the login screen, in that enter the following email/username, and click on **Next**.
  
    - **Email/Username:** <inject key="AzureAdUserEmail"></inject>
 
      ![](instructions/media/intro1.png)
 
-1. Next, provide your password:
+1. Now enter the following password and click on **Sign in**.
  
    - **Password:** <inject key="AzureAdUserPassword"></inject>
 
      ![](instructions/media/intro2.png)
 
-1. If prompted to stay signed in, you can click "No."
+1. If prompted to stay signed in, you can click **No"".
+
+   ![](./instructions/media/Sign-in-no.png)
  
-1. If a **Welcome to Microsoft Azure** pop-up window appears, simply click "cancel" to skip the tour.
+1. If a **Welcome to Microsoft Azure** pop-up window appears, simply click **cancel** to skip the tour.
 
 ## Support Contact
 
