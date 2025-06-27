@@ -44,7 +44,7 @@ Stored procedures are authored in language-integrated JavaScript and support the
     | **Workload Type**   | *Production* (1) |
     | **Subscription**    | *Your existing Azure subscription* (2) |
     | **Resource group**  | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* (3) |
-    | **Account Name**    | *sql-<inject key="DeploymentID" enableCopy="false"/>* (4) |
+    | **Account Name**    | *cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* (4) |
     | **Location**        | *Choose the default region* (6) |
     | **Capacity mode**   | *Provisioned throughput* (7) |
     | **Apply Free Tier Discount** | *Do Not Apply* (8) |
