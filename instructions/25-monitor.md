@@ -238,11 +238,11 @@ In this task, we'll go back to the browser and review some of the Azure Monitor 
 
 1. The final metric we'll look at in this exercise is the **normalised RU Consumption** metric. Change your split to **PartitionKeyRangeId**. This metric helps us identify which partition key range usage is warmer. The metric gives us the skew of throughput towards a partition key range. Go ahead and choose that Metric from the *Metric* pulldown. This chart should now show us a very unhealthy system, hitting a constant 100% **Normalized RU Consumption**.
 
-> &#128221; If you would like to look at more than one chart at a time, click on the **+ New Chart** option above the chart name. 
-
-> &#128221; While we can not directly save our metrics, you can create or use an existing dashboard and add this chart to it by clicking on the **Pin to dashboard** button on the upper right-hand corner of the chart.  Click on the button and choose the **Create new** tab, give it the name *DP-420 labs*, and click on **Create and pin**. To view your private dashboards, you should go to the Portal Menu in the upper left-hand corner and choose Dashboard from your Azure Resource options. The dashboard could take a few minutes to appear the first time.
-
-> &#128221; One more way to share your chart is by clicking on the Share pulldown and downloading it as an Excel file or the Copy link option.
+   > &#128221; If you would like to look at more than one chart at a time, click on the **+ New Chart** option above the chart name. 
+   
+   > &#128221; While we can not directly save our metrics, you can create or use an existing dashboard and add this chart to it by clicking on the **Pin to dashboard** button on the upper right-hand corner of the chart.  Click on the button and choose the **Create new** tab, give it the name *DP-420 labs*, and click on **Create and pin**. To view your private dashboards, you should go to the Portal Menu in the upper left-hand corner and choose Dashboard from your Azure Resource options. The dashboard could take a few minutes to appear the first time.
+   
+   > &#128221; One more way to share your chart is by clicking on the Share pulldown and downloading it as an Excel file or the Copy link option.
 
 #### Subtask 2: Azure Monitor Insights reports
 
