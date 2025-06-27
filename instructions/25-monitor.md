@@ -90,7 +90,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Wait for the deployment task to complete before continuing with this task.
 
-1. Click on **Go to resource** to go to the newly created **Azure Cosmos DB** account resource and navigate to the **Keys (2)** pane under **Settings (1)**from the left menu.
+1. Click on **Go to resource** to go to the newly created **Azure Cosmos DB** account resource and navigate to the **Keys (2)** pane under **Settings (1)** from the left menu.
 
    ![06](media/25-06-l2-7.png)
 
