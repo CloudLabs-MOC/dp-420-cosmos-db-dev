@@ -12,10 +12,10 @@ In this lab, you will complete the following tasks:
 - Task 1: Create an Azure Cosmos DB for NoSQL account.
 - Task 2: Send your Azure Cosmos DB for NoSQL account with sample data.
 - Task 3: Create an Azure AI Search resource.
-- Task 4: Build indexer and index for Azure Cosmos DB for NoSQL data.
+- Task 4: Build an indexer and index for Azure Cosmos DB for NoSQL data.
 - Task 5: Validate the index with example search queries.
 
-## Estimated Timing: 30 minutes
+## Estimated Timing: 120 Minutes
 
 ## Architecture Diagram
 
@@ -25,46 +25,65 @@ In this lab, you will complete the following tasks:
 
 Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **Mongo API** or **NoSQL API**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
 
-1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
+1. Navigate back to the Azure Portal page, in the **Search resources, services and docs (G+/)** box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
    ![06](media/New-image1.png)
    
-1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
+1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create  **Azure Cosmos DB for NoSQL** account.
 
-    ![06](media/New-image2.png)
+    ![06](media/25-06-l2-1.png)
 
-    ![06](media/New-image3.png)
+    ![06](media/25-06-l2-2.png)
 
 
-1.  Create the resource with the following settings, leaving all remaining settings to their default values, and select **Review + create**:
+1.  Specify the following settings, leaving all remaining settings to their default values, and select **Next: Global Distribution (8)**:
 
-    | **Setting** | **Value** |
-    | :--- | :--- |
-    | **Subscription** | *Your existing Azure subscription* |
-    | **Resource group** | **Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>** |
-    | **Account Name** | *Enter a globally unique name* |
-    | **Location** | *Choose any available region* |
-    | **Capacity mode** | *Serverless* |
+    | **Setting**         | **Value** |
+    | --------------------|--------------------------------------------------- |
+    | **Workload Type**   | *Production* (1) |
+    | **Subscription**    | *Your existing Azure subscription* (2) |
+    | **Resource group**  | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* (3) |
+    | **Account Name**    | *sql-<inject key="DeploymentID" enableCopy="false"/>* (4) |
+    | **Location**        | *Choose the default region* (6) |
+    | **Capacity mode**   | *Serverless* (7) |
 
-1. On the **Review + Create** page, select **Create**.
+     ![06](media/25-06-l2-3.png)
+
+     ![06](media/25-06-25-l9-1.png)
+
+1. Click on **Next: Networking** on the Global Distribution page. Select **All networks (1)** for the **Connectivity method** and click on **Review + Create (2)**. 
+
+   ![06](media/25-06-l2-5.png)
+   
+1. Once after validation passed click on **Create**.
+
+   ![06](media/25-06-25-l9-2.png)
 
 1. Wait for the deployment task to complete before continuing with this task.
 
-1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys** pane.
+1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings (1)**, navigate to the **Keys (2)** pane.
 
-    ![06](media/New-image6.png)
+    ![06](media/25-06-l2-7.png)
 
-    ![06](media/New-image7.png)
-
+    ![06](media/25-06-l2-8.png)
+   
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-    - Record the value of the **URI** field. You will use this **endpoint** value later in this exercise.
+    - Record the value of the **URI** field. You will use this **endpoint (1)** value later in this exercise.
 
-    - Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
+    - Record the value of the **PRIMARY KEY** field. You will use this **key (2)** value later in this exercise.
 
-        ![06](media/New-image9.png)
+       ![06](media/25-06-25-l3-3.png)
 
-1. From the left navigation menu,click on the **Overview** option and select **Data Explorer** from the top navigation pane.
+    - Notice the **Primary Connection String (2)** field. Copy the value you will use in this **connection string (3)** value later in this exercise.
+
+      ![06](media/25-06-l2-9.png)
+
+1. On the **Azure Cosmos DB** account resource, click on **Overview** from the left navigation pane  and click on  the **Data Explorer** option from the top navigation pane.
+
+   ![06](media/25-06-25-l9-3.png)
+
+   >**Note**: Click the "X" button on the pop-up, which is commonly located at the top right corner.
 
 1. In the **Data Explorer** pane, select **New Container**.
 
@@ -91,15 +110,15 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 You will use a command-line utility that creates a **cosmicworks** database and a **products** container. The tool will then create a set of items that you will observe using the change feed processor running in your terminal window.
 
-1. On the LabVM select the **Visual Studio Code** shortcut.
+1. On the LabVM, select the **Visual Studio Code** shortcut.
 
     ![06](media/visualstudio.png)
 
 1. In **Visual Studio Code**, open the **Terminal** menu by selecting **... (ellipses) (1)** > **Terminal (2)** > **New Terminal (3)** to open a new terminal with your existing instance.
 
-    ![06](media/terminal.png)
+    ![06](media/25-06-25-l8-5.png)
 
-1. Install the [cosmicworks][nuget.org/packages/cosmicworks] command-line tool for global use on your machine.
+1. Install the [cosmicworks](https://www.nuget.org/packages/cosmicworks) command-line tool globally on your machine using the following command:
 
     ```
     dotnet tool install cosmicworks --global --version 1.*
@@ -122,9 +141,13 @@ You will use a command-line utility that creates a **cosmicworks** database and 
     ```
 
     > **For example:** if your endpoint is: **https&shy;://dp420.documents.azure.com:443/** and your key is: **fDR2ci9QgkdkvERTQ==**, then the command would be:
-    > ``cosmicworks --endpoint https://dp420.documents.azure.com:443/ --key fDR2ci9QgkdkvERTQ== --datasets product``
+    > ``cosmicworks --endpoint https://dp420.documents.azure.com:443/ --key fDR2ci9QgkdkvERTQ== --datasets product`` enter primary conection string recently copied.
 
-    >**Note**: If you're getting an error, close the visual studio code reopen it and try to run the command once again.
+    ![06](./25-06-25-l8-1.png)
+
+    > **Note:** If you see a runtime error while executing the `cosmicworks` command, it means the required .NET runtime is missing. Download and install the .NET 7.0 Runtime from the following link: [Download .NET Runtime (x64)](https://aka.ms/dotnet-core-applaunch?framework=Microsoft.NETCore.App&framework_version=7.0.0&arch=x64&rid=win-x64&os=win10)
+    
+    ![06](./25-06-25-l10-1.png)   
 
 1. Wait for the **cosmicworks** command to finish populating the account with a database, container, and items.
 
@@ -136,21 +159,28 @@ You will use a command-line utility that creates a **cosmicworks** database and 
 
 Before continuing with this exercise, you must first create a new Azure Cognitive Search instance.
 
-1. Back in the Azure portal, go back to the **Home** page.
+1. Back in the Azure portal, go to the **Home** page. In the search bar at the top, type **AI Search (1)**.From the results, select **AI Search (2)** under Services.
 
-1. Select **+ Create a resource**, search for *AI Search*, and then create a new **Azure AI Search** account resource with the following settings, leaving all remaining settings to their default values:
+   ![06](./25-06-25-l10-3.png)  
+
+1. Click **Create (2)** in the **AI Foundry** | AI Search blade.
+
+   ![06](./25-06-25-l10-4.png)  
+
+1. Create a new **Azure AI Search** account resource with the following settings, leaving all remaining settings to their default values.
 
     | **Setting** | **Value** |
     | :--- | :--- |
-    | **Subscription** | *Your existing Azure subscription* |
-    | **Resource group** | **cosmosdb-<inject key="DeploymentID" enableCopy="false"/>** |
-    | **Name** | *Enter a globally unique name* |
-    | **Location** | *Choose any available region* |
+    | **Subscription** | *Your existing Azure subscription* **(1)** |
+    | **Resource group** | **cosmosdb-<inject key="DeploymentID" enableCopy="false"/>**  **(2)**|
+    | **Name** | **ai-search-<inject key="DeploymentID" enableCopy="false"/>**  **(3)**|
+    | **Location** | *Choose any available region*  **(4)**|
 
-    
+    ![06](./25-06-25-l10-5.png)  
+
     >**Note:** If it shows any subscriptions errors, select **Next: Scale**, and select **Previous**.
 
-1. Click on **Review + Create** and after validation get Success click on **Create**.
+1. Click on **Review + Create (5)** and after validation get Success click on **Create**.
 
 1. Wait for the deployment task to complete before continuing with this task.
 
@@ -163,13 +193,13 @@ Before continuing with this exercise, you must first create a new Azure Cognitiv
     
 <validation step="6dc66a44-b1ce-4dc5-91f8-35180452aaaa" />
 
-### Task 4: Build indexer and index for Azure Cosmos DB for NoSQL data
+### Task 4: Build an indexer and index for Azure Cosmos DB for NoSQL data
 
 You will create an indexer that indexes a subset of data in a specific Azure Cosmos DB for NoSQL container on an hourly basis.
 
 1. From the **AI Search** resource blade, select **Import data**.
 
-    ![06](media/importdata.png)
+    ![06](./25-06-25-l10-6.png)
 
 1. In the **Connect to your data** step of the **Import data** wizard, in the **Data Source** list, select **Azure Cosmos DB (1)**.
 
@@ -201,11 +231,13 @@ You will create an indexer that indexes a subset of data in a specific Azure Cos
         p._ts
     ```
 
-1. Select the **Query results ordered by _ts** checkbox.
+1. Select the **Query results ordered by _ts (6)** checkbox.
+   
+   >**Note:** This checkbox lets Azure AI Search know that the query sorts results by the **_ts** field. This type of sorting enables incremental progress tracking. If the indexer fails, it can pick right back up from the same **_ts** value since the results are ordered by the timestamp.
 
-    >**Note:** This checkbox lets Azure AI Search know that the query sorts results by the **_ts** field. This type of sorting enables incremental progress tracking. If the indexer fails, it can pick right back up from the same **_ts** value since the results are ordered by the timestamp.
+1. Select **Next: Add cognitive skills (7)**.
 
-1. Select **Next: Add cognitive skills**.
+   ![06](./25-06-25-l10-7.png)
 
 1. Select **Skip to: Customize target index**.
 
@@ -226,12 +258,14 @@ You will create an indexer that indexes a subset of data in a specific Azure Cos
 
     | **Setting** | **Value** |
     | :--- | :--- |
-    | **Name** | *``products-cosmosdb-indexer``* |
-    | **Schedule** | *Hourly* |
+    | **Name** | *``products-cosmosdb-indexer``* **(1)**|
+    | **Schedule** | *Hourly* **(2)**|
 
-1. Select **Submit** to create the data source, index, and indexer.
+1. Select **Submit (2)** to create the data source, index, and indexer.
 
-    >**Note:** You may be required to dismiss a survey popup after creating your first indexer.
+   ![06](./25-06-25-l10-8.png)
+   
+   >**Note:** You may be required to dismiss a survey pop-up after creating your first indexer.
 
 1. From the **AI Search** resource blade, from the left navigation menu, select the **Indexers (1)** under **Search Management**tab to observe the result of your first indexing operation.
 
@@ -239,9 +273,11 @@ You will create an indexer that indexes a subset of data in a specific Azure Cos
 
     >**Note:** You may need to use the **Refresh** option to update the blade if it does not update automatically.
 
-    ![06](media/indexers.png)
+    ![06](./25-06-25-l10-9.png)
 
 1. Navigate to the **Indexes** tab under **Search Management** in the left navigation pane and then select the **products-index** index.
+
+   ![06](./25-06-25-l10-10.png)
 
 > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
 > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
@@ -256,13 +292,16 @@ Now that your materialized view of the Azure Cosmos DB for NoSQL data is in the 
 
 > **Note:** This lab is not intended to teach the Azure AI Search syntax. These queries were curated to showcase some of the features available in the search index and engine.
 
-1. In the **Search explorer** tab, select the **View** pulldown and then select the **JSON view**.
+1. In the **Search explorer** tab, select the **View (1)** pulldown and then select the **JSON view (2)**.
+
+   ![06](./25-06-25-l10-11.png)
 
 1. Notice in the **JSON query editor** the syntax of the default JSON search query that returns all possible results using a **\*** (wildcard) operator.
 
    ```json
    {
-       "search": "*"
+       "search": "*",
+       "count": true
    }
    ```
 
@@ -277,54 +316,59 @@ Now that your materialized view of the Azure Cosmos DB for NoSQL data is in the 
         "search": "touring 3000"
     }
     ```
+   ![06](./25-06-25-l10-12.png)
 
-1. Observe that this search query returns results that contain either the terms **touring** or **3000** giving a higher score to results that contain both terms. The results are then sorted in descending order by the **@search.score** field.
+1. Observe that this search query returns results that contain either the terms **touring** or **3000**, giving a higher score to results that contain both terms. The results are then sorted in descending order by the **@search.score** field.
+
+1. In the **JSON query editor (1)**, enter the following query and then select **Search (2)**:
+
+    ```json
+    {
+        "search": "red",
+        "count": true
+    }
+    ```
+   ![06](./25-06-25-l10-13.png)
+
+1. Observe that this search query returns results with the term **red**, but also now includes a metadata field indicating the total count of results, even if they are not all included on the same page.
 
 1. In the **JSON query editor**, enter the following query and then select **Search**:
 
     ```json
     {
-        "search": "red"
-        , "count": true
+        "search": "blue",
+        "count": true,
+        "top": 6
     }
     ```
+   ![06](./25-06-25-l10-14.png)
 
-1. Observe that this search query returns results with the term **red**, but also now includes a metadata field indicating the total count of results even if they are not all included in the same page.
+1. Observe that this search query only returns a set of six results at a time, even though there are more matches server-side.
 
 1. In the **JSON query editor**, enter the following query and then select **Search**:
 
     ```json
     {
-        "search": "blue"
-        , "count": true
-        , "top": 6
+        "search": "mountain",
+        "count": true,
+        "top": 25,
+        "skip": 50
     }
     ```
+   ![06](./25-06-25-l10-15.png)
 
-1. Observe that this search query only returns a set of six results at a time even though there are more matches server-side.
+1. Observe that this search query skips the first 50 results and returns a set of 25 results. If this were a paginated view in a client-side application, you could infer that this would be the third "page" of results.
 
 1. In the **JSON query editor**, enter the following query and then select **Search**:
 
     ```json
     {
-        "search": "mountain"
-        , "count": true
-        , "top": 25
-        , "skip": 50
+        "search": "touring",
+        "count": true,
+        "filter": "price lt 500"
     }
     ```
-
-1. Observe that this search query skips the first 50 results and returns a set of 25 results. If this was a paginated view in a client-side application, you could infer that this would be the third "page" of results.
-
-1. In the **JSON query editor**, enter the following query and then select **Search**:
-
-    ```json
-    {
-        "search": "touring"
-        , "count": true
-        , "filter": "price lt 500"
-    }
-    ```
+   ![06](./25-06-25-l10-16.png)
 
 1. Observe that this search query only returns results where the value of the numeric price field is less than 500.
 
@@ -332,14 +376,14 @@ Now that your materialized view of the Azure Cosmos DB for NoSQL data is in the 
 
     ```json
     {
-        "search": "road"
-        , "count": true
-        , "top": 15
-        , "facets": ["price,interval:500"]
+        "search": "road",
+        "count": true,
+        "top": 15,
+        "facets": ["price,interval:500"]
     }
     ```
 
-1. Observe that this search query returns a collection of facet data that indicates how many items belong to each category even if they are not all present in the current page of results. In this example, the matching items are broken down into numeric price categories in intervals of 500. This is typically used to populate filters and navigation aids in client-side applications.
+1. Observe that this search query returns a collection of facet data that indicates how many items belong to each category, even if they are not all present in the current page of results. In this example, the matching items are broken down into numeric price categories in intervals of 500. This is typically used to populate filters and navigation aids in client-side applications.
 
     ![06](media/products-index.png)
 
@@ -352,7 +396,7 @@ In this lab, you have completed:
 - Created an Azure Cosmos DB for NoSQL account.
 - Send your Azure Cosmos DB for NoSQL account with sample data.
 - Created an Azure AI Search resource.
-- Built indexer and index for Azure Cosmos DB for NoSQL data.
+- Built an indexer and index for Azure Cosmos DB for NoSQL data.
 - Validated index with example search queries.
 
 ### Summary
