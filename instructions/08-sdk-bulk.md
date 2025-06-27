@@ -13,7 +13,7 @@ In this lab, you will complete the following tasks:
 - Task 2: Bulk inserting twenty-five thousand documents.
 - Task 3: Observe the results.
 
-## Estimated Timing: 30 minutes
+## Estimated Timing: 30 Minutes
 
 ## Architecture Diagram
 
@@ -45,7 +45,7 @@ In this lab, you will complete the following tasks:
 
 In this task, you will create an Azure Cosmos DB for NoSQL account, configure it with essential settings, and prepare the SDK project in Visual Studio Code to interact with your newly established database.
 
-1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
+1. Navigate back to the Azure Portal page, in the **Search resources, services and docs (G+/)** box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
    ![06](media/New-image1.png)
    
@@ -76,7 +76,7 @@ In this task, you will create an Azure Cosmos DB for NoSQL account, configure it
 
    ![06](media/25-06-l2-5.png)
    
-1. Once after validation passed click on **Create**.
+1. Once validation passed, click on **Create**.
 
    ![06](media/25-06-l2-6.png)
       
