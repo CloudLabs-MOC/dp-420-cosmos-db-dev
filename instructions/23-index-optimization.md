@@ -14,7 +14,7 @@ In this lab, you will complete the following tasks:
 - Task 3: Run the .NET test application using the default indexing policy.
 - Task 4: Update the indexing policy and rerun the .NET application.
 
-### Estimated Timing: 60 minutes
+### Estimated Timing: 60 Minutes
 
 ## Architecture Diagram
 
