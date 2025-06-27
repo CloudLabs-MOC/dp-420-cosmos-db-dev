@@ -13,7 +13,7 @@ In this lab, you will complete the following tasks:
 - Task 2: Implement best practices for a stored procedure.
 - Task 3: Query documents.
 
-## Estimated Timing: 30 minutes
+## Estimated Timing: 60 Minutes
 
 ## Architecture Diagram
 
@@ -25,59 +25,72 @@ In this lab, you will complete the following tasks:
 
 In this task, you will provision an Azure Cosmos DB SQL API account
 
-Stored procedures are authored in language-integrated JavaScript and support the execution of basic CRUD operations inside of the database engine. JavaScript running within the database engine is made possible using the server-side JavaScript SDK for Azure Cosmos DB and a series of helper methods.
+Stored procedures are authored in language-integrated JavaScript and support the execution of basic CRUD operations inside the database engine. JavaScript running within the database engine is made possible using the server-side JavaScript SDK for Azure Cosmos DB and a series of helper methods.
 
-1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
+1. Navigate back to the Azure Portal page, in the **Search resources, services and docs (G+/)** box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
    ![06](media/New-image1.png)
    
-1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
+1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create  **Azure Cosmos DB for NoSQL** account.
 
-    ![06](media/New-image2.png)
+    ![06](media/25-06-l2-1.png)
 
-    ![06](media/New-image3.png)
+    ![06](media/25-06-l2-2.png)
 
-1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create**:
+1. Specify the following settings, leaving all remaining settings to their default values, and select **Next: Global Distribution (9)**:
+  
+    | **Setting**         | **Value** |
+    | --------------------|--------------------------------------------------- |
+    | **Workload Type**   | *Production* (1) |
+    | **Subscription**    | *Your existing Azure subscription* (2) |
+    | **Resource group**  | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* (3) |
+    | **Account Name**    | *sql-<inject key="DeploymentID" enableCopy="false"/>* (4) |
+    | **Location**        | *Choose the default region* (6) |
+    | **Capacity mode**   | *Provisioned throughput* (7) |
+    | **Apply Free Tier Discount** | *Do Not Apply* (8) |
+    | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* |
 
-    | **Setting** | **Value** |
-    | :--- | :--- |
-    | **Subscription** | *Your existing Azure subscription* |
-    | **Resource group** | **Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>** |
-    | **Account Name** | *Enter a globally unique name* |
-    | **Location** | *Choose any available region* |
-    | **Capacity mode** | *Provisioned throughput* |
-    | **Apply Free Tier Discount** | *Do Not Apply* |
+     ![06](media/25-06-l2-3.png)
 
-1. After validation get Success click on **Create**.
+     ![06](media/25-06-l2-4.png)
+
+1. Click on **Next: Networking** on the Global Distribution page. Select **All networks (1)** for the **Connectivity method** and click on **Review + Create (2)**. 
+
+   ![06](media/25-06-l2-5.png)
+
+1. Once validation passed, click on **Create**.
+
+   ![06](media/25-06-l2-6.png)
 
 1. Wait for the deployment task to complete before continuing with this task.
 
 1. Go to the newly created **Azure Cosmos DB** account resource and from the left navigation menu, navigate to the **Data Explorer** pane.
 
-1. In the **Data Explorer**, select **+ New Container** > **+ New Container**.
+1. In the **Data Explorer**, select **+ New Container (1)** > **+ New Container (2)**.
 
-     ![06](media/New-image85.png)
+     ![06](media/New-image107.png)
 
  1. Create a new container with the following settings, leaving all remaining settings to their default values, and select **OK**:
 
     | **Setting** | **Value** |
     | :--- | :--- |
-    | **Database id** | *Create new* &vert; *cosmicworks* |
-    | **Share throughput across containers** | *Select this option* |
-    | **Database throughput** | *Manual* &vert; *400* |
-    | **Container id** | *products* |
-    | **Indexing** | *Automatic* |
-    | **Partition key** | */categoryId* |
+    | **Database id** | *Create new* **(1)** &vert; *cosmicworks* **(2)**|
+    | **Share throughput across containers** | *Select this option* **(3)**|
+    | **Database throughput** | *Manual* **(4)** &vert; *400* **(5)**|
+    | **Container id** | *products* **(6)**|
+    | **Partition key** | */categoryId* **(7)**|
 
-1. Still within the **Data Explorer**, expand the **cosmicworks** database node, then select the new **products** container node within the navigation tree.
+    ![06](media/25-06-25-l13-1.png)
 
-1. Select **New Stored Procedure**.
+1. Within the **Data Explorer**, expand the **cosmicworks (1)** database node, then select the new **products (2)** container node within the navigation tree.
+
+1. Select **New Stored Procedure (3)**.
 
    ![06](media/New-image123.png)
 
 1. In the **Stored Procedure Id** field, enter the value **createDoc**.
 
-    ![06](media/New-image124.png)
+   ![06](media/New-image124.png)
 
 1. Delete the contents of the editor area.
 
@@ -115,7 +128,7 @@ Stored procedures are authored in language-integrated JavaScript and support the
     };
     ```
 
-1. Invoke the **createDocument** method of the container object passing in the result of invoking the **getSelfLink** method of the container object and the new document as parameters:
+1. Invoke the **createDocument** method of the container object, passing in the result of invoking the **getSelfLink** method of the container object and the new document as parameters:
 
     ```
     container.createDocument(
@@ -145,11 +158,15 @@ Stored procedures are authored in language-integrated JavaScript and support the
 
     ![06](media/New-image125.png)
 
-1. Select **Execute** and then execute the stored procedure using the following input parameters:
+1. Select **Execute (1)** and then Execute the stored procedure using the following input parameters:
+
+    ![06](media/25-06-25-l13-2.png)
 
     | **Setting** | **Key** | **Value** |
     | :--- | :--- | :--- |
-    | **Partition key value** | *String* | *demo* |
+    | **Partition key value** | *String* | **demo (2)** |
+
+    ![06](media/25-06-25-l13-3.png)
 
 1. Observe the empty result. While the stored procedure was executed successfully, the JavaScript code never returned a human-readable response.
 
@@ -242,14 +259,20 @@ While the stored procedure authored earlier in this lab has basic functionality,
     }
     ```
 
-1. Select **Update** to persist the changes to the stored procedure.
+1. Select **Update (1)** to persist the changes to the stored procedure.
 
-1. Select **Execute** and then execute the stored procedure using the following input parameters:
+   ![06](media/25-06-25-l13-4.png)
+
+1. Select **Execute (2)** and then execute the stored procedure using the following input parameters:
+
+    ![06](media/25-06-25-l13-5.png)
 
     | **Setting** | **Key** | **Value** |
     | :--- | :--- | :--- |
-    | **Partition key value** | *String* | *demo* |
-    | **Input parameters** | *String* | *second document* |
+    | **Partition key value** | *String* | **demo (3)** |
+    | **Input parameters** | *String* | **second document (4)** |
+
+    ![06](media/25-06-25-l13-6.png)
 
 1. Observe the JSON result. After the stored procedure was executed successfully, the newly created document was returned as a response to the original HTTP request.
 
@@ -257,9 +280,11 @@ While the stored procedure authored earlier in this lab has basic functionality,
 
 In this task, to wrap up things, you will use the Data Explorer to issue a SQL query that will return the two documents created in this lab.
 
-1. In the **Data Explorer**, expand the **cosmicworks** database node, then select the **products** container node within the **NOSQL API** navigation tree.
+1. In the **Data Explorer (1)**, expand the **cosmicworks (2)** database node, then select the **products (3)** container node within the **NOSQL API** navigation tree.
 
-1. Select **New SQL Query**.
+1. Select **New SQL Query (4)**.
+
+   ![06](media/25-06-25-l13-7.png)
 
 1. Delete the contents of the editor area.
 
@@ -271,8 +296,11 @@ In this task, to wrap up things, you will use the Data Explorer to issue a SQL q
 
 1. Select **Execute Query**.
 
+   ![06](media/25-06-25-l13-8.png)
+
 1. Observe the two documents you created in this lab as the results of executing this query.
 
+   ![06](media/25-06-25-l13-9.png)
 
 ### Summary 
 
