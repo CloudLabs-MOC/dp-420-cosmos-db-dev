@@ -30,7 +30,7 @@ For convenience, you can open the guide in a separate window by selecting the **
  
 Feel free to **start, stop, or restart** your virtual machine as needed from the **Resources** tab. Your experience is in your hands!
  
-![Manage Your Virtual Machine](./instructions/25-06-25-g4 .png)
+![Manage Your Virtual Machine](./instructions/25-06-25-g4%20.png)
 
 ## Lab Guide Zoom In/Zoom Out
 
@@ -40,7 +40,7 @@ To adjust the zoom level for the environment page, click the **A↕: 100%** icon
 
 ## **Lab Duration Extension**
 
-1. To extend the duration of the lab, kindly click the **Hourglass** icon in the top right corner of the lab environment. 
+1. To extend the duration of the lab, kindly click the **Hourglass** in the top-right corner of the lab environment. 
 
    ![Use the Split Window Feature](./instructions/25-06-25-g1-hr.png)   
 
@@ -50,16 +50,16 @@ To adjust the zoom level for the environment page, click the **A↕: 100%** icon
  
    ![Use the Split Window Feature](./instructions/media/gext2.png)
 
-4. If you have not extended the duration prior to when the lab is about to end, a pop-up will appear, giving you the option to extend. Click **OK** to proceed.
+4. If you have not extended the duration before when the lab is about to end, a pop-up will appear, giving you the option to extend. Click **OK** to proceed.
 
 
 ## Let's Get Started with Azure Portal
  
 1. In the **JumpVM**, click on the **Azure portal shortcut** of the Microsoft Edge browser, which is created on the desktop.
 
-   ![](media/azureportal.png)
+   ![](instructions/media/azureportal.png)
 
-1.  On the **Sign in to Microsoft Azure** tab, you will see the login screen, in that enter the following email/username, and click on **Next**.
+1.  On the **Sign in to Microsoft Azure** tab, you will see the login screen. Enter the following email/username, and click on **Next**.
  
    - **Email/Username:** <inject key="AzureAdUserEmail"></inject>
 
