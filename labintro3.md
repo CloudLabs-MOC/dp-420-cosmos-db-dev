@@ -68,7 +68,7 @@ For convenience, you can open the guide in a separate window by selecting the **
  
 Feel free to **start, stop, or restart** your virtual machine as needed from the **Resources** tab. Your experience is in your hands!
  
-![Manage Your Virtual Machine](./instructions/25-06-25-g4 .png)
+![Manage Your Virtual Machine](./instructions/25-06-25-g4%20.png)
 
 ## Lab Guide Zoom In/Zoom Out
 
