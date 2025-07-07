@@ -66,7 +66,7 @@ For convenience, you can open the guide in a separate window by selecting the **
  
 Feel free to **start, stop, or restart** your virtual machine as needed from the **Resources** tab. Your experience is in your hands!
  
-![Manage Your Virtual Machine](./instructions/25-06-25-g4 .png)
+![Manage Your Virtual Machine](./instructions/25-06-25-g4%20.png)
 
 ## Lab Guide Zoom In/Zoom Out
 
@@ -98,13 +98,13 @@ To adjust the zoom level for the environment page, click the **A↕: 100%** icon
  
    - **Email/Username:** <inject key="AzureAdUserEmail"></inject>
 
-     ![](instructions/media/intro1.png)
+     ![](./instructions/media/intro1.png)
 
 1. Now enter the following password and click on **Sign in**.
  
    - **Password:** <inject key="AzureAdUserPassword"></inject>
 
-     ![](instructions/media/intro2.png)
+     ![](./instructions/media/intro2.png)
 
 1. If prompted to stay signed in, you can click **No**.
 
