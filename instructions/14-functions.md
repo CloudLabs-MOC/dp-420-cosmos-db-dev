@@ -1,4 +1,4 @@
-# Lab 07b - Integrate Azure Cosmos DB SQL API with Azure services
+# Lab 7b: Integrate Azure Cosmos DB SQL API with Azure services
 
 ## Lab scenario
 

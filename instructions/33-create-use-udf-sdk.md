@@ -1,4 +1,4 @@
-# Lab 13b - Create server-side programming constructs in Azure Cosmos DB SQL API'
+# Lab 13b: Create server-side programming constructs in Azure Cosmos DB SQL API'
 
 ## Lab scenario
 

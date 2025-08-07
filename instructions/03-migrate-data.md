@@ -1,4 +1,4 @@
-# Lab 02b - Plan and implement Azure Cosmos DB SQL API
+# Lab 2b: Plan and implement Azure Cosmos DB SQL API
 
 
 ## Lab scenario

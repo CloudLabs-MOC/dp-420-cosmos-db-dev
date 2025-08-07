@@ -1,4 +1,4 @@
-# Lab 06b - Define and implement an indexing strategy for Azure Cosmos DB SQL API
+# Lab 6b: Define and implement an indexing strategy for Azure Cosmos DB SQL API
 
 ## Lab scenario
 

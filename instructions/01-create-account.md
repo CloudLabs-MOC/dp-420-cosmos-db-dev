@@ -1,4 +1,4 @@
-# Lab 01 - Get started with Azure Cosmos DB SQL API
+# Lab 01: Get started with Azure Cosmos DB SQL API
 
 ## Lab scenario
 

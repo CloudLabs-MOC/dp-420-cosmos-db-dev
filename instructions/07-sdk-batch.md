@@ -1,4 +1,4 @@
-# Lab 04b - Implement Azure Cosmos DB SQL API point operations
+# Lab 4b: Implement Azure Cosmos DB SQL API point operations
 
 ## Lab scenario
 
