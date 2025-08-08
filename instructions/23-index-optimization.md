@@ -1,4 +1,4 @@
-# Lab 10a - Optimize query performance in Azure Cosmos DB SQL API
+# Lab 10a: Optimize query performance in Azure Cosmos DB SQL API
 
 ## Lab scenario
 

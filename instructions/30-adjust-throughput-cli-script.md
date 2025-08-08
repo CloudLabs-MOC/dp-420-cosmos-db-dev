@@ -1,4 +1,4 @@
-# Lab 12a - Manage an Azure Cosmos DB SQL API solution using DevOps practices
+# Lab 12a: Manage an Azure Cosmos DB SQL API solution using DevOps practices
 
 ## Lab scenario
 

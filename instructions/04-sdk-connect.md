@@ -1,4 +1,4 @@
-# Lab 03a - Connect to Azure Cosmos DB SQL API with the SDK
+# Lab 3a: Connect to Azure Cosmos DB SQL API with the SDK
 
 ## Lab scenario
 

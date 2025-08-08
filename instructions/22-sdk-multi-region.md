@@ -1,4 +1,4 @@
-# Lab 09c - Design and implement a replication strategy for Azure Cosmos DB SQL API
+# Lab 9c: Design and implement a replication strategy for Azure Cosmos DB SQL API
 
 ## Lab scenario
 

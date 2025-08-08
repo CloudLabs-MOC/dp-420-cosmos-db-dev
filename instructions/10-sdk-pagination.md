@@ -1,4 +1,4 @@
-# Lab 05b - Execute queries in Azure Cosmos DB SQL API
+# Lab 5b: Execute queries in Azure Cosmos DB SQL API
 
 ## Lab scenario
 

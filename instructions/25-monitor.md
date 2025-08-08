@@ -1,4 +1,4 @@
-# Lab 11a - Monitor and troubleshoot an Azure Cosmos DB SQL API solution
+# Lab 11a: Monitor and troubleshoot an Azure Cosmos DB SQL API solution
 
 ## Lab scenario
 
