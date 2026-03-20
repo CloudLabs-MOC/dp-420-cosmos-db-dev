@@ -48,13 +48,13 @@ Your virtual machine is your workhorse throughout the workshop. The lab guide is
  
 To get a better understanding of your lab resources and credentials, navigate to the **Environment Details** tab.
  
-![Explore Lab Resources](./instructions/media/env.png)
+![Explore Lab Resources](./instructions/media/env01.png)
 
 ## Utilizing the Split Window Feature
  
 For convenience, you can open the lab guide in a separate window by selecting the **Split Window** button from the Top right corner.
  
-![Use the Split Window Feature](./instructions/media/spl.png)
+![Use the Split Window Feature](./instructions/media/splitwin01.png)
  
 ## **Lab Duration Extension**
 
@@ -74,12 +74,13 @@ For convenience, you can open the lab guide in a separate window by selecting th
  
 Feel free to start, stop, or restart your virtual machine as needed from the **Resources** tab. Your experience is in your hands!
  
-![Manage Your Virtual Machine](./instructions/media/res.png)
+![Manage Your Virtual Machine](./instructions/media/RT1.png)
 
 ## Let's Get Started with Azure Portal
  
 1. On your virtual machine, click on the Azure Portal icon as shown below:
-   ![](media/azureportal.png)
+
+   ![](./instructions/media/azureportal.png)
 
 1. Log in to Azure Portal.
 
@@ -87,17 +88,21 @@ Feel free to start, stop, or restart your virtual machine as needed from the **R
  
    - **Email/Username:** <inject key="AzureAdUserEmail"></inject>
 
-     ![](instructions/media/intro1.png)
+     ![](instructions/media/sign1.png)
 
 1. Next, provide your password:
  
    - **Password:** <inject key="AzureAdUserPassword"></inject>
 
-     ![](instructions/media/intro2.png)
+     ![](instructions/media/tpwrd.png)
 
-1. If prompted to stay signed in, you can click "No."
+1. If prompted to stay signed in, you can click **No**
+
+   ![](instructions/media/sign001.png)
  
-1. If a **Welcome to Microsoft Azure** pop-up window appears, simply click "cancel" to skip the tour.
+1. If a **Welcome to Microsoft Azure** pop-up window appears, simply click **Maybe later** to skip the tour.
+
+   ![](instructions/media/skip01.png)
 
 ## Support Contact
 
@@ -111,6 +116,6 @@ Learner Support Contacts:
    
 Now, click on Next from the lower right corner to move to the next page.
 
-![](./instructions/media/num.png)
+![](./instructions/media/nextpage1.png)
 
 ### Happy Learning!!
