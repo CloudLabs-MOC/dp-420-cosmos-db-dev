@@ -19,11 +19,11 @@ You will use a command-line utility that creates a **cosmicworks** database and 
 
 To accompany the products container, you will create a **flatproducts** container manually that will be the target of the ETL transformation and load operation at the end of this lab.
 
-1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
+1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
    ![06](media/New-image1.png)
    
-1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create  **Azure Cosmos DB for NoSQL** account.
+1. Select **+ Create (1)** under **Azure Cosmos DB for NoSQL** click on **Create (2)** to create  **Azure Cosmos DB for NoSQL** account.
 
     ![06](media/New-image2.png)
 
@@ -60,15 +60,15 @@ To accompany the products container, you will create a **flatproducts** containe
 
     ![06](media/New-image6.png)
 
-1. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys** pane.
+1. In the **Azure Cosmos DB account**, expand **Settings (1)** from the left menu, then select **Keys (2)**.
 
-    ![06](media/New-image7.png)
+    ![06](media/DB15.png)
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-    1. Notice the **Primary Connection String** field. Copy the value you will use this **connection string** value later in this exercise.
+1. In the **Keys (1)** page, click the **Show (2)** icon to view the connection string, then click the **Copy (3)** icon to copy it and save it into notepad as e will use this in upcoming steps.
 
-        ![06](media/conn-string-2304.png)
+    ![06](media/conn-string-2304.png)
 
 1. Keep the browser tab open, as we will return to it later.
 
@@ -76,8 +76,7 @@ To accompany the products container, you will create a **flatproducts** containe
 
     ![06](media/visualstudio.png)
 
-1. In **Visual Studio Code**, open the **Terminal** menu by selecting **... (ellipses) (1)** > **Terminal (2)** > **New Terminal (3)** to open a new terminal with your 
-   existing instance.
+1. In **Visual Studio Code**, open a new terminal by selecting **... (ellipses) (1)**, then **Terminal (2)**, and then **New Terminal (3)**.
 
     ![06](media/New-image36.png)
 
@@ -103,15 +102,19 @@ To accompany the products container, you will create a **flatproducts** containe
 
     > **Note:** If you get an error while running the above command, **close** the visual studio code and **re-open** to run the above command.
 
+    ![06](media/DB17.png)
+
 1. Wait for the **cosmicworks** command to finish populating the account with a database, container, and items.
 
-1. Close the integrated terminal.
+    ![06](media/DB16.png)
 
-1. Close **Visual Studio Code**.
+1. Close the integrated terminal.And close the **Visual Studio Code**.
 
-1. Navigate to the **Azure portal**.
+    ![06](media/DB18.png)
 
-1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under 
+1. Navigate back to the **Azure portal**.
+
+1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under 
    services.
 
    ![06](media/New-image1.png)
@@ -120,19 +123,23 @@ To accompany the products container, you will create a **flatproducts** containe
 
      ![06](media/New-image68.png)
 
-1. Within the **Azure Cosmos DB** account resource, navigate to the **Data Explorer** pane. In the **Data Explorer**, expand the **cosmicworks** database node, expand the **products** container node, and then select **Items**.
+1. Within the **Azure Cosmos DB** account resource **overview page (1)** , navigate to the **Data Explorer (2)** pane. 
 
-    ![06](media/step21-2304.png)
+    ![06](media/DB04.png)
+
+1. In the **Data Explorer**, expand the **cosmicworks (2)** database node, expand the **products (3** container node, and then select **Items (4)**.
+
+    ![06](media/DB19.png)
 
 1. Observe and select the various JSON items in the **products** container. These are the items created by the command-line tool used in previous steps.
 
    ![06](media/New-image12.png)
 
-1. Select the **Scale** tab. In the Scale tab, select **Manual**, update the **required throughput** setting from **4000 RU/s** to **400 RU/s** and then **Save** your changes**.
+1. Select the **Scale (1)** tab. In the Scale tab, select **Manual (2)**, update the **required throughput** setting from **4000 RU/s** to **400 RU/s (3)** and then **Save (4)** your changes**.
 
     ![06](media/step23-2304.png)
 
-1. In the **Data Explorer** pane, select **+ New Container** > **+ New Container**.
+1. In the **Data Explorer** pane, select **+ New Container (1)** and select **+ New Container (2)**.
 
     ![06](media/New-image14.png)
 
@@ -176,32 +183,41 @@ Now that the Azure Cosmos DB for NoSQL resources are in place, you will create a
   
      ![06](media/New-image37.png)
    
-1. On **Create a resource** page search and select **Azure Data Factory**, and then create a new **Azure Data Factory** resource with the following settings, leaving
+1. On **Create a resource** page search and select **Azure Data Factory (1)**, and then create a new **Azure Data Factory (2** resource with the following settings, leaving
 
     ![06](media/New-image18.png)
 
-1. On **Data Factory** select **Create** > **Data Factory**.
+1. On **Data Factory** select **Create (1)** and select **Data Factory (2)**.
 
     ![06](media/New-image19.png)
 
-1. Specify the following settings, leaving all remaining settings to their default values. Click on **Next: Git configuration**.
+1. Specify the following settings, leaving all remaining settings to their default values. Click on **Next (6)**.
 
     | **Setting** | **Value** |
     | --- | --- |
-    | **Subscription** | *Your existing Azure subscription* |
-    | **Resource group** | *Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* |
-    | **Name** | *datafactory-<inject key="DeploymentID" enableCopy="false"/>* |
-    | **Region** | *Choose any available region* |
-    | **Version** | *V2* |
+    | **Subscription** | *Your existing Azure subscription* **(1)** |
+    | **Resource group** | *Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* **(2)** |
+    | **Name** | *datafactory-<inject key="DeploymentID" enableCopy="false"/>* **(3)**|
+    | **Region** | *Choose any available region* **(4)**|
+    | **Version** | *V2* **(5)**|
 
     ![06](media/New-image20.png)
 
-1. In **Git configuration** blade select the checkbox for **Configure Git later** and click on  **Review + Create** > **Create**.
-    ![06](media/New-image38.png)
+1. In **Git configuration** blade select the checkbox for **Configure Git later (1)** and click on  **Review + Create (2)** and select **Create (3)**.
 
-1. Once resource deployement is completed click on **Go to resource** and select **Launch studio** under **Azure Data Factory Studio**.
+    ![06](media/DB21.png)
+
+    ![06](media/DB23.png)
+
+1. Once resource deployement is completed click on **Go to resource**
 
     ![06](media/New-image21.png)
+
+1. In the **Resource group**, select the **datafactory** resource from the list.
+
+    ![06](media/DB20.png)
+
+1. Select **Launch studio** under **Azure Data Factory Studio**.
 
     ![06](media/New-image22.png)
    
@@ -211,15 +227,15 @@ Now that the Azure Cosmos DB for NoSQL resources are in place, you will create a
 
    ![06](media/New-image23.png)
 
-1. Starting with the **Properties** step of the wizard, in the **Task type** section, select **Built-in copy task**. In the **Task cadence or task schedule** section, select **Run once now** and then select **Next** to move to the **Source** step of the wizard.
+1. Starting with the **Properties** step of the wizard, in the **Task type** section, select **Built-in copy task (1)**. In the **Task cadence or task schedule** section, select **Run once now (2)** and then select **Next (3)** to move to the **Source** step of the wizard.
 
     ![06](media/New-image24.png)
    
-1. In the **Source** step of the wizard, in the **Source type** list, select **Azure Cosmos DB NoSQL** and in  the **Connection** section, select **+ New connection**.
+1. In the **Source** step of the wizard, in the **Source type** list, select **Azure Cosmos DB NoSQL (1)** and in  the **Connection** section, select **+ New connection (2)**.
 
     ![06](media/New-image25.png)
 
-1. In the **New connection (Azure Cosmos DB for NoSQL)** popup, configure the new connection with the following values, and then select **Create**:
+1. In the **New connection (Azure Cosmos DB for NoSQL)** popup, configure the new connection with the following values, and then select **Create **(9)****:
 
     | **Setting** | **Value** |
     | --- | --- |
@@ -227,17 +243,17 @@ Now that the Azure Cosmos DB for NoSQL resources are in place, you will create a
     | **Connect via integration runtime** | *AutoResolveIntegrationRuntime* **(2)** |
     | **Authentication method** | *Account key* **(3)** &vert; *Connection string* **(4)** |
     | **Account selection method** | *From Azure subscription* **(5)** |
-    | **Azure subscription** | *Your existing Azure subscription* |
-    | **Azure Cosmos DB account name** | *Your existing Azure Cosmos DB account name you chose earlier in this lab* |
-    | **Database name** | *cosmicworks* |
+    | **Azure subscription** | *Your existing Azure subscription* **(6)** |
+    | **Azure Cosmos DB account name** | *Your existing Azure Cosmos DB account name you chose earlier in this lab* **(7)** |
+    | **Database name** | *cosmicworks* **(8)**|
 
     ![06](media/New-image26.png)
 
-1. Back in the **Source data store** section, within the **Source tables** section, select **Query** and in the **Table name** list, select **products**.
+1. Back in the **Source data store** section, within the **Source tables** section, select **Query (1)** and in the **Table name** list, select **products (2)**.
 
     ![06](media/New-image27.png)
 
-1. In the **Query** editor, delete the existing content and enter the following query:
+1. In the **Query** editor, delete the existing content and enter the following query **(1)**:
 
     ```
     SELECT 
@@ -248,18 +264,17 @@ Now that the Azure Cosmos DB for NoSQL resources are in place, you will create a
         products p
     ```
 
-1.  Scroll down and select **Preview data** to test the query's validity. Select **Next** to move to the **Destination** step of the wizard.
+1.  Scroll down and select **Preview data (2)** to test the query's validity. Select **Next (3)** to move to the **Destination** step of the wizard.
 
     ![06](media/New-image28.png)
    
-1. In the **Destination** step of the wizard, in the **Destination type** list, select **Azure Cosmos DB for NoSQL** and in the **Connection** list, select 
-   **CosmosSqlConn** then in **Custom query** choose **flatproducts** and then select **Next** to move to the **Settings** step of the wizard.
+1. In the **Destination** step of the wizard, in the **Destination type** list, select **Azure Cosmos DB for NoSQL (1)** and in the **Connection** list, select **CosmosSqlConn (2)** then in **Custom query** choose **flatproducts (3)** and then select **Next (4)** to move to the **Settings** step of the wizard.
 
    ![06](media/New-image29.png)
 
    >**Note:** It will take a minute to appear.
 
-1. In the **Settings** step of the wizard, in the **Task name** field, enter **`FlattenAndMoveData`**.
+1. In the **Settings** step of the wizard, in the **Task name** field, enter **`FlattenAndMoveData`(1)**.And then select **Next (2)**
 
     ![06](media/New-image30.png)
 
@@ -267,31 +282,27 @@ Now that the Azure Cosmos DB for NoSQL resources are in place, you will create a
 
     ![06](media/New-image31.png)
 
-1. Review the **Summary** of the steps you have selected in the wizard and then select **Next**.
+1. Review the **Summary** of the steps you have selected in the wizard and then select **Finish**.
 
     ![06](media/New-image32.png)
-
-1. Observe the various steps in the deployment. When the deployment has finished, select **Finish**.
 
 1. Close your web browser window or tab.
 
 1. Navigate to the **Azure portal**.
 
-1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under 
-   services.
+1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
    ![06](media/New-image1.png)
 
 1. Select **sql-<inject key="DeploymentID" enableCopy="false"/>**.
 
-1. Within the **Azure Cosmos DB** account resource, navigate to the **Data Explorer** pane. In the **Data Explorer**, expand the **cosmicworks** database node, select 
-   the **flatproducts** container node, and then select **New SQL Query**.
+1. Within the **Azure Cosmos DB** account resource, navigate to the **Data Explorer (1)** pane. In the **Data Explorer**, expand the **cosmicworks** database node, select the **flatproducts (2)** container node, and then select **New SQL Query (3)**.
 
     ![06](media/New-image33.png)
 
 1. Delete the contents of the editor area.
 
-1. Create a new SQL query that will return all documents where the **name** is equivalent to **HL Headset** and select **Execute Query**.
+1. Create a new SQL query that will return all documents where the **name** is equivalent to **HL Headset (1)** and select **Execute Query (2)**.
 
     ```
     SELECT 
