@@ -44,8 +44,6 @@ To accompany the products container, you will create a **flatproducts** containe
 
      ![06](media/create-cosmosdb1.1-2304.png)
 
-     ![06](media/create-cosmosdb2.2-2304.png)
-
 1. Click on **Next: Networking** on the Global Distribution page. Select **All networks (1)** for the **Connectivity method** and click on **Review + Create (2)**. 
 
      ![06](media/select-networking-2304.png)

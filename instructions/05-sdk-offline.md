@@ -2,10 +2,11 @@
 
 ### Estimated Duration: 60 Minutes
 
-## Lab scenario
+## Lab Scenario
 
-The Azure Cosmos DB Emulator is a local tool that emulates the Azure Cosmos DB service for development and testing. The emulator supports the NoSQL API and can be used in place of the cloud service when developing code using the Azure SDK for .NET.
-In this lab, you'll connect to the Azure Cosmos DB Emulator from the Azure SDK for .NET.
+The Azure Cosmos DB Emulator is a local tool that simulates the Azure Cosmos DB service for development and testing. It supports the NoSQL API and allows you to build and test applications without using the cloud service.
+
+In this lab, you will connect to the Azure Cosmos DB Emulator using the Azure SDK for .NET.
 
 ## Lab objectives
 
@@ -22,9 +23,9 @@ In this task, you will launch the Azure Cosmos DB Emulator, a local tool that si
 Your environment should already have the emulator pre-installed. If not, refer to the [installation instructions][docs.microsoft.com/azure/cosmos-db/local-emulator] to install the Azure Cosmos DB Emulator. Once the emulator has started, you can retrieve the connection string and use it to connect to the emulator using the Azure SDK for .NET or any other SDK of your choice.
 
 1. Search and Start the **Azure Cosmos DB Emulator** from Start Menu of window.
-     ![06](media/New-image55.png)
+     ![06](media/DB31.png)
 
-1. Wait for 3 to 4 minutes to get started the emulator to automatically open your default browser and navigate to the **localhost:8081/_explorer/index.html** landing page.
+1. **Wait for 3 to 4 minutes** to get started the emulator to automatically opens your default browser and navigate to the **localhost:8081/_explorer/index.html** landing page.
 
 1. In the **Azure Cosmos DB Emulator** landing page, navigate to the **Quickstart** pane.
 
@@ -45,11 +46,23 @@ In this task, you'll connect to the Azure Cosmos DB Emulator using the Microsoft
 
 The **Microsoft.Azure.Cosmos** library has already been pre-installed in the .NET script you will use in this exercise. Further, some of the boilerplate code has already been written to save you time. You will need to update the boilerplate connection string value and write a couple of lines of code to complete the script.
 
-1. In **Visual Studio Code**, Select the file option on the top left of the screen, from the pane options, select **Open Folder** and navigate to **C:\AllFiles\dp-420-cosmos-db-dev**
+1. Navigate back to Visual Studio Code from the desktop.
+
+     ![Visual Studio Code Icon](./media/vscode1.jpg)
+
+1. Select the **file (1)** option on the top left of the screen, from the pane options, select **Open Folder (2)**. navigate to **C:\AllFiles\dp-420-cosmos-db-dev**.
+
+     ![06](media/New-image51.png)
+
+1. Navigate to **C:\AllFiles\dp-420-cosmos-db-dev** select **dp-420-cosmos-db-dev** and click on **Select Folder**.
+
+    ![06](media/New-image54.png)
 
 1. Select the folder **05-sdk-offline** and click on Select Folder.
 
-1. Open the **script.cs** code file within the **05-sdk-offline** folder.
+1. In **Visual Studio Code**, in the **05-sdk-offline (1)** folder open the empty **script.cs (2)** code file.
+
+    ![06](media/DB32.png)
 
 1. Update the existing variable named **connectionString** with its value set to the **connection string** of the Azure Cosmos DB Emulator.
   
@@ -89,6 +102,8 @@ The **Microsoft.Azure.Cosmos** library has already been pre-installed in the .NE
 
 1. **Save** the **script.cs** code file.
 
+    ![06](media/DB33.png)
+
 1. In **Visual Studio Code**, right-click on **05-sdk-offline** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
     
     ![06](media/1.png)
@@ -108,6 +123,8 @@ The **Microsoft.Azure.Cosmos** library has already been pre-installed in the .NE
     ```
 
     >**Note:** If the VS Code crashes while running the application, please close all the apps once and re perform this step.
+
+    ![06](media/DB35.png)
 
 1. Close the integrated terminal.
 
@@ -130,6 +147,8 @@ Now that you have created a new database in the Azure Cosmos DB emulator, you wi
 
 1. In the **Data Explorer**, observe the new **cosmicworks** database node within the **SQL API** navigation tree.
 
+    ![06](media/DB34.png)
+
 1. Close your web browser window or tab.
 
 ###  Task 4: Create and view a new container
@@ -138,9 +157,9 @@ In this task, you will expand the previous script to create a new container call
 
 Creating a new container is similar to the pattern used to create a new database. The code you learn here will be relevant whether or not you create resources in the cloud or in the emulator, you simply need to change the connection string. You will expand the script file further to create a new container along with the database.
 
-1. In **Visual Studio Code**, in the **Explorer** pane, browse to the **05-sdk-offline** folder.
+1. In **Visual Studio Code**, in the **05-sdk-offline (1)** folder open the empty **script.cs (2)** code file.
 
-1. Open the **script.cs** code file within the **05-sdk-offline** folder again.
+    ![06](media/DB32.png)
 
 1. Asynchronously invoke the [CreateContainerIfNotExistsAsync][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.database.createcontainerifnotexistsasync] method of the **database** variable passing in the name of the new container (**products**), the partition key path (**/categoryId**), and the throughput (**400**) you would like to create within the **cosmicworks** database and storing the result in a variable of type [Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container]:
 
@@ -173,13 +192,19 @@ Creating a new container is similar to the pattern used to create a new database
 
 1. **Save** the **script.cs** code file.
 
-1. In **Visual Studio Code**, open the context menu for the **05-sdk-offline** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+     ![06](media/DB36.png)
+
+1. In **Visual Studio Code**, right-click on **05-sdk-offline** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+    
+    ![06](media/1.png)
 
 1. Build and run the project using the [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] command:
 
     ```
     dotnet run
     ```
+
+    ![06](media/DB37.png)
 
 1. Close the integrated terminal.
 
