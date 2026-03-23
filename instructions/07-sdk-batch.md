@@ -27,7 +27,7 @@ In this task, you will prepare your development environment for working with Azu
 
      ![Visual Studio Code Icon](./media/vscode1.jpg)
 
-2. Select the **Extensions (1)** blade from the left panel. Search with **C# (2)** and select **Install (3)** to install the extension.
+2. Select the **Extensions (1)** blade from the left panel. Search with **C# (2)** and select **Install (3)** to install the extension. Wait for the Installation to complete.
 
     ![06](media/New-image50.png)
 
