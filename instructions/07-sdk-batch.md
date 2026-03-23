@@ -380,12 +380,5 @@ transaction did not share the same partition key value as the transactional batc
 
 In this lab, you gained hands-on experience using the Azure Cosmos DB NoSQL API SDK to batch multiple operations within a single transactional unit. By leveraging the TransactionalBatch and TransactionalBatchResponse classes, you learned how to group multiple point operations to ensure atomicity, meaning all operations succeed or fail together. This lab emphasized the importance of using partition keys for batch operations, as Cosmos DB requires items within a transaction to share the same partition key.
     
-### Review
-
-In this lab, you have completed:
-
-- Create an Azure Cosmos DB for NoSQL account and configure the SDK project.
-- Created a transactional batch.
-- Created an errant transactional batch.
 
 ### You have successfully completed the lab
