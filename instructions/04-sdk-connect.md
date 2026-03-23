@@ -22,7 +22,7 @@ In this lab, you will complete the following tasks:
 
 In this task, you will prepare your development environment for working with Azure Cosmos DB by setting up Visual Studio Code.
 
-1. Start Visual Studio Code from the desktop.
+1. Open Visual Studio Code from the desktop.
 
      ![Visual Studio Code Icon](./media/vscode1.jpg)
 

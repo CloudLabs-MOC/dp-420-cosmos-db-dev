@@ -104,7 +104,7 @@ The **Microsoft.Azure.Cosmos** library has already been pre-installed in the .NE
 
     ![06](media/DB33.png)
 
-1. In **Visual Studio Code**, right-click on **05-sdk-offline** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+1. In **Visual Studio Code**, right-click on **05-sdk-offline (1** folder and then select **Open in Integrated Terminal (2)** to open a new terminal instance.
     
     ![06](media/1.png)
     

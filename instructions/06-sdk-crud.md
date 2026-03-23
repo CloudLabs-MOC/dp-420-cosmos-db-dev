@@ -22,21 +22,26 @@ In this lab, you will complete the following tasks:
 
 ## Prepare your development environment
 
-1. Start Visual Studio Code from the desktop.
+1. Open Visual Studio Code from the desktop.
 
      ![Visual Studio Code Icon](./media/vscode1.jpg)
 
-2. Select the **Extensions** blade from the left panel. Search with **C#** and select **Install** to install the extension.
+1. Select the **Extensions (1)** blade from the left panel. Search with **C# (2)** and select **Install (3)** to install the extension.
 
     ![06](media/New-image50.png)
 
-3. Select the **file** option on the top left of the screen, from the pane options, select **Open Folder**. 
 
-4. Navigate to **C:\AllFiles\dp-420-cosmos-db-dev** select **dp-420-cosmos-db-dev** and click on **Select Folder**.
+1. Select the **file (1)** option on the top left of the screen, from the pane options, select **Open Folder (2)**. navigate to **C:\AllFiles\dp-420-cosmos-db-dev**.
+
+     ![06](media/New-image51.png)
+
+1. Navigate to **C:\AllFiles\dp-420-cosmos-db-dev** select **dp-420-cosmos-db-dev** and click on **Select Folder**.
 
     ![06](media/New-image54.png)
 
-5. If when **Do you trust the author of the files in this folder** click on **Yes, I trust the authors**.
+1. If when **Do you trust the author of the files in this folder** click on **Yes, I trust the authors**.
+
+   ![06](media/DB24.png)
 
 ### Task 1: Create an Azure Cosmos DB NoSQL API account
 
@@ -44,36 +49,48 @@ In this task, you will create an Azure Cosmos DB account using the NoSQL API. Af
 
 Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **Mongo API** or **SQL API**). Once the Azure Cosmos DB SQL API account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB SQL API account using the Azure SDK for .NET or any other SDK of your choice.
 
-1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
+1. Navigate back to Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
    ![06](media/New-image1.png)
    
-1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
+1. Select **+ Create (1)** under **Azure Cosmos DB for NoSQL** click on **Create (2)** to create  **Azure Cosmos DB for NoSQL** account.
 
     ![06](media/New-image2.png)
 
     ![06](media/New-image3.png)
 
-1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create**:
+1. Specify the following settings, leaving all remaining settings to their default values, and select **Next: Global Distribution (9)**:
 
-    | **Setting** | **Value** |
-    | -------------------|------------------------------------------|
-    | **Subscription**   | *Your existing Azure subscription* |
-    | **Resource group** | *Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* |
-    | **Account Name**   | *sql-<inject key="DeploymentID" enableCopy="false"/>* |
-    | **Location**       | *Choose any available region* |
-    | **Capacity mode**  | *Provisioned throughput* |
-    | **Apply Free Tier Discount** | *Do Not Apply* |
+    | **Setting**         | **Value** |
+    | --------------------|--------------------------------------------------- |
+    | **Workload Type**   | *Production* (1) |
+    | **Subscription**    | *Your existing Azure subscription* (2) |
+    | **Resource group**  | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* (3) |
+    | **Account Name**    | *sql-<inject key="DeploymentID" enableCopy="false"/>* (4) |
+    | **Location**        | *Choose the default region* (5) |
+    | **Capacity mode**   | *Provisioned throughput* (6) |
+    | **Apply Free Tier Discount** | *Do Not Apply* (7) |
+    | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* (8) |
 
-1. Once after validation passed click on **Create**.
+     ![06](media/create-cosmosdb1.1-2304.png)
+
+1. Click on **Next: Networking** on the Global Distribution page. Select **All networks (1)** for the **Connectivity method** and click on **Review + Create (2)**. 
+
+     ![06](media/select-networking-2304.png)
+
+1. Click on **Create**.
+
+    ![06](media/New-image5.png)
 
 1. Wait for the deployment task to complete before continuing with this task.
 
-1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys** pane.
+1. Once deployment is completed, select **Go to resources**. 
 
     ![06](media/New-image6.png)
 
-    ![06](media/New-image7.png)
+1. In the **Azure Cosmos DB account**, expand **Settings (1)** from the left menu, then select **Keys (2)**.
+
+    ![06](media/DB15.png)
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
@@ -98,7 +115,7 @@ In this task, you will connect to the Azure Cosmos DB NoSQL API account using th
 
 1. In **Visual Studio Code**, in the **Explorer** pane, browse to the **06-sdk-crud** folder.
 
-1. Open the context menu for the **06-sdk-crud** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+1. Open the context menu for the **06-sdk-crud (1)** folder and then select **Open in Integrated Terminal (2)** to open a new terminal instance.
 
      ![06](media/New-image67.png)
         
@@ -118,7 +135,9 @@ In this task, you will connect to the Azure Cosmos DB NoSQL API account using th
 
 1. Close the integrated terminal.
 
-1. Open the **script.cs** code file within the **06-sdk-crud** folder.
+1. In **Visual Studio Code**, in the **06-sdk-crud (1)** folder open the empty **script.cs (2)** code file.
+
+    ![06](media/DB38.png)
 
     >**Note**: The **[Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1]** library has already been pre-imported from NuGet.
 
@@ -172,7 +191,9 @@ In this task, you will connect to the Azure Cosmos DB NoSQL API account using th
 
 1. **Save** the **script.cs** code file.
 
-1. In **Visual Studio Code**, open the context menu for the **06-sdk-crud** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+    ![06](media/DB39.png)
+
+1. In **Visual Studio Code**, open the context menu for the **06-sdk-crud (1)** folder and then select **Open in Integrated Terminal (2)** to open a new terminal instance.
 
     ![06](media/New-image67.png)
      
@@ -185,10 +206,7 @@ In this task, you will connect to the Azure Cosmos DB NoSQL API account using th
 
 1. Close the integrated terminal.
 
-1. Navigate to the **Azure portal**.
-
-1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under 
-   services.
+1. Navigate back to Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
    ![06](media/New-image1.png)
 
@@ -196,11 +214,13 @@ In this task, you will connect to the Azure Cosmos DB NoSQL API account using th
 
      ![06](media/New-image68.png)
 
-1. Within the **Azure Cosmos DB** account resource, navigate to the **Data Explorer** pane.
+1. Within the **Azure Cosmos DB** account resource **overview page (1)** , navigate to the **Data Explorer (2)** pane. 
 
-1. In the **Data Explorer**, expand the **cosmicworks** database node, then observe the new **products** container node within navigation tree.
+    ![06](media/DB04.png)
 
-    ![06](media/New-image69.png)
+1. In the **Data Explorer**, expand the **cosmicworks (2)** database node, expand the **products (3)** container node.
+
+    ![06](media/DB41.png)
    
     > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
     > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
@@ -376,7 +396,9 @@ In this task, You'll now use the set of asynchronous methods in the Microsoft.Az
 
 1. **Save** the **script.cs** code file.
 
-1. In **Visual Studio Code**, open the context menu for the **06-sdk-crud** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+1. In **Visual Studio Code**, open the context menu for the **06-sdk-crud (1)** folder and then select **Open in Integrated Terminal (2)** to open a new terminal instance.
+
+    ![06](media/New-image67.png)
 
 1. Build and run the project using the **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** command:
 
@@ -396,13 +418,22 @@ In this task, you will update the product's price and name using the UpsertItemA
 
 While learning the SDK, it's not uncommon to use an online Azure Cosmos DB SDK account or the emulator to update an item and  oscillate back and forth between the Data Explorer and your IDE of choice as you perform an operation and check to see if your change has been applied. Here, you will do just that as you update and delete an item using the SDK.
 
-1. Navigate to the **Azure portal**.
+1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under 
+   services.
 
-1. Within the **sql-<inject key="DeploymentID" enableCopy="false"/>** Azure Cosmos DB account resource, navigate to the **Data Explorer** pane.
+   ![06](media/New-image1.png)
 
-1. In the **Data Explorer**, expand the **cosmicworks** database node, then expand the new **products** container node within navigation tree.
+1. Select **sql-<inject key="DeploymentID" enableCopy="false"/>**.
 
-1. Select the **Items** node. Select the only item within the container and then observe the values of the **name** and **price** properties of the item.
+     ![06](media/New-image68.png)
+
+1. Within the **Azure Cosmos DB** account resource **overview page (1)** , navigate to the **Data Explorer (2)** pane. 
+
+    ![06](media/DB04.png)
+
+1. In the **Data Explorer**, expand the **cosmicworks (2)** database node, expand the **products (3)** container node, and then select **Items (4)**.And then observe the values of the **name** and **price** properties of the item.
+
+    ![06](media/DB19.png)
 
     | **Property** | **Value** |
     | :--- | :--- |
@@ -469,7 +500,9 @@ While learning the SDK, it's not uncommon to use an online Azure Cosmos DB SDK a
 
 1. **Save** the **script.cs** code file.
 
-1. In **Visual Studio Code**, open the context menu for the **06-sdk-crud** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+1. In **Visual Studio Code**, open the context menu for the **06-sdk-crud (1)** folder and then select **Open in Integrated Terminal (2)** to open a new terminal instance.
+
+    ![06](media/New-image67.png)
 
 1. Build and run the project using the **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** command:
 
@@ -479,13 +512,18 @@ While learning the SDK, it's not uncommon to use an online Azure Cosmos DB SDK a
 
 1. Close the integrated terminal.
 
-1. Navigate to the **Azure portal**
+1. Navigate back to Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under 
+   services.
 
-1. Within the **sql-<inject key="DeploymentID" enableCopy="false"/>** Azure Cosmos DB account resource, navigate to the **Data Explorer** pane.
+   ![06](media/New-image1.png)
 
-1. In the **Data Explorer**, expand the **cosmicworks** database node, then expand the new **products** container node within navigation tree.
+1. Select **sql-<inject key="DeploymentID" enableCopy="false"/>**.
 
-1. Select the **Items** node. Select the only item within the container and then observe the values of the **name** and **price** properties of the item.
+     ![06](media/New-image68.png)
+
+1. Within the **Azure Cosmos DB** account resource **overview page (1)** , navigate to the **Data Explorer (2)** pane. 
+
+    ![06](media/DB04.png) and then observe the values of the **name** and **price** properties of the item.
 
     | **Property** | **Value** |
     | --- | --- |
@@ -517,7 +555,9 @@ While learning the SDK, it's not uncommon to use an online Azure Cosmos DB SDK a
 
 1. **Save** the **script.cs** code file.
 
-1. In **Visual Studio Code**, open the context menu for the **06-sdk-crud** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+1. In **Visual Studio Code**, open the context menu for the **06-sdk-crud (1)** folder and then select **Open in Integrated Terminal (2)** to open a new terminal instance.
+
+    ![06](media/New-image67.png)
 
 1. Build and run the project using the **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** command:
 
@@ -527,11 +567,18 @@ While learning the SDK, it's not uncommon to use an online Azure Cosmos DB SDK a
 
 1. Close the integrated terminal.
 
-1. Switch back to the **Azure portal** and refresh the page.
+1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under 
+   services.
 
-1. Within the **sql-<inject key="DeploymentID" enableCopy="false"/>** Azure Cosmos DB account resource, navigate to the **Data Explorer** pane.
+   ![06](media/New-image1.png)
 
-1. In the **Data Explorer**, expand the **cosmicworks** database node, then expand the new **products** container node within navigation tree.
+1. Select **sql-<inject key="DeploymentID" enableCopy="false"/>**.
+
+     ![06](media/New-image68.png)
+
+1. Within the **Azure Cosmos DB** account resource **overview page (1)** , navigate to the **Data Explorer (2)** pane. 
+
+    ![06](media/DB04.png)
 
 1. Select the **Items** node. Observe that the items list is now empty.
 
