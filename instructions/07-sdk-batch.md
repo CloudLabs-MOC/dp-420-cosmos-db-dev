@@ -256,8 +256,7 @@ First, let’s create a simple transactional batch that makes two fictional prod
     > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
 
 <validation step="c1661fb4-6a05-4936-b3ef-79573f26117e" />
-
-    
+   
 ### Task 3: Creating an errant transactional batch
 
 In this task, you intentionally cause an error by trying to insert two items with different partition keys (a "Flickering Strobe Light" and a "New Helmet"). Since Cosmos DB requires items in the same batch to share the same partition key, this transaction results in an error (HTTP 400 Bad Request).
