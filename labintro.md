@@ -6,7 +6,7 @@ Welcome to your Developing Cloud-Native Applications Using Microsoft Azure Cosmo
  
 Once you're ready to dive in, your virtual machine and lab guide will be right at your fingertips within your web browser.
  
-![Access Your VM and Lab Guide](./instructions/media/labguide.png)
+![Access Your VM and Lab Guide](./instructions/media/DBGS.png)
 
 ### Virtual Machine & Lab Guide
  
