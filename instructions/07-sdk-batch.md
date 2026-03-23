@@ -1,6 +1,6 @@
 # Batch multiple point operations together with the Azure Cosmos DB NoSQL API SDK
 
-## Lab scenario
+## Lab Scenario
 
 The [TransactionalBatch][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.transactionalbatch] and [TransactionalBatchResponse][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.transactionalbatchresponse] classes together are the key to composing and decomposing operations into a single logical step. Using these classes, you can write your code to perform multiple operations and then determine if they were completed successfully server-side.
 
