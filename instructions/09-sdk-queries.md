@@ -283,13 +283,5 @@ You will now use an asynchronous stream to create a simple-to-understand for-eac
 
 In this lab, you set up Visual Studio Code and created an Azure Cosmos DB NoSQL API account. After seeding the database with product data using the cosmicworks tool, you modified a C# script to query the database asynchronously. You used the Cosmos DB SDK to execute a SQL query, iterate over the results using an asynchronous loop, and display product information efficiently. This lab provided hands-on experience in querying and handling data in Azure Cosmos DB using .NET SDK and C#.
 
-### Review
-
-In this lab, you have completed:
-
-- Prepared your development environment.
-- Created an Azure Cosmos DB NoSQL API account.
-- Seeded the Azure Cosmos DB NoSQL API account with data.
-- Iterated over the results of a NoSQL query using the SDK.
 
 ### You have successfully completed the lab
