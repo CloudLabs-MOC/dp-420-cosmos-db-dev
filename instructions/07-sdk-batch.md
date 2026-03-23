@@ -35,7 +35,7 @@ In this task, you will prepare your development environment for working with Azu
 
     ![06](media/c3.png)
 
-4. Navigate to **C:\AllFiles (1)**, select **dp-420-cosmos-db-dev (2)** and click on **Select Folder (3)**.
+4. Navigate to **C:\AllFiles (1)**, select **dp-420-cosmos-db-dev-main (2)** and click on **Select Folder (3)**.
 
     ![06](media/c2.png)
 
@@ -45,7 +45,7 @@ In this task, you will prepare your development environment for working with Azu
 
 In this task, you will provision an Azure Cosmos DB SQL account, configuring essential settings and retrieving the necessary connection details for future development.
 
-1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
+1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
    ![06](media/New-image1.png)
    
