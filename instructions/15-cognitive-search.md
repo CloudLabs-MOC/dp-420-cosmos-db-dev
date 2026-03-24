@@ -136,16 +136,6 @@ You will use a command-line utility that creates a **cosmicworks** database and 
     cosmicworks --endpoint <cosmos-endpoint> --key <cosmos-key> --datasets product
     ```
 
-1. In your **Cosmos DB account**, expand **Settings (1)** and select **Keys (2)**.
-
-1. Copy the **Primary Connection String (4)** and use the **Show/Hide (3)** option if needed to view the value.
-
-     ![06](media/DB63.png)
-
-    ```
-    cosmicworks --connection-string "<your-connection-string>" --datasets product
-    ```
-
     > **For example:** if your endpoint is: **https&shy;://dp420.documents.azure.com:443/** and your key is: **fDR2ci9QgkdkvERTQ==**, then the command would be:
     > ``cosmicworks --endpoint https://dp420.documents.azure.com:443/ --key fDR2ci9QgkdkvERTQ== --datasets product``
 
@@ -165,11 +155,19 @@ You will use a command-line utility that creates a **cosmicworks** database and 
 
     1. Wait a few minutes for the firewall rule to take effect.
 
+    1. In your **Cosmos DB account**, expand **Settings (1)** and select **Keys (2)**.
+
+    1. Copy the **Primary Connection String (4)** and use the **Show/Hide (3)** option if needed to view the value.
+
+     ![06](media/DB63.png)
+
+    ```
+    cosmicworks --connection-string "<your-connection-string>" --datasets product
+    ```
+
 1. Wait for the **cosmicworks** command to finish populating the account with a database, container, and items.
 
-1. Close the integrated terminal.
-
-1. Close **Visual Studio Code**.
+1. Close the integrated terminal. And close **Visual Studio Code**.
 
 ### Task 3: Create an Azure AI Search resource
 
