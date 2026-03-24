@@ -1,6 +1,6 @@
 # Execute a query with the Azure Cosmos DB for NoSQL SDK
 
-## Lab scenario
+## Lab Scenario
 
 The latest version of the .NET SDK for Azure Cosmos DB for NoSQL makes it easier than ever to query a container and asynchronously iterate over result sets using the latest best practices and language features from C#.
 
@@ -8,7 +8,7 @@ This library has special functionality to make it easier to query Azure Cosmos D
 
 In this lab, you'll use an asynchronous stream to iterate over a large result set returned from Azure Cosmos DB for NoSQL. You will use the .NET SDK to query and iterate over results.
 
-## Lab objectives
+## Lab Objectives
 
 In this lab, you will complete the following tasks:
 - Task 1: Prepare your development environment.
@@ -26,21 +26,23 @@ In this lab, you will complete the following tasks:
 
 In this task, you will prepare your development environment for working with Azure Cosmos DB by setting up Visual Studio Code.
 
-1. Start Visual Studio Code (the program icon is pinned to the Desktop).
+1. Start **Visual Studio Code** from the desktop.
 
-   ![Visual Studio Code Icon](./media/vscode1.jpg)
+     ![Visual Studio Code Icon](./media/vscode1.jpg)
 
-2. Select the **Extensions** blade from the left panel. Search with **C#** and select **Install** to install the extension.
+2. Select the **Extensions (1)** blade from the left panel. Search with **C# (2)** and select **Install (3)** to install the extension. Wait for the Installation to complete.
 
     ![06](media/New-image50.png)
 
-3. Select the **file** option on the top left of the screen, from the pane options, select **Open Folder**. 
+3. Select the **File (1)** option on the top left of the screen, from the pane options, select **Open Folder (2)**. 
 
-4. Navigate to **C:\AllFiles\dp-420-cosmos-db-dev** select **dp-420-cosmos-db-dev** and click on **Select Folder**.
+    ![06](media/c3.png)
 
-    ![06](media/New-image54.png)
+4. Navigate to **C:\AllFiles (1)**, select **dp-420-cosmos-db-dev-main (2)** and click on **Select Folder (3)**.
 
-5. If when **Do you trust the author of the files in this folder** click on **Yes, I trust the authors**.
+    ![06](media/c2.png)
+
+5. If **When Do you trust the author of the files in this folder** click on **Yes, I trust the authors**.
 
 ### Task 2: Create an Azure Cosmos DB NoSQL API account
 
@@ -48,15 +50,17 @@ In this task, you will create an Azure Cosmos DB account using the NoSQL API. Af
 
 Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **Mongo API** or **SQL API**). Once the Azure Cosmos DB SQL API account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB SQL API account using the Azure SDK for .NET or any other SDK of your choice.
 
-1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
+1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
    ![06](media/New-image1.png)
    
-1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
+1. Select **+ Create (1)** under **Azure Cosmos DB for NoSQL**.
 
     ![06](media/New-image2.png)
 
-    ![06](media/New-image3.png)
+    - Click on **Create (2)** to create **Azure Cosmos DB for NoSQL** account.
+
+      ![06](media/New-image3.png)
 
 1. Specify the following settings, leaving all remaining settings to their default values, and select **Next: Global Distribution (9)**:
 
@@ -71,32 +75,34 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     | **Apply Free Tier Discount** | *Do Not Apply* (7) |
     | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* (8) |
 
-     ![06](media/create-cosmosdb1.1-2304.png)
+     ![06](media/c12.png)
 
-     ![06](media/create-cosmosdb2.2-2304.png)
+     ![06](media/c13.png)
 
 1. Click on **Next: Networking** on the Global Distribution page. Select **All networks (1)** for the **Connectivity method** and click on **Review + Create (2)**. 
 
-    ![06](media/select-networking-2304.png)
+    ![06](media/c14.png)
 
 1. Once after validation passed click on **Create**.
 
 1. Wait for the deployment task to complete before continuing with this task.
 
-1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys** pane.
+1. Select **Go to resources**.
 
     ![06](media/New-image6.png
 
-    ![06](media/New-image7.png)
+1. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys (1)** pane. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
+    - Record the value of the **URI (2)** field. You will use this **endpoint** value later in this exercise.
 
-1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
+        ![06](media/c18.png)
 
-    1. Notice the **Primary Connection String** field. Copy the value you will use this **connection string** value later in this exercise.
+    - Notice the **Primary Connection String** field. Click in the **eye** icon **(1)**. Copy the value you will use this **connection string** value later in this exercise **(2)**.
 
-        ![06](media/conn-string-2304.png)
-       
+      - Click in the **eye** icon **(3)** next to PRIMARY KEY. Record the value of the **PRIMARY KEY (4)** field. You will use this **key** value later in this exercise.
+
+        ![06](media/c19.png)    
+        
 1. Switch back to **Visual Studio Code**.
 
     > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
@@ -122,7 +128,9 @@ The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys samp
     dotnet tool install cosmicworks --global --version 2.*
     ```
 
-    >**Note**: This command may take a couple of minutes to complete. This command will output the warning message (*Tool 'cosmicworks' is already installed) if you have already installed the latest version of this tool in the past.
+    ![06](media/c15.png)    
+
+     >**Note**: This command may take a couple of minutes to complete. This command will output the warning message (*Tool 'cosmicworks' is already installed) if you have already installed the latest version of this tool in the past.
 
 1. Once the Installation is completed, make sure to close the **Visual Studio Code** and re-open it to perform the below command.
 
@@ -139,8 +147,10 @@ The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys samp
     > **Note:** If you get an error while running the above command, **close** the visual studio code and **re-open** to run the above command.
 
 1. Wait for the **cosmicworks** command to finish populating the account with a database, container, and items.
+
+   ![06](media/c16.png)
    
-   >**Note**: If you're getting an error, close the visual studio code reopen it and try to run the command once again.
+    >**Note**: If you're getting an error, close the visual studio code reopen it and try to run the command once again.
 
 1. Close the integrated terminal.
 
@@ -150,11 +160,12 @@ In this task, you will modify a C# script to connect to your Cosmos DB, execute 
 
 You will now use an asynchronous stream to create a simple-to-understand for-each loop over paginated results from Azure Cosmos DB. Behind the scenes, the SDK will manage the feed iterator and make sure subsequent requests are invoked correctly.
 
-1. In **Visual Studio Code**, in the **Explorer** pane, browse to the **09-execute-query-sdk** folder.
+1. In **Visual Studio Code**, in the **Explorer** pane, browse to the **09-execute-query-sdk (1)** folder.
 
-1. Open the **product.cs** code file.
+    - Open the **product.cs (2)** code file.
+    - Observe the **Product** class and its corresponding properties. Specifically, this lab will use the **id**, **name**, and **price** properties.
 
-1. Observe the **Product** class and its corresponding properties. Specifically, this lab will use the **id**, **name**, and **price** properties.
+      ![06](media/c17.png)    
 
 1. Back in the **Explorer** pane of **Visual Studio Code**, open the **script.cs** code file.
 
@@ -172,7 +183,21 @@ You will now use an asynchronous stream to create a simple-to-understand for-eac
     string key = "<cosmos-key>";
     ```
 
-    >**Note**: For example, if your key is: **fDR2ci9QgkdkvERTQ==**, then the C# statement would be: **string key = "fDR2ci9QgkdkvERTQ==";**.
+    ![06](media/c-21.png)     
+
+     >**Note**: For example, if your key is: **fDR2ci9QgkdkvERTQ==**, then the C# statement would be: **string key = "fDR2ci9QgkdkvERTQ==";**.
+
+1. Remove the `12` th line, `CosmosContainer container = await database.CreateContainerIfNotExistsAsync("products", "/categoryId");`.
+
+    ![06](media/c22.png) 
+
+1. Add the below Statement.
+
+    ```
+    CosmosContainer container = database.GetContainer("products");
+    ```
+
+    ![06](media/c23.png) 
 
 1. At end of the script add the below command to create a new variable named **sql** of type *string* with a value of **SELECT * FROM products p**:
 
@@ -225,9 +250,13 @@ You will now use an asynchronous stream to create a simple-to-understand for-eac
     }
     ```
 
+    ![06](media/c24.png)    
+
 1. Press **Ctrl+S** to **Save** the script.cs file.
 
-1. In **Visual Studio Code**, open the context menu for the **09-execute-query-sdk** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+1. In **Visual Studio Code**, open the context menu for the **09-execute-query-sdk** folder, right click on the folder **(1)** and then select **Open in Integrated Terminal (2)** to open a new terminal instance.
+
+    ![06](media/c25.png)
 
 1. Build and run the project using the [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] command:
 
@@ -235,7 +264,9 @@ You will now use an asynchronous stream to create a simple-to-understand for-eac
     dotnet run
     ```
 
-1. The script will now output every product in the container
+1. The script will now output every product in the container.
+
+    ![06](media/c26.png)
 
 1. Close the integrated terminal.
 
@@ -252,13 +283,5 @@ You will now use an asynchronous stream to create a simple-to-understand for-eac
 
 In this lab, you set up Visual Studio Code and created an Azure Cosmos DB NoSQL API account. After seeding the database with product data using the cosmicworks tool, you modified a C# script to query the database asynchronously. You used the Cosmos DB SDK to execute a SQL query, iterate over the results using an asynchronous loop, and display product information efficiently. This lab provided hands-on experience in querying and handling data in Azure Cosmos DB using .NET SDK and C#.
 
-### Review
-
-In this lab, you have completed:
-
-- Prepared your development environment.
-- Created an Azure Cosmos DB NoSQL API account.
-- Seeded the Azure Cosmos DB NoSQL API account with data.
-- Iterated over the results of a NoSQL query using the SDK.
 
 ### You have successfully completed the lab
