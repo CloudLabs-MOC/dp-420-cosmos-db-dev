@@ -418,14 +418,6 @@ In this task, You will use a command-line utility that creates a **cosmicworks**
 
 By completing this lab, you gained practical experience in setting up Azure Cosmos DB, creating Azure Functions, and implementing a change feed processor to handle data changes. This knowledge equips you to build responsive applications that leverage Azure's serverless architecture and NoSQL capabilities effectively.
 
-### Review
 
-In this lab, you have completed the following topics:
-
-- Create an Azure Cosmos DB for NoSQL account
-- Create Application Insight
-- Create an Azure Function app and Azure Cosmos DB-triggered function
-- Implement function code in .NET
-- Seed your Azure Cosmos DB for NoSQL account with sample data
 
 ### You have successfully completed the lab
