@@ -111,7 +111,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Back in the **Data Explorer** pane, expand the **cosmicworks** database node and then observe the **products** container node within the hierarchy.
 
-1. In the **Data Explorer** pane, select **+ New Container** > **+ New Container** again.
+1. In the **Data Explorer** pane, select **+ New Container (1)** > **+ New Container (2)** again.
 
     ![06](media/New-image85.png)
 
@@ -142,7 +142,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 In this task, you'll set up Azure Application Insights to monitor your Azure Function application. First, you'll create a Log Analytics workspace, which will store monitoring data. Then, you'll create an Application Insights instance and link it to the Log Analytics workspace, enabling you to track the performance and activity of your application.
 
-1. On **Azure Portal** page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Log Analytics workspaces**, and then select **Log Analytics workspaces** under services.
+1. On **Azure Portal** page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Log Analytics workspaces (1)**, and then select **Log Analytics workspaces (2)** under services.
 
     ![06](media/New-image88.png)
         
@@ -150,16 +150,18 @@ In this task, you'll set up Azure Application Insights to monitor your Azure Fun
 
     ![06](media/New-image89.png)
 
-1. In the **Log Analytics workspace** dialog, enter the following values for each setting, and then select **Review + Create** and then select **Create**:
+1. In the **Log Analytics workspace** dialog, enter the following values for each setting, and then select **Review + Create (5)**: 
 
     | **Setting** | **Value** |
     | :--- | :--- |
-    | **Subscription** | *Your existing Azure subscription* |
-    | **Resource group** | *Select an existing or create a new resource group* |
-    | **Name** | *``lab14laworkspace``* |
-    | **Location** | *Choose any available region* |
+    | **Subscription** | *Your existing Azure subscription* **(1)** |
+    | **Resource group** | *Select an existing or create a new resource group* **(2)** |
+    | **Name** | *``lab14laworkspace``* **(3)** |
+    | **Location** | *Choose any available region* **(4)** |
 
      ![06](media/New-image90.png)
+
+1. Then select **Create**:     
    
 1. Once your *Log Analytics workspace* is created, in the search box search for **Application Insights**.
 
@@ -167,17 +169,19 @@ In this task, you'll set up Azure Application Insights to monitor your Azure Fun
 
 1. Select to **+ Create** a new *Application Insight*.
 
-1. In the **Application Insights** dialog, enter the following values for each setting, and then select **Review + Create** and then select **Create**:
+1. In the **Application Insights** dialog, enter the following values for each setting, and then select **Review + Create (5)**: 
 
     | **Setting** | **Value** |
     | :--- | :--- |
-    | **Subscription (both entries)** | *Your existing Azure subscription* |
-    | **Resource group** | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* |
-    | **Name** | *``lab14appinsight``* |
-    | **Location** | *Choose any available region* |
-    | **Log Analytics Workspace** | *lab14laworkspace* |
+    | **Subscription (both entries)** | *Your existing Azure subscription* **(1)** |
+    | **Resource group** | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* **(2)** |
+    | **Name** | **``lab14appinsight`` (3)** |
+    | **Location** | **Choose any available region (4)** |
+    | **Log Analytics Workspace** | **lab14laworkspace (5)** |
 
      ![06](media/New-image92.png)
+
+1. Then select **Create**:     
      
 1. You should now be able to monitor your application function.
 
@@ -205,24 +209,30 @@ In this task, you'll create an Azure Function app with a Cosmos DB-triggered fun
 1. On the **Function App** page click on **Create**.
 
     ![06](media/New-image98.png)
+
+1. On the **Select a hosting option** page, select **App service (1)** and then **Select (2)**.    
+
+    ![06](media/c33.png)
    
-1. Specify the following settings, leaving all remaining settings to their default values and then select **Review + Create** and then select **Create**:
+1. Specify the following settings, leaving all remaining settings to their default values and then select **Review + Create (8)**.
 
     | **Setting** | **Value** |
     | :--- | :--- |
-    | **Subscription** | *Your existing Azure subscription* |
-    | **Resource group** | *Select an existing or create a new resource group* |
-    | **Name** | *functionapp-<inject key="DeploymentID" enableCopy="false"/>* |
-    | **Publish** | *Code* |
-    | **Runtime stack** | *.NET* |
-    | **Version** | *6 (LTS) in-process model* |
-    | **Region** | *Choose any available region* |
+    | **Subscription** | *Your existing Azure subscription* **(1)** |
+    | **Resource group** | *Select an existing or create a new resource group* **(2)** |
+    | **Name** | **functionapp-<inject key="DeploymentID" enableCopy="false"/> (3)** |
+    | **Publish** | **Code (4)** |
+    | **Runtime stack** | **.NET (5)** |
+    | **Version** | **8 (LTS) in-process model (6)** |
+    | **Region** | *Choose any available region* **(7)** |
 
-    ![06](media/New-image102.png)
+    ![06](media/c34.png)
+
+1. Then select **Create**:    
 
 1. Wait for the deployment task to complete before continuing with this task.
 
-1. Go to the newly created **Azure Functions** account resource and navigate to the **Functions** pane.
+1. Select **Go to resource**, to navigate to the newly created **Azure Functions** account resource and navigate to the **Functions** pane.
 
 1. In the **Functions** pane, select **Create function**.
 
