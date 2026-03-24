@@ -36,17 +36,22 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     ![06](media/New-image3.png)
 
 
-1.  Create the resource with the following settings, leaving all remaining settings to their default values, and select **Review + create**:
+1.  Create the resource with the following settings, leaving all remaining settings to their default values, and select **Review + create** **(7)**:
 
     | **Setting** | **Value** |
     | :--- | :--- |
-    | **Subscription** | *Your existing Azure subscription* |
-    | **Resource group** | **Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>** |
-    | **Account Name** | *Enter a globally unique name* |
-    | **Location** | *Choose any available region* |
-    | **Capacity mode** | *Serverless* |
+    | **Workload Type** | Production **(1)** |
+    | **Subscription** | Select your Azure subscription **(2)** |
+    | **Resource Group** | Select existing resource group **Cosmosdb-<inject key="DeploymentID" enableCopy="false"/> (3)** |
+    | **Account Name** | Enter **sql-<inject key="DeploymentID" enableCopy="false"/> (4)** |
+    | **Location** | Select any available location **(5)** |
+    | **Capacity mode** | Serverless **(6)** |
 
-1. On the **Review + Create** page, select **Create**.
+    ![06](media/DB51.png)
+
+1. Verify the configuration and click **Create**.
+
+     ![06](media/DB52.png)
 
 1. Wait for the deployment task to complete before continuing with this task.
 
@@ -58,23 +63,31 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-    - Record the value of the **URI** field. You will use this **endpoint** value later in this exercise.
+    - Record the value of the **URI (1)** field. You will use this **endpoint** value later in this exercise.
 
-    - Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
+    - Record the value of the **PRIMARY KEY (2)** field. You will use this **key** value later in this exercise.
 
         ![06](media/New-image9.png)
 
-1. From the left navigation menu,click on the **Overview** option and select **Data Explorer** from the top navigation pane.
+1. Within the **Azure Cosmos DB** account resource **overview page (1)** , navigate to the **Data Explorer (2)** pane. 
 
-1. In the **Data Explorer** pane, select **New Container**.
+    ![06](media/DB04.png)
 
-1. In the **New Container** popup, enter the following values for each setting, and then select **OK**:
+1. In the **Data Explorer (1)** page, click **New (2)**, then select **New Container (3)**.
+
+     ![06](media/DB42.png)
+
+1. In the **New Container** pane, enter the following details:
 
     | **Setting** | **Value** |
-    | :-- | :-- |
-    | **Database id** | *Create new* &vert; *``cosmicworks``* |
-    | **Container id** | *``products``* |
-    | **Partition key** | *``/categoryId``* |
+    | :--- | :--- |
+    | **Database id** | `cosmicworks` **(1)** |
+    | **Container id** | `products` **(2)** |
+    | **Partition key** | `/categoryId` **(3)** |
+
+    ![06](media/DB044.png)
+
+1. Click **OK (4)**.
 
 1. Back in the **Data Explorer** pane, expand the **cosmicworks** database node and then observe the **products** container node within the hierarchy.
 
@@ -91,19 +104,21 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 You will use a command-line utility that creates a **cosmicworks** database and a **products** container. The tool will then create a set of items that you will observe using the change feed processor running in your terminal window.
 
-1. On the LabVM select the **Visual Studio Code** shortcut.
+1. Start Visual Studio Code (the program icon is pinned to the Desktop).
 
-    ![06](media/visualstudio.png)
+   ![Visual Studio Code Icon](./media/vscode1.jpg)
 
-1. In **Visual Studio Code**, open the **Terminal** menu by selecting **... (ellipses) (1)** > **Terminal (2)** > **New Terminal (3)** to open a new terminal with your existing instance.
+1. In **Visual Studio Code**, open the **Terminal** menu by selecting **... (ellipses) (1)** then select **Terminal (2)** and choose **New Terminal (3)** to open a new terminal with your existing instance.
 
-    ![06](media/terminal.png)
+    ![06](media/New-image36.png)
 
 1. Install the [cosmicworks][nuget.org/packages/cosmicworks] command-line tool for global use on your machine.
 
     ```
     dotnet tool install cosmicworks --global --version 1.*
     ```
+
+    ![06](media/DB50.png)
 
     >**Note:** This command may take a couple of minutes to complete. This command will output the warning message (*Tool 'cosmicworks' is already installed') if you have already installed the latest version of this tool in the past.
 
@@ -121,10 +136,34 @@ You will use a command-line utility that creates a **cosmicworks** database and 
     cosmicworks --endpoint <cosmos-endpoint> --key <cosmos-key> --datasets product
     ```
 
+1. In your **Cosmos DB account**, expand **Settings (1)** and select **Keys (2)**.
+
+1. Copy the **Primary Connection String (4)** and use the **Show/Hide (3)** option if needed to view the value.
+
+     ![06](media/DB63.png)
+
+    ```
+    cosmicworks --connection-string "<your-connection-string>" --datasets product
+    ```
+
     > **For example:** if your endpoint is: **https&shy;://dp420.documents.azure.com:443/** and your key is: **fDR2ci9QgkdkvERTQ==**, then the command would be:
     > ``cosmicworks --endpoint https://dp420.documents.azure.com:443/ --key fDR2ci9QgkdkvERTQ== --datasets product``
 
     >**Note**: If you're getting an error, close the visual studio code reopen it and try to run the command once again.
+
+    > **Note:** If the error still occurs, perform the following steps and run the command again.
+
+    1. In the Azure portal, open your **Cosmos DB account**, expand **Settings (1)**, and select **Networking (2)**.
+
+    1. Under **Firewall**, click **Add your current IP (3)** or enter the IP address manually.
+
+        ![06](media/DB60.png)
+
+    1. Click **Save (4)** to apply the changes.
+
+        ![06](media/DB61.png)
+
+    1. Wait a few minutes for the firewall rule to take effect.
 
 1. Wait for the **cosmicworks** command to finish populating the account with a database, container, and items.
 
@@ -136,25 +175,36 @@ You will use a command-line utility that creates a **cosmicworks** database and 
 
 Before continuing with this exercise, you must first create a new Azure Cognitive Search instance.
 
-1. Back in the Azure portal, go back to the **Home** page.
+1. Navigate back to Azure portal, click **Create a resource**.
 
-1. Select **+ Create a resource**, search for *AI Search*, and then create a new **Azure AI Search** account resource with the following settings, leaving all remaining settings to their default values:
+     ![06](media/DB53.png)
+
+1. Search for **Azure AI Search (1)**, then select **Create (2)** and choose **Azure AI Search (3)**.
+
+    ![06](media/DB55.png)
+
+1. Enter the following details:
 
     | **Setting** | **Value** |
     | :--- | :--- |
-    | **Subscription** | *Your existing Azure subscription* |
-    | **Resource group** | **cosmosdb-<inject key="DeploymentID" enableCopy="false"/>** |
-    | **Name** | *Enter a globally unique name* |
-    | **Location** | *Choose any available region* |
+    | **Subscription** | Select your Azure subscription **(1)** |
+    | **Resource group** | Select **cosmosdb-<inject key="DeploymentID" enableCopy="false"/>** **(2)** |
+    | **Service name** | Enter **aisearch-<inject key="DeploymentID" enableCopy="false"/>** **(3)** |
+    | **Location** | Use the default location **(4)** |
 
+1. Click **Review + create (5)**.
+
+    ![06](media/DB56.png)
     
     >**Note:** If it shows any subscriptions errors, select **Next: Scale**, and select **Previous**.
 
-1. Click on **Review + Create** and after validation get Success click on **Create**.
+1. After validation is successful, review the configuration and click **Create**.
 
-1. Wait for the deployment task to complete before continuing with this task.
+    ![06](media/DB57.png)
 
-1. Go to the newly created **Azure AI Search** account resource.
+4. Wait for the deployment to complete, then click **Go to resource** to the newly created **Azure AI Search** account resource.
+
+    ![06](media/DB58.png)
 
 > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
 > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
@@ -171,7 +221,9 @@ You will create an indexer that indexes a subset of data in a specific Azure Cos
 
     ![06](media/importdata.png)
 
-1. In the **Connect to your data** step of the **Import data** wizard, in the **Data Source** list, select **Azure Cosmos DB (1)**.
+1. In the **Import data** wizard, in the **Data Source** list, select **Azure Cosmos DB**.
+
+    ![06](media/DB59.png)
 
 1. Configure the data source with the following settings, leaving all remaining settings to their default values:
 
