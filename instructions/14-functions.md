@@ -1,10 +1,10 @@
 # Process Azure Cosmos DB for NoSQL data using Azure Functions
 
-## Lab scenario
+## Lab Scenario
 
 The Azure Cosmos DB trigger for Azure Functions is implemented using a change feed processor. You can create functions that respond to create and update operations in your Azure Cosmos DB for NoSQL container with this knowledge. If you have implemented a change feed processor manually, the setup for Azure Functions is similar.
 
-## Lab objectives
+## Lab Objectives
 
 In this lab, you will complete the following tasks:
 - Task 1: Create an Azure Cosmos DB for NoSQL account
@@ -25,25 +25,33 @@ In this task, you will provision an Azure Cosmos DB SQL account, configuring ess
 
 Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **Mongo API** or **NoSQL API**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
 
-1. On **Azure Portal** page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
+1. On **Azure Portal** page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
    ![06](media/New-image1.png)
    
-1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
+1. Select **+ Create (1)** under **Azure Cosmos DB for NoSQL**.
 
     ![06](media/New-image2.png)
 
-    ![06](media/New-image3.png)
+    - Click on **Create (2)** to create **Azure Cosmos DB for NoSQL** account.
 
-1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create**:
+      ![06](media/New-image3.png)
+
+1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create (9)**:
 
     | **Setting** | **Value** |
     | :--- | :--- |
-    | **Subscription** | *Your existing Azure subscription* |
-    | **Resource group** | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* |
-    | **Account Name** | *sql-<inject key="DeploymentID" enableCopy="false"/>* |
-    | **Location** | *Choose any available region* |
-    | **Capacity mode** | *Serverless* |
+    | **Workload Type** | *Learning* **(1)** |    
+    | **Subscription** | *Your existing Azure subscription* **(2)** |
+    | **Resource group** | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* **(3)** |
+    | **Account Name** | *sql-<inject key="DeploymentID" enableCopy="false"/>* **(4)** |
+    | **Location** | *Choose any available region* **(5)** |
+    | **Capacity mode** | *Provisioned throughput* **(6)** |
+    | **Apply Free Tier Discount** | *Do Not Apply* **(7)** |
+    | **Limit total account throughput** | *Disable* **(8)** |        
+
+    ![06](media/c28.png) 
+    ![06](media/c29.png)        
    
 1. Once after validation passed click on **Create**.
 
@@ -57,45 +65,49 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-    1. Record the value of the **URI** field. You will use this **endpoint** value later in this exercise.
+    - Record the value of the **URI** field. You will use this **endpoint** value later in this exercise.
 
-    1. Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
+    - Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
 
-        ![06](media/New-image9.png)
+      ![06](media/New-image9.png)
 
 1. Select **Data Explorer** from the resource menu.
 
      >**Note**: Click the "X" button on the pop-up, which is commonly located at the top right corner.
 
-1. In the **Data Explorer** pane, expand **+ New Container** and then select **+ New Database** from the drop down.
+1. In the **Data Explorer** pane, expand **+ New Container (1)** and then select **+ New Database (2)** from the drop down.
 
     ![06](media/New-image80.png)
       
-1. In the **New Database** popup, enter the following values for each setting, and then select **OK**:
+1. In the **New Database** popup, enter the following values for each setting, and then select **OK (5)**:
 
     | **Setting** | **Value** |
-    | :-- | :-- |
-    | **Database id** | *``cosmicworks``* |
+    | --: | :-- |
+    | **Database id** | *``cosmicworks``* **(1)** |
+    | **Provision throughput** | enabled **(2)** |
+    | **Database throughput** | **Manual (3)** |
+    | **Database Required RU/s** | ``1000`` **(4)** |
 
-    ![06](media/New-image81.png)
+    ![06](media/c30.png)
 
 1. Back in the **Data Explorer** pane, observe the **cosmicworks** database node within the hierarchy.
 
       ![06](media/New-image82.png)
    
-1. In the **Data Explorer** pane, select **+ New Container** > **+ New Container**.
+1. In the **Data Explorer** pane, select **+ New Container (1)** > **+ New Container (2)**.
 
      ![06](media/New-image83.png)
 
-1. In the **New Container** popup, enter the following values for each setting, and then select **OK**:
+1. In the **New Container** popup, enter the following values for each setting, and then select **OK (5)**:
 
     | **Setting** | **Value** |
     | :-- | :-- |
-    | **Database id** | *Use existing* &vert; *cosmicworks* |
-    | **Container id** | *``products``* |
-    | **Partition key** | *``/categoryId``* |
+    | **Database id** | *Use existing (1)* &vert; *cosmicworks (2)* |
+    | **Container id** | *``products`` (3)* |
+    | **Partition key** | *``/category/name`` (4)* |
 
-     ![06](media/New-image84.png)
+    ![06](media/c31.png)
+    ![06](media/c32.png)    
 
 1. Back in the **Data Explorer** pane, expand the **cosmicworks** database node and then observe the **products** container node within the hierarchy.
 
