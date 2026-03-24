@@ -394,13 +394,19 @@ In this task, You will use a command-line utility that creates a **cosmicworks**
     > &#128221; For example, if your endpoint is: **https&shy;://dp420.documents.azure.com:443/** and your key is: **fDR2ci9QgkdkvERTQ==**, then the command would be:
     > ``cosmicworks --endpoint https://dp420.documents.azure.com:443/ --key fDR2ci9QgkdkvERTQ== --datasets product``
 
+    - If you recieve any dotnet compatibilty related error, please run the following command `choco install dotnet-6.0-runtime dotnet-7.0-runtime -y` and wait for it to finish.
+
 1. If it prompts you to provide the **Connection String**, please navigate to **Keys (1)** in CosmosDB. Select the **eye (2)** icon and copy the value **(3)**.
 
     ![06](media/c37.png)
 
-1. Paste the value in thr terminal.    
+1. Paste the value in the terminal.    
 
     ![06](media/c38.png)
+
+    >**Note:** You may encounter a partition key error while running this command. This typically occurs because the products container already exists with a different partition key configuration.
+
+    - If you receive this error, you can ignore it. However, to resolve it completely, delete the existing products container and rerun the command. After deleting the container, the command will execute successfully without any errors.
 
 1. Wait for the **cosmicworks** command to finish populating the account with a database, container, and items.
 
