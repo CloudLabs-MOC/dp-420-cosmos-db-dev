@@ -37,37 +37,50 @@ In this lab, you will complete the following tasks:
 
    >**Note:** On **Do you trust the authors of the files in this folder?** pop-up, select **Yes, I trust authors**.
 
+    ![06](media/DB24.png)
+
 ### Task 1: Create an Azure Cosmos DB for NoSQL account and configure the SDK project
 
 In this task, you will create an Azure Cosmos DB for NoSQL account, configure it with essential settings, and prepare the SDK project in Visual Studio Code to interact with your newly established database.
 
-1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
+1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
    ![06](media/New-image1.png)
    
-1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
+1. Select **+ Create (1)** under **Azure Cosmos DB for NoSQL** click on **Create (2)** to create  **Azure Cosmos DB for NoSQL** account.
 
     ![06](media/New-image2.png)
 
     ![06](media/New-image3.png)
 
-1. Select **Create** under **Azure Cosmos DB for NoSQL**. Then create a new **Azure Cosmos DB for NoSQL** account resource with the following settings, leaving all remaining settings to their default values, and select **Review + create** and click on **Create**:
+1. Specify the following settings, leaving all remaining settings to their default values and select **Review + create (10)**:
 
-    | **Setting** | **Value** |
-    | :--- | :--- |
-    | **Subscription** | *Your existing Azure subscription* |
-    | **Resource group** | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* |
-    | **Account Name** | *sql-<inject key="DeploymentID" enableCopy="false"/>* |
-    | **Location** | *Choose any available region* |
-    | **Capacity mode** | *Provisioned throughput* |
-    | **Apply Free Tier Discount** | *Do Not Apply* |
-    | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* |
-   
+    | **Setting**         | **Value** |
+    | --------------------|--------------------------------------------------- |
+    | **Workload Type**   | *Production* (1) |
+    | **Subscription**    | *Your existing Azure subscription* (2) |
+    | **Resource group**  | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* (3) |
+    | **Account Name**    | *sql-<inject key="DeploymentID" enableCopy="false"/>* (4) |
+    | **Location**        | *Choose the default region* (5) |
+    | **Capacity mode**   | *Provisioned throughput* (6) |
+    | **Apply Free Tier Discount** | *Do Not Apply* (7) |
+    | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* (8) |
+
+     ![06](media/DB25.png)
+
+1. Click on **Create**.
+
+    ![06](media/New-image5.png)
+
 1. Wait for the deployment task to complete before continuing with this task.
 
-1. Go to the newly created **Azure Cosmos DB** account resource and from the left navigation pane under **Settings** click on **Keys**.
+1. Once deployment is completed, select **Go to resources**. 
 
-    ![06](media/New-image7.png)
+    ![06](media/New-image6.png)
+
+1. In the **Azure Cosmos DB account**, expand **Settings (1)** from the left menu, then select **Keys (2)**.
+
+    ![06](media/DB15.png)
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
@@ -77,25 +90,33 @@ In this task, you will create an Azure Cosmos DB for NoSQL account, configure it
 
        ![06](media/New-image9.png)
 
-1. On the **Azure Cosmos DB** account resource, click on **Overview** from the left navigation pane  and click on  the **Data Explorer** option from the top navigation pane.
+1. Within the **Azure Cosmos DB** account resource **overview page (1)** , navigate to the **Data Explorer (2)** pane. 
 
-    ![](media/cosmosx1.png)
+    ![06](media/DB04.png)
 
-1. In the **Data Explorer**, select **New Container**, and then create a new container with the following settings, leaving all remaining settings to their default values and click **OK**.
+1. In the **Data Explorer (1)** page, click **New (2)**, then select **New Container (3)**.
+
+     ![06](media/DB42.png)
+
+1. In the **New Container** pane, enter the following details and click **OK (6)**.
 
     | **Setting** | **Value** |
     | :--- | :--- |
-    | **Database id** | *Create new* &vert; *`cosmicworks`* |
-    | **Share throughput across containers** | *Unchecked* |
-    | **Container id** | *`products`* |
-    | **Partition key** | *`/categoryId`* |
-    | **Container throughput** | *Autoscale* &vert; *`4000`* |
+    | **Database id** | Create new \| `cosmicworks` **(1)** |
+    | **Share throughput across containers** | Unchecked **(2)** |
+    | **Container id** | `products` **(3)** |
+    | **Partition key** | `/categoryId` **(4)** |
+    | **Container throughput** | Autoscale \| `4000` **(5)** |
+
+    ![06](media/DB44.png)
 
 1. Return to **Visual Studio Code**.. 
 
 1. In **Visual Studio Code**, in the **Explorer** pane, browse to the **08-sdk-bulk** folder.
 
-1. Open the **script.cs** code file within the **08-sdk-bulk** folder.
+1. In **Visual Studio Code**, in the **06-sdk-crud (1)** folder open the empty **script.cs (2)** code file.
+
+    ![06](media/DB45.png)
 
     >**Note**: The **[Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1]** library has already been pre-imported from NuGet.
 
@@ -117,9 +138,9 @@ In this task, you will create an Azure Cosmos DB for NoSQL account, configure it
 
 1. Press **Ctrl+S** to **Save** the script.cs code file.
 
-1. Open the context menu for the **08-sdk-bulk** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+1. Open the context menu for the **08-sdk-bulk (1)** folder and then select **Open in Integrated Terminal (2)** to open a new terminal instance.
  
-    ![](media/cosmos3.png)
+    ![](media/DB46.png)
 
    >**Note**: This command will open the terminal with the starting directory already set to the **08-sdk-bulk** folder.
 
@@ -264,7 +285,9 @@ In this task, we will try to insert a lot of documents to see how this works. In
 
 1. Press **Ctrl+S** to **Save** the script.cs code file.
 
-1. In **Visual Studio Code**, open the context menu for the **08-sdk-bulk** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+1. Open the context menu for the **08-sdk-bulk (1)** folder and then select **Open in Integrated Terminal (2)** to open a new terminal instance.
+ 
+    ![](media/DB46.png)
 
 1. Build and run the project using the **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** command:
 
@@ -273,6 +296,8 @@ In this task, we will try to insert a lot of documents to see how this works. In
     ```
 
 1. The application should run silently, it should take approximately one to two minutes to run before completing silently.
+
+    ![](media/DB47.png)
 
 1. Close the integrated terminal.
 
@@ -291,29 +316,29 @@ Now that you have sent 25,000 items to Azure Cosmos DB let’s go and look at th
 
 1. Back in the  Azure portal (``portal.azure.com``) in the browser window, select the **Azure Cosmos DB account** resource you created in this lab.
 
-1. Within the **Azure Cosmos DB** account resource, navigate to the **Data Explorer** pane.
+1. Within the **Azure Cosmos DB** account resource **overview page (1)** , navigate to the **Data Explorer (2)** pane. 
 
-1. In the **Data Explorer**, expand the **cosmicworks** database node, then observe the **products** container node within the **NoSQL API** navigation tree.
+    ![06](media/DB04.png)
 
-1. Expand the **products** node, and then select the **Items** node. Observe the list of items within your container.
+1. In the **Data Explorer**, expand the **cosmicworks (2)** database node, expand the **products (3)** container node.
 
-1. Select the **products** container node within the **NoSQL API** navigation tree, and click on **...** then select **New SQL Query**.
+    ![06](media/DB41.png)
 
-   ![](media/cosmos4.png)
+1. Select the **products** container node within the **NoSQL API** navigation tree, and click on **... (1)** then select **New SQL Query (2)**.
+
+   ![](media/DB48.png)
 
 1. Delete the contents of the editor area.
 
-1. Create a new SQL query that will return a count of all documents created using the bulk operation:
+1. Enter the query as shown below **(1)**, then click **Execute Query (2)**.
 
     ```
     SELECT COUNT(1) FROM items
     ```
 
-1. Select **Execute Query**.
+     ![](media/DB49.png)
 
-1. Observe the count of the items in your container.
-
-1. Close your web browser window or tab.
+1. And view the **results (3)** observe the count of the items in your container.
 
 ### Review
 
