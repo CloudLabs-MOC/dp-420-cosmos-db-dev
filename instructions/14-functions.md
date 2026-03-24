@@ -232,27 +232,27 @@ In this task, you'll create an Azure Function app with a Cosmos DB-triggered fun
 
 1. Wait for the deployment task to complete before continuing with this task.
 
-1. Select **Go to resource**, to navigate to the newly created **Azure Functions** account resource and navigate to the **Functions** pane.
+1. Select **Go to resource**, to navigate to the newly created **Azure Functions** account resource.
 
-1. In the **Functions** pane, select **Create function**.
+1. Navigate to the **Functions (1)** pane. In the **Functions** pane, select **Create function (2)**.
 
-    ![06](media/New-image103.png)
+    ![06](media/c35.png)
 
-1. In the **Create function** popup on the **Select a template** tab choose **Azure Cosmos DB trigger** and click on **Next**
+1. In the **Create function** popup on the **Select a template** tab choose **Azure Cosmos DB trigger (1)** and click on **Next (2)**.
 
     ![06](media/New-image104.png)
    
-1. In the **Create function** popup, on the **Template details** tab create a new function with the following settings, leaving all remaining settings to their default values and select **Create**:
+1. In the **Create function** popup, on the **Template details** tab create a new function with the following settings, leaving all remaining settings to their default values and select **Create (11)**:
 
     | **Setting** | **Value** |
     | :--- | :--- |
-    | **Select a template** | *Azure Cosmos DB trigger* |
-    | **Function Name** | *``ItemsListener``* |
-    | **Cosmos DB account connection** | *Select New* &vert; *Select Azure Cosmos DB Account* &vert; *Select the Azure Cosmos DB account you created earlier* |
-    | **Database name** | *``cosmicworks``* |
-    | **Container name** | *``products``* |
-    | **Container name for leases** | *``productslease``* |
-    | **Create lease container if it does not exist** | *No* |
+    | **Select a template** | *Azure Cosmos DB trigger* **(1)** |
+    | **Function Name** | *``ItemsListener``* **(2)** |
+    | **Cosmos DB account connection** | Select **New (3)** &vert; Select **Azure Cosmos DB Account (4)** &vert; Select the Azure Cosmos DB account you created earlier **(5)** |
+    | **Database name** | *``cosmicworks``* **(7)** |
+    | **Container name** | *``products``* **(8)** |
+    | **Container name for leases** | *``productslease``* **(9)** |
+    | **Create lease container if it does not exist** | *No* **(10)** |
 
     ![06](media/New-image105.png)
 
@@ -341,6 +341,8 @@ The function you created earlier is a C# script that is edited in-portal. You wi
     }
     ```
 
+    ![06](media/c36.png)    
+
 1. Expand the **Logs** section to connect to the streaming logs for the current function.
 
     > &#128161; It can take a couple of seconds to connect to the streaming log service. You will see a message in the log output once you are connected.
@@ -391,6 +393,14 @@ In this task, You will use a command-line utility that creates a **cosmicworks**
 
     > &#128221; For example, if your endpoint is: **https&shy;://dp420.documents.azure.com:443/** and your key is: **fDR2ci9QgkdkvERTQ==**, then the command would be:
     > ``cosmicworks --endpoint https://dp420.documents.azure.com:443/ --key fDR2ci9QgkdkvERTQ== --datasets product``
+
+1. If it prompts you to provide the **Connection String**, please navigate to **Keys (1)** in CosmosDB. Select the **eye (2)** icon and copy the value **(3)**.
+
+    ![06](media/c37.png)
+
+1. Paste the value in thr terminal.    
+
+    ![06](media/c38.png)
 
 1. Wait for the **cosmicworks** command to finish populating the account with a database, container, and items.
 
