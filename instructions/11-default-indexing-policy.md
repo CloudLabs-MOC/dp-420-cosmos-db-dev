@@ -25,45 +25,51 @@ In this task, you will provision an Azure Cosmos DB SQL account, configuring ess
 
 Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, Mongo API or NoSQL API). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
 
-1. On **Azure Portal** page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
+1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
    ![06](media/New-image1.png)
    
-1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
+1. Select **+ Create (1)** under **Azure Cosmos DB for NoSQL** click on **Create (2)** to create  **Azure Cosmos DB for NoSQL** account.
 
     ![06](media/New-image2.png)
 
     ![06](media/New-image3.png)
-   
-1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create**:
 
-    | **Setting** | **Value** |
-    | --- | --- |
-    | **Subscription** | *Your existing Azure subscription* |
-    | **Resource group** | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* |
-    | **Account Name** | *sql-<inject key="DeploymentID" enableCopy="false"/>* |
-    | **Location** | *Choose any available region* |
-    | **Capacity mode** | *Provisioned throughput* |
-    | **Apply Free Tier Discount** | *Do Not Apply* |
-    | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* |
+1. Specify the following settings, leaving all remaining settings to their default values and select **Review + create (10)**:
 
-    ![06](media/New-image4.png) 
+    | **Setting**         | **Value** |
+    | --------------------|--------------------------------------------------- |
+    | **Workload Type**   | *Production* (1) |
+    | **Subscription**    | *Your existing Azure subscription* (2) |
+    | **Resource group**  | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* (3) |
+    | **Account Name**    | *sql-<inject key="DeploymentID" enableCopy="false"/>* (4) |
+    | **Location**        | *Choose the default region* (5) |
+    | **Capacity mode**   | *Provisioned throughput* (6) |
+    | **Apply Free Tier Discount** | *Do Not Apply* (7) |
+    | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* (8) |
 
-1. Once after validation passed click on **Create**.
+     ![06](media/DB25.png)
+
+1. Click on **Create**.
+
+    ![06](media/New-image5.png)
 
 1. Wait for the deployment task to complete before continuing with this task.
 
-1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys** pane.
+1. Once deployment is completed, select **Go to resources**. 
 
-    ![06](media/New-image6.png
+    ![06](media/New-image6.png)
 
-    ![06](media/New-image7.png)
+1. In the **Azure Cosmos DB account**, expand **Settings (1)** from the left menu, then select **Keys (2)**.
+
+    ![06](media/DB15.png)
+
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-    1. Record the value of the **URI** field. You will use this **endpoint** value later in this exercise.
+    1. Record the value of the **URI (1)** field. You will use this **endpoint** value later in this exercise.
 
-    1. Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
+    1. Record the value of the **PRIMARY KEY (2)** field. You will use this **key** value later in this exercise.
 
         ![06](media/New-image9.png)
 
@@ -86,8 +92,7 @@ The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys samp
 
    ![Visual Studio Code Icon](./media/vscode1.jpg)
 
-1. In **Visual Studio Code**, open the **Terminal** menu by selecting **... (ellipses) (1)** > **Terminal (2)** > **New Terminal (3)** to open a new terminal with your 
-   existing instance.
+1. In **Visual Studio Code**, open the **Terminal** menu by selecting **... (ellipses) (1)** then select **Terminal (2)** and choose **New Terminal (3)** to open a new terminal with your existing instance.
 
     ![06](media/New-image36.png)
 
@@ -97,6 +102,8 @@ The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys samp
     dotnet tool install cosmicworks --global --version 1.*
     ```
   
+    ![06](media/DB50.png)
+
     > &#128161; This command may take a couple of minutes to complete. This command will output the warning message (*Tool 'cosmicworks' is already installed') if you have already installed the latest version of this tool in the past.
     
 1. Once the Installation is completed, make sure to close the **Visual Studio Code** and re-open it to perform the below command.
