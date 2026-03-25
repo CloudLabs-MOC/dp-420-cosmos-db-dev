@@ -249,13 +249,6 @@ First, let’s create a simple transactional batch that makes two fictional prod
     ![06](media/c10.png)
 
 1. You should now be able to monitor your application function.
-
-    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
-    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
-    
-    <validation step="c1661fb4-6a05-4936-b3ef-79573f26117e" />
    
 ### Task 3: Creating an errant transactional batch
 
@@ -368,13 +361,6 @@ transaction did not share the same partition key value as the transactional batc
 1. Close the integrated terminal.
 
 1. Close **Visual Studio Code**.
-
-    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
-    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
-    
-<validation step="8a4cd53d-7379-400c-9b3a-905f14442e94" />
 
 ### Summary 
 
