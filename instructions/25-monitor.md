@@ -45,9 +45,9 @@ In this task, you will set up your development environment in Visual Studio Code
 
 ### Task 2: Create an Azure Cosmos DB for NoSQL account
 
-In this task, you will create an Azure Cosmos DB account using the NoSQL API. After provisioning the account, you'll retrieve the necessary connection details, including the endpoint (URI) and primary key. 
+In this task, you will create an Azure Cosmos DB account using the API for NoSQL. After provisioning the account, you'll retrieve the necessary connection details, including the endpoint (URI) and primary key. 
 
-Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **Mongo API** or **NoSQL API**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
+Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **API for MongoDB** or **API for NoSQL**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
 
 1. Navigate back to **Azure Portal**.
 
@@ -249,7 +249,7 @@ In this lab, you explored how Azure Monitor integrates with Azure Cosmos DB for 
 In this lab, you have completed:
 
 - Prepared your development environment.
-- Created an Azure Cosmos DB NoSQL API account.
+- Created an Azure Cosmos DB for NoSQL account.
 - Imported the Microsoft.Azure.Cosmos and Newtonsoft.Json libraries into a .NET script.
 - Ran a script to create the containers and the workload.
 - Used Azure Monitor to Analyze the Azure Cosmos DB account usage

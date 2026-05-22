@@ -9,8 +9,8 @@ In this lab, you'll observe and manipulate the default index policy for a few co
 ## Lab objectives
 
 In this lab, you will complete the following tasks:
-- Task 1: Create an Azure Cosmos DB NoSQL API account.
-- Task 2: Seed the Azure Cosmos DB NoSQL API account with data.
+- Task 1: Create an Azure Cosmos DB for NoSQL account.
+- Task 2: Seed the Azure Cosmos DB for NoSQL account with data.
 - Task 3: View and manipulate the default indexing policy.
 
 ## Estimated Timing: 30 minutes
@@ -19,11 +19,11 @@ In this lab, you will complete the following tasks:
 
 ![image](architecturedia/lab11.png)
 
-## Task 1: Review the default index policy for an Azure Cosmos DB SQL API container with the portal
+## Task 1: Review the default index policy for an Azure Cosmos DB for NoSQL container with the portal
 
 In this task, you will provision an Azure Cosmos DB SQL account, configuring essential settings and retrieving the necessary connection details for future development.
 
-Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, Mongo API or NoSQL API). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
+Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, API for MongoDB or API for NoSQL). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
 
 1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
@@ -82,11 +82,11 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
     <validation step="140fa89d-d46a-4ae0-a198-9c51019a9b40" />
 
-### Task 2: Seed the Azure Cosmos DB NoSQL API account with data
+### Task 2: Seed the Azure Cosmos DB for NoSQL account with data
 
 In this task, you'll use the CosmicWorks tool to seed your Azure Cosmos DB NoSQL account with sample product data. After installing the tool in Visual Studio Code's terminal, you'll provide your Cosmos DB endpoint and key to run the seeding command. The tool will create a database, container, and insert product data into your account.
 
-The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys sample data to any Azure Cosmos DB SQL API account. The tool is open-source and available through NuGet. You will install this tool to the Azure Cloud Shell and then use it to seed your database.
+The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys sample data to any Azure Cosmos DB for NoSQL account. The tool is open-source and available through NuGet. You will install this tool to the Azure Cloud Shell and then use it to seed your database.
 
 1. Start Visual Studio Code (the program icon is pinned to the Desktop).
 

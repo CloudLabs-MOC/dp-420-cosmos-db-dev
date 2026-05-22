@@ -8,7 +8,7 @@ In this lab, we will populate Azure Cosmos DB using a helpful command-line utili
 ## Lab objectives
 
 In this lab, you will complete the following tasks:
-- Task 1: Create and seed your Azure Cosmos DB SQL API account.
+- Task 1: Create and seed your Azure Cosmos DB for NoSQL account.
 - Task 2: Create Azure Data Factory resource.
 
 ### Task 1: Create and seed your Azure Cosmos DB for NoSQL account
@@ -175,7 +175,7 @@ To accompany the products container, you will create a **flatproducts** containe
 
 In this task, you will create an Azure Data Factory resource and configure it to perform a one-time ETL (Extract, Transform, Load) operation. The goal is to move data from one Azure Cosmos DB NoSQL container (products) to another container (flatproducts), applying a transformation during the process.
 
-Now that the Azure Cosmos DB for NoSQL resources are in place, you will create an Azure Data Factory resource and configure all of the necessary components and connections to perform a one-time data movement from one NoSQL API container to another to extract data, transform it, and load it to another NoSQL API container
+Now that the Azure Cosmos DB for NoSQL resources are in place, you will create an Azure Data Factory resource and configure all of the necessary components and connections to perform a one-time data movement from one API for NoSQL container to another to extract data, transform it, and load it to another API for NoSQL container
 
 1. On Azure portal home page select **+ Create a resource**.
   
@@ -336,7 +336,7 @@ This lab focuses on migrating data between two Azure Cosmos DB containers using 
 
 In this lab, you have completed:
 
-- Created and seeded your Azure Cosmos DB NoSQL API account.
+- Created and seeded your Azure Cosmos DB for NoSQL account.
 - Created Azure Data Factory resource.
 
 ### You have successfully completed the lab.

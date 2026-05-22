@@ -1,8 +1,8 @@
-# Lab 07a - Integrate Azure Cosmos DB SQL API with Azure services
+# Lab 07a - Integrate Azure Cosmos DB for NoSQL with Azure services
 
 ## Lab scenario
 
-The Azure Cosmos DB SQL API change feed is the key to creating supplemental applications driven by events from the platform. The .NET SDK for the Azure Cosmos DB SQL API ships with a suite of classes to build your applications that integrate with the change feed and listen for notifications about operations within your containers.
+The Azure Cosmos DB for NoSQL change feed is the key to creating supplemental applications driven by events from the platform. The .NET SDK for the Azure Cosmos DB for NoSQL ships with a suite of classes to build your applications that integrate with the change feed and listen for notifications about operations within your containers.
 
 In this lab, you will use the change feed processor functionality in the .NET SDK to create an application that is notified with a create or update operation is performed on an item in the specified container.
 
@@ -10,9 +10,9 @@ In this lab, you will use the change feed processor functionality in the .NET SD
 
 In this lab, you will complete the following tasks:
 - Task 1: Prepare your development environment.
-- Task 2: Create an Azure Cosmos DB SQL API account.
+- Task 2: Create an Azure Cosmos DB for NoSQL account.
 - Task 3: Implement the change feed processor in the .NET SDK.
-- Task 4: Seed your Azure Cosmos DB SQL API account with sample data.
+- Task 4: Seed your Azure Cosmos DB for NoSQL account with sample data.
 
 ## Estimated Timing: 60 minutes
 
@@ -20,7 +20,7 @@ In this lab, you will complete the following tasks:
 
 ![image](architecturedia/lab13.png)
 
-## Exercise 1: Process change feed events using the Azure Cosmos DB SQL API SDK
+## Exercise 1: Process change feed events using the Azure Cosmos DB for NoSQL SDK
 
 ### Task 1: Prepare your development environment
 
@@ -36,9 +36,9 @@ If you have not already cloned the lab code repository for **DP-420** to the env
 
 1.  Select the folder **dp-420-cosmos-db-dev-stage** and Click on **Select Folder**.
 
-### Task 2: Create an Azure Cosmos DB SQL API account
+### Task 2: Create an Azure Cosmos DB for NoSQL account
 
-Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **Mongo API** or **SQL API**). Once the Azure Cosmos DB SQL API account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB SQL API account using the Azure SDK for .NET or any other SDK of your choice.
+Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **API for MongoDB** or **API for NoSQL**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
 
 1. In a new web browser window or tab, navigate to the Azure portal (``portal.azure.com``).
 
@@ -285,9 +285,9 @@ The **Microsoft.Azure.Cosmos.Container** class ships with a series of methods to
 
 1. Leave both **Visual Studio Code** and the terminal open.
 
-    > &#128221; You will use another tool to generate items in your Azure Cosmos DB SQL API container. Once you generate the items, you will return to this terminal to observe the output. Do not close the terminal prematurely.
+    > &#128221; You will use another tool to generate items in your Azure Cosmos DB for NoSQL container. Once you generate the items, you will return to this terminal to observe the output. Do not close the terminal prematurely.
 
-### Task 4: Seed your Azure Cosmos DB SQL API account with sample data
+### Task 4: Seed your Azure Cosmos DB for NoSQL account with sample data
 
 You will use a command-line utility that creates a **cosmicworks** database and a **products** container. The tool will then create a set of items that you will observe using the change feed processor running in your terminal window.
 
@@ -331,8 +331,8 @@ You will use a command-line utility that creates a **cosmicworks** database and 
 In this lab, you have completed:
 
 - Prepared your development environment.
-- Created an Azure Cosmos DB SQL API account.
+- Created an Azure Cosmos DB for NoSQL account.
 - Implemented the change feed processor in the .NET SDK.
-- Seeded your Azure Cosmos DB SQL API account with sample data
+- Seeded your Azure Cosmos DB for NoSQL account with sample data
 
 ### You have successfully completed the lab

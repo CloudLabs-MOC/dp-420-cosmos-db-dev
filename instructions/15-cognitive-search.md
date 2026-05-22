@@ -2,9 +2,9 @@
 
 ## Lab scenario
 
-Azure Cognitive Search combines a search engine as a service with deep integration with AI capabilities to enrich the information in the search index.
+Azure AI Search combines a search engine as a service with deep integration with AI capabilities to enrich the information in the search index.
 
-In this lab, you will build an Azure Cognitive Search index that automatically indexes data in an Azure Cosmos DB SQL API container and enriches the data using the Azure Cognitive Services Translator functionality.
+In this lab, you will build an Azure AI Search index that automatically indexes data in an Azure Cosmos DB for NoSQL container and enriches the data using the Azure AI Translator functionality.
 
 ## Lab objectives
 
@@ -23,7 +23,7 @@ In this lab, you will complete the following tasks:
 
 ### Task 1: Create an Azure Cosmos DB for NoSQL account
 
-Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **Mongo API** or **NoSQL API**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
+Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **API for MongoDB** or **API for NoSQL**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
 
 1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
 
@@ -171,7 +171,7 @@ You will use a command-line utility that creates a **cosmicworks** database and 
 
 ### Task 3: Create an Azure AI Search resource
 
-Before continuing with this exercise, you must first create a new Azure Cognitive Search instance.
+Before continuing with this exercise, you must first create a new Azure AI Search instance.
 
 1. Navigate back to Azure portal, click **Create a resource**.
 
@@ -407,6 +407,6 @@ In this lab, you have completed:
 
 ### Summary
 
-This lab guides you through integrating Azure AI Search with Azure Cosmos DB for NoSQL, where you'll create a Cosmos DB account, populate it with sample data, set up an Azure Cognitive Search resource, and build an indexer. 
+This lab guides you through integrating Azure AI Search with Azure Cosmos DB for NoSQL, where you'll create a Cosmos DB account, populate it with sample data, set up an Azure AI Search resource, and build an indexer. 
 
 ### You have successfully completed the lab

@@ -23,7 +23,7 @@ In this lab, you will complete the following tasks:
 
 ### Task 1: Author a stored procedure
 
-In this task, you will provision an Azure Cosmos DB SQL API account
+In this task, you will provision an Azure Cosmos DB for NoSQL account
 
 Stored procedures are authored in language-integrated JavaScript and support the execution of basic CRUD operations inside of the database engine. JavaScript running within the database engine is made possible using the server-side JavaScript SDK for Azure Cosmos DB and a series of helper methods.
 
@@ -257,7 +257,7 @@ While the stored procedure authored earlier in this lab has basic functionality,
 
 In this task, to wrap up things, you will use the Data Explorer to issue a SQL query that will return the two documents created in this lab.
 
-1. In the **Data Explorer**, expand the **cosmicworks** database node, then select the **products** container node within the **NOSQL API** navigation tree.
+1. In the **Data Explorer**, expand the **cosmicworks** database node, then select the **products** container node within the **API for NoSQL** navigation tree.
 
 1. Select **New SQL Query**.
 

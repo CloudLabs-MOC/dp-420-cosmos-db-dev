@@ -1,16 +1,16 @@
-# Create and update documents with the Azure Cosmos DB NoSQL API SDK
+# Create and update documents with the Azure Cosmos DB for NoSQL SDK
 
 ## Lab scenario
 
-The [Microsoft.Azure.Cosmos.Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] class includes a set of member methods to create, retrieve, update, and delete items within an Azure Cosmos DB for NoSQL container. Together, these methods perform some of the most common “CRUD” operations across various items within NoSQL API containers.
+The [Microsoft.Azure.Cosmos.Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] class includes a set of member methods to create, retrieve, update, and delete items within an Azure Cosmos DB for NoSQL container. Together, these methods perform some of the most common “CRUD” operations across various items within API for NoSQL containers.
 
 In this lab, you’ll use the SDK to perform everyday CRUD operations on an item within an Azure Cosmos DB for NoSQL container.
 
 ## Lab objectives
 
 In this lab, you will complete the following tasks:
-- Task 1: Create an Azure Cosmos DB NoSQL API account.
-- Task 2: Connect to the Azure Cosmos DB NoSQL API account from the SDK.
+- Task 1: Create an Azure Cosmos DB for NoSQL account.
+- Task 2: Connect to the Azure Cosmos DB for NoSQL account from the SDK.
 - Task 3: Perform create and read point operations on items with the SDK.
 - Task 4: Perform update and delete point operations with the SDK.
 
@@ -43,11 +43,11 @@ In this lab, you will complete the following tasks:
 
    ![06](media/DB24.png)
 
-### Task 1: Create an Azure Cosmos DB NoSQL API account
+### Task 1: Create an Azure Cosmos DB for NoSQL account
 
-In this task, you will create an Azure Cosmos DB account using the NoSQL API. After provisioning the account, you'll retrieve the necessary connection details, including the endpoint (URI) and primary key. These credentials will allow you to connect to the Cosmos DB account using the Azure SDK or another SDK of your choice.
+In this task, you will create an Azure Cosmos DB account using the API for NoSQL. After provisioning the account, you'll retrieve the necessary connection details, including the endpoint (URI) and primary key. These credentials will allow you to connect to the Cosmos DB account using the Azure SDK or another SDK of your choice.
 
-Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **Mongo API** or **SQL API**). Once the Azure Cosmos DB SQL API account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB SQL API account using the Azure SDK for .NET or any other SDK of your choice.
+Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **API for MongoDB** or **API for NoSQL**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
 
 1. Navigate back to Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
@@ -109,9 +109,9 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     
 <validation step="185fcc24-d57e-4db3-a26d-1b9d4b61dbf2" />
 
-### Task 2: Connect to the Azure Cosmos DB NoSQL API account from the SDK
+### Task 2: Connect to the Azure Cosmos DB for NoSQL account from the SDK
 
-In this task, you will connect to the Azure Cosmos DB NoSQL API account using the Azure SDK for .NET. You'll use Visual Studio Code to run a script that creates a new database and container within your Cosmos DB account. Once the database and container are created, you will validate their existence using the Data Explorer in the Azure portal.
+In this task, you will connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET. You'll use Visual Studio Code to run a script that creates a new database and container within your Cosmos DB account. Once the database and container are created, you will validate their existence using the Data Explorer in the Azure portal.
 
 1. In **Visual Studio Code**, in the **Explorer** pane, browse to the **06-sdk-crud** folder.
 
@@ -231,7 +231,7 @@ In this task, you will connect to the Azure Cosmos DB NoSQL API account using th
 
 ### Task 3: Perform create and read point operations on items with the SDK
 
-In this task, You'll now use the set of asynchronous methods in the Microsoft.Azure.Cosmos.Container class to perform common operations on items within a NoSQL API container. These operations are all done using the task asynchronous programming model in C#.
+In this task, You'll now use the set of asynchronous methods in the Microsoft.Azure.Cosmos.Container class to perform common operations on items within a API for NoSQL container. These operations are all done using the task asynchronous programming model in C#.
 
 1. Return to **Visual Studio Code**. Open the **product.cs** code file within the **06-sdk-crud** folder.
 
@@ -590,14 +590,14 @@ While learning the SDK, it's not uncommon to use an online Azure Cosmos DB SDK a
 
 ### Summary 
 
-In this lab, you explored how to perform essential CRUD operations using the Azure Cosmos DB NoSQL API SDK. You began by creating an Azure Cosmos DB NoSQL API account, followed by establishing a connection to the account using the SDK, and then creating a database and container. Next, you executed create and read operations on items within the container, which provided hands-on experience in managing data. Finally, you updated and deleted items, reinforcing your understanding of data manipulation in Cosmos DB. By the end of the lab, you gained valuable insights into integrating CRUD operations programmatically, enabling efficient data management within a NoSQL environment.
+In this lab, you explored how to perform essential CRUD operations using the Azure Cosmos DB for NoSQL SDK. You began by creating an Azure Cosmos DB for NoSQL account, followed by establishing a connection to the account using the SDK, and then creating a database and container. Next, you executed create and read operations on items within the container, which provided hands-on experience in managing data. Finally, you updated and deleted items, reinforcing your understanding of data manipulation in Cosmos DB. By the end of the lab, you gained valuable insights into integrating CRUD operations programmatically, enabling efficient data management within a NoSQL environment.
 
 ### Review
 
 In this lab, you have completed:
 
-- Created an Azure Cosmos DB NoSQL API account.
-- Connected to the Azure Cosmos DB NoSQL API account from the SDK.
+- Created an Azure Cosmos DB for NoSQL account.
+- Connected to the Azure Cosmos DB for NoSQL account from the SDK.
 - Created and read point operations on items with the SDK.
 - Updated and deleted point operations with the SDK.
 

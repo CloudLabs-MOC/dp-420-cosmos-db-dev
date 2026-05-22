@@ -1,4 +1,4 @@
-# Lab 08b - Implement a data modeling and partitioning strategy for Azure Cosmos DB SQL API
+# Lab 08b - Implement a data modeling and partitioning strategy for Azure Cosmos DB for NoSQL
 
 ## Lab scenario
 
