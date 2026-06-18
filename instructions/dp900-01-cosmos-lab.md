@@ -126,8 +126,7 @@ This task demonstrates how to create, view, and query items in a Cosmos DB conta
 1. Modify the query as follows **(1)**:
    
     ```sql
-    SELECT *
-    FROM c
+    SELECT * FROM c
     WHERE CONTAINS(c.name,"Helmet")
     ```
 
