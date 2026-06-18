@@ -31,22 +31,22 @@ To accompany the products container, you will create a **flatproducts** containe
 
 1. Specify the following settings, leaving all remaining settings to their default values, and select **Next: Global Distribution (9)**:
 
-    | **Setting**         | **Value** |
-    | --------------------|--------------------------------------------------- |
-    | **Workload Type**   | *Production* (1) |
-    | **Subscription**    | *Your existing Azure subscription* (2) |
-    | **Resource group**  | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* (3) |
-    | **Account Name**    | *sql-<inject key="DeploymentID" enableCopy="false"/>* (4) |
-    | **Location**        | *Choose the default region* (5) |
-    | **Capacity mode**   | *Provisioned throughput* (6) |
-    | **Apply Free Tier Discount** | *Do Not Apply* (7) |
-    | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* (8) |
+    | Setting | Value |
+    |----------|----------|
+    | **Workload Type** | *Production* **(1)** |
+    | **Subscription** | *Your existing Azure subscription* **(2)** |
+    | **Resource group** | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* **(3)** |
+    | **Account Name** | *sql-<inject key="DeploymentID" enableCopy="false"/>* **(4)** |
+    | **Availability Zones** | *Disabled* **(5)** |
+    | **Location** | *Select any available location* **(6)** |
+    | **Capacity mode** | *Provisioned throughput* **(7)** |
+    | **Limit the total amount of throughput that can be provisioned on this account** | *Leave unchecked* **(8)** |
 
-     ![06](media/create-cosmosdb1.1-2304.png)
+     ![06](media/DB1.png)
 
 1. Click on **Next: Networking** on the Global Distribution page. Select **All networks (1)** for the **Connectivity method** and click on **Review + Create (2)**. 
 
-     ![06](media/select-networking-2304.png)
+     ![06](media/DB0002.png)
 
 1. Click on **Create**.
 
@@ -64,7 +64,7 @@ To accompany the products container, you will create a **flatproducts** containe
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-1. In the **Keys (1)** page, click the **Show (2)** icon to view the connection string, then click the **Copy (3)** icon to copy it and save it into notepad as e will use this in upcoming steps.
+1. In the **Keys (1)** page, navigate to primary connection string and click the **Show (2)** icon to view the connection string, then click the **Copy (3)** icon to copy it and save it into notepad as e will use this in upcoming steps.
 
     ![06](media/conn-string-2304.png)
 
@@ -125,7 +125,7 @@ To accompany the products container, you will create a **flatproducts** containe
 
     ![06](media/DB04.png)
 
-1. In the **Data Explorer**, expand the **cosmicworks (2)** database node, expand the **products (3** container node, and then select **Items (4)**.
+1. In the **Data Explorer**, expand the **cosmicworks (2)** database node, expand the **products (3)** container node, and then select **Items (4)**.
 
     ![06](media/DB19.png)
 
@@ -233,7 +233,7 @@ Now that the Azure Cosmos DB for NoSQL resources are in place, you will create a
 
     ![06](media/New-image25.png)
 
-1. In the **New connection (Azure Cosmos DB for NoSQL)** popup, configure the new connection with the following values, and then select **Create **(9)****:
+1. In the **New connection (Azure Cosmos DB for NoSQL)** popup, configure the new connection with the following values, and then select **Create (9)**:
 
     | **Setting** | **Value** |
     | --- | --- |
@@ -272,7 +272,7 @@ Now that the Azure Cosmos DB for NoSQL resources are in place, you will create a
 
    >**Note:** It will take a minute to appear.
 
-1. In the **Settings** step of the wizard, in the **Task name** field, enter **`FlattenAndMoveData`(1)**.And then select **Next (2)**
+1. In the **Settings** step of the wizard, in the **Task name** field, enter **`FlattenAndMoveData` (1)**.And then select **Next (2)**
 
     ![06](media/New-image30.png)
 

@@ -31,14 +31,16 @@ In this task, you will provision an Azure Cosmos DB SQL account, configuring ess
 
 1. Enter the following details:
 
-   - **Workload type (1)**: Select **Learning**  
-   - **Subscription (2)**: Select your Azure subscription  
-   - **Resource group (3)**: Select **DP-900-Module-3-<inject key="DeploymentID" enableCopy="false"/>**  
-   - **Account name (4)**: Enter **cosmosdb-<inject key="DeploymentID" enableCopy="false"/>**  
-   - **Location (5)**: Select any available location  
-   - **Capacity mode (6)**: Select **Provisioned throughput**  
-   - **Apply Free Tier Discount (7)**: Select **Apply**  
-   - **Limit total account throughput (8)**: Leave unchecked  
+    | Setting | Value |
+    |----------|----------|
+    | Workload type | Learning **(1)** |
+    | Subscription | Select your Azure subscription **(2)** |
+    | Resource group | DP-900-Module-3-<inject key="DeploymentID" enableCopy="false"/> **(3)** |
+    | Account name | cosmosdb-<inject key="DeploymentID" enableCopy="false"/> **(4)** |
+    | Location | Select any available location **(5)** |
+    | Capacity mode | Provisioned throughput **(6)** |
+    | Apply Free Tier Discount | Apply **(7)** |
+    | Limit total account throughput | Leave unchecked **(8)** |
 
 1. Click **Review + create (9)**.
 
