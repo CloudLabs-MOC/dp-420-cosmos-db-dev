@@ -42,7 +42,7 @@ To accompany the products container, you will create a **flatproducts** containe
     | **Capacity mode** | *Provisioned throughput* **(7)** |
     | **Limit the total amount of throughput that can be provisioned on this account** | *Leave unchecked* **(8)** |
 
-     ![06](media/DB1.png)
+     ![06](media/DB1000000.png)
 
 1. Click on **Next: Networking** on the Global Distribution page. Select **All networks (1)** for the **Connectivity method** and click on **Review + Create (2)**. 
 
