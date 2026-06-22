@@ -234,7 +234,7 @@ In this task, you'll create an Azure Function app with a Cosmos DB-triggered fun
 
 1. Select **Go to resource**, to navigate to the newly created **Azure Functions** account resource.
 
-1. Navigate to the **Functions (1)** pane. In the **Functions** pane, select **Create function (2)**.
+1. Navigate to the **Functions (1)** pane. In the **Functions** pane, select **Create in Azure Portal (2)**.
 
     ![06](media/c35.png)
 
