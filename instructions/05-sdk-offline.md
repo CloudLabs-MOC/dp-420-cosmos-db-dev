@@ -1,92 +1,92 @@
-# Configure the Azure Cosmos DB NoSQL API SDK for offline development
+# オフライン開発のための Azure Cosmos DB NoSQL API SDK の構成
 
-### Estimated Duration: 60 Minutes
+### 推定所要時間: 60 分
 
-## Lab Scenario
+## ラボ シナリオ
 
-The Azure Cosmos DB Emulator is a local tool that simulates the Azure Cosmos DB service for development and testing. It supports the NoSQL API and allows you to build and test applications without using the cloud service.
+Azure Cosmos DB Emulator は、開発とテストのために Azure Cosmos DB サービスをローカルでシミュレートするツールです。NoSQL API をサポートしており、クラウド サービスを使用せずにアプリケーションの構築とテストを行えます。
 
-In this lab, you will connect to the Azure Cosmos DB Emulator using the Azure SDK for .NET.
+このラボでは、Azure SDK for .NET を使用して Azure Cosmos DB Emulator に接続します。
 
-## Lab objectives
+## ラボの目的
 
-In this lab, you will complete the following tasks:
+このラボで完了するタスク:
 
-- Task 1: Start the Azure Cosmos DB Emulator.
-- Task 2: Connect to the emulator from the SDK.
-- Task 3: View the changes in the emulator.
-- Task 4: Create and view a new container.
+- タスク 1: Azure Cosmos DB Emulator の起動。
+- タスク 2: SDK からエミュレーターへ接続。
+- タスク 3: エミュレーター内の変更を確認。
+- タスク 4: 新しいコンテナーを作成して表示。
 
-### Task 1: Start the Azure Cosmos DB Emulator
-In this task, you will launch the Azure Cosmos DB Emulator, a local tool that simulates the Azure Cosmos DB environment. You'll retrieve the connection string from the emulator. The task involves verifying that the emulator is running and checking the initial state of the Data Explorer.
+### タスク 1: Azure Cosmos DB Emulator の起動
+このタスクでは、Azure Cosmos DB 環境をローカルでシミュレートする Azure Cosmos DB Emulator を起動します。エミュレーターから接続文字列を取得し、エミュレーターが実行中であることと Data Explorer の初期状態を確認します。
 
-Your environment should already have the emulator pre-installed. If not, refer to the [installation instructions][docs.microsoft.com/azure/cosmos-db/local-emulator] to install the Azure Cosmos DB Emulator. Once the emulator has started, you can retrieve the connection string and use it to connect to the emulator using the Azure SDK for .NET or any other SDK of your choice.
+環境にエミュレーターが事前インストールされていることを想定しています。インストールされていない場合は、[インストール手順][docs.microsoft.com/azure/cosmos-db/local-emulator] を参照して Azure Cosmos DB Emulator をインストールしてください。エミュレーターが起動したら、接続文字列を取得して Azure SDK for .NET や任意の SDK からエミュレーターに接続できます。
 
-1. Search and Start the **Azure Cosmos DB Emulator** from Start Menu of window.
-     ![06](media/DB31.png)
+1. スタートメニューから **Azure Cosmos DB Emulator** を検索して起動します。
+    ![06](media/DB31.png)
 
-1. **Wait for 3 to 4 minutes** to get started the emulator to automatically opens your default browser and navigate to the **localhost:8081/_explorer/index.html** landing page.
+1. **3〜4分待ちます**。エミュレーターが起動すると既定のブラウザーが自動的に開き、**localhost:8081/_explorer/index.html** のランディングページに移動します。
 
-1. In the **Azure Cosmos DB Emulator** landing page, navigate to the **Quickstart** pane.
+1. **Azure Cosmos DB Emulator** のランディングページで **Quickstart** ペインに移動します。
 
-1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
+1. このペインには、SDK からアカウントに接続するための接続情報と資格情報が表示されます。具体的には:
 
-    1. Record the value of the **Primary Connection String** field. You will use this **connection string** value later in this exercise.
+    1. **Primary Connection String** フィールドの値を記録します。後でこの **connection string** を使用します。
 
-         ![06](media/New-image56.png)
+        ![06](media/New-image56.png)
 
-1. Navigate to the **Explorer** pane. In the **Data Explorer**, observe that there are no nodes within the **NoSQL API** navigation tree.
+1. **Explorer** ペインに移動します。**Data Explorer** で **NoSQL API** ナビゲーション ツリーにノードが存在しないことを確認します。
 
    ![06](media/New-image57.png)
 
-1. Close your web browser window or tab.
+1. ブラウザーのウィンドウまたはタブを閉じます。
 
-###  Task 2: Connect to the emulator from the SDK
-In this task, you'll connect to the Azure Cosmos DB Emulator using the Microsoft.Azure.Cosmos SDK. You'll update the connection string in the provided script and write code to create a new database within the emulator, then test the connection by running the script.
+### タスク 2: SDK からエミュレーターへ接続
+このタスクでは、`Microsoft.Azure.Cosmos` SDK を使用して Azure Cosmos DB Emulator に接続します。提供されているスクリプトの接続文字列を更新し、エミュレーター内に新しいデータベースを作成するコードを記述して、スクリプトを実行して接続をテストします。
 
-The **Microsoft.Azure.Cosmos** library has already been pre-installed in the .NET script you will use in this exercise. Further, some of the boilerplate code has already been written to save you time. You will need to update the boilerplate connection string value and write a couple of lines of code to complete the script.
+`Microsoft.Azure.Cosmos` ライブラリは、今回使用する .NET スクリプトに事前インストールされています。また、いくつかのボイラープレートコードは既に用意されています。接続文字列の値を更新し、数行のコードを追加するだけで完了します。
 
-1. Navigate back to Visual Studio Code from the desktop.
+1. デスクトップから Visual Studio Code に戻ります。
 
-     ![Visual Studio Code Icon](./media/vscode1.jpg)
+    ![Visual Studio Code Icon](./media/vscode1.jpg)
 
-1. Select the **file (1)** option on the top left of the screen, from the pane options, select **Open Folder (2)**. navigate to **C:\AllFiles\dp-420-cosmos-db-dev**.
+1. 画面左上の **file (1)** オプションを選択し、ペインのオプションから **Open Folder (2)** を選択して **C:\AllFiles\dp-420-cosmos-db-dev** に移動します。
 
      ![06](media/New-image51.png)
 
-1. Navigate to **C:\AllFiles\dp-420-cosmos-db-dev** select **dp-420-cosmos-db-dev** and click on **Select Folder**.
+1. **C:\AllFiles\dp-420-cosmos-db-dev** に移動し、**dp-420-cosmos-db-dev** を選択して **Select Folder** をクリックします。
 
     ![06](media/New-image54.png)
 
-1. Select the folder **05-sdk-offline** and click on Select Folder.
+1. **05-sdk-offline** フォルダーを選択し、**Select Folder** をクリックします。
 
-1. In **Visual Studio Code**, in the **05-sdk-offline (1)** folder open the empty **script.cs (2)** code file.
+1. **Visual Studio Code** で、**05-sdk-offline (1)** フォルダー内の空の **script.cs (2)** コード ファイルを開きます。
 
     ![06](media/DB32.png)
 
-1. Update the existing variable named **connectionString** with its value set to the **connection string** of the Azure Cosmos DB Emulator.
+1. 既存の `connectionString` 変数を Azure Cosmos DB Emulator の接続文字列に更新します。
   
     ```
     string connectionString = "AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
     ```
 
-    >**Note**: The URI for the emulator is typically ***localhost:[port]*** using SSL with the default port set to **8081**.
+    > **注意**: エミュレーターの URI は通常 SSL を使用し、デフォルトのポート **8081** で `localhost:[port]` になります。
 
-     >**Note**: *C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==* is the default key for all installations of the emulator. This key can be changed using command line options.
+     > **注意**: `C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==` はエミュレーターのすべてのインストールで共通のデフォルトキーです。このキーはコマンドライン オプションで変更できます。
 
-1. Asynchronously invoke the [CreateDatabaseIfNotExistsAsync][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.cosmosclient.createdatabaseifnotexistsasync] method of the **client** variable passing in the name of the new database (**cosmicworks**) you would like to create within the emulator and storing the result in a variable of type [Database][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.database]:
+1. `client` 変数の `CreateDatabaseIfNotExistsAsync` メソッドを非同期で呼び出し、エミュレーター内に作成する新しいデータベース名 (**cosmicworks**) を渡して、その結果を `Database` 型の変数に格納します:
 
     ```
     Database database = await client.CreateDatabaseIfNotExistsAsync("cosmicworks");
     ```
 
-1. Use the built-in **Console.WriteLine** static method to print the [Id][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.database.id] property of the Database class with a header titled **New Database**:
+1. 組み込みの `Console.WriteLine` メソッドを使用して、`Database` クラスの `Id` プロパティを **New Database** ヘッダー付きで表示します:
 
     ```
     Console.WriteLine($"New Database:\tId: {database.Id}");
     ```
 
-1. Once you are done, your code file should now include:
+1. 完了したら、コード ファイルは次のようになっているはずです:
   
     ```
     using System;
@@ -100,80 +100,80 @@ The **Microsoft.Azure.Cosmos** library has already been pre-installed in the .NE
     Console.WriteLine($"New Database:\tId: {database.Id}");
     ```
 
-1. **Save** the **script.cs** code file.
+1. **script.cs** コード ファイルを **保存** します。
 
     ![06](media/DB33.png)
 
-1. In **Visual Studio Code**, right-click on **05-sdk-offline (1** folder and then select **Open in Integrated Terminal (2)** to open a new terminal instance.
+1. **Visual Studio Code** で **05-sdk-offline (1)** フォルダーを右クリックし、**Open in Integrated Terminal (2)** を選択して新しいターミナルを開きます。
     
     ![06](media/1.png)
     
-    >**Note**: This command will open the terminal with the starting directory already set to the **05-sdk-offline** folder.
+    > **注意**: この操作により、開始ディレクトリが **05-sdk-offline** フォルダーに設定された状態でターミナルが開きます。
 
-1. Add the [Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1] package from NuGet using the following command:
+1. 次のコマンドを使用して、NuGet から `Microsoft.Azure.Cosmos` パッケージを追加します:
 
     ```
     dotnet add package Microsoft.Azure.Cosmos --version 3.22.1
     ```
 
-1. Build and run the project using the [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] command:
+1. `dotnet run` コマンドを使用してプロジェクトをビルドおよび実行します:
 
     ```
     dotnet run
     ```
 
-    >**Note:** If the VS Code crashes while running the application, please close all the apps once and re perform this step.
+    > **注意:** アプリケーションの実行中に VS Code がクラッシュした場合は、すべてのアプリを閉じてから再度実行してください。
 
     ![06](media/DB35.png)
 
-1. Close the integrated terminal.
+1. 統合ターミナルを閉じます。
 
-    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
-    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out. 
+    > **おめでとうございます** — ラボを完了しました！ 検証手順は次のとおりです:
+    > - 対応するタスクの検証ボタンをクリックします。成功メッセージが表示されれば、ラボの検証に成功しています。
+    > - そうでない場合は、エラーメッセージを注意深く読み、ラボ ガイドの指示に従って手順を再実行してください。
+    > - サポートが必要な場合は、cloudlabs-support@spektrasystems.com までお問い合わせください。24時間体制でサポートを提供しています。
 
     <validation step="1e23a88b-ed78-4557-8384-97cc0833dcbb" />
 
-###  Task 3: View the changes in the emulator
+### タスク 3: エミュレーターの変更を確認する
 
-In this task, you'll use the Data Explorer in the Azure Cosmos DB Emulator to view the new NoSQL database you created. By accessing the emulator through your browser, you can observe the new "cosmicworks" database in the SQL API navigation tree.
+このタスクでは、Azure Cosmos DB Emulator の Data Explorer を使用して、作成した新しい NoSQL データベースを表示します。ブラウザー経由でエミュレーターにアクセスすると、SQL API ナビゲーション ツリーに新しい "cosmicworks" データベースが表示されることを確認できます。
 
-Now that you have created a new database in the Azure Cosmos DB emulator, you will use the online **Data Explorer** to observe the new NoSQL API database within the emulator.
+Azure Cosmos DB Emulator 内に新しいデータベースを作成したので、オンラインの **Data Explorer** を使用してエミュレーター内の新しい NoSQL API データベースを確認します。
 
-1. Navigate to the emulator icon in the Windows system tray, open the context menu, and then select **Open Data Explorer...** to navigate to the **localhost:8081/_explorer/** landing page using your default browser.
+1. Windows のシステム トレイにあるエミュレーター アイコンに移動し、コンテキスト メニューを開いて **Open Data Explorer...** を選択します。既定のブラウザーで **localhost:8081/_explorer/** ランディング ページが開きます。
 
-1. In the **Azure Cosmos DB Emulator** landing page, navigate to the **Explorer** pane.
+1. **Azure Cosmos DB Emulator** のランディング ページで **Explorer** ペインに移動します。
 
-1. In the **Data Explorer**, observe the new **cosmicworks** database node within the **SQL API** navigation tree.
+1. **Data Explorer** で **SQL API** ナビゲーション ツリー内の新しい **cosmicworks** データベース ノードを確認します。
 
     ![06](media/DB34.png)
 
-1. Close your web browser window or tab.
+1. ブラウザーのウィンドウまたはタブを閉じます。
 
-###  Task 4: Create and view a new container
+### タスク 4: 新しいコンテナーの作成と表示
 
-In this task, you will expand the previous script to create a new container called "products" in the "cosmicworks" database. After running the script, you'll verify the creation by viewing the container in the Azure Cosmos DB Emulator's Data Explorer. This process is similar to creating a database, and the code can be reused for both cloud and emulator environments by changing the connection string.
+このタスクでは、前のスクリプトを拡張して、"cosmicworks" データベース内に "products" という新しいコンテナーを作成します。スクリプトを実行した後、Azure Cosmos DB Emulator の Data Explorer でコンテナーの作成を確認します。このプロセスはデータベースの作成と似ており、クラウド環境でもエミュレーター環境でも接続文字列を変更するだけで同じコードを再利用できます。
 
-Creating a new container is similar to the pattern used to create a new database. The code you learn here will be relevant whether or not you create resources in the cloud or in the emulator, you simply need to change the connection string. You will expand the script file further to create a new container along with the database.
+新しいコンテナーの作成は、データベースの作成と同じパターンです。ここで学ぶコードは、クラウド内にリソースを作成する場合でもエミュレーター内に作成する場合でも有効であり、接続文字列を切り替えるだけで使い分けられます。スクリプト ファイルをさらに拡張して、データベースとともに新しいコンテナーを作成します。
 
-1. In **Visual Studio Code**, in the **05-sdk-offline (1)** folder open the empty **script.cs (2)** code file.
+1. **Visual Studio Code** で、**05-sdk-offline (1)** フォルダー内の空の **script.cs (2)** コード ファイルを開きます。
 
     ![06](media/DB32.png)
 
-1. Asynchronously invoke the [CreateContainerIfNotExistsAsync][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.database.createcontainerifnotexistsasync] method of the **database** variable passing in the name of the new container (**products**), the partition key path (**/categoryId**), and the throughput (**400**) you would like to create within the **cosmicworks** database and storing the result in a variable of type [Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container]:
+1. **database** 変数の `CreateContainerIfNotExistsAsync` メソッドを非同期で呼び出し、新しいコンテナー名 (**products**)、パーティション キー パス (**/categoryId**)、およびスループット (**400**) を渡して、結果を [Container] 型の変数に格納します:
 
     ```
     Container container = await database.CreateContainerIfNotExistsAsync("products", "/categoryId", 400);
     ```
 
-1. Use the built-in **Console.WriteLine** static method to print the [Id][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.id] property of the Container class with a header titled **New Container**:
+1. 組み込みの **Console.WriteLine** メソッドを使用して、`Container` クラスの `Id` プロパティを **New Container** 見出し付きで表示します:
 
     ```
     Console.WriteLine($"New Container:\tId: {container.Id}");
     ```
 
-1. Once you are done, your code file should now include:
+1. 完了したら、コード ファイルは次のようになっているはずです:
   
     ```
     using System;
@@ -190,15 +190,15 @@ Creating a new container is similar to the pattern used to create a new database
     Console.WriteLine($"New Container:\tId: {container.Id}");
     ```
 
-1. **Save** the **script.cs** code file.
+1. **script.cs** コード ファイルを **保存** します。
 
      ![06](media/DB36.png)
 
-1. In **Visual Studio Code**, right-click on **05-sdk-offline** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+1. **Visual Studio Code** で **05-sdk-offline** フォルダーを右クリックし、**Open in Integrated Terminal** を選択して新しいターミナルを開きます。
     
     ![06](media/1.png)
 
-1. Build and run the project using the [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] command:
+1. 次の [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] コマンドを使用してプロジェクトをビルドおよび実行します:
 
     ```
     dotnet run
@@ -206,38 +206,38 @@ Creating a new container is similar to the pattern used to create a new database
 
     ![06](media/DB37.png)
 
-1. Close the integrated terminal.
+1. 統合ターミナルを閉じます。
 
-1. Close **Visual Studio Code**.
+1. **Visual Studio Code** を閉じます。
 
-1. Navigate to the emulator icon in the Windows system tray, open the context menu, and then select **Open Data Explorer...** to navigate to the **localhost:8081/_explorer/index.html** landing page using your default browser.
+1. Windows のシステム トレイにあるエミュレーター アイコンに移動し、コンテキスト メニューを開いて **Open Data Explorer...** を選択します。既定のブラウザーで **localhost:8081/_explorer/index.html** のランディング ページが開きます。
 
-1. In the **Azure Cosmos DB Emulator** landing page, navigate to the **Explorer** pane.
+1. **Azure Cosmos DB Emulator** のランディング ページで **Explorer** ペインに移動します。
 
-1. In the **Data Explorer**, expand the **cosmicworks** database node, then observe the new **products** container node within the **NoSQL API** navigation tree.
+1. **Data Explorer** で **cosmicworks** データベース ノードを展開し、**NoSQL API** ナビゲーション ツリー内に新しい **products** コンテナー ノードが表示されていることを確認します。
 
     ![06](media/New-image60.png)
    
-1. Close your web browser window or tab.
+1. ブラウザーのウィンドウまたはタブを閉じます。
 
-    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
-    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
+    > **おめでとうございます** — ラボを完了しました！ 検証手順は次のとおりです:
+    > - 対応するタスクの検証ボタンをクリックします。成功メッセージが表示されれば、ラボの検証に成功しています。
+    > - そうでない場合は、エラーメッセージを注意深く読み、ラボ ガイドの指示に従って手順を再実行してください。
+    > - サポートが必要な場合は、cloudlabs-support@spektrasystems.com までお問い合わせください。24時間体制でサポートを提供しています。
 
     <validation step="d95b17d3-9a2e-4a03-adde-9ad042168bea" />
 
 ### Summary
 
-In this lab, you have configured the Azure Cosmos DB Emulator for offline development with the NoSQL API. Key tasks include starting the emulator, connecting to it via the Azure SDK for .NET, creating a new database named "cosmicworks," and adding a container called "products." Finally, users will verify their changes using the Data Explorer within the emulator, providing hands-on experience with the Cosmos DB development environment.
+このラボでは、NoSQL API を使用したオフライン開発向けに Azure Cosmos DB Emulator を構成しました。主なタスクは、エミュレーターの起動、Azure SDK for .NET を使用した接続、新しいデータベース "cosmicworks" の作成、そして "products" というコンテナーの追加です。最後に、エミュレーター内の Data Explorer を使って変更内容を確認し、Cosmos DB 開発環境の操作を実践的に学習しました。
 
 ### Review
 
-In this lab, you have completed:
+このラボでは次の項目を完了しました:
 
-- Task 1: Started the Azure Cosmos DB Emulator.
-- Task 2: Connected to the emulator from the SDK.
-- Task 3: Viewed the changes in the emulator.
-- Task 4: Created and viewed a new container.
+- Task 1: Azure Cosmos DB Emulator を起動しました。
+- Task 2: SDK からエミュレーターに接続しました。
+- Task 3: エミュレーターの変更を確認しました。
+- Task 4: 新しいコンテナーを作成して表示しました。
 
 ### You have successfully completed the lab
