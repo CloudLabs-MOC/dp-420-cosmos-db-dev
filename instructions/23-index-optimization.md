@@ -60,23 +60,30 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
    ![06](media/New-image3.png)
    
-1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create**:
+1.  Create the resource with the following settings, leaving all remaining settings to their default values, and select **Review + create** **(7)**:
 
-   | **Setting** | **Value** |
-   | ---------------- | ---------------------------------- |
-   | **Subscription** | *Your existing Azure subscription* |
-   | **Resource group** | **DP-420-<inject key="DeploymentID" enableCopy="false"/>** |
-   | **Account Name** | *Enter a globally unique name* |
-   | **Location** | *Choose any available region* |
-   | **Capacity mode** | *Serverless* |
+    | **Setting** | **Value** |
+    | :--- | :--- |
+    | **Workload Type** | Production **(1)** |
+    | **Subscription** | Select your Azure subscription **(2)** |
+    | **Resource Group** | Select existing resource group **DP-420-<inject key="DeploymentID" enableCopy="false"/> (3)** |
+    | **Account Name** | Enter **sql-<inject key="DeploymentID" enableCopy="false"/> (4)** |
+    | **Location** | Select any available location **(5)** |
+    | **Capacity mode** | Serverless **(6)** |
 
-1. After validation get Success click on **Create**.
-   
+      ![06](media/DB051.png)
+
+1. Verify the configuration and click **Create**.
+
+     ![06](media/DB52.png)
+
 1. Wait for the deployment task to complete before continuing with this task.
 
-1. Go to the newly created **Azure Cosmos DB** account resource and navigate to the **Data Explorer** pane.
+1. Within the **Azure Cosmos DB** account resource **overview page (1)** , navigate to the **Data Explorer (2)** pane. 
 
-1. In the **Data Explorer** pane, select **+ New Container** > **+ New Container**.
+    ![06](media/DB04.png)
+
+1. In the **Data Explorer** pane, select **+ New Container** **(1)** and select **+ New Container (2)**.
 
    ![06](media/New-image107.png)
 
