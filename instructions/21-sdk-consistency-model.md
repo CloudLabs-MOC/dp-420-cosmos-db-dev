@@ -1,103 +1,103 @@
-# Lab 09b - Design and implement a replication strategy for Azure Cosmos DB SQL API
+# Lab 09b - Azure Cosmos DB SQL API のレプリケーション戦略を設計・実装する
 
-## Lab scenario
+## ラボのシナリオ
 
-The default consistency level for new Azure Cosmos DB SQL API accounts is session consistency. This default setting can be modified for all future requests. At an individual request level, you can go a step further and relax the consistency level for that specific request.
+新しい Azure Cosmos DB SQL API アカウントのデフォルトの一貫性レベルはセッション一貫性です。このデフォルト設定は、すべての今後のリクエストに対して変更できます。個別のリクエスト レベルでは、さらに一歩進めて、その特定のリクエストの一貫性レベルを緩和できます。
 
-In this lab, we will configure the default consistency level for an Azure Cosmos DB SQL API account and then configure a consistency level for an individual operation using the SDK.
+このラボでは、Azure Cosmos DB SQL API アカウントのデフォルトの一貫性レベルを構成し、SDK を使用して個別の操作の一貫性レベルを構成します。
 
-## Lab objectives
+## ラボの目的
 
-In this lab, you will complete the following tasks:
-- Task 1: Prepare your development environment.
-- Task 2: Create an Azure Cosmos DB SQL API account.
-- Task 3: Connect to the Azure Cosmos DB SQL API account from the SDK.
-- Task 4: Configure consistency level for a point operation.
+このラボでは、次のタスクを完了します:
+- タスク 1: 開発環境を準備する。
+- タスク 2: Azure Cosmos DB SQL API アカウントを作成する。
+- タスク 3: SDK から Azure Cosmos DB SQL API アカウントに接続する。
+- タスク 4: ポイント操作の一貫性レベルを構成する。
 
-## Estimated Timing: 60 minutes
+## 推定所要時間: 60 分
 
-## Architecture Diagram
+## アーキテクチャ図
 
 ![image](architecturedia/lab21.png)
 
-## Exercise 1: Configure consistency models in the portal and the Azure Cosmos DB SQL API SDK
+## 演習 1: ポータルと Azure Cosmos DB SQL API SDK で一貫性モデルを構成する
 
-### Task 1: Prepare your development environment
+### タスク 1: 開発環境を準備する
 
-1. Start Visual Studio Code (the program icon is pinned to the Desktop).
+1. Visual Studio Code を起動します（プログラムのアイコンはデスクトップにピン留めされています）。
 
-2. Select the **Extension (1)** icon from the left pane. Enter **C# (2)** in the search bar and select the **extension (3)** that shows up and finally **Install (4)** on the extension. 
+2. 左側のペインから **Extension (1)** アイコンを選択します。検索バーに **C# (2)** と入力し、表示された **extension (3)** を選択して最後に **Install (4)** をクリックします。
 
     ![](media/C-hash-extension.png)
 
-3. Select the **file** option on the top left of the screen, from the pane options, select **Open Folder** and navigate to **C:\AllFiles**.
+3. 画面左上の **file** オプションを選択し、ペインオプションから **Open Folder** を選択して **C:\AllFiles** に移動します。
 
-4. Select the folder **dp-420-cosmos-db-dev** and click on **Select Folder**.
+4. フォルダー **dp-420-cosmos-db-dev** を選択し、**Select Folder** をクリックします。
 
-### Task 2: Create an Azure Cosmos DB SQL API account
+### タスク 2: Azure Cosmos DB SQL API アカウントを作成する
 
-Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **Mongo API** or **SQL API**). Once the Azure Cosmos DB SQL API account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB SQL API account using the Azure SDK for .NET or any other SDK of your choice.
+Azure Cosmos DB は複数の API をサポートするクラウドベースの NoSQL データベース サービスです。Azure Cosmos DB アカウントを初めてプロビジョニングするときは、アカウントでサポートする API を選択します（たとえば **Mongo API** や **SQL API**）。Azure Cosmos DB SQL API アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得して、Azure SDK for .NET やその他の SDK を使用して接続できます。
 
-1. In a new web browser window or tab, navigate to the Azure portal (``portal.azure.com``).
+1. 新しい Web ブラウザー ウィンドウまたはタブで Azure ポータル（``portal.azure.com``）に移動します。
 
-1. Sign into the portal using the Microsoft credentials associated with your subscription.
+1. サブスクリプションに関連付けられた Microsoft 資格情報でポータルにサインインします。
 
-1. Within the **Azure services** category, select **Create a resource**, and then select **Azure Cosmos DB**.
+1. **Azure services** カテゴリで **Create a resource** を選択し、次に **Azure Cosmos DB** を選択します。
 
-    > &#128161; Alternatively; expand the **&#8801;** menu, select **All Services**, in the **Databases** category, select **Azure Cosmos DB**, and then select **Create**.
+    > 💡 代わりに、**≡** メニューを展開し、**All Services** を選択し、**Databases** カテゴリで **Azure Cosmos DB** を選択して **Create** をクリックしてもかまいません。
 
-1. In the **Select API option** pane, select the **Create** option within the **Azure Cosmos DB for NoSQL** section.
+1. **Select API option** ペインで、**Azure Cosmos DB for NoSQL** セクションの **Create** オプションを選択します。
 
-1. Within the **Create Azure Cosmos DB Account** pane, observe the **Basics** tab.
+1. **Create Azure Cosmos DB Account** ペインで、**Basics** タブを確認します。
 
-    | **Setting** | **Value** |
+    | **設定** | **値** |
     | --- | --- |
-    | **Subscription** | *Your existing Azure subscription* |
+    | **Subscription** | *既存の Azure サブスクリプション* |
     | **Resource group** | *DP-420-DeploymentID* |
-    | **Account Name** | *Enter a globally unique name* |
-    | **Location** | *Choose any available region* |
+    | **Account Name** | *グローバルに一意の名前を入力* |
+    | **Location** | *利用可能なリージョンを選択* |
     | **Capacity mode** | *Provisioned throughput* |
     | **Apply Free Tier Discount** | *Do Not Apply* |
 
-    >**Note** : DeploymentID is the a unique id associated to each environment. You can find the value inside the environment details page.
+    > **注意**: DeploymentID は各環境に関連付けられた一意の ID です。環境の詳細ページで値を確認できます。
 
-1. Click on **Next: Global Distribution**, **Enable** the Geo-Redundancy, click on **Review + Create** and after validation get Success click on **Create**.
+1. **Next: Global Distribution** をクリックし、ジオ冗長性を **Enable** し、**Review + Create** をクリックして検証が成功したら **Create** をクリックします。
 
-1. Wait for the deployment task to complete before continuing with this task.
+1. このタスクを続行する前に、デプロイメント タスクが完了するまで待ちます。
 
-1. Go to the newly created **Azure Cosmos DB** account resource and navigate to the **Replicate data globally** pane.
+1. 新しく作成した **Azure Cosmos DB** アカウント リソースに移動し、**Replicate data globally** ペインに移動します。
 
-1. In the **Replicate data globally** pane, add two extra read regions to the account and then **Save** your changes.
+1. **Replicate data globally** ペインで、アカウントに追加の 2 つの読み取りリージョンを追加し、変更を **Save** します。
 
-1. Wait for the replication task to complete before continuing with this task.
+1. このタスクを続行する前に、レプリケーション タスクが完了するまで待ちます。
 
-    > **Note:** This operation can take approximately 5-10 minutes.and navigate to the **Default consistency** pane.
+    > **注意:** この操作には約 5〜10 分かかる場合があります。その後 **Default consistency** ペインに移動します。
 
-1. In the resource blade, navigate to the **Default consistency** pane.
+1. リソース ブレードで、**Default consistency** ペインに移動します。
 
-1. In the **Default consistency** pane, select the **Strong** option and then **Save** your changes.
+1. **Default consistency** ペインで、**Strong** オプションを選択し、変更を **Save** します。
 
-1. Wait for the change to the default consistency level to persist before continuing with this task.
+1. このタスクを続行する前に、デフォルト一貫性レベルの変更が適用されるまで待ちます。
 
-1. In the resource blade, navigate to the **Data Explorer** pane.
+1. リソース ブレードで、**Data Explorer** ペインに移動します。
 
-1. In the **Data Explorer** pane, select **New Container**.
+1. **Data Explorer** ペインで **New Container** を選択します。
 
-1. In the **New Container** popup, enter the following values for each setting, and then select **OK**:
+1. **New Container** のポップアップで、各設定に次の値を入力し、**OK** を選択します。
 
-    | **Setting** | **Value** |
+    | **設定** | **値** |
     | --- | --- |
-    | **Database id** | *Create new* &vert; *cosmicworks* |
+    | **Database id** | *Create new* | *cosmicworks* |
     | **Share throughput across containers** | *Do not select* |
     | **Container id** | *products* |
     | **Partition key** | */categoryId* |
-    | **Container throughput** | *Manual* &vert; *400* |
+    | **Container throughput** | *Manual* | *400* |
 
-1. Back in the **Data Explorer** pane, expand the **cosmicworks** database node and then observe the **products** container node within the hierarchy.
+1. **Data Explorer** ペインに戻り、**cosmicworks** データベース ノードを展開して、階層内の **products** コンテナー ノードを確認します。
 
-1. In the **Data Explorer** pane, expand the **cosmicworks** database node, expand the **products** container node, and then select **Items**.
+1. **Data Explorer** ペインで、**cosmicworks** データベース ノードを展開し、**products** コンテナー ノードを展開してから、**Items** を選択します。
 
-1. Still in the **Data Explorer** pane, select **New Item** from the command bar. In the editor, replace the placeholder JSON item with the following content:
+1. 引き続き **Data Explorer** ペインで、コマンド バーから **New Item** を選択します。エディターでプレースホルダーの JSON アイテムを次の内容に置き換えます。
 
     ```
     {
@@ -110,101 +110,101 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     }
     ```
 
-1. Select **Save** from the command bar to add the JSON item:
+1. コマンド バーから **Save** を選択し、JSON アイテムを追加します。
 
-1. In the **Items** tab, observe the new item in the **Items** pane.
+1. **Items** タブで、**Items** ペインに新しいアイテムが表示されていることを確認します。
 
-1. In the resource blade, navigate to the **Keys** pane.
+1. リソース ブレードで、**Keys** ペインに移動します。
 
-1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
+1. このペインには、SDK からアカウントに接続するために必要な接続情報と資格情報が含まれています。具体的には:
 
-    1. Record the value of the **URI** field. You will use this **endpoint** value later in this exercise.
+    1. **URI** フィールドの値を記録します。この **endpoint** 値は後でこの演習で使用します。
 
-    1. Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
+    1. **PRIMARY KEY** フィールドの値を記録します。この **key** 値は後でこの演習で使用します。
 
-1. Close your web browser window or tab.
+1. Web ブラウザー ウィンドウまたはタブを閉じます。
 
-### Task 3: Connect to the Azure Cosmos DB SQL API account from the SDK
+### タスク 3: SDK から Azure Cosmos DB SQL API アカウントに接続する
 
-Using the credentials from the newly created account, you will connect with the SDK classes and create a new database and container instance. Then, you will use the Data Explorer to validate that the instances exist in the Azure portal.
+新しく作成したアカウントの資格情報を使用して、SDK クラスに接続し、新しいデータベースとコンテナー インスタンスを作成します。次に、Data Explorer を使用して、これらのインスタンスが Azure ポータルに存在することを確認します。
 
-1. In **Visual Studio Code**, in the **Explorer** pane, browse to the **21-sdk-consistency-model** folder.
+1. **Visual Studio Code** の **Explorer** ペインで、**21-sdk-consistency-model** フォルダーに移動します。
 
-1. Open the context menu for the **21-sdk-consistency-model** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+1. **21-sdk-consistency-model** フォルダーのコンテキスト メニューを開き、**Open in Integrated Terminal** を選択して新しいターミナル インスタンスを開きます。
 
-    > **Note:** This command will open the terminal with the starting directory already set to the **21-sdk-consistency-model** folder.
+    > **注意:** このコマンドは、開始ディレクトリが **21-sdk-consistency-model** フォルダーに設定された状態でターミナルを開きます。
 
-1. Build the project using the [dotnet build][docs.microsoft.com/dotnet/core/tools/dotnet-build] command:
+1. [dotnet build][docs.microsoft.com/dotnet/core/tools/dotnet-build] コマンドを使用してプロジェクトをビルドします:
 
     ```
     dotnet build
     ```
 
-    > **Note:** You may see a compiler warning that the **endpoint** and **key** variables are current unused. You can safely ignore this warning as you will use these variable in this task.
+    > **注意:** **endpoint** および **key** 変数が現在未使用であるというコンパイラー警告が表示される場合があります。この警告は、このタスクでこれらの変数を使用するため、無視しても問題ありません。
 
-1. Close the integrated terminal.
+1. 統合ターミナルを閉じます。
 
-1. Open the **product.cs** code file.
+1. **product.cs** コード ファイルを開きます。
 
-1. Observe the **Product** record and its corresponding properties. Specifically, this lab will use the **id**, **name**, and **categoryId** properties.
+1. **Product** レコードとその対応するプロパティを確認します。このラボでは特に **id**、**name**、**categoryId** プロパティを使用します。
 
-1. Back in the **Explorer** pane of **Visual Studio Code**, open the **script.cs** code file.
+1. **Visual Studio Code** の **Explorer** ペインに戻り、**script.cs** コード ファイルを開きます。
 
-    > **Note:** The **[Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1]** library has already been pre-imported from NuGet.
+    > **注意:** **[Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1]** ライブラリは、NuGet から既に事前にインポートされています。
 
-1. Locate the **string** variable named **endpoint**. Set its value to the **endpoint** of the Azure Cosmos DB account you created earlier.
+1. **endpoint** という名前の **string** 変数を見つけます。これを、先ほど作成した Azure Cosmos DB アカウントの **endpoint** に設定します。
   
     ```
     string endpoint = "<cosmos-endpoint>";
     ```
 
-    > **Note:** For example, if your endpoint is: **https&shy;://dp420.documents.azure.com:443/**, then the C# statement would be: **string endpoint = "https&shy;://dp420.documents.azure.com:443/";**.
+    > **注意:** たとえば、エンドポイントが **https&shy;://dp420.documents.azure.com:443/** の場合、C# の文は **string endpoint = "https&shy;://dp420.documents.azure.com:443/";** となります。
 
-1. Locate the **string** variable named **key**. Set its value to the **key** of the Azure Cosmos DB account you created earlier.
+1. **key** という名前の **string** 変数を見つけます。これを、先ほど作成した Azure Cosmos DB アカウントの **key** に設定します。
 
     ```
     string key = "<cosmos-key>";
     ```
 
-    > **Note:** For example, if your key is: **fDR2ci9QgkdkvERTQ==**, then the C# statement would be: **string key = "fDR2ci9QgkdkvERTQ==";**.
+    > **注意:** たとえば、キーが **fDR2ci9QgkdkvERTQ==** の場合、C# の文は **string key = "fDR2ci9QgkdkvERTQ==";** となります。
 
-1. **Save** the **script.cs** code file.
+1. **script.cs** コード ファイルを **Save** します。
 
-### Task 4: Configure consistency level for a point operation
+### タスク 4: ポイント操作の一貫性レベルを構成する
 
-The **ItemRequestOptions** class contains configuration properties on a per-request basis. Using this class, you will relax the consistency level from the current default of strong to eventual consistency.
+**ItemRequestOptions** クラスには、リクエストごとの構成プロパティが含まれています。このクラスを使用して、現在のデフォルト値の強い一貫性から結果整合性に一貫性レベルを緩和します。
 
-1. Create a string variable named **id** with a value of **7d9273d9-5d91-404c-bb2d-126abb6e4833**:
+1. **id** という名前の文字列変数を作成し、値を **7d9273d9-5d91-404c-bb2d-126abb6e4833** に設定します:
 
     ```
     string id = "7d9273d9-5d91-404c-bb2d-126abb6e4833";
     ```
 
-1. Create a string variable named **categoryId** with a value of **78d204a2-7d64-4f4a-ac29-9bfc437ae959**:
+1. **categoryId** という名前の文字列変数を作成し、値を **78d204a2-7d64-4f4a-ac29-9bfc437ae959** に設定します:
 
     ```
     string categoryId = "78d204a2-7d64-4f4a-ac29-9bfc437ae959";
     ```
 
-1. Create a variable of type **PartitionKey** named **partitionKey** passing in the **categoryId** variable as a constructor parameter:
+1. **PartitionKey** 型の **partitionKey** という名前の変数を作成し、コンストラクター パラメーターとして **categoryId** 変数を渡します:
 
     ```
     PartitionKey partitionKey = new (categoryId);
     ```
 
-1. Asynchronously invoke the generic **ReadItemAsync\<\>** method of the **container** variable passing in the **id** and **partitionkey** variables as method parameters, using **Product** as the generic type, and storing the result in a variable named **response** of type **ItemResponse\<Product\>**:
+1. **container** 変数のジェネリック **ReadItemAsync\<\>** メソッドを非同期で呼び出し、メソッド パラメーターとして **id** および **partitionkey** 変数を渡し、ジェネリック型として **Product** を使用し、結果を **ItemResponse\<Product\>** 型の **response** という名前の変数に格納します:
 
     ```
     ItemResponse<Product> response = await container.ReadItemAsync<Product>(id, partitionKey);
     ```
 
-1. Invoke the static **Console.WriteLine** method to print the request charge using a formatted output string:
+1. 静的な **Console.WriteLine** メソッドを呼び出して、フォーマット済み出力文字列を使用してリクエスト チャージを出力します:
 
     ```
     Console.WriteLine($"STRONG Request Charge:\t{response.RequestCharge:0.00} RUs");
     ```
 
-1. Once you are done, your code file should now include:
+1. 実行が完了すると、コード ファイルには次の内容が含まれているはずです:
 
     ```
     using Microsoft.Azure.Cosmos;
@@ -226,25 +226,25 @@ The **ItemRequestOptions** class contains configuration properties on a per-requ
     Console.WriteLine($"STRONG Request Charge:\t{response.RequestCharge:0.00} RUs");
     ```
 
-1. **Save** the **script.cs** code file.
+1. **script.cs** コード ファイルを **Save** します。
 
-1. In **Visual Studio Code**, open the context menu for the **21-sdk-consistency-model** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+1. **Visual Studio Code** で **21-sdk-consistency-model** フォルダーのコンテキスト メニューを開き、**Open in Integrated Terminal** を選択して新しいターミナル インスタンスを開きます。
 
-1. Build and run the project using the **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** command:
+1. **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** コマンドを使用してプロジェクトをビルドして実行します:
 
     ```
     dotnet run
     ```
 
-1. Observe the output from the terminal. The request charge (in RUs) should be printed to the console.
+1. ターミナルの出力を確認します。リクエスト チャージ（RU）がコンソールに出力されるはずです。
 
-    > **Note:** The current request charge should be **2 RUs**. This is due to the strong consistency requiring a read from at least two replicas to ensure that it has the latest write.
+    > **注意:** 現在のリクエスト チャージは **2 RU** になるはずです。これは、強い一貫性が最新の書き込みを確認するために少なくとも 2 つのレプリカからの読み取りが必要になるためです。
 
-1. Close the integrated terminal.
+1. 統合ターミナルを閉じます。
 
-1. Return to the editor tab for the **script.cs** code file.
+1. **script.cs** コード ファイルの エディター タブに戻ります。
 
-1. Delete the following lines of code:
+1. 次のコード行を削除します:
 
     ```
     ItemResponse<Product> response = await container.ReadItemAsync<Product>(id, partitionKey);
@@ -252,7 +252,7 @@ The **ItemRequestOptions** class contains configuration properties on a per-requ
     Console.WriteLine($"Request Charge:\t{response.RequestCharge:0.00} RUs");
     ```
 
-1. Create a new variable named **options** of type [ItemRequestOptions][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.itemrequestoptions] setting the [ConsistencyLevel][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.itemrequestoptions.consistencylevel] property to the [ConsistencyLevel.Eventual][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.consistencylevel] enum value:
+1. [ItemRequestOptions][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.itemrequestoptions] 型の **options** という名前の新しい変数を作成し、[ConsistencyLevel][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.itemrequestoptions.consistencylevel] プロパティを [ConsistencyLevel.Eventual][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.consistencylevel] 列挙値に設定します:
 
     ```
     ItemRequestOptions options = new()
@@ -261,19 +261,19 @@ The **ItemRequestOptions** class contains configuration properties on a per-requ
     };
     ```
 
-1. Asynchronously invoke the generic **ReadItemAsync\<\>** method of the **container** variable passing in the **id**, **partitionKey**, and **options** variables as  method parameters, using **Product** as the generic type, and storing the result in a variable named **response** of type **ItemResponse\<Product\>**:
+1. **container** 変数のジェネリック **ReadItemAsync\<\>** メソッドを非同期で呼び出し、メソッド パラメーターとして **id**、**partitionKey**、**options** 変数を渡し、ジェネリック型として **Product** を使用し、結果を **ItemResponse\<Product\>** 型の **response** という名前の変数に格納します:
 
     ```
     ItemResponse<Product> response = await container.ReadItemAsync<Product>(id, partitionKey, requestOptions: options);
     ```
 
-1. Invoke the static **Console.WriteLine** method to print the request charge using a formatted output string:
+1. 静的な **Console.WriteLine** メソッドを呼び出して、フォーマット済み出力文字列を使用してリクエスト チャージを出力します:
 
     ```
     Console.WriteLine($"EVENTUAL Request Charge:\t{response.RequestCharge:0.00} RUs");
     ```
 
-1. Once you are done, your code file should now include:
+1. 実行が完了すると、コード ファイルには次の内容が含まれているはずです:
 
     ```
     using Microsoft.Azure.Cosmos;
@@ -300,36 +300,36 @@ The **ItemRequestOptions** class contains configuration properties on a per-requ
     Console.WriteLine($"EVENTUAL Request Charge:\t{response.RequestCharge:0.00} RUs");
     ```
 
-1. **Save** the **script.cs** code file.
+1. **script.cs** コード ファイルを **Save** します。
 
-1. In **Visual Studio Code**, open the context menu for the **21-sdk-consistency-model** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+1. **Visual Studio Code** で **21-sdk-consistency-model** フォルダーのコンテキスト メニューを開き、**Open in Integrated Terminal** を選択して新しいターミナル インスタンスを開きます。
 
-1. Build and run the project using the **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** command:
+1. **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** コマンドを使用してプロジェクトをビルドして実行します:
 
     ```
     dotnet run
     ```
 
-1. Observe the output from the terminal. The request charge (in RUs) should be printed to the console.
+1. ターミナルの出力を確認します。リクエスト チャージ（RU）がコンソールに出力されるはずです。
 
-    > **Note:** The current request charge should be **1 RUs**. This is due to the eventual consistency only requiring a read from a single replica.
+    > **注意:** 現在のリクエスト チャージは **1 RU** になるはずです。これは、結果整合性が単一のレプリカからの読み取りのみを必要とするためです。
 
-1. Close the integrated terminal.
+1. 統合ターミナルを閉じます。
 
-1. Close **Visual Studio Code**.
+1. **Visual Studio Code** を閉じます。
 
 
-## Cleanup
+## クリーンアップ
 
-1. Delete the Azure Cosmos DB accounts that were created by in this lab.
+1. このラボで作成した Azure Cosmos DB アカウントを削除します。
 
-### Review
+### レビュー
 
-In this lab, you have completed:
+このラボで完了したこと:
 
-- Prepared your development environment.
-- Created an Azure Cosmos DB SQL API account.
-- Connected to the Azure Cosmos DB SQL API account from the SDK.
-- Configured consistency level for a point operation.
+- 開発環境を準備しました。
+- Azure Cosmos DB SQL API アカウントを作成しました。
+- SDK から Azure Cosmos DB SQL API アカウントに接続しました。
+- ポイント操作の一貫性レベルを構成しました。
 
-### You have successfully completed the lab
+### ラボを正常に完了しました
