@@ -1,85 +1,85 @@
-# Search data using Azure AI Search and Azure Cosmos DB for NoSQL
+# Azure AI Search と Azure Cosmos DB for NoSQL を使ってデータを検索する
 
-## Lab scenario
+## ラボのシナリオ
 
-Azure Cognitive Search combines a search engine as a service with deep integration with AI capabilities to enrich the information in the search index.
+Azure Cognitive Search は、サービスとしての検索エンジンと AI 機能の深い統合を組み合わせ、検索インデックス内の情報を強化します。
 
-In this lab, you will build an Azure Cognitive Search index that automatically indexes data in an Azure Cosmos DB SQL API container and enriches the data using the Azure Cognitive Services Translator functionality.
+このラボでは、Azure Cosmos DB SQL API コンテナー内のデータを自動的にインデックス化し、Azure Cognitive Services Translator 機能を使用してデータを強化する Azure Cognitive Search インデックスを作成します。
 
-## Lab objectives
+## ラボの目的
 
-In this lab, you will complete the following tasks:
-- Task 1: Create an Azure Cosmos DB for NoSQL account.
-- Task 2: Send your Azure Cosmos DB for NoSQL account with sample data.
-- Task 3: Create an Azure AI Search resource.
-- Task 4: Build indexer and index for Azure Cosmos DB for NoSQL data.
-- Task 5: Validate the index with example search queries.
+このラボでは、次のタスクを完了します:
+- タスク 1: Azure Cosmos DB for NoSQL アカウントを作成する
+- タスク 2: Azure Cosmos DB for NoSQL アカウントにサンプルデータを送信する
+- タスク 3: Azure AI Search リソースを作成する
+- タスク 4: Azure Cosmos DB for NoSQL データ用のインデクサーとインデックスを構築する
+- タスク 5: サンプル検索クエリでインデックスを検証する
 
-## Estimated Timing: 30 minutes
+## 推定所要時間: 30 分
 
-## Architecture Diagram
+## アーキテクチャ図
 
 ![image](architecturedia/lab15.png)
 
-### Task 1: Create an Azure Cosmos DB for NoSQL account
+### タスク 1: Azure Cosmos DB for NoSQL アカウントを作成する
 
-Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **Mongo API** or **NoSQL API**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
+Azure Cosmos DB は複数の API をサポートするクラウドベースの NoSQL データベース サービスです。Azure Cosmos DB アカウントを初めてプロビジョニングする際には、アカウントでサポートする API を選択します（たとえば **Mongo API** や **NoSQL API**）。Azure Cosmos DB for NoSQL アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得し、Azure SDK for .NET やその他の SDK を使用してそのアカウントに接続できます。
 
-1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
+1. Azure Portal ページに戻り、ポータル上部の「Search resources, services and docs (G+/)」ボックスに **Azure Cosmos DB** と入力し、サービス一覧から **Azure Cosmos DB** を選択します。
 
    ![06](media/New-image1.png)
    
-1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
+1. **Azure Cosmos DB for NoSQL** の下で **+ Create** を選択し、**Create** をクリックして **Azure Cosmos DB for NoSQL** アカウントを作成します。
 
     ![06](media/New-image2.png)
 
     ![06](media/New-image3.png)
 
 
-1.  Create the resource with the following settings, leaving all remaining settings to their default values, and select **Review + create** **(7)**:
+1. 次の設定を指定し、残りの設定はすべて既定値のままにして **Review + create** **(7)** を選択します:
 
-    | **Setting** | **Value** |
+    | **設定** | **値** |
     | :--- | :--- |
     | **Workload Type** | Production **(1)** |
-    | **Subscription** | Select your Azure subscription **(2)** |
-    | **Resource Group** | Select existing resource group **Cosmosdb-<inject key="DeploymentID" enableCopy="false"/> (3)** |
-    | **Account Name** | Enter **sql-<inject key="DeploymentID" enableCopy="false"/> (4)** |
-    | **Location** | Select any available location **(5)** |
+    | **Subscription** | Azure サブスクリプションを選択 **(2)** |
+    | **Resource Group** | 既存のリソース グループ **Cosmosdb-<inject key="DeploymentID" enableCopy="false"/> (3)** を選択 |
+    | **Account Name** | **sql-<inject key="DeploymentID" enableCopy="false"/> (4)** を入力 |
+    | **Location** | 利用可能な任意のロケーションを選択 **(5)** |
     | **Capacity mode** | Serverless **(6)** |
 
     ![06](media/DB51.png)
 
-1. Verify the configuration and click **Create**.
+1. 構成を確認し、**Create** をクリックします。
 
      ![06](media/DB52.png)
 
-1. Wait for the deployment task to complete before continuing with this task.
+1. このタスクを続行する前に、デプロイが完了するまで待ちます。
 
-1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys** pane.
+1. **Go to resources** を選択します。新しく作成した **Azure Cosmos DB** アカウントの **Settings** で **Keys** ペインに移動します。
 
     ![06](media/New-image6.png)
 
     ![06](media/New-image7.png)
 
-1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
+1. このペインには、SDK からアカウントに接続するために必要な接続情報と資格情報が含まれています。具体的には:
 
-    - Record the value of the **URI (1)** field. You will use this **endpoint** value later in this exercise.
+    - **URI (1)** フィールドの値を記録します。この **endpoint** 値は本演習の後半で使用します。
 
-    - Record the value of the **PRIMARY KEY (2)** field. You will use this **key** value later in this exercise.
+    - **PRIMARY KEY (2)** フィールドの値を記録します。この **key** 値は本演習の後半で使用します。
 
         ![06](media/New-image9.png)
 
-1. Within the **Azure Cosmos DB** account resource **overview page (1)** , navigate to the **Data Explorer (2)** pane. 
+1. **Azure Cosmos DB** アカウントの **overview page (1)** から **Data Explorer (2)** ペインに移動します。
 
     ![06](media/DB04.png)
 
-1. In the **Data Explorer (1)** page, click **New (2)**, then select **New Container (3)**.
+1. **Data Explorer (1)** ページで **New (2)** をクリックし、**New Container (3)** を選択します。
 
      ![06](media/DB42.png)
 
-1. In the **New Container** pane, enter the following details:
+1. **New Container** ペインで次の詳細を入力します:
 
-    | **Setting** | **Value** |
+    | **設定** | **値** |
     | :--- | :--- |
     | **Database id** | `cosmicworks` **(1)** |
     | **Container id** | `products` **(2)** |
@@ -87,32 +87,32 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
     ![06](media/DB044.png)
 
-1. Click **OK (4)**.
+1. **OK (4)** をクリックします。
 
-1. Back in the **Data Explorer** pane, expand the **cosmicworks** database node and then observe the **products** container node within the hierarchy.
+1. **Data Explorer** ペインに戻り、**cosmicworks** データベース ノードを展開して、階層内に **products** コンテナー ノードが表示されていることを確認します。
 
     ![06](media/cosmosdbproducts.png)
 
-    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
-    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
+    > **おめでとうございます**。タスクは完了しました。次に検証を行います。手順は次のとおりです:
+    > - 対応するタスクの **Validate** ボタンを押します。成功メッセージが表示された場合は次のタスクに進みます。
+    > - そうでない場合は、エラーメッセージをよく読み、ラボ ガイドの指示に従って手順をやり直します。
+    > - サポートが必要な場合は cloudlabs-support@spektrasystems.com までご連絡ください。24 時間 365 日対応しています。
     
     <validation step="527d4167-c9f9-49aa-9489-c384ed66b37f" />
 
-### Task 2: Send your Azure Cosmos DB for NoSQL account with sample data
+### タスク 2: Azure Cosmos DB for NoSQL アカウントにサンプルデータを送信する
 
-You will use a command-line utility that creates a **cosmicworks** database and a **products** container. The tool will then create a set of items that you will observe using the change feed processor running in your terminal window.
+**cosmicworks** データベースと **products** コンテナーを作成するコマンドライン ユーティリティを使用します。ツールは、その後、ターミナル ウィンドウで実行している change feed processor で観察するアイテムのセットを作成します。
 
-1. Start Visual Studio Code (the program icon is pinned to the Desktop).
+1. Visual Studio Code を起動します（プログラム アイコンはデスクトップにピン留めされています）。
 
    ![Visual Studio Code Icon](./media/vscode1.jpg)
 
-1. In **Visual Studio Code**, open the **Terminal** menu by selecting **... (ellipses) (1)** then select **Terminal (2)** and choose **New Terminal (3)** to open a new terminal with your existing instance.
+1. **Visual Studio Code** で、**... (ellipses) (1)** を選択し、**Terminal (2)** を選択して **New Terminal (3)** を選び、既存のインスタンスで新しいターミナルを開きます。
 
     ![06](media/New-image36.png)
 
-1. Install the [cosmicworks][nuget.org/packages/cosmicworks] command-line tool for global use on your machine.
+1. [cosmicworks][nuget.org/packages/cosmicworks] コマンドライン ツールをグローバルにインストールします。
 
     ```
     dotnet tool install cosmicworks --global --version 1.*
@@ -120,44 +120,44 @@ You will use a command-line utility that creates a **cosmicworks** database and 
 
     ![06](media/DB50.png)
 
-    >**Note:** This command may take a couple of minutes to complete. This command will output the warning message (*Tool 'cosmicworks' is already installed') if you have already installed the latest version of this tool in the past.
+    > **注意:** このコマンドは数分かかる場合があります。すでに最新バージョンのツールがインストールされている場合は、(*Tool 'cosmicworks' is already installed*) という警告メッセージが出力されます。
 
-1. Once the Installation is completed, make sure to close the **Visual Studio Code** and re-open it to perform the below command.
+1. インストールが完了したら、以下のコマンドを実行するために **Visual Studio Code** を閉じて再起動してください。
 
-1. Run cosmicworks to seed your Azure Cosmos DB account with the following command-line options:
+1. 次のコマンドライン オプションを使用して、Azure Cosmos DB アカウントにデータをシードします:
 
     | **Option** | **Value** |
     | :--- | :--- |
-    | **--endpoint** | *The endpoint value you copied earlier in this lab* |
-    | **--key** | *The key value you coped earlier in this lab* |
+    | **--endpoint** | *このラボで以前にコピーした endpoint の値* |
+    | **--key** | *このラボで以前にコピーした key の値* |
     | **--datasets** | *product* |
 
     ```
     cosmicworks --endpoint <cosmos-endpoint> --key <cosmos-key> --datasets product
     ```
 
-    > **For example:** if your endpoint is: **https&shy;://dp420.documents.azure.com:443/** and your key is: **fDR2ci9QgkdkvERTQ==**, then the command would be:
+    > **例:** エンドポイントが **https&shy;://dp420.documents.azure.com:443/**、キーが **fDR2ci9QgkdkvERTQ==** の場合、コマンドは次のようになります:
     > ``cosmicworks --endpoint https://dp420.documents.azure.com:443/ --key fDR2ci9QgkdkvERTQ== --datasets product``
 
-    >**Note**: If you're getting an error, close the visual studio code reopen it and try to run the command once again.
+    > **注意:** エラーが発生する場合は、Visual Studio Code を閉じて再起動し、もう一度コマンドを実行してください。
 
-    > **Note:** If the error still occurs, perform the following steps and run the command again.
+    > **注意:** それでもエラーが発生する場合は、以下の手順を実行してから再度コマンドを実行してください。
 
-    1. In the Azure portal, open your **Cosmos DB account**, expand **Settings (1)**, and select **Networking (2)**.
+    1. Azure ポータルで **Cosmos DB アカウント** を開き、**Settings (1)** を展開して **Networking (2)** を選択します。
 
-    1. Under **Firewall**, click **Add your current IP (3)** or enter the IP address manually.
+    1. **Firewall** の下で **Add your current IP (3)** をクリックするか、IP アドレスを手動で入力します。
 
         ![06](media/DB60.png)
 
-    1. Click **Save (4)** to apply the changes.
+    1. **Save (4)** をクリックして変更を適用します。
 
         ![06](media/DB61.png)
 
-    1. Wait a few minutes for the firewall rule to take effect.
+    1. ファイアウォール ルールが有効になるまで数分待ちます。
 
-    1. In your **Cosmos DB account**, expand **Settings (1)** and select **Keys (2)**.
+    1. **Cosmos DB アカウント** で **Settings (1)** を展開し、**Keys (2)** を選択します。
 
-    1. Copy the **Primary Connection String (4)** and use the **Show/Hide (3)** option if needed to view the value.
+    1. **Primary Connection String (4)** をコピーし、必要に応じて **Show/Hide (3)** オプションを使用して値を表示します。
 
      ![06](media/DB63.png)
 
@@ -165,76 +165,76 @@ You will use a command-line utility that creates a **cosmicworks** database and 
     cosmicworks --connection-string "<your-connection-string>" --datasets product
     ```
 
-1. Wait for the **cosmicworks** command to finish populating the account with a database, container, and items.
+1. **cosmicworks** コマンドがデータベース、コンテナー、およびアイテムの作成を完了するまで待ちます。
 
-1. Close the integrated terminal. And close **Visual Studio Code**.
+1. 統合ターミナルを閉じます。**Visual Studio Code** も閉じます。
 
-### Task 3: Create an Azure AI Search resource
+### タスク 3: Azure AI Search リソースを作成する
 
-Before continuing with this exercise, you must first create a new Azure Cognitive Search instance.
+この演習を続行する前に、まず新しい Azure Cognitive Search インスタンスを作成する必要があります。
 
-1. Navigate back to Azure portal, click **Create a resource**.
+1. Azure ポータルに戻り、**Create a resource** をクリックします。
 
      ![06](media/DB53.png)
 
-1. Search for **Azure AI Search (1)**, then select **Create (2)** and choose **Azure AI Search (3)**.
+1. **Azure AI Search (1)** を検索し、**Create (2)** を選択して **Azure AI Search (3)** を選びます。
 
     ![06](media/DB55.png)
 
-1. Enter the following details:
+1. 次の詳細を入力します:
 
-    | **Setting** | **Value** |
+    | **設定** | **値** |
     | :--- | :--- |
-    | **Subscription** | Select your Azure subscription **(1)** |
-    | **Resource group** | Select **cosmosdb-<inject key="DeploymentID" enableCopy="false"/>** **(2)** |
-    | **Service name** | Enter **aisearch-<inject key="DeploymentID" enableCopy="false"/>** **(3)** |
-    | **Location** | Use the default location **(4)** |
+    | **Subscription** | Azure サブスクリプションを選択 **(1)** |
+    | **Resource group** | **cosmosdb-<inject key="DeploymentID" enableCopy="false"/>** を選択 **(2)** |
+    | **Service name** | **aisearch-<inject key="DeploymentID" enableCopy="false"/>** を入力 **(3)** |
+    | **Location** | 既定のロケーションを使用 **(4)** |
 
-1. Click **Review + create (5)**.
+1. **Review + create (5)** をクリックします。
 
     ![06](media/DB56.png)
     
-    >**Note:** If it shows any subscriptions errors, select **Next: Scale**, and select **Previous**.
+    > **注意:** サブスクリプションに関するエラーが表示される場合は、**Next: Scale** を選択し、次に **Previous** を選択します。
 
-1. After validation is successful, review the configuration and click **Create**.
+1. 検証が成功したら、構成を確認して **Create** をクリックします。
 
     ![06](media/DB57.png)
 
-4. Wait for the deployment to complete, then click **Go to resource** to the newly created **Azure AI Search** account resource.
+1. デプロイが完了するまで待ち、次に **Go to resource** をクリックして新しく作成した **Azure AI Search** アカウント リソースに移動します。
 
     ![06](media/DB58.png)
 
-> **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-> - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
-> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
+> **おめでとうございます**。タスクが完了しました。次に検証を行います。手順は次のとおりです:
+> - 対応するタスクの **Validate** ボタンを押します。成功メッセージが表示された場合は次のタスクに進みます。
+> - そうでない場合は、エラーメッセージをよく読み、ラボ ガイドの指示に従って手順をやり直します。
+> - サポートが必要な場合は cloudlabs-support@spektrasystems.com までご連絡ください。24 時間 365 日対応しています。
     
 <validation step="6dc66a44-b1ce-4dc5-91f8-35180452aaaa" />
 
-### Task 4: Build indexer and index for Azure Cosmos DB for NoSQL data
+### タスク 4: Azure Cosmos DB for NoSQL データ用のインデクサーとインデックスを構築する
 
-You will create an indexer that indexes a subset of data in a specific Azure Cosmos DB for NoSQL container on an hourly basis.
+特定の Azure Cosmos DB for NoSQL コンテナー内のデータのサブセットを、時間単位でインデックス化するインデクサーを作成します。
 
-1. From the **AI Search** resource blade, select **Import data**.
+1. **AI Search** リソース ブレードで **Import data** を選択します。
 
     ![06](media/importdata.png)
 
-1. In the **Import data** wizard, in the **Data Source** list, select **Azure Cosmos DB**.
+1. **Import data** ウィザードの **Data Source** リストで **Azure Cosmos DB** を選択します。
 
     ![06](media/DB59.png)
 
-1. Configure the data source with the following settings, leaving all remaining settings to their default values:
+1. 残りの設定はすべて既定値のままにして、次の設定でデータ ソースを構成します:
 
-    | **Setting** | **Value** |
+    | **設定** | **値** |
     | :--- | :--- |
     | **Data source name** | **products-cosmossql-source (2)** |
-    | **Connection string** | **Choose an existing connection of the Azure Cosmos DB for NoSQL account created earlier (3)** |
+    | **Connection string** | **以前に作成した Azure Cosmos DB for NoSQL アカウントの既存接続を選択 (3)** |
     | **Database** | **cosmicworks (4)** |
     | **Collection** | **products (5)** |
 
     ![06](media/importyourdata.png)
 
-1. In the **query** field, enter the following SQL query to create a materialized view of a subset of your data in the container:
+1. **query** フィールドに、コンテナー内のデータのサブセットのマテリアライズド ビューを作成するために次の SQL クエリを入力します:
 
     ```SQL
     SELECT 
@@ -251,64 +251,64 @@ You will create an indexer that indexes a subset of data in a specific Azure Cos
         p._ts
     ```
 
-1. Select the **Query results ordered by _ts** checkbox.
+1. **Query results ordered by _ts** チェックボックスを選択します。
 
-    >**Note:** This checkbox lets Azure AI Search know that the query sorts results by the **_ts** field. This type of sorting enables incremental progress tracking. If the indexer fails, it can pick right back up from the same **_ts** value since the results are ordered by the timestamp.
+    > **注意:** このチェックボックスは、クエリが **_ts** フィールドで結果をソートすることを Azure AI Search に知らせます。この種のソートは増分進行追跡を可能にします。インデクサーが失敗した場合でも、結果がタイムスタンプ順に並んでいるので、同じ **_ts** 値から再開できます。
 
-1. Select **Next: Add cognitive skills**.
+1. **Next: Add cognitive skills** を選択します。
 
-1. Select **Skip to: Customize target index**.
+1. **Skip to: Customize target index** を選択します。
 
-1. In the **Customize target index** step of the wizard, configure the index with the following settings, leaving all remaining settings to their default values:
+1. ウィザードの **Customize target index** ステップで、残りの設定をすべて既定値のままにして次の設定でインデックスを構成します:
 
-    | **Setting** | **Value** |
+    | **設定** | **値** |
     | :--- | :--- |
     | **Index name** | *``products-index``* |
     | **Key** | *id* |
 
-1. In the field table, configure the **Retrievable**, **Filterable**, **Sortable**, **Facetable**, and **Searchable** options for each field using the following table:
+1. フィールド テーブルで、次の表に従って各フィールドの **Retrievable**、**Filterable**、**Sortable**、**Facetable**、および **Searchable** オプションを構成します:
 
     ![06](media/categoryid.png)
 
-1. Select **Next: Create an indexer**.
+1. **Next: Create an indexer** を選択します。
 
-1. In the **Create an indexer** step of the wizard, configure the indexer with the following settings, leaving all remaining settings to their default values:
+1. ウィザードの **Create an indexer** ステップで、残りの設定をすべて既定値のままにして次の設定でインデクサーを構成します:
 
-    | **Setting** | **Value** |
+    | **設定** | **値** |
     | :--- | :--- |
     | **Name** | *``products-cosmosdb-indexer``* |
     | **Schedule** | *Hourly* |
 
-1. Select **Submit** to create the data source, index, and indexer.
+1. **Submit** を選択して、データ ソース、インデックス、およびインデクサーを作成します。
 
-    >**Note:** You may be required to dismiss a survey popup after creating your first indexer.
+    >**Note:** 最初のインデクサーを作成した後、アンケートポップアップを閉じる必要がある場合があります。
 
-1. From the **AI Search** resource blade, from the left navigation menu, select the **Indexers (1)** under **Search Management**tab to observe the result of your first indexing operation.
+1. **AI Search** リソース ブレードで、左側のナビゲーション メニューから **Search Management** の **Indexers (1)** を選択し、最初のインデックス処理の結果を確認します。
 
-1. Wait for the **products-cosmosdb-indexer** indexer to have a status of **Success (2)** before continuing with this task.
+1. **products-cosmosdb-indexer** インデクサーのステータスが **Success (2)** になるまで待ってから、このタスクを続行します。
 
-    >**Note:** You may need to use the **Refresh** option to update the blade if it does not update automatically.
+    >**Note:** ブレードが自動的に更新されない場合は、**Refresh** オプションを使用して更新する必要があります。
 
     ![06](media/indexers.png)
 
-1. Navigate to the **Indexes** tab under **Search Management** in the left navigation pane and then select the **products-index** index.
+1. 左側のナビゲーション ペインで **Search Management** の **Indexes** タブに移動し、**products-index** インデックスを選択します。
 
-> **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-> - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
-> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
+> **おめでとうございます**。タスクは完了しました。次に検証を行います。手順は次のとおりです:
+> - 対応するタスクの **Validate** ボタンを押します。成功メッセージが表示された場合は次のタスクに進みます。
+> - そうでない場合は、エラーメッセージをよく読み、ラボ ガイドの指示に従って手順をやり直します。
+> - サポートが必要な場合は cloudlabs-support@spektrasystems.com までご連絡ください。24 時間 365 日対応しています。
     
 <validation step="0e28166a-b18c-4b9b-8f4b-0b4d113890bc" />
 
-### Task 5: Validate index with example search queries
+### タスク 5: 例示的な検索クエリでインデックスを検証する
 
-Now that your materialized view of the Azure Cosmos DB for NoSQL data is in the search index, you can perform a few basic queries that take advantage of the features in Azure AI Search.
+Azure Cosmos DB for NoSQL データのマテリアライズド ビューが検索インデックスに作成されたので、Azure AI Search の機能を活用した基本的なクエリをいくつか実行できます。
 
-> **Note:** This lab is not intended to teach the Azure AI Search syntax. These queries were curated to showcase some of the features available in the search index and engine.
+> **Note:** このラボは Azure AI Search の構文を学習するためのものではありません。これらのクエリは、検索インデックスとエンジンで利用できるいくつかの機能を紹介するために選ばれています。
 
-1. In the **Search explorer** tab, select the **View** pulldown and then select the **JSON view**.
+1. **Search explorer** タブで、**View** プルダウンを選択し、**JSON view** を選びます。
 
-1. Notice in the **JSON query editor** the syntax of the default JSON search query that returns all possible results using a **\*** (wildcard) operator.
+1. **JSON query editor** で、ワイルドカード演算子 **\*** を使用してすべての結果を返すデフォルトの JSON 検索クエリの構文を確認します。
 
    ```json
    {
@@ -316,11 +316,11 @@ Now that your materialized view of the Azure Cosmos DB for NoSQL data is in the 
    }
    ```
 
-1. Select the **Search** button to perform the search.
+1. **Search** ボタンを選択して検索を実行します。
 
-1. Observe that this search query returns all possible results.
+1. この検索クエリがすべての可能な結果を返すことを確認します。
 
-1. In the **JSON query editor**, enter the following query and then select **Search**:
+1. **JSON query editor** に次のクエリを入力し、**Search** を選択します:
 
     ```json
     {
@@ -328,9 +328,9 @@ Now that your materialized view of the Azure Cosmos DB for NoSQL data is in the 
     }
     ```
 
-1. Observe that this search query returns results that contain either the terms **touring** or **3000** giving a higher score to results that contain both terms. The results are then sorted in descending order by the **@search.score** field.
+1. この検索クエリは、**touring** または **3000** のいずれかの用語を含む結果を返し、両方の用語を含む結果にはより高いスコアが付与されます。結果は **@search.score** フィールドの降順でソートされます。
 
-1. In the **JSON query editor**, enter the following query and then select **Search**:
+1. **JSON query editor** に次のクエリを入力し、**Search** を選択します:
 
     ```json
     {
@@ -339,9 +339,9 @@ Now that your materialized view of the Azure Cosmos DB for NoSQL data is in the 
     }
     ```
 
-1. Observe that this search query returns results with the term **red**, but also now includes a metadata field indicating the total count of results even if they are not all included in the same page.
+1. この検索クエリは **red** という用語を含む結果を返すだけでなく、同じページにすべて含まれていない場合でも結果の総数を示すメタデータ フィールドが含まれます。
 
-1. In the **JSON query editor**, enter the following query and then select **Search**:
+1. **JSON query editor** に次のクエリを入力し、**Search** を選択します:
 
     ```json
     {
@@ -351,9 +351,9 @@ Now that your materialized view of the Azure Cosmos DB for NoSQL data is in the 
     }
     ```
 
-1. Observe that this search query only returns a set of six results at a time even though there are more matches server-side.
+1. この検索クエリは、サーバー側により多くの一致が存在する場合でも、1 回に 6 件の結果のみを返します。
 
-1. In the **JSON query editor**, enter the following query and then select **Search**:
+1. **JSON query editor** に次のクエリを入力し、**Search** を選択します:
 
     ```json
     {
@@ -364,9 +364,9 @@ Now that your materialized view of the Azure Cosmos DB for NoSQL data is in the 
     }
     ```
 
-1. Observe that this search query skips the first 50 results and returns a set of 25 results. If this was a paginated view in a client-side application, you could infer that this would be the third "page" of results.
+1. この検索クエリは最初の 50 件の結果をスキップし、25 件の結果を返します。クライアント側のアプリケーションでページ分割されたビューの場合、これは 3 ページ目に相当すると推測できます。
 
-1. In the **JSON query editor**, enter the following query and then select **Search**:
+1. **JSON query editor** に次のクエリを入力し、**Search** を選択します:
 
     ```json
     {
@@ -376,9 +376,9 @@ Now that your materialized view of the Azure Cosmos DB for NoSQL data is in the 
     }
     ```
 
-1. Observe that this search query only returns results where the value of the numeric price field is less than 500.
+1. この検索クエリは、数値フィールド **price** の値が 500 未満の結果のみを返します。
 
-1. In the **JSON query editor**, enter the following query and then select **Search**:
+1. **JSON query editor** に次のクエリを入力し、**Search** を選択します:
 
     ```json
     {
@@ -389,24 +389,24 @@ Now that your materialized view of the Azure Cosmos DB for NoSQL data is in the 
     }
     ```
 
-1. Observe that this search query returns a collection of facet data that indicates how many items belong to each category even if they are not all present in the current page of results. In this example, the matching items are broken down into numeric price categories in intervals of 500. This is typically used to populate filters and navigation aids in client-side applications.
+1. この検索クエリは、現在のページにすべて含まれていない場合でも、各カテゴリに属するアイテム数を示すファセット データのコレクションを返します。この例では、一致するアイテムが 500 間隔の数値 price カテゴリに分類されます。これは通常、クライアント側アプリケーションのフィルターやナビゲーション補助に使用されます。
 
     ![06](media/products-index.png)
 
-1. Close your web browser window or tab.
+1. Web ブラウザーのウィンドウまたはタブを閉じます。
 
-### Review
+### レビュー
 
-In this lab, you have completed:
+このラボで完了した内容:
 
-- Created an Azure Cosmos DB for NoSQL account.
-- Send your Azure Cosmos DB for NoSQL account with sample data.
-- Created an Azure AI Search resource.
-- Built indexer and index for Azure Cosmos DB for NoSQL data.
-- Validated index with example search queries.
+- Azure Cosmos DB for NoSQL アカウントを作成しました。
+- Azure Cosmos DB for NoSQL アカウントにサンプルデータを送信しました。
+- Azure AI Search リソースを作成しました。
+- Azure Cosmos DB for NoSQL データ用のインデクサーとインデックスを構築しました。
+- 例示的な検索クエリでインデックスを検証しました。
 
-### Summary
+### サマリー
 
-This lab guides you through integrating Azure AI Search with Azure Cosmos DB for NoSQL, where you'll create a Cosmos DB account, populate it with sample data, set up an Azure Cognitive Search resource, and build an indexer. 
+このラボでは、Azure AI Search と Azure Cosmos DB for NoSQL の統合手順を案内します。Cosmos DB アカウントを作成し、サンプルデータを投入し、Azure Cognitive Search リソースをセットアップして、インデクサーを構築します。
 
-### You have successfully completed the lab
+### ラボを正常に完了しました
