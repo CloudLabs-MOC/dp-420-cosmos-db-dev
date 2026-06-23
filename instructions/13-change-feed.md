@@ -1,94 +1,94 @@
-# Lab 07a - Integrate Azure Cosmos DB SQL API with Azure services
+# Lab 07a - Azure Cosmos DB SQL API を Azure サービスと統合する
 
-## Lab scenario
+## ラボのシナリオ
 
-The Azure Cosmos DB SQL API change feed is the key to creating supplemental applications driven by events from the platform. The .NET SDK for the Azure Cosmos DB SQL API ships with a suite of classes to build your applications that integrate with the change feed and listen for notifications about operations within your containers.
+Azure Cosmos DB SQL API の change feed は、プラットフォームのイベントによって駆動される補助アプリケーションを作成するための鍵です。Azure Cosmos DB SQL API の .NET SDK には、change feed と統合し、コンテナー内の操作に関する通知を受け取るアプリケーションを構築するための一連のクラスが含まれています。
 
-In this lab, you will use the change feed processor functionality in the .NET SDK to create an application that is notified with a create or update operation is performed on an item in the specified container.
+このラボでは、.NET SDK の change feed processor 機能を使用して、指定したコンテナー内のアイテムに対して作成または更新操作が行われたときに通知されるアプリケーションを作成します。
 
-## Lab objectives
+## ラボの目的
 
-In this lab, you will complete the following tasks:
-- Task 1: Prepare your development environment.
-- Task 2: Create an Azure Cosmos DB SQL API account.
-- Task 3: Implement the change feed processor in the .NET SDK.
-- Task 4: Seed your Azure Cosmos DB SQL API account with sample data.
+このラボでは、次のタスクを完了します:
+- タスク 1: 開発環境を準備する。
+- タスク 2: Azure Cosmos DB SQL API アカウントを作成する。
+- タスク 3: .NET SDK で change feed processor を実装する。
+- タスク 4: Azure Cosmos DB SQL API アカウントにサンプル データをシードする。
 
-## Estimated Timing: 60 minutes
+## 推定所要時間: 60 分
 
-## Architecture Diagram
+## アーキテクチャ図
 
 ![image](architecturedia/lab13.png)
 
-## Exercise 1: Process change feed events using the Azure Cosmos DB SQL API SDK
+## 演習 1: Azure Cosmos DB SQL API SDK を使用して change feed イベントを処理する
 
-### Task 1: Prepare your development environment
+### タスク 1: 開発環境を準備する
 
-If you have not already cloned the lab code repository for **DP-420** to the environment where you're working on this lab, follow these steps to do so. Otherwise, open the previously cloned folder in **Visual Studio Code**.
+このラボ用に **DP-420** のラボ コード リポジトリをまだ作業環境にクローンしていない場合は、次の手順に従ってください。既にクローン済みの場合は、**Visual Studio Code** で以前にクローンしたフォルダーを開きます。
 
-1. Start Visual Studio Code (the program icon is pinned to the Desktop).
+1. Visual Studio Code を起動します（プログラム アイコンがデスクトップにピン留めされています）。
 
-1. Select the **Extension (1)** icon from the left pane. Enter **C# (2)** in the search bar and select the **extension (3)** that shows up and finally **Install (4)** on the extension. 
+1. 左側のペインから **Extension (1)** アイコンを選択します。検索バーに **C# (2)** と入力し、表示された **extension (3)** を選択し、最後に **Install (4)** をクリックします。
 
     ![](media/C-hash-extension.png)
 
-1.  Open a file, From the top-left options, Click on **file->Open Folder** and navigate to **C:\AllFiles**.
+1.  画面左上のオプションから **file->Open Folder** をクリックし、**C:\AllFiles** に移動します。
 
-1.  Select the folder **dp-420-cosmos-db-dev-stage** and Click on **Select Folder**.
+1.  フォルダー **dp-420-cosmos-db-dev-stage** を選択し、**Select Folder** をクリックします。
 
-### Task 2: Create an Azure Cosmos DB SQL API account
+### タスク 2: Azure Cosmos DB SQL API アカウントを作成する
 
-Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **Mongo API** or **SQL API**). Once the Azure Cosmos DB SQL API account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB SQL API account using the Azure SDK for .NET or any other SDK of your choice.
+Azure Cosmos DB は、複数の API をサポートするクラウドベースの NoSQL データベース サービスです。Azure Cosmos DB アカウントを初めてプロビジョニングする際には、アカウントでサポートする API を選択します（たとえば **Mongo API** や **SQL API**）。Azure Cosmos DB SQL API アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得し、Azure SDK for .NET やその他の SDK を使用してそのアカウントに接続できます。
 
-1. In a new web browser window or tab, navigate to the Azure portal (``portal.azure.com``).
+1. 新しい Web ブラウザーのウィンドウまたはタブで、Azure ポータル (``portal.azure.com``) に移動します。
 
-1. Sign into the portal using the Microsoft credentials associated with your subscription.
+1. サブスクリプションに関連付けられた Microsoft 資格情報を使用してポータルにサインインします。
 
-1. Within the **Azure services** category, select **Create a resource**, and then select **Azure Cosmos DB**.
+1. **Azure services** カテゴリで **Create a resource** を選択し、次に **Azure Cosmos DB** を選択します。
 
-    > &#128161; Alternatively; expand the **&#8801;** menu, select **All Services**, in the **Databases** category, select **Azure Cosmos DB**, and then select **Create**.
+    > &#128161; 代替手順として、**&#8801;** メニューを展開し、**All Services** を選択し、**Databases** カテゴリで **Azure Cosmos DB** を選択し、次に **Create** を選択します。
 
-1. In the **Select API option** pane, select the **Create** option within the **Azure Cosmos DB for NoSQL** section.
+1. **Select API option** ペインで、**Azure Cosmos DB for NoSQL** セクションの **Create** オプションを選択します。
 
-1. Within the **Create Azure Cosmos DB Account** pane, observe the **Basics** tab.
+1. **Create Azure Cosmos DB Account** ペインで、**Basics** タブを確認します。
 
     | **Setting** | **Value** |
     | --- | --- |
-    | **Subscription** | *Your existing Azure subscription* |
-    | **Resource group** | *Select an existing resource group* |
-    | **Account Name** | *Enter a globally unique name* |
-    | **Location** | *Choose any available region* |
+    | **Subscription** | *既存の Azure サブスクリプション* |
+    | **Resource group** | *既存のリソース グループを選択* |
+    | **Account Name** | *グローバルに一意の名前を入力* |
+    | **Location** | *利用可能なリージョンを選択* |
     | **Capacity mode** | *Serverless* |
 
-    > &#128221; Your lab environments may have restrictions preventing you from creating a new resource group. If that is the case, use the existing pre-created resource group.
+    > &#128221; ラボ環境によっては、新しいリソース グループを作成できない制限がある場合があります。その場合は、既存の事前作成済みリソース グループを使用してください。
 
-1. Click on **Review + Create** and after validation get Success click on **Create**.
+1. **Review + Create** をクリックし、検証が成功したら **Create** をクリックします。
 
-1. Wait for the deployment task to complete before continuing with this task.
+1. デプロイが完了するまで待ちます。
 
-1. Go to the newly created **Azure Cosmos DB** account resource and navigate to the **Keys** pane.
+1. 新しく作成した **Azure Cosmos DB** アカウント リソースに移動し、**Keys** ペインに移動します。
 
-1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
+1. このペインには、SDK からアカウントに接続するために必要な接続情報と資格情報が含まれています。具体的には:
 
-    1. Record the value of the **URI** field. You will use this **endpoint** value later in this exercise.
+    1. **URI** フィールドの値を記録します。この **endpoint** 値は、この演習で後ほど使用します。
 
-    1. Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
+    1. **PRIMARY KEY** フィールドの値を記録します。この **key** 値は、この演習で後ほど使用します。
 
-1. Select **Data Explorer** from the resource menu.
+1. リソース メニューから **Data Explorer** を選択します。
 
-1. In the **Data Explorer** pane, expand **New Container** and then select **New Database**.
+1. **Data Explorer** ペインで **New Container** を展開し、**New Database** を選択します。
 
-1. In the **New Database** popup, enter the following values for each setting, and then select **OK**:
+1. **New Database** ポップアップで、各設定に次の値を入力し、**OK** を選択します:
 
     | **Setting** | **Value** |
     | --- | --- |
     | **Database id** | *cosmicworks* |
 
-1. Back in the **Data Explorer** pane, observe the **cosmicworks** database node within the hierarchy.
+1. **Data Explorer** ペインに戻り、階層内の **cosmicworks** データベース ノードを確認します。
 
-1. In the **Data Explorer** pane, select **New Container**.
+1. **Data Explorer** ペインで **New Container** を選択します。
 
-1. In the **New Container** popup, enter the following values for each setting, and then select **OK**:
+1. **New Container** ポップアップで、各設定に次の値を入力し、**OK** を選択します:
 
     | **Setting** | **Value** |
     | --- | --- |
@@ -96,11 +96,11 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     | **Container id** | *products* |
     | **Partition key** | */categoryId* |
 
-1. Back in the **Data Explorer** pane, expand the **cosmicworks** database node and then observe the **products** container node within the hierarchy.
+1. **Data Explorer** ペインに戻り、**cosmicworks** データベース ノードを展開し、階層内の **products** コンテナー ノードを確認します。
 
-1. In the **Data Explorer** pane, select **New Container** again.
+1. **Data Explorer** ペインで再度 **New Container** を選択します。
 
-1. In the **New Container** popup, enter the following values for each setting, and then select **OK**:
+1. **New Container** ポップアップで、各設定に次の値を入力し、**OK** を選択します:
 
     | **Setting** | **Value** |
     | --- | --- |
@@ -108,55 +108,55 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     | **Container id** | *productslease* |
     | **Partition key** | */partitionKey* |
 
-1. Back in the **Data Explorer** pane, expand the **cosmicworks** database node and then observe the **productslease** container node within the hierarchy.
+1. **Data Explorer** ペインに戻り、**cosmicworks** データベース ノードを展開し、階層内の **productslease** コンテナー ノードを確認します。
 
-1. Close your web browser window or tab.
+1. Web ブラウザーのウィンドウまたはタブを閉じます。
 
-### Task 3: Implement the change feed processor in the .NET SDK
+### タスク 3: .NET SDK で change feed processor を実装する
 
-The **Microsoft.Azure.Cosmos.Container** class ships with a series of methods to build the change feed processor fluently. To start, you need a reference to your monitored container, your lease container, and a delegate in C\# (to handle each batch of changes) to get started.
+**Microsoft.Azure.Cosmos.Container** クラスには、change feed processor をフルーエントに構築するための一連のメソッドが含まれています。開始するには、監視対象コンテナー、リース コンテナー、および各変更バッチを処理するための C# のデリゲートが必要です。
 
-1. In **Visual Studio Code**, in the **Explorer** pane, browse to the **13-change-feed** folder.
+1. **Visual Studio Code** の **Explorer** ペインで **13-change-feed** フォルダーに移動します。
 
-1. Open the **product.cs** code file.
+1. **product.cs** コード ファイルを開きます。
 
-1. Observe the **Product** class and its corresponding properties. Specifically, this lab will use the **id** and **name** properties.
+1. **Product** クラスとその対応するプロパティを確認します。特に、このラボでは **id** と **name** のプロパティを使用します。
 
-1. Back in the **Explorer** pane of **Visual Studio Code**, open the **script.cs** code file.
+1. **Visual Studio Code** の **Explorer** ペインに戻り、**script.cs** コード ファイルを開きます。
 
-1. Update the existing variable named **endpoint** with its value set to the **endpoint** of the Azure Cosmos DB account you created earlier.
+1. 既存の **endpoint** 変数を、先ほど作成した Azure Cosmos DB アカウントの **endpoint** 値に更新します。
   
     ```
     string endpoint = "<cosmos-endpoint>";
     ```
 
-    > &#128221; For example, if your endpoint is: **https&shy;://dp420.documents.azure.com:443/**, then the C# statement would be: **string endpoint = "https&shy;://dp420.documents.azure.com:443/";**.
+    > &#128221; たとえば、エンドポイントが **https://dp420.documents.azure.com:443/** の場合、C# 文は **string endpoint = "https://dp420.documents.azure.com:443/";** になります。
 
-1. Update the existing variable named **key** with its value set to the **key** of the Azure Cosmos DB account you created earlier.
+1. 既存の **key** という名前の変数を、先ほど作成した Azure Cosmos DB アカウントの **key** 値に更新します。
 
     ```
     string key = "<cosmos-key>";
     ```
 
-    > &#128221; For example, if your key is: **fDR2ci9QgkdkvERTQ==**, then the C# statement would be: **string key = "fDR2ci9QgkdkvERTQ==";**.
+    > &#128221; たとえばキーが **fDR2ci9QgkdkvERTQ==** の場合、C# 文は **string key = "fDR2ci9QgkdkvERTQ==";** になります。
 
-1. Use the **GetContainer** method of the **client** variable to retrieve the existing container using the name of the database (*cosmicworks*) and the name of the container (*products*) and store the result in a variable named **sourceContainer** of type **Container**:
+1. **client** 変数の **GetContainer** メソッドを使用して、データベース名 (*cosmicworks*) とコンテナー名 (*products*) を使って既存のコンテナーを取得し、結果を **Container** 型の **sourceContainer** という名前の変数に格納します:
 
     ```
     Container sourceContainer = client.GetContainer("cosmicworks", "products");
     ```
 
-1. Use the **GetContainer** method of the **client** variable to retrieve the existing container using the name of the database (*cosmicworks*) and the name of the container (*productslease*) and store the result in a variable named **leaseContainer** of type **Container**:
+1. **client** 変数の **GetContainer** メソッドを使用して、データベース名 (*cosmicworks*) とコンテナー名 (*productslease*) を使って既存のコンテナーを取得し、結果を **Container** 型の **leaseContainer** という名前の変数に格納します:
 
     ```
     Container leaseContainer = client.GetContainer("cosmicworks", "productslease");
     ```
 
-1. Create a new delegate variable named **handleChanges** of type [ChangesHandler<>][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.changefeedhandler-1] using an empty asynchronous anonymous function that has two input parameters:
+1. [ChangesHandler<>][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.changefeedhandler-1] 型の新しいデリゲート変数 **handleChanges** を、2 つの入力パラメーターを持つ空の非同期匿名関数として作成します:
 
-    1. A parameter named **changes** of type **IReadOnlyCollection\<Product\>**.
+    1. **IReadOnlyCollection\<Product\>** 型の **changes** という名前のパラメーター。
 
-    1. A parameter named **cancellationToken** of type **CancellationToken**.
+    1. **CancellationToken** 型の **cancellationToken** という名前のパラメーター。
 
     ```
     ChangesHandler<Product> handleChanges = async (
@@ -166,13 +166,13 @@ The **Microsoft.Azure.Cosmos.Container** class ships with a series of methods to
     };
     ```
 
-1. Within the anonymous function, use the built-in **Console.WriteLine** static method to print the raw string **START\tHandling batch of changes...**:
+1. 匿名関数内で、組み込みの **Console.WriteLine** 静的メソッドを使用して、生の文字列 **START\tHandling batch of changes...** を出力します:
 
     ```
     Console.WriteLine($"START\tHandling batch of changes...");
     ```
 
-1. Still within the anonymous function, create a foreach loop that iterates over the **changes** variable using the variable **product** to represent an instance of type **Product**:
+1. 引き続き匿名関数内で、**changes** 変数を反復処理する foreach ループを作成し、**Product** 型のインスタンスを表す変数 **product** を使用します:
 
     ```
     foreach(Product product in changes)
@@ -180,13 +180,13 @@ The **Microsoft.Azure.Cosmos.Container** class ships with a series of methods to
     }
     ```
 
-1. Within the foreach loop of the anonymous function, use the built-in asynchronous **Console.WriteLineAsync** static method to print the **id** and **name** properties of the **product** variable:
+1. 匿名関数の foreach ループ内で、組み込みの非同期 **Console.WriteLineAsync** 静的メソッドを使用して、**product** 変数の **id** と **name** プロパティを出力します:
 
     ```
     await Console.Out.WriteLineAsync($"Detected Operation:\t[{product.id}]\t{product.name}");
     ```
 
-1. Outside of the foreach loop and anonymous function, create a new variable named **builder** that stores the result of invoking [GetChangeFeedProcessorBuilder<>][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.getchangefeedprocessorbuilder] on the **sourceContainer** variable using the following parameters:
+1. foreach ループと匿名関数の外部で、**sourceContainer** 変数の [GetChangeFeedProcessorBuilder<>][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.getchangefeedprocessorbuilder] を呼び出した結果を格納する新しい変数 **builder** を作成します。次のパラメーターを使用します:
 
     | **Parameter** | **Value** |
     | --- | --- |
@@ -200,7 +200,7 @@ The **Microsoft.Azure.Cosmos.Container** class ships with a series of methods to
     );
     ```
 
-1. Invoke the [WithInstanceName][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.changefeedprocessorbuilder.withinstancename] method with a parameter of **consoleApp**, the [WithLeaseContainer][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.changefeedprocessorbuilder.withleasecontainer] method with a parameter of **leaseContainer**, and the [Build][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.changefeedprocessorbuilder.build] method fluently on the **builder** variable storing the result in a variable named **processor** of type [ChangeFeedProcessor][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.changefeedprocessor]:
+1. [WithInstanceName][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.changefeedprocessorbuilder.withinstancename] メソッドに **consoleApp** を、[WithLeaseContainer][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.changefeedprocessorbuilder.withleasecontainer] メソッドに **leaseContainer** を渡し、[Build][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.changefeedprocessorbuilder.build] メソッドをフルーエントに呼び出して、結果を [ChangeFeedProcessor][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.changefeedprocessor] 型の **processor** という名前の変数に格納します:
 
     ```
     ChangeFeedProcessor processor = builder
@@ -209,13 +209,13 @@ The **Microsoft.Azure.Cosmos.Container** class ships with a series of methods to
         .Build();
     ```
 
-1. Asynchronously invoke the [StartAsync][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.changefeedprocessor.startasync] of the **processor** variable:
+1. **processor** 変数の [StartAsync][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.changefeedprocessor.startasync] を非同期に呼び出します:
 
     ```
     await processor.StartAsync();
     ```
 
-1. Use built-in **Console.WriteLine** and **Console.ReadKey** static methods to print output to the console and to have the application wait for a key press:
+1. 組み込みの **Console.WriteLine** と **Console.ReadKey** 静的メソッドを使用して、コンソールに出力を表示し、キー押下を待機します:
 
     ```
     Console.WriteLine($"RUN\tListening for changes...");
@@ -223,13 +223,13 @@ The **Microsoft.Azure.Cosmos.Container** class ships with a series of methods to
     Console.ReadKey();  
     ```
 
-1. Asynchronously invoke the [StopAsync][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.changefeedprocessor.stopasync] of the **processor** variable:
+1. **processor** 変数の [StopAsync][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.changefeedprocessor.stopasync] を非同期に呼び出します:
 
     ```
     await processor.StopAsync();
     ```
 
-1. Once you are done, your code file should now include:
+1. 作業が完了したら、コード ファイルには次の内容が含まれているはずです:
   
     ```
     using Microsoft.Azure.Cosmos;
@@ -273,35 +273,35 @@ The **Microsoft.Azure.Cosmos.Container** class ships with a series of methods to
     await processor.StopAsync();
     ```
 
-1. **Save** the **script.cs** file.
+1. **script.cs** ファイルを **保存** します。
 
-1. In **Visual Studio Code**, open the context menu for the **13-change-feed** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+1. **Visual Studio Code** で **13-change-feed** フォルダーのコンテキスト メニューを開き、**Open in Integrated Terminal** を選択して新しいターミナル インスタンスを開きます。
 
-1. Build and run the project using the [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] command:
+1. [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] コマンドを使用してプロジェクトをビルドおよび実行します:
 
     ```
     dotnet run
     ```
 
-1. Leave both **Visual Studio Code** and the terminal open.
+1. **Visual Studio Code** とターミナルの両方を開いたままにします。
 
-    > &#128221; You will use another tool to generate items in your Azure Cosmos DB SQL API container. Once you generate the items, you will return to this terminal to observe the output. Do not close the terminal prematurely.
+    > &#128221; Azure Cosmos DB SQL API コンテナーにアイテムを生成するために別のツールを使用します。アイテムを生成したら、このターミナルに戻って出力を確認します。ターミナルを早期に閉じないでください。
 
-### Task 4: Seed your Azure Cosmos DB SQL API account with sample data
+### タスク 4: Azure Cosmos DB SQL API アカウントにサンプル データをシードする
 
-You will use a command-line utility that creates a **cosmicworks** database and a **products** container. The tool will then create a set of items that you will observe using the change feed processor running in your terminal window.
+このラボでは、**cosmicworks** データベースと **products** コンテナーを作成するコマンドライン ユーティリティを使用します。その後、ツールは一連のアイテムを作成し、ターミナル ウィンドウで実行中の change feed processor でそれらを観察します。
 
-1. In **Visual Studio Code**, open the **Terminal** menu and then select **Split Terminal** to open a new terminal side by side with your existing instance.
+1. **Visual Studio Code** で **Terminal** メニューを開き、**Split Terminal** を選択して、新しいターミナルを既存のインスタンスと並べて開きます。
 
-1. Install the [cosmicworks][nuget.org/packages/cosmicworks] command-line tool for global use on your machine.
+1. マシンでグローバルに使用するために [cosmicworks][nuget.org/packages/cosmicworks] コマンドライン ツールをインストールします。
 
     ```
     dotnet tool install --global cosmicworks
     ```
 
-    > &#128161; This command may take a couple of minutes to complete. This command will output the warning message (*Tool 'cosmicworks' is already installed') if you have already installed the latest version of this tool in the past.
+    > &#128161; このコマンドは完了するまで数分かかる場合があります。最新バージョンのツールが以前にインストールされている場合は、(*Tool 'cosmicworks' is already installed*) という警告メッセージが表示されます。
 
-1. Run cosmicworks to seed your Azure Cosmos DB account with the following command-line options:
+1. 次のコマンドライン オプションを使用して、cosmicworks を実行し、Azure Cosmos DB アカウントにデータをシードします:
 
     | **Option** | **Value** |
     | --- | --- |
@@ -313,26 +313,26 @@ You will use a command-line utility that creates a **cosmicworks** database and 
     cosmicworks --endpoint <cosmos-endpoint> --key <cosmos-key> --datasets product
     ```
 
-    > &#128221; For example, if your endpoint is: **https&shy;://dp420.documents.azure.com:443/** and your key is: **fDR2ci9QgkdkvERTQ==**, then the command would be:
-    > ``cosmicworks --endpoint https://dp420.documents.azure.com:443/ --key fDR2ci9QgkdkvERTQ== --datasets product``
+    > &#128221; たとえばエンドポイントが **https://dp420.documents.azure.com:443/** でキーが **fDR2ci9QgkdkvERTQ==** の場合、コマンドは次のようになります:
+    > ``cosmicworks --endpoint https://dp420.documents.azure.com:443/ --key fDR2ci9QgkdkvERTQ== --datasets product```
     
-    >**Note**: If your getting error, close the visual studio code and reopen it and try to run the command once again.
+    >**注意**: エラーが発生した場合は、Visual Studio Code を閉じて再度開き、もう一度コマンドを実行してみてください。
 
-1. Wait for the **cosmicworks** command to finish populating the account with a database, container, and items.
+1. **cosmicworks** コマンドがアカウントにデータベース、コンテナー、アイテムを作成し終えるまで待ちます。
 
-1. Observe the terminal output from your .NET application. The terminal outputs a **Detected Operation** message for each change that was sent to it using the change feed.
+1. .NET アプリケーションのターミナル出力を確認します。change feed で送信された各変更について、ターミナルに **Detected Operation** メッセージが出力されます。
 
-1. Close both integrated terminals.
+1. 両方の統合ターミナルを閉じます。
 
-1. Close **Visual Studio Code**.
+1. **Visual Studio Code** を閉じます。
 
-### Review
+### レビュー
 
-In this lab, you have completed:
+このラボでは、次の作業を完了しました:
 
-- Prepared your development environment.
-- Created an Azure Cosmos DB SQL API account.
-- Implemented the change feed processor in the .NET SDK.
-- Seeded your Azure Cosmos DB SQL API account with sample data
+- 開発環境を準備しました。
+- Azure Cosmos DB SQL API アカウントを作成しました。
+- .NET SDK で change feed processor を実装しました。
+- Azure Cosmos DB SQL API アカウントにサンプル データをシードしました。
 
-### You have successfully completed the lab
+### このラボを正常に完了しました
