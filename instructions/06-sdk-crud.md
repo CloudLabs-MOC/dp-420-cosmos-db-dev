@@ -61,22 +61,22 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Specify the following settings, leaving all remaining settings to their default values, and select **Next: Global Distribution (9)**:
 
-    | **Setting**         | **Value** |
-    | --------------------|--------------------------------------------------- |
-    | **Workload Type**   | *Production* (1) |
-    | **Subscription**    | *Your existing Azure subscription* (2) |
-    | **Resource group**  | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* (3) |
-    | **Account Name**    | *sql-<inject key="DeploymentID" enableCopy="false"/>* (4) |
-    | **Location**        | *Choose the default region* (5) |
-    | **Capacity mode**   | *Provisioned throughput* (6) |
-    | **Apply Free Tier Discount** | *Do Not Apply* (7) |
-    | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* (8) |
+    | Setting | Value |
+    |----------|----------|
+    | **Workload Type** | *Production* **(1)** |
+    | **Subscription** | *Your existing Azure subscription* **(2)** |
+    | **Resource group** | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* **(3)** |
+    | **Account Name** | *sql-<inject key="DeploymentID" enableCopy="false"/>* **(4)** |
+    | **Availability Zones** | *Disabled* **(5)** |
+    | **Location** | *Select any available location* **(6)** |
+    | **Capacity mode** | *Provisioned throughput* **(7)** |
+    | **Limit the total amount of throughput that can be provisioned on this account** | *Leave unchecked* **(8)** |
 
-     ![06](media/create-cosmosdb1.1-2304.png)
+     ![06](media/DB1000000.png)
 
 1. Click on **Next: Networking** on the Global Distribution page. Select **All networks (1)** for the **Connectivity method** and click on **Review + Create (2)**. 
 
-     ![06](media/select-networking-2304.png)
+     ![06](media/DB0002.png)
 
 1. Click on **Create**.
 

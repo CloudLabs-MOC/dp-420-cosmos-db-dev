@@ -89,7 +89,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Select **Go to resources**.
 
-    ![06](media/New-image6.png
+    ![06](media/New-image6.png)
 
 1. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys (1)** pane. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
