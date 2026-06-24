@@ -136,6 +136,12 @@ The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys samp
 
     >**For example:** if your endpoint is: **https&shy;://dp420.documents.azure.com:443/** and your key is: **fDR2ci9QgkdkvERTQ==**, then the command would be:
     > ``cosmicworks --endpoint https://dp420.documents.azure.com:443/ --key fDR2ci9QgkdkvERTQ== --datasets product``
+
+    > **Note:** If the command using the Cosmos DB endpoint and key does not execute successfully, use the **Primary Connection String** copied in the previous task and run the following command instead:
+
+    ```bash
+    cosmicworks --connection-string "<primary-connection-string>" --datasets product
+    ```
     
     >**Note**: If ask for **What is your connection string** then navigate back to Azure cosmos db in left navigation pane select **Key** copy the **primary connection 
      string** and right-click on the mouse to enter the primary string inside Visual Studio.
@@ -161,7 +167,9 @@ In this task, you will use the Azure Cosmos DB .NET SDK to create a UDF that cal
 
 The [Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] class in the .NET SDK includes a [Scripts][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.scripts] property that is used to perform CRUD operations against Stored Procedures, UDFs, and Triggers directly from the SDK. You will use this property to create a new UDF and then push that UDF to an Azure Cosmos DB SQL API container. The UDF that we will create using the SDK, will compute the price of the product with the tax, which will let us run SQL queries on the products using their price with the tax.
 
-1. In **Visual Studio Code**, in the **Explorer** pane, browse to the **33-create-use-udf-sdk** folder.
+1. In **Visual Studio Code**, expand the **33-create-use-udf-sdk (1)** project folder and open the **script.cs (2)** file.
+
+    ![06](media/CDB28.png)
 
 1. Open the **script.cs** code file.
 
@@ -243,7 +251,9 @@ The [Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] 
     Console.WriteLine($"Created UDF [{udf.Resource?.Id}]");
     ```
 
-1. **Save** the **script.cs** file.
+1. Review the code in the **script.cs** file and verify that the Azure Cosmos DB endpoint, key, database, container, and User Defined Function (UDF) configuration are present. Press **Ctrl+S** to save the code changes.
+
+    ![06](media/CDB26.png)
 
 1. In **Visual Studio Code**, right-click the **33-create-use-udf-sdk (1)** project folder and select **Open in Integrated Terminal (2)**.
 
@@ -255,11 +265,13 @@ The [Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] 
     dotnet run
     ```
 
-1. The script will now output the name of the newly created UDF:
+ Verify that the command executes successfully and displays the message **Created UDF [tax]**, confirming that the User Defined Function (UDF) was created in the Azure Cosmos DB container.
 
     ```
     Created UDF [tax]
     ```
+
+![06](media/CDB27.png) 
 
 1. Close the integrated terminal.
 
