@@ -246,6 +246,24 @@ In this task, you'll create an Azure Function app with a Cosmos DB-triggered fun
 
     ![06](media/c35.png)
 
+      > **Note:** If you do not see the **Create in Azure Portal** option in the **Functions** pane, update the **FUNCTIONS_WORKER_RUNTIME** application setting by following these steps:
+
+    1. Under **Settings (1)**, select **Environment variables (2)** and locate the **FUNCTIONS_WORKER_RUNTIME (3)** application setting.
+
+         ![Update Environment Variable](media/CDB37.png)
+
+    1. Open the **FUNCTIONS_WORKER_RUNTIME** setting, click the **Show value (1)** icon, verify that the **Value (2)** is set to **dotnet**, and then click **Apply (3)**.
+
+        ![Verify FUNCTIONS_WORKER_RUNTIME](media/CDB38.png)
+
+    1. On the **App settings** page, click **Apply** to save the configuration changes.
+
+         ![Apply App Settings](media/CDB39.png)
+
+    1. When prompted with the **Save changes** confirmation dialog, click **Confirm**. Wait for the Function App to restart, then refresh the **Functions** page and verify that the **Create in Azure Portal** option is available.
+
+         ![Confirm Changes](media/CDB40.png)
+
 1. In the **Create function** popup on the **Select a template** tab choose **Azure Cosmos DB trigger (1)** and click on **Next (2)**.
 
     ![06](media/New-image104.png)
@@ -265,6 +283,8 @@ In this task, you'll create an Azure Function app with a Cosmos DB-triggered fun
     ![06](media/New-image105.png)
 
     ![06](media/New-image106.png)
+
+
    
     > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
     > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
