@@ -2,9 +2,9 @@
 
 ## Lab scenario
 
-Azure Cognitive Search combines a search engine as a service with deep integration with AI capabilities to enrich the information in the search index.
+Azure AI Search combines a search engine as a service with deep integration with AI capabilities to enrich the information in the search index.
 
-In this lab, you will build an Azure Cognitive Search index that automatically indexes data in an Azure Cosmos DB SQL API container and enriches the data using the Azure Cognitive Services Translator functionality.
+In this lab, you will build an Azure AI Search index that automatically indexes data in an Azure Cosmos DB for NoSQL container and enriches the data using the Azure AI Translator functionality.
 
 ## Lab objectives
 
@@ -23,9 +23,9 @@ In this lab, you will complete the following tasks:
 
 ### Task 1: Create an Azure Cosmos DB for NoSQL account
 
-Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **Mongo API** or **NoSQL API**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
+Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **API for MongoDB** or **API for NoSQL**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
 
-1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
+1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
    ![06](media/New-image1.png)
    
@@ -36,30 +36,33 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     ![06](media/New-image3.png)
 
 
-1.  Create the resource with the following settings, leaving all remaining settings to their default values, and select **Review + create** **(7)**:
+1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create (9)**:
 
     | **Setting** | **Value** |
     | :--- | :--- |
-    | **Workload Type** | Production **(1)** |
-    | **Subscription** | Select your Azure subscription **(2)** |
-    | **Resource Group** | Select existing resource group **Cosmosdb-<inject key="DeploymentID" enableCopy="false"/> (3)** |
-    | **Account Name** | Enter **sql-<inject key="DeploymentID" enableCopy="false"/> (4)** |
-    | **Location** | Select any available location **(5)** |
-    | **Capacity mode** | Serverless **(6)** |
+    | **Workload Type** | *Learning* **(1)** |    
+    | **Subscription** | *Your existing Azure subscription* **(2)** |
+    | **Resource group** | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* **(3)** |
+    | **Account Name** | *sql-<inject key="DeploymentID" enableCopy="false"/>* **(4)** |
+    | **Location** | *Choose any available region* **(5)** |
+    | **Capacity mode** | *Provisioned throughput* **(6)** |
+    | **Apply Free Tier Discount** | *Do Not Apply* **(7)** |
+    | **Limit total account throughput** | *Disable* **(8)** |        
 
-    ![06](media/DB51.png)
-
-1. Verify the configuration and click **Create**.
+    ![06](media/c28.png) 
+    ![06](media/c29.png)        
+   
+1. Once after validation passed click on **Create**.
 
      ![06](media/DB52.png)
 
 1. Wait for the deployment task to complete before continuing with this task.
 
-1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys** pane.
+1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings (1)** navigate to the **Keys (2)** pane.
 
     ![06](media/New-image6.png)
 
-    ![06](media/New-image7.png)
+    ![06](media/CDB3.png)
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
@@ -69,29 +72,6 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
         ![06](media/New-image9.png)
 
-1. Within the **Azure Cosmos DB** account resource **overview page (1)** , navigate to the **Data Explorer (2)** pane. 
-
-    ![06](media/DB04.png)
-
-1. In the **Data Explorer (1)** page, click **New (2)**, then select **New Container (3)**.
-
-     ![06](media/DB42.png)
-
-1. In the **New Container** pane, enter the following details:
-
-    | **Setting** | **Value** |
-    | :--- | :--- |
-    | **Database id** | `cosmicworks` **(1)** |
-    | **Container id** | `products` **(2)** |
-    | **Partition key** | `/categoryId` **(3)** |
-
-    ![06](media/DB044.png)
-
-1. Click **OK (4)**.
-
-1. Back in the **Data Explorer** pane, expand the **cosmicworks** database node and then observe the **products** container node within the hierarchy.
-
-    ![06](media/cosmosdbproducts.png)
 
     > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
     > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
@@ -171,7 +151,7 @@ You will use a command-line utility that creates a **cosmicworks** database and 
 
 ### Task 3: Create an Azure AI Search resource
 
-Before continuing with this exercise, you must first create a new Azure Cognitive Search instance.
+Before continuing with this exercise, you must first create a new Azure AI Search instance.
 
 1. Navigate back to Azure portal, click **Create a resource**.
 
@@ -215,27 +195,28 @@ Before continuing with this exercise, you must first create a new Azure Cognitiv
 
 You will create an indexer that indexes a subset of data in a specific Azure Cosmos DB for NoSQL container on an hourly basis.
 
-1. From the **AI Search** resource blade, select **Import data**.
+1. On the **Azure AI Search** service Overview page, click **Import data** to begin creating a search index from Azure Cosmos DB.
 
     ![06](media/importdata.png)
 
-1. In the **Import data** wizard, in the **Data Source** list, select **Azure Cosmos DB**.
+1. On the **Choose a data source** page, select **Azure Cosmos DB** as the data source for the search index.
 
     ![06](media/DB59.png)
 
-1. Configure the data source with the following settings, leaving all remaining settings to their default values:
+1. On the **What scenario are you targeting?** page, select **Keyword search** to configure a keyword-based search experience.
 
-    | **Setting** | **Value** |
-    | :--- | :--- |
-    | **Data source name** | **products-cosmossql-source (2)** |
-    | **Connection string** | **Choose an existing connection of the Azure Cosmos DB for NoSQL account created earlier (3)** |
-    | **Database** | **cosmicworks (4)** |
-    | **Collection** | **products (5)** |
+    ![06](media/CDB6.png)
 
-    ![06](media/importyourdata.png)
+1. On the **Configure your Azure Cosmos DB** page, configure the following settings and then click **Next (6)**.
 
-1. In the **query** field, enter the following SQL query to create a materialized view of a subset of your data in the container:
-
+    | Setting | Value |
+    |----------|----------|
+    | **Subscription** | Select your Azure subscription **(1)** |
+    | **Cosmos DB account** | Select the Cosmos DB account created earlier **(2)** |
+    | **Database** | `cosmicworks` **(3)** |
+    | **Collection** | `products` **(4)** |
+    | **Query** | Paste the query below **(5)** |
+    
     ```SQL
     SELECT 
         p.id, 
@@ -251,39 +232,39 @@ You will create an indexer that indexes a subset of data in a specific Azure Cos
         p._ts
     ```
 
-1. Select the **Query results ordered by _ts** checkbox.
+    ![06](media/CDB7.png)
 
-    >**Note:** This checkbox lets Azure AI Search know that the query sorts results by the **_ts** field. This type of sorting enables incremental progress tracking. If the indexer fails, it can pick right back up from the same **_ts** value since the results are ordered by the timestamp.
+1. On the **Apply AI enrichments** page, no configuration is required for this lab. Leave the default settings unchanged and click **Next** to continue.
 
-1. Select **Next: Add cognitive skills**.
+1. On the **Preview index fields** page, click **Add field (1)**. In the new row, enter **id** in the **Source column (2)**, enter **categoryId** in the **Target index field name (3)**, select **Edm.String** as the **Target index field type (4)**, and then proceed to configure the field.
 
-1. Select **Skip to: Customize target index**.
+     ![06](media/CDB14.png)
 
-1. In the **Customize target index** step of the wizard, configure the index with the following settings, leaving all remaining settings to their default values:
+1. In the **Preview index fields** page, click the ellipsis (**...**) for the **categoryid** field **(1)** and select **Configure field (2)**.
 
-    | **Setting** | **Value** |
-    | :--- | :--- |
-    | **Index name** | *``products-index``* |
-    | **Key** | *id* |
+     ![06](media/CDB012.png)
 
-1. In the field table, configure the **Retrievable**, **Filterable**, **Sortable**, **Facetable**, and **Searchable** options for each field using the following table:
+1. In the **Configure field** pane, select **Key (1)** and then click **Save (2)**.
 
-    ![06](media/categoryid.png)
+    ![06](media/CDB11.png)
 
-1. Select **Next: Create an indexer**.
+1. Review the index field mappings to ensure the **id**, **name**, **price**, and **categoryid** fields are configured as shown, and then click **Next**.
 
-1. In the **Create an indexer** step of the wizard, configure the indexer with the following settings, leaving all remaining settings to their default values:
+    ![06](media/CDB15.png)
 
-    | **Setting** | **Value** |
-    | :--- | :--- |
-    | **Name** | *``products-cosmosdb-indexer``* |
-    | **Schedule** | *Hourly* |
+1. On the **Advanced settings** page, verify that the indexing **Schedule (1)** is set to **Hourly**, and then click **Next (2)**.
 
-1. Select **Submit** to create the data source, index, and indexer.
+    ![06](media/CDB9.png)
 
-    >**Note:** You may be required to dismiss a survey popup after creating your first indexer.
+1. On the **Review and create** page, review the configuration settings and click **Create** to create the data source, indexer, and search index.
 
-1. From the **AI Search** resource blade, from the left navigation menu, select the **Indexers (1)** under **Search Management**tab to observe the result of your first indexing operation.
+    ![06](media/CDB10.png)
+
+1. In the **Create succeeded** confirmation dialog, click **Go to Search explorer** to open the search index and begin exploring the indexed data.
+
+    ![06](media/CDB16.png)
+
+1. From the **AI Search** resource blade, from the left navigation menu, select the **Indexers (1)** under **Search Management** tab to observe the result of your first indexing operation.
 
 1. Wait for the **products-cosmosdb-indexer** indexer to have a status of **Success (2)** before continuing with this task.
 
@@ -407,6 +388,6 @@ In this lab, you have completed:
 
 ### Summary
 
-This lab guides you through integrating Azure AI Search with Azure Cosmos DB for NoSQL, where you'll create a Cosmos DB account, populate it with sample data, set up an Azure Cognitive Search resource, and build an indexer. 
+This lab guides you through integrating Azure AI Search with Azure Cosmos DB for NoSQL, where you'll create a Cosmos DB account, populate it with sample data, set up an Azure AI Search resource, and build an indexer. 
 
 ### You have successfully completed the lab

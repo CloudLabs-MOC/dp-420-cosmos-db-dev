@@ -1,16 +1,16 @@
-# Lab 10b - Optimize query performance in Azure Cosmos DB SQL API
+# Lab 10b - Optimize query performance in Azure Cosmos DB for NoSQL
 
 ## Lab scenario
 
-When planning for an Azure Cosmos DB SQL API account, knowing our most popular queries can help us tune the indexing policy so that queries are as performant as possible.
+When planning for an Azure Cosmos DB for NoSQL account, knowing our most popular queries can help us tune the indexing policy so that queries are as performant as possible.
 
 In this lab, we will use the Data Explorer to test SQL queries with the default indexing policy and an indexing policy that includes a composite index.
 
 ## Lab objectives
 
 In this lab, you will complete the following tasks:
-- Task 1: Create an Azure Cosmos DB SQL API account.
-- Task 2: Seed your Azure Cosmos DB SQL API account with sample data.
+- Task 1: Create an Azure Cosmos DB for NoSQL account.
+- Task 2: Seed your Azure Cosmos DB for NoSQL account with sample data.
 - Task 3: Execute SQL queries and measure their request unit charge.
 - Task 4: Create a composite index in the indexing policy.
 
@@ -20,11 +20,11 @@ In this lab, you will complete the following tasks:
 
 ![image](architecturedia/lab24.png)
 
-## Exercise 1: Optimize an Azure Cosmos DB SQL API container's indexing policy for a query
+## Exercise 1: Optimize an Azure Cosmos DB for NoSQL container's indexing policy for a query
 
-### Task 1: Create an Azure Cosmos DB SQL API account
+### Task 1: Create an Azure Cosmos DB for NoSQL account
 
-Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **Mongo API** or **SQL API**). Once the Azure Cosmos DB SQL API account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB SQL API account using the Azure SDK for .NET or any other SDK of your choice.
+Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **API for MongoDB** or **API for NoSQL**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
 
 1. In a new web browser window or tab, navigate to the Azure portal (``portal.azure.com``).
 
@@ -77,7 +77,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Close your web browser window or tab.
 
-### Task 2: Seed your Azure Cosmos DB SQL API account with sample data
+### Task 2: Seed your Azure Cosmos DB for NoSQL account with sample data
 
 You will use a command-line utility that creates a **cosmicworks** database and a **products** container. The tool will then create a set of items that you will observe using the change feed processor running in your terminal window.
 
@@ -363,8 +363,8 @@ Now, you will need to create a composite index if you sort your items using mult
 
 In this lab, you have completed:
 
-- Created an Azure Cosmos DB SQL API account.
-- Seeded your Azure Cosmos DB SQL API account with sample data.
+- Created an Azure Cosmos DB for NoSQL account.
+- Seeded your Azure Cosmos DB for NoSQL account with sample data.
 - Executed SQL queries and measure their request unit charge.
 - Created a composite index in the indexing policy.
 

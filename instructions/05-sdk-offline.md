@@ -1,10 +1,10 @@
-# Configure the Azure Cosmos DB NoSQL API SDK for offline development
+# Configure the Azure Cosmos DB for NoSQL SDK for offline development
 
 ### Estimated Duration: 60 Minutes
 
 ## Lab Scenario
 
-The Azure Cosmos DB Emulator is a local tool that simulates the Azure Cosmos DB service for development and testing. It supports the NoSQL API and allows you to build and test applications without using the cloud service.
+The Azure Cosmos DB Emulator is a local tool that simulates the Azure Cosmos DB service for development and testing. It supports the API for NoSQL and allows you to build and test applications without using the cloud service.
 
 In this lab, you will connect to the Azure Cosmos DB Emulator using the Azure SDK for .NET.
 
@@ -35,7 +35,7 @@ Your environment should already have the emulator pre-installed. If not, refer t
 
          ![06](media/New-image56.png)
 
-1. Navigate to the **Explorer** pane. In the **Data Explorer**, observe that there are no nodes within the **NoSQL API** navigation tree.
+1. Navigate to the **Explorer** pane. In the **Data Explorer**, observe that there are no nodes within the **API for NoSQL** navigation tree.
 
    ![06](media/New-image57.png)
 
@@ -137,15 +137,15 @@ The **Microsoft.Azure.Cosmos** library has already been pre-installed in the .NE
 
 ###  Task 3: View the changes in the emulator
 
-In this task, you'll use the Data Explorer in the Azure Cosmos DB Emulator to view the new NoSQL database you created. By accessing the emulator through your browser, you can observe the new "cosmicworks" database in the SQL API navigation tree.
+In this task, you'll use the Data Explorer in the Azure Cosmos DB Emulator to view the new NoSQL database you created. By accessing the emulator through your browser, you can observe the new "cosmicworks" database in the API for NoSQL navigation tree.
 
-Now that you have created a new database in the Azure Cosmos DB emulator, you will use the online **Data Explorer** to observe the new NoSQL API database within the emulator.
+Now that you have created a new database in the Azure Cosmos DB emulator, you will use the online **Data Explorer** to observe the new API for NoSQL database within the emulator.
 
 1. Navigate to the emulator icon in the Windows system tray, open the context menu, and then select **Open Data Explorer...** to navigate to the **localhost:8081/_explorer/** landing page using your default browser.
 
 1. In the **Azure Cosmos DB Emulator** landing page, navigate to the **Explorer** pane.
 
-1. In the **Data Explorer**, observe the new **cosmicworks** database node within the **SQL API** navigation tree.
+1. In the **Data Explorer**, observe the new **cosmicworks** database node within the **API for NoSQL** navigation tree.
 
     ![06](media/DB34.png)
 
@@ -214,7 +214,7 @@ Creating a new container is similar to the pattern used to create a new database
 
 1. In the **Azure Cosmos DB Emulator** landing page, navigate to the **Explorer** pane.
 
-1. In the **Data Explorer**, expand the **cosmicworks** database node, then observe the new **products** container node within the **NoSQL API** navigation tree.
+1. In the **Data Explorer**, expand the **cosmicworks** database node, then observe the new **products** container node within the **API for NoSQL** navigation tree.
 
     ![06](media/New-image60.png)
    
@@ -229,7 +229,7 @@ Creating a new container is similar to the pattern used to create a new database
 
 ### Summary
 
-In this lab, you have configured the Azure Cosmos DB Emulator for offline development with the NoSQL API. Key tasks include starting the emulator, connecting to it via the Azure SDK for .NET, creating a new database named "cosmicworks," and adding a container called "products." Finally, users will verify their changes using the Data Explorer within the emulator, providing hands-on experience with the Cosmos DB development environment.
+In this lab, you have configured the Azure Cosmos DB Emulator for offline development with the API for NoSQL. Key tasks include starting the emulator, connecting to it via the Azure SDK for .NET, creating a new database named "cosmicworks," and adding a container called "products." Finally, users will verify their changes using the Data Explorer within the emulator, providing hands-on experience with the Cosmos DB development environment.
 
 ### Review
 

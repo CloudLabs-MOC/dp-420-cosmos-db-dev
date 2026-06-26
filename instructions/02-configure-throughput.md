@@ -1,8 +1,8 @@
-# Lab 02a - Plan and implement Azure Cosmos DB SQL API
+# Lab 02a - Plan and implement Azure Cosmos DB for NoSQL
 
 ## Lab scenario
 
-One of the most important things to wrap your head around is configuring throughput in Azure Cosmos DB SQL API. To create an Azure Cosmos DB SQL API container, you must first create an account and then a database in that order.
+One of the most important things to wrap your head around is configuring throughput in Azure Cosmos DB for NoSQL. To create an Azure Cosmos DB for NoSQL container, you must first create an account and then a database in that order.
 In this lab, you will provision throughput using various methods in the Data Explorer. You will provision throughput either manually or using autoscale, at the database and the container level.
 
 ## Lab objectives
@@ -17,7 +17,7 @@ In this lab, you will complete the following tasks:
 
 ![image](architecturedia/lab2.png)
 
-## Exercise 1: Configure throughput for Azure Cosmos DB SQL API with the Azure portal
+## Exercise 1: Configure throughput for Azure Cosmos DB for NoSQL with the Azure portal
 
 ### Task 1: Create a serverless account
 
@@ -47,7 +47,7 @@ Let’s start simple by creating a serverless account. There’s not much to con
 
 1. Select **Review + Create** to navigate to the **Review + Create** tab, and then select **Create**.
 
-    > &#128221; It can take 10-15 minutes for the Azure Cosmos DB SQL API account to be ready for use.
+    > &#128221; It can take 10-15 minutes for the Azure Cosmos DB for NoSQL account to be ready for use.
 
 1. Observe the **Deployment** pane. When the deployment is complete, the pane will update with a **Deployment successful** message.
 
@@ -107,7 +107,7 @@ Now, we are going to create a provisioned throughput account with more tradition
 
 1. Select **Review + Create** to navigate to the **Review + Create** tab, and then select **Create**.
 
-    > &#128221; It can take 10-15 minutes for the Azure Cosmos DB SQL API account to be ready for use.
+    > &#128221; It can take 10-15 minutes for the Azure Cosmos DB for NoSQL account to be ready for use.
 
 1. Observe the **Deployment** pane. When the deployment is complete, the pane will update with a **Deployment successful** message.
 
