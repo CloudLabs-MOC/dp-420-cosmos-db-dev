@@ -33,11 +33,9 @@ In this task, you will prepare your development environment for working with Azu
 
     ![](media/visualstudioo.png)
 
-3. Select the **file** option on the top left of the screen, from the pane options, select **Open Folder** and navigate to **C:\AllFiles**.
+4. Navigate to **C:\AllFiles\dp-420-cosmos-db-dev** select **dp-420-cosmos-db-dev** and click on **Select Folder**.
 
-4. Select the folder **dp-420-cosmos-db-dev-main** and click on **Select Folder**.
-
-   ![](media/lab12-1.png)
+    ![06](media/New-image54.png)
 
     >**Note:** On **Do you trust the authors of the files in this folder?** pop-up, select **Yes, I trust authors**.
 
@@ -50,8 +48,7 @@ In this task, you will provision an Azure Cosmos DB SQL account, configuring ess
 
 Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **API for MongoDB** or **API for NoSQL**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
 
-1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure 
-   Cosmos DB** under services.
+1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
    ![06](media/New-image1.png)
    
@@ -61,34 +58,40 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
     ![06](media/New-image3.png)
 
-1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create**:
+
+1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create (9)**:
 
     | **Setting** | **Value** |
-    | ---: | :--- |
-    | **Subscription** | *Your existing Azure subscription* |
-    | **Resource group** | **Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>** |
-    | **Account Name** | *Enter a globally unique name* |
-    | **Location** | *Choose any available region* |
-    | **Capacity mode** | *Provisioned throughput* |
-    | **Apply Free Tier Discount** | *Do Not Apply* |
+    | :--- | :--- |
+    | **Workload Type** | *Learning* **(1)** |    
+    | **Subscription** | *Your existing Azure subscription* **(2)** |
+    | **Resource group** | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* **(3)** |
+    | **Account Name** | *sql-<inject key="DeploymentID" enableCopy="false"/>* **(4)** |
+    | **Location** | *Choose any available region* **(5)** |
+    | **Capacity mode** | *Provisioned throughput* **(6)** |
+    | **Apply Free Tier Discount** | *Do Not Apply* **(7)** |
+    | **Limit total account throughput** | *Disable* **(8)** |        
 
-1. Once after validation get Success click on **Create**.
+    ![06](media/c28.png) 
+    ![06](media/c29.png)        
+   
+1. Once after validation passed click on **Create**.
+
+     ![06](media/DB52.png)
 
 1. Wait for the deployment task to complete before continuing with this task.
 
-1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys** pane.
+
+1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings (1)** navigate to the **Keys (2)** pane.
 
     ![06](media/New-image6.png)
 
-    ![06](media/New-image7.png)
+    ![06](media/CDB3.png)
 
-1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
+1. On the **Keys** page, locate the **Primary Connection String** section. If the value is hidden, click the **Show/Hide (eye) icon (2)** to reveal it, then click the **Copy (3)** button to copy the **Primary Connection String**. Save this value as it will be used in a later step.
 
-    1. Record the value of the **URI** field. You will use this **endpoint** value later in this exercise.
+      ![06](media/New-image127.png)
 
-    1. Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
-
-        ![06](media/New-image9.png)
 
 1. Without closing the browser window, open **Visual Studio Code**.
 
@@ -105,9 +108,9 @@ In this task, you will use the cosmicworks command-line tool to deploy sample da
 
 The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys sample data to any Azure Cosmos DB for NoSQL account. The tool is open-source and available through NuGet. You will install this tool to the Azure Cloud Shell and then use it to seed your database.
 
-1. In **Visual Studio Code**, open the **Terminal** menu by selecting **... (ellipses) (1)** > **Terminal (2)** > **New Terminal (3)** to open a new terminal with your existing instance.
+1. Navigate back to **Visual Studio Code**, open the **Terminal** menu by selecting **... (ellipses) (1)** then select **Terminal (2)** and choose **New Terminal (3)** to open a new terminal with your existing instance.
 
-    ![06](media/terminal.png)
+    ![06](media/New-image36.png)
 
 1. Install the [cosmicworks][nuget.org/packages/cosmicworks] command-line tool for global use on your machine.
 
@@ -133,6 +136,12 @@ The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys samp
 
     >**For example:** if your endpoint is: **https&shy;://dp420.documents.azure.com:443/** and your key is: **fDR2ci9QgkdkvERTQ==**, then the command would be:
     > ``cosmicworks --endpoint https://dp420.documents.azure.com:443/ --key fDR2ci9QgkdkvERTQ== --datasets product``
+
+    > **Note:** If the command using the Cosmos DB endpoint and key does not execute successfully, use the **Primary Connection String** copied in the previous task and run the following command instead:
+
+    ```bash
+    cosmicworks --connection-string "<primary-connection-string>" --datasets product
+    ```
     
     >**Note**: If ask for **What is your connection string** then navigate back to Azure cosmos db in left navigation pane select **Key** copy the **primary connection 
      string** and right-click on the mouse to enter the primary string inside Visual Studio.
@@ -158,7 +167,9 @@ In this task, you will use the Azure Cosmos DB .NET SDK to create a UDF that cal
 
 The [Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] class in the .NET SDK includes a [Scripts][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.scripts] property that is used to perform CRUD operations against Stored Procedures, UDFs, and Triggers directly from the SDK. You will use this property to create a new UDF and then push that UDF to an Azure Cosmos DB for NoSQL container. The UDF that we will create using the SDK, will compute the price of the product with the tax, which will let us run SQL queries on the products using their price with the tax.
 
-1. In **Visual Studio Code**, in the **Explorer** pane, browse to the **33-create-use-udf-sdk** folder.
+1. In **Visual Studio Code**, expand the **33-create-use-udf-sdk (1)** project folder and open the **script.cs (2)** file.
+
+    ![06](media/CDB28.png)
 
 1. Open the **script.cs** code file.
 
@@ -240,9 +251,13 @@ The [Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] 
     Console.WriteLine($"Created UDF [{udf.Resource?.Id}]");
     ```
 
-1. **Save** the **script.cs** file.
+1. Review the code in the **script.cs** file and verify that the Azure Cosmos DB endpoint, key, database, container, and User Defined Function (UDF) configuration are present. Press **Ctrl+S** to save the code changes.
 
-1. In **Visual Studio Code**, right-click on the **33-create-use-udf-sdk** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+    ![06](media/CDB26.png)
+
+1. In **Visual Studio Code**, right-click the **33-create-use-udf-sdk (1)** project folder and select **Open in Integrated Terminal (2)**.
+
+    ![06](media/CDB20.png)
 
 1. Build and run the project using the [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] command:
 
@@ -250,11 +265,13 @@ The [Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] 
     dotnet run
     ```
 
-1. The script will now output the name of the newly created UDF:
+ Verify that the command executes successfully and displays the message **Created UDF [tax]**, confirming that the User Defined Function (UDF) was created in the Azure Cosmos DB container.
 
     ```
     Created UDF [tax]
     ```
+
+![06](media/CDB27.png) 
 
 1. Close the integrated terminal.
 
@@ -271,31 +288,35 @@ The [Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] 
 
 In this task, you will validate the user-defined function (UDF) created earlier in Azure Cosmos DB by running a SQL query in the Data Explorer.
 
-1. Return to your web browser.
+1. Within the **Azure Cosmos DB** account resource, navigate to the **Data Explorer (1)** pane. Expand the **cosmicworks** database and select the **products (2)** container. Click the **ellipsis (...) (3)** next to the container and then select **New SQL Query (4)**.
 
-1. Within the **Azure Cosmos DB** account resource, navigate to the **Data Explorer** pane.
+    ![06](media/CDB21.png)
 
-1. In the **Data Explorer**, expand the **cosmicworks** database node, then observe the new **products** container node within the **API for NoSQL** navigation tree.
+1. In the query editor, select **Execute Query** to run the default query and view all documents in the **products** container.
 
-1. Select the **products** container node (**...**) within the **API for NoSQL** navigation tree, and then select **New SQL Query**.
+    ![06](media/CDB22.png)
 
-1. In the query tab, select **Execute Query** to view a standard query that selects all items without any filters.
+1. Review the query results displayed in the **Results** pane.
 
-1. Delete the contents of the editor area.
+    ![06](media/CDB23.png)
 
-1. Create a new SQL query that will return all documents with two price values projected. The first value is the raw price value from the container, and the second value is the price value as calculated by the UDF:
+1. Delete the existing query and enter the following SQL statement in the query editor:**(1)**
 
-    ```
+    ```sql
     SELECT p.id, p.price, udf.tax(p.price) AS priceWithTax FROM products p
     ```
 
-1. Select **Execute Query**.
+1. Select **Execute Query (2)** to run the query.
 
-1. Observe the documents and compare their **price** and **priceWithTax** fields.
+    ![06](media/CDB24.png)
 
-    >**Note:** The **priceWithTax** field should have a value that is 25% larger than the **price** field.
+1. Review the query results and compare the **price** and **priceWithTax** values returned for each document.
 
-1. Close your web browser window or tab.
+    ![06](media/CDB25.png)
+
+    > **Note:** The **priceWithTax** value should be 25% greater than the corresponding **price** value, demonstrating that the User Defined Function (UDF) is being applied successfully.
+
+1. Close the query tab or browser tab when you have finished reviewing the results.
 
 ### Summary
 

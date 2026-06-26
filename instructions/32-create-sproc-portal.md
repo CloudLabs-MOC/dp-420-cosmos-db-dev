@@ -27,7 +27,7 @@ In this task, you will provision an Azure Cosmos DB for NoSQL account
 
 Stored procedures are authored in language-integrated JavaScript and support the execution of basic CRUD operations inside of the database engine. JavaScript running within the database engine is made possible using the server-side JavaScript SDK for Azure Cosmos DB and a series of helper methods.
 
-1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
+1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
    ![06](media/New-image1.png)
    
@@ -37,41 +37,54 @@ Stored procedures are authored in language-integrated JavaScript and support the
 
     ![06](media/New-image3.png)
 
-1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create**:
+
+1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create (9)**:
 
     | **Setting** | **Value** |
     | :--- | :--- |
-    | **Subscription** | *Your existing Azure subscription* |
-    | **Resource group** | **Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>** |
-    | **Account Name** | *Enter a globally unique name* |
-    | **Location** | *Choose any available region* |
-    | **Capacity mode** | *Provisioned throughput* |
-    | **Apply Free Tier Discount** | *Do Not Apply* |
+    | **Workload Type** | *Learning* **(1)** |    
+    | **Subscription** | *Your existing Azure subscription* **(2)** |
+    | **Resource group** | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* **(3)** |
+    | **Account Name** | *sql-<inject key="DeploymentID" enableCopy="false"/>* **(4)** |
+    | **Location** | *Choose any available region* **(5)** |
+    | **Capacity mode** | *Provisioned throughput* **(6)** |
+    | **Apply Free Tier Discount** | *Do Not Apply* **(7)** |
+    | **Limit total account throughput** | *Disable* **(8)** |        
 
-1. After validation get Success click on **Create**.
+    ![06](media/c28.png) 
+    ![06](media/c29.png)        
+   
+1. Once after validation passed click on **Create**.
+
+     ![06](media/DB52.png)
 
 1. Wait for the deployment task to complete before continuing with this task.
 
-1. Go to the newly created **Azure Cosmos DB** account resource and from the left navigation menu, navigate to the **Data Explorer** pane.
+1. Select **Go to resources**. On the newly created **Azure Cosmos DB** 
 
-1. In the **Data Explorer**, select **+ New Container** > **+ New Container**.
+    ![06](media/New-image6.png)
 
-     ![06](media/New-image85.png)
+1. Within the **Azure Cosmos DB** account resource **overview page (1)** , navigate to the **Data Explorer (2)** pane. 
 
- 1. Create a new container with the following settings, leaving all remaining settings to their default values, and select **OK**:
+    ![06](media/DB04.png)
 
-    | **Setting** | **Value** |
-    | :--- | :--- |
-    | **Database id** | *Create new* &vert; *cosmicworks* |
-    | **Share throughput across containers** | *Select this option* |
-    | **Database throughput** | *Manual* &vert; *400* |
-    | **Container id** | *products* |
-    | **Indexing** | *Automatic* |
-    | **Partition key** | */categoryId* |
+1. In the **Data Explorer** page, click **New Container (1)** and then select **New Container (2)** from the drop-down menu.
 
-1. Still within the **Data Explorer**, expand the **cosmicworks** database node, then select the new **products** container node within the navigation tree.
+     ![06](media/CDB18.png)
 
-1. Select **New Stored Procedure**.
+ 1. In the **New Container** dialog, configure the following settings and then click **OK (7)**.
+
+    | Setting | Value |
+    |----------|----------|
+    | **Database id** | Select **Create new (1)** and enter `cosmicworks` **(2)** |
+    | **Container id** | `products` **(3)** |
+    | **Partition key** | `/categoryId` **(4)** |
+    | **Container throughput** | Select **Manual (5)** |
+    | **Container Required RU/s** | `400` **(6)** |
+
+       ![06](media/CDB19.png)
+
+1. In **Data Explorer**, expand the **cosmicworks (1)** database and select the **products (2)** container. Then, click **New Stored Procedure (3)** from the toolbar.
 
    ![06](media/New-image123.png)
 
