@@ -1,8 +1,8 @@
-# Lab 06b - Define and implement an indexing strategy for Azure Cosmos DB SQL API
+# Lab 06b - Define and implement an indexing strategy for Azure Cosmos DB for NoSQL
 
 ## Lab scenario
 
-Indexing policies can be managed from any of the Azure Cosmos DB SDKs. The .NET SDK specifically includes a set of classes that can be used to architect and push a new indexing policy to a container in Azure Cosmos DB SQL API.
+Indexing policies can be managed from any of the Azure Cosmos DB SDKs. The .NET SDK specifically includes a set of classes that can be used to architect and push a new indexing policy to a container in Azure Cosmos DB for NoSQL.
 
 In this lab, you'll create a custom indexing policy for a container using the .NET SDK
 
@@ -20,7 +20,7 @@ In this lab, you will complete the following tasks:
 ![image](architecturedia/lab12.png)
 
 
-## Exercise 1: Configure an Azure Cosmos DB SQL API container's index policy with the portal
+## Exercise 1: Configure an Azure Cosmos DB for NoSQL container's index policy with the portal
 
 ### Task 1: Prepare your development environment
 
@@ -174,9 +174,9 @@ Just like with any other indexing policy, you can use the Data Explorer to view 
 
 1. Within the **Azure Cosmos DB** account resource, navigate to the **Data Explorer** pane.
 
-1. In the **Data Explorer**, expand the **cosmicworks** database node, then observe the new **products** container node within the **SQL API** navigation tree.
+1. In the **Data Explorer**, expand the **cosmicworks** database node, then observe the new **products** container node within the **API for NoSQL** navigation tree.
 
-1. Within the **products** container node of the **SQL API** navigation tree, select **Scale & Settings**.
+1. Within the **products** container node of the **API for NoSQL** navigation tree, select **Scale & Settings**.
 
 1. Observe the indexing policy within the **Indexing Policy** section:
 

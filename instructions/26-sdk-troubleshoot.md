@@ -1,4 +1,4 @@
-# Lab 11b - Monitor and troubleshoot an Azure Cosmos DB SQL API solution
+# Lab 11b - Monitor and troubleshoot an Azure Cosmos DB for NoSQL solution
 
 ## Lab scenario
 
@@ -21,7 +21,7 @@ In this lab, you will complete the following tasks:
 
 ![image](architecturedia/lab26.png)
 
-## Exercise 1: Troubleshoot an application using the Azure Cosmos DB SQL API SDK
+## Exercise 1: Troubleshoot an application using the Azure Cosmos DB for NoSQL SDK
 
 ### Task 1: Prepare your development environment
 
@@ -38,7 +38,7 @@ In this lab, you will complete the following tasks:
 
 ### Task 2: Fetch the Keys and endpoint from Cosmos DB account
 
-On the Azure Cosmos DB SQL API account ,you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB SQL API account using the Azure SDK for .NET or any other SDK of your choice.
+On the Azure Cosmos DB for NoSQL account ,you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
 
 1. In a new web browser window or tab, navigate to the Azure portal (``portal.azure.com``).
 

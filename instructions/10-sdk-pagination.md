@@ -1,4 +1,4 @@
-# Lab 05b - Execute queries in Azure Cosmos DB SQL API
+# Lab 05b - Execute queries in Azure Cosmos DB for NoSQL
 
 ## Lab scenario
 
@@ -10,7 +10,7 @@ In this lab, you'll create a feed iterator that can be used in a loop to iterate
 
 In this lab, you will complete the following tasks:
 - Task 1: Prepare your development environment.
-- Task 2: Seed the Azure Cosmos DB SQL API account with data.
+- Task 2: Seed the Azure Cosmos DB for NoSQL account with data.
 - Task 3: Paginate through small result sets of a SQL query using the SDK.
 
 ## Estimated Timing: 30 minutes
@@ -19,7 +19,7 @@ In this lab, you will complete the following tasks:
 
 ![image](architecturedia/lab10.png)
 
-## Exercise 1: Paginate cross-product query results with the Azure Cosmos DB SQL API SDK
+## Exercise 1: Paginate cross-product query results with the Azure Cosmos DB for NoSQL SDK
 
 ### Task 1: Prepare your development environment
 
@@ -33,9 +33,9 @@ In this lab, you will complete the following tasks:
 
 4. Select the folder **dp-420-cosmos-db-dev** and click on **Select Folder**.
 
-### Task 2: Seed the Azure Cosmos DB SQL API account with data
+### Task 2: Seed the Azure Cosmos DB for NoSQL account with data
 
-The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys sample data to any Azure Cosmos DB SQL API account. The tool is open-source and available through NuGet. You will install this tool to the Azure Cloud Shell and then use it to seed your database.
+The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys sample data to any Azure Cosmos DB for NoSQL account. The tool is open-source and available through NuGet. You will install this tool to the Azure Cloud Shell and then use it to seed your database.
 
 1. In **Visual Studio Code**, open the **Terminal** menu and then select **New Terminal** to open a new terminal instance.
 
@@ -239,7 +239,7 @@ When processing query results, you must make sure your code progresses through a
 In this lab, you have completed:
 
 - Prepared your development environment.
-- Seeded the Azure Cosmos DB SQL API account with data.
+- Seeded the Azure Cosmos DB for NoSQL account with data.
 - Paginated through small result sets of a SQL query using the SDK.
 
 ### You have successfully completed the lab

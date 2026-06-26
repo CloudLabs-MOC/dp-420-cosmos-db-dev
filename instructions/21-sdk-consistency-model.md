@@ -1,17 +1,17 @@
-# Lab 09b - Design and implement a replication strategy for Azure Cosmos DB SQL API
+# Lab 09b - Design and implement a replication strategy for Azure Cosmos DB for NoSQL
 
 ## Lab scenario
 
-The default consistency level for new Azure Cosmos DB SQL API accounts is session consistency. This default setting can be modified for all future requests. At an individual request level, you can go a step further and relax the consistency level for that specific request.
+The default consistency level for new Azure Cosmos DB for NoSQL accounts is session consistency. This default setting can be modified for all future requests. At an individual request level, you can go a step further and relax the consistency level for that specific request.
 
-In this lab, we will configure the default consistency level for an Azure Cosmos DB SQL API account and then configure a consistency level for an individual operation using the SDK.
+In this lab, we will configure the default consistency level for an Azure Cosmos DB for NoSQL account and then configure a consistency level for an individual operation using the SDK.
 
 ## Lab objectives
 
 In this lab, you will complete the following tasks:
 - Task 1: Prepare your development environment.
-- Task 2: Create an Azure Cosmos DB SQL API account.
-- Task 3: Connect to the Azure Cosmos DB SQL API account from the SDK.
+- Task 2: Create an Azure Cosmos DB for NoSQL account.
+- Task 3: Connect to the Azure Cosmos DB for NoSQL account from the SDK.
 - Task 4: Configure consistency level for a point operation.
 
 ## Estimated Timing: 60 minutes
@@ -20,7 +20,7 @@ In this lab, you will complete the following tasks:
 
 ![image](architecturedia/lab21.png)
 
-## Exercise 1: Configure consistency models in the portal and the Azure Cosmos DB SQL API SDK
+## Exercise 1: Configure consistency models in the portal and the Azure Cosmos DB for NoSQL SDK
 
 ### Task 1: Prepare your development environment
 
@@ -34,9 +34,9 @@ In this lab, you will complete the following tasks:
 
 4. Select the folder **dp-420-cosmos-db-dev** and click on **Select Folder**.
 
-### Task 2: Create an Azure Cosmos DB SQL API account
+### Task 2: Create an Azure Cosmos DB for NoSQL account
 
-Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **Mongo API** or **SQL API**). Once the Azure Cosmos DB SQL API account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB SQL API account using the Azure SDK for .NET or any other SDK of your choice.
+Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **API for MongoDB** or **API for NoSQL**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
 
 1. In a new web browser window or tab, navigate to the Azure portal (``portal.azure.com``).
 
@@ -124,7 +124,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Close your web browser window or tab.
 
-### Task 3: Connect to the Azure Cosmos DB SQL API account from the SDK
+### Task 3: Connect to the Azure Cosmos DB for NoSQL account from the SDK
 
 Using the credentials from the newly created account, you will connect with the SDK classes and create a new database and container instance. Then, you will use the Data Explorer to validate that the instances exist in the Azure portal.
 
@@ -328,8 +328,8 @@ The **ItemRequestOptions** class contains configuration properties on a per-requ
 In this lab, you have completed:
 
 - Prepared your development environment.
-- Created an Azure Cosmos DB SQL API account.
-- Connected to the Azure Cosmos DB SQL API account from the SDK.
+- Created an Azure Cosmos DB for NoSQL account.
+- Connected to the Azure Cosmos DB for NoSQL account from the SDK.
 - Configured consistency level for a point operation.
 
 ### You have successfully completed the lab

@@ -12,8 +12,8 @@ In this lab, you'll use an asynchronous stream to iterate over a large result se
 
 In this lab, you will complete the following tasks:
 - Task 1: Prepare your development environment.
-- Task 2: Create an Azure Cosmos DB NoSQL API account.
-- Task 3: Seed the Azure Cosmos DB NoSQL API account with data.
+- Task 2: Create an Azure Cosmos DB for NoSQL account.
+- Task 3: Seed the Azure Cosmos DB for NoSQL account with data.
 - Task 4: Iterate over the results of a SQL query using the SDK.
 
 ## Estimated Timing: 30 minutes
@@ -44,11 +44,11 @@ In this task, you will prepare your development environment for working with Azu
 
 5. If **When Do you trust the author of the files in this folder** click on **Yes, I trust the authors**.
 
-### Task 2: Create an Azure Cosmos DB NoSQL API account
+### Task 2: Create an Azure Cosmos DB for NoSQL account
 
-In this task, you will create an Azure Cosmos DB account using the NoSQL API. After provisioning the account, you'll retrieve the necessary connection details, including the endpoint (URI) and primary key. These credentials will allow you to connect to the Cosmos DB account using the Azure SDK or another SDK of your choice.
+In this task, you will create an Azure Cosmos DB account using the API for NoSQL. After provisioning the account, you'll retrieve the necessary connection details, including the endpoint (URI) and primary key. These credentials will allow you to connect to the Cosmos DB account using the Azure SDK or another SDK of your choice.
 
-Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **Mongo API** or **SQL API**). Once the Azure Cosmos DB SQL API account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB SQL API account using the Azure SDK for .NET or any other SDK of your choice.
+Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **API for MongoDB** or **API for NoSQL**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
 
 1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
@@ -112,11 +112,11 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
     <validation step="1365501c-f12d-434e-9c4f-6262ecb20955" />
 
-### Task 3: Seed the Azure Cosmos DB NoSQL API account with data
+### Task 3: Seed the Azure Cosmos DB for NoSQL account with data
 
-In this task, you will install the cosmicworks command-line tool to seed your Azure Cosmos DB NoSQL API account with sample product data by running a command that includes your account's endpoint and key.
+In this task, you will install the cosmicworks command-line tool to seed your Azure Cosmos DB for NoSQL account with sample product data by running a command that includes your account's endpoint and key.
 
-The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys sample data to any Azure Cosmos DB SQL API account. The tool is open-source and available through NuGet. You will install this tool to the Azure Cloud Shell and then use it to seed your database.
+The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys sample data to any Azure Cosmos DB for NoSQL account. The tool is open-source and available through NuGet. You will install this tool to the Azure Cloud Shell and then use it to seed your database.
 
 1. In **Visual Studio Code**, open the **Terminal** menu by selecting **... (ellipses) (1)** > **Terminal (2)** > **New Terminal (3)** to open a new terminal with your existing instance.
 
@@ -275,7 +275,7 @@ You will now use an asynchronous stream to create a simple-to-understand for-eac
 
 ### Summary 
 
-In this lab, you set up Visual Studio Code and created an Azure Cosmos DB NoSQL API account. After seeding the database with product data using the cosmicworks tool, you modified a C# script to query the database asynchronously. You used the Cosmos DB SDK to execute a SQL query, iterate over the results using an asynchronous loop, and display product information efficiently. This lab provided hands-on experience in querying and handling data in Azure Cosmos DB using .NET SDK and C#.
+In this lab, you set up Visual Studio Code and created an Azure Cosmos DB for NoSQL account. After seeding the database with product data using the cosmicworks tool, you modified a C# script to query the database asynchronously. You used the Cosmos DB SDK to execute a SQL query, iterate over the results using an asynchronous loop, and display product information efficiently. This lab provided hands-on experience in querying and handling data in Azure Cosmos DB using .NET SDK and C#.
 
 
 ### You have successfully completed the lab

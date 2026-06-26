@@ -1,4 +1,4 @@
-# Lab 12b - Manage an Azure Cosmos DB SQL API solution using DevOps practices
+# Lab 12b - Manage an Azure Cosmos DB for NoSQL solution using DevOps practices
 
 ## Lab scenario
 
@@ -10,9 +10,9 @@ In this lab, you'll create a new Azure Cosmos DB account, database, and containe
 
 In this lab, you will complete the following tasks:
 - Task 1: Prepare your development environment.
-- Task 2: Create Azure Cosmos DB SQL API resources using Azure Resource Manager templates.
+- Task 2: Create Azure Cosmos DB for NoSQL resources using Azure Resource Manager templates.
 - Task 3: Observe deployed Azure Cosmos DB resources.
-- Task 4: Create Azure Cosmos DB SQL API resources using Bicep templates.
+- Task 4: Create Azure Cosmos DB for NoSQL resources using Bicep templates.
 - Task 5: Observe Bicep template deployment results.
 
 ## Estimated Timing: 30 minutes
@@ -21,7 +21,7 @@ In this lab, you will complete the following tasks:
 
 ![image](architecturedia/lab30.png)
 
-## Exercise 1: Create an Azure Cosmos DB SQL API container using Azure Resource Manager templates
+## Exercise 1: Create an Azure Cosmos DB for NoSQL container using Azure Resource Manager templates
 
 ### Task 1: Prepare your development environment
 
@@ -35,7 +35,7 @@ In this lab, you will complete the following tasks:
 
 4. Select the folder **dp-420-cosmos-db-dev** and click on **Select Folder**.
 
-### Task 2: Create Azure Cosmos DB SQL API resources using Azure Resource Manager templates
+### Task 2: Create Azure Cosmos DB for NoSQL resources using Azure Resource Manager templates
 
 The **Microsoft.DocumentDB** resource provider in Azure Resource Manager makes it possible to deploy accounts, databases, and containers using JSON files. While the files may be complex, they do follow a predictable format and can be written with the assistance of a Visual Studio Code extension.
 
@@ -145,7 +145,7 @@ The **Microsoft.DocumentDB** resource provider in Azure Resource Manager makes i
 
 1. Leave the integrated terminal open and return to the editor for the **deploy.json** file.
 
-1. Within the **resources** array, add another new JSON object to create a new Azure Cosmos DB SQL API database:
+1. Within the **resources** array, add another new JSON object to create a new Azure Cosmos DB for NoSQL database:
 
     ```
     ,
@@ -186,7 +186,7 @@ The **Microsoft.DocumentDB** resource provider in Azure Resource Manager makes i
 
 1. Leave the integrated terminal open and return to the editor for the **deploy.json** file.
 
-1. Within the **resources** array, add another new JSON object to create a new Azure Cosmos DB SQL API container:
+1. Within the **resources** array, add another new JSON object to create a new Azure Cosmos DB for NoSQL container:
 
     ```
     ,
@@ -240,7 +240,7 @@ The **Microsoft.DocumentDB** resource provider in Azure Resource Manager makes i
 
 ### Task 3: Observe deployed Azure Cosmos DB resources
 
-Once your Azure Cosmos DB SQL API resources are deployed, you can navigate to the resources in the Azure portal. Using the Data Explorer, you will validate that the account, database, and container were all deployed and configured correctly.
+Once your Azure Cosmos DB for NoSQL resources are deployed, you can navigate to the resources in the Azure portal. Using the Data Explorer, you will validate that the account, database, and container were all deployed and configured correctly.
 
 1. In a new web browser window or tab, navigate to the Azure portal (``portal.azure.com``).
 
@@ -250,9 +250,9 @@ Once your Azure Cosmos DB SQL API resources are deployed, you can navigate to th
 
 1. Within the **Azure Cosmos DB** account resource, navigate to the **Data Explorer** pane.
 
-1. In the **Data Explorer**, expand the **cosmicworks** database node, then observe the new **products** container node within the **NOSQL API** navigation tree.
+1. In the **Data Explorer**, expand the **cosmicworks** database node, then observe the new **products** container node within the **API for NoSQL** navigation tree.
 
-1. Select the **products** container node within the **NOSQL API** navigation tree, and then select **Scale & Settings**.
+1. Select the **products** container node within the **API for NoSQL** navigation tree, and then select **Scale & Settings**.
 
 1. Observe the values within the **Scale** section. Specifically, observe that the **Manual** option is selected in the **Throughput** section and that the provisioned throughput is set to **400** RU/s.
 
@@ -260,7 +260,7 @@ Once your Azure Cosmos DB SQL API resources are deployed, you can navigate to th
 
 1. Close your web browser window or tab.
 
-### Task 4: Create Azure Cosmos DB SQL API resources using Bicep templates
+### Task 4: Create Azure Cosmos DB for NoSQL resources using Bicep templates
 
 Bicep is an efficient domain-specific language that makes it simpler and easier to deploy Azure resources than Azure Resource Manager templates. You will deploy the same exact resource using Bicep and a different name to illustrate the difference\[s\].
 
@@ -423,9 +423,9 @@ Bicep deployments can be validated using many of the same techniques as Azure Re
 
 1. Within the **Azure Cosmos DB** account resource, navigate to the **Data Explorer** pane.
 
-1. In the **Data Explorer**, expand the **cosmicworks** database node, then observe the new **products** container node within the **NOSQL API** navigation tree.
+1. In the **Data Explorer**, expand the **cosmicworks** database node, then observe the new **products** container node within the **API for NoSQL** navigation tree.
 
-1. Select the **products** container node within the **NOSQL API** navigation tree, and then select **Scale & Settings**.
+1. Select the **products** container node within the **API for NoSQL** navigation tree, and then select **Scale & Settings**.
 
 1. Observe the values within the **Scale** section. Specifically, observe that the **Manual** option is selected in the **Throughput** section and that the provisioned throughput is set to **400** RU/s.
 
@@ -438,9 +438,9 @@ Bicep deployments can be validated using many of the same techniques as Azure Re
 In this lab, you have completed:
 
 - Prepared your development environment.
-- Created Azure Cosmos DB SQL API resources using Azure Resource Manager templates.
+- Created Azure Cosmos DB for NoSQL resources using Azure Resource Manager templates.
 - Observed deployed Azure Cosmos DB resources.
-- Created Azure Cosmos DB SQL API resources using Bicep templates.
+- Created Azure Cosmos DB for NoSQL resources using Bicep templates.
 - Observed Bicep template deployment results.
 
 ### You have successfully completed the lab

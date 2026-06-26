@@ -1,10 +1,10 @@
-# Lab 01 - Get started with Azure Cosmos DB SQL API
+# Lab 01 - Get started with Azure Cosmos DB for NoSQL
 
 ## Lab scenario
 
 Before diving too deeply into Azure Cosmos DB, it's important to get a handle on the basics of creating the resources you will use the most. In most scenarios, you will need to be comfortable creating accounts, databases, containers, and items. In a real-world scenario, you should also have a few basic queries "on hand" to test that you created all of your resources correctly.
 
-In this lab, you'll create a new Azure Cosmos DB account using the SQL API. You will then use the Data Explorer to create a database, a container, and two items. Finally, you will query the database for the items you created.
+In this lab, you'll create a new Azure Cosmos DB account using the API for NoSQL. You will then use the Data Explorer to create a database, a container, and two items. Finally, you will query the database for the items you created.
 
 ## Lab objectives
 
@@ -20,11 +20,11 @@ In this lab, you will complete the following tasks:
 
 ![image](architecturedia/lab1.png)
 
-## Exercise 1: Create an Azure Cosmos DB SQL API account
+## Exercise 1: Create an Azure Cosmos DB for NoSQL account
 
 ### Task 1: Create a new Azure Cosmos DB account
 
-Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **Mongo API** or **SQL API**).
+Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **API for MongoDB** or **API for NoSQL**).
 
 1. In a new web browser window or tab, navigate to the Azure portal (``portal.azure.com``).
 
@@ -53,7 +53,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Select **Review + Create** to navigate to the **Review + Create** tab, and then select **Create**.
 
-    > &#128221; It can take 10-15 minutes for the Azure Cosmos DB SQL API account to be ready for use.
+    > &#128221; It can take 10-15 minutes for the Azure Cosmos DB for NoSQL account to be ready for use.
 
 1. Observe the **Deployment** pane. When the deployment is complete, the pane will update with a **Deployment successful** message.
 
@@ -61,7 +61,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 ### Task 2: Use the Data Explorer to create a new database and container
 
-The Data Explorer will be your primary tool to manage the Azure Cosmos DB SQL API database and containers in the Azure portal. You will create a basic database and container to use in this lab.
+The Data Explorer will be your primary tool to manage the Azure Cosmos DB for NoSQL database and containers in the Azure portal. You will create a basic database and container to use in this lab.
 
 1. From within the **Azure Cosmos DB account** pane, select **Data Explorer** from the resource menu.
 
@@ -82,7 +82,7 @@ The Data Explorer will be your primary tool to manage the Azure Cosmos DB SQL AP
 
 ### Task 3: Use the Data Explorer to create new items
 
-The Data Explorer also includes a suite of features to query, create, and manage items in an Azure Cosmos DB SQL API container. You will create two basic items using raw JSON in the Data Explorer.
+The Data Explorer also includes a suite of features to query, create, and manage items in an Azure Cosmos DB for NoSQL container. You will create two basic items using raw JSON in the Data Explorer.
 
 1. In the **Data Explorer** pane, expand the **cosmicworks** database node, expand the **products** container node, and then select **Items**.
 

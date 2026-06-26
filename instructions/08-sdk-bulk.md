@@ -167,7 +167,7 @@ In this task, you will create an Azure Cosmos DB for NoSQL account, configure it
 
 ### Task 2: Bulk inserting twenty-five thousand documents
 
-In this task, we will try to insert a lot of documents to see how this works. In our internal testing, this can take approximately 1-2 minutes if the lab virtual machine and Azure Cosmos DB NoSQL API account are relatively close to each other geographically speaking.
+In this task, we will try to insert a lot of documents to see how this works. In our internal testing, this can take approximately 1-2 minutes if the lab virtual machine and Azure Cosmos DB for NoSQL account are relatively close to each other geographically speaking.
 
 1. Return to the editor tab for the **script.cs** code file.
 
@@ -220,7 +220,7 @@ In this task, we will try to insert a lot of documents to see how this works. In
     }
     ```
 
-1. Within the for-each loop, create a **Task** to asynchronously insert a product into Azure Cosmos DB NoSQL API being sure to explicitly specify the partition key and to add the task to a list of tasks named **concurrentTasks**:
+1. Within the for-each loop, create a **Task** to asynchronously insert a product into Azure Cosmos DB for NoSQL being sure to explicitly specify the partition key and to add the task to a list of tasks named **concurrentTasks**:
 
     ```
     concurrentTasks.Add(
@@ -324,7 +324,7 @@ Now that you have sent 25,000 items to Azure Cosmos DB let’s go and look at th
 
     ![06](media/DB41.png)
 
-1. Select the **products** container node within the **NoSQL API** navigation tree, and click on **... (1)** then select **New SQL Query (2)**.
+1. Select the **products** container node within the **API for NoSQL** navigation tree, and click on **... (1)** then select **New SQL Query (2)**.
 
    ![](media/DB48.png)
 

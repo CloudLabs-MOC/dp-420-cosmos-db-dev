@@ -6,13 +6,13 @@
 
 The Azure SDK for .NET is a set of libraries that provides a consistent developer experience for interacting with Azure services. It is built on .NET Standard 2.0, making it compatible with .NET Framework 4.6.1 or later, .NET Core 2.1 or later, and .NET 5 or later.
 
-In this lab, you will connect to an Azure Cosmos DB SQL API account using the Azure SDK for .NET.
+In this lab, you will connect to an Azure Cosmos DB for NoSQL account using the Azure SDK for .NET.
 
 ## Lab objectives
 
 In this lab, you will complete the following tasks:
 - Task 1: Prepare your development environment.
-- Task 2: Create an Azure Cosmos DB SQL API account.
+- Task 2: Create an Azure Cosmos DB for NoSQL account.
 - Task 3: View the Microsoft.Azure.Cosmos library on NuGet.
 - Task 4: Import the Microsoft.Azure.Cosmos library into a .NET project.
 - Task 5: Use the Microsoft.Azure.Cosmos library.
@@ -42,11 +42,11 @@ In this task, you will prepare your development environment for working with Azu
 
    ![06](media/DB24.png)
 
-### Task 2: Create an Azure Cosmos DB SQL API account
+### Task 2: Create an Azure Cosmos DB for NoSQL account
 
-In this task, you will provision an Azure Cosmos DB SQL API account, configuring essential settings and retrieving the necessary connection details for future development.
+In this task, you will provision an Azure Cosmos DB for NoSQL account, configuring essential settings and retrieving the necessary connection details for future development.
 
-Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **Mongo API** or **NoSQL API**). Once the Azure Cosmos DB SQL API account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB NoSQL API account using the Azure SDK for .NET or any other SDK of your choice.
+Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **API for MongoDB** or **API for NoSQL**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
 
 1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
@@ -147,7 +147,7 @@ The .NET CLI includes an [add package][docs.microsoft.com/dotnet/core/tools/dotn
 
 In this task, you will connect to your Azure Cosmos DB account using the Microsoft.Azure.Cosmos library. You'll open the script.cs file in Visual Studio Code, define variables for the account's endpoint and key, and create a CosmosClient instance. Then, you'll retrieve and print the account name and primary region to the console, before saving the file.
 
-Once the Azure Cosmos DB library from the Azure SDK for .NET has been imported, you can immediately use its classes within the [Microsoft.Azure.Cosmos][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos] namespace to connect to an Azure Cosmos DB SQL API account. The [CosmosClient][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.cosmosclient] class is the core class that is used to make the initial connection to an Azure Cosmos DB SQL API account.
+Once the Azure Cosmos DB library from the Azure SDK for .NET has been imported, you can immediately use its classes within the [Microsoft.Azure.Cosmos][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos] namespace to connect to an Azure Cosmos DB for NoSQL account. The [CosmosClient][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.cosmosclient] class is the core class that is used to make the initial connection to an Azure Cosmos DB for NoSQL account.
 
 1. In **Visual Studio Code**, in the **04-sdk-connect (1)** folder open the empty **script.cs (2)** code file.
 
@@ -230,7 +230,7 @@ Once the Azure Cosmos DB library from the Azure SDK for .NET has been imported, 
 ### Task 6: Test the script
 In this task, you'll test your script by opening the integrated terminal in Visual Studio Code and running the project with the dotnet run command. The output will display the account name and the first writable region.
 
-Now that the .NET code to connect to the Azure Cosmos DB SQL API account is complete, you can test the script. This script will print the name of the account, and the name of the first writable region. When you created the account, you specified a location and you should expect to see that same location value printed as the result of this script.
+Now that the .NET code to connect to the Azure Cosmos DB for NoSQL account is complete, you can test the script. This script will print the name of the account, and the name of the first writable region. When you created the account, you specified a location and you should expect to see that same location value printed as the result of this script.
 
 1. In **Visual Studio Code**, right-click on the **04-sdk-connect (1)** folder and then select **Open in Integrated Terminal (2)** to open a new terminal instance.
 
@@ -257,14 +257,14 @@ Now that the .NET code to connect to the Azure Cosmos DB SQL API account is comp
 
 ### Summary 
 
-In this lab you have learned how to connect to an Azure Cosmos DB SQL API account using the Azure SDK for .NET. It begined with setting up Visual Studio Code, then provisioning a Cosmos DB account to obtain the endpoint and key. Participants explore the Microsoft.Azure.Cosmos library on NuGet and learn to import it into their .NET project. They write a script to connect to the Cosmos DB, retrieve the account name and primary writable region, and test the script to ensure it works.
+In this lab you have learned how to connect to an Azure Cosmos DB for NoSQL account using the Azure SDK for .NET. It begined with setting up Visual Studio Code, then provisioning a Cosmos DB account to obtain the endpoint and key. Participants explore the Microsoft.Azure.Cosmos library on NuGet and learn to import it into their .NET project. They write a script to connect to the Cosmos DB, retrieve the account name and primary writable region, and test the script to ensure it works.
 
 ### Review
 
 In this lab, you have completed:
 
 - Prepared your development environment.
-- Created an Azure Cosmos DB NoSQL API account.
+- Created an Azure Cosmos DB for NoSQL account.
 - Viewed the Microsoft.Azure.Cosmos library on NuGet.
 - Imported the Microsoft.Azure.Cosmos library into a .NET project.
 - Used the Microsoft.Azure.Cosmos library.

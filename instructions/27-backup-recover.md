@@ -1,4 +1,4 @@
-# Lab 11c - Monitor and troubleshoot an Azure Cosmos DB SQL API solution
+# Lab 11c - Monitor and troubleshoot an Azure Cosmos DB for NoSQL solution
 
 ## Lab scenario
 
@@ -9,7 +9,7 @@ In this lab, you'll do `backup` and `restores` using the continuous backup mode.
 ## Lab objectives
 
 In this lab, you will complete the following tasks:
-- Task 1: Create an Azure Cosmos DB SQL API account.
+- Task 1: Create an Azure Cosmos DB for NoSQL account.
 - Task 2: Add a database and two containers to the account.
 - Task 3: Add items to the containers.
 - Task 4: Change the default backup mode to continuous.
@@ -27,9 +27,9 @@ In this lab, you will complete the following tasks:
 
 ## Exercise 1: Recover a database or container from a recovery point 
 
-### Task 1: Create an Azure Cosmos DB SQL API account
+### Task 1: Create an Azure Cosmos DB for NoSQL account
 
-Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you'll select which of the APIs you want the account to support (for example, **Mongo API** or **SQL API**). Once the Azure Cosmos DB SQL API account is done provisioning, you can retrieve the endpoint and key. Use the endpoint and key to connect to the Azure Cosmos DB SQL API account programatically. Use the endpoint and key on the connection strings of the Azure SDK for .NET or any other SDK.
+Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you'll select which of the APIs you want the account to support (for example, **API for MongoDB** or **API for NoSQL**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key. Use the endpoint and key to connect to the Azure Cosmos DB for NoSQL account programatically. Use the endpoint and key on the connection strings of the Azure SDK for .NET or any other SDK.
 
 1. In a new web browser window or tab, navigate to the Azure portal (``portal.azure.com``).
 
@@ -341,7 +341,7 @@ Restores can take a long time depending on the size of the database and other fa
 
 In this lab, you have completed:
 
-- Created an Azure Cosmos DB SQL API account.
+- Created an Azure Cosmos DB for NoSQL account.
 - Added a database and two containers to the account.
 - Added items to the containers.
 - Changed the default backup mode to continuous.
