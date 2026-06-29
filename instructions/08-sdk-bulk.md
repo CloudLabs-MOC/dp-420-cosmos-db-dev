@@ -98,17 +98,17 @@ In this task, you will create an Azure Cosmos DB for NoSQL account, configure it
 
      ![06](media/DB42.png)
 
-1. In the **New Container** pane, enter the following details and click **OK (6)**.
+1. In the **New Container** pane, configure the following settings and then click **OK (6)**.
 
-    | **Setting** | **Value** |
-    | :--- | :--- |
-    | **Database id** | Create new \| `cosmicworks` **(1)** |
-    | **Share throughput across containers** | Unchecked **(2)** |
-    | **Container id** | `products` **(3)** |
-    | **Partition key** | `/categoryId` **(4)** |
-    | **Container throughput** | Autoscale \| `4000` **(5)** |
+    | Setting | Value |
+    |----------|-------|
+    | **Database id (1)** | Select **Create new** |
+    | **Database name (2)** | `cosmicworks` |
+    | **Container id (3)** | `products` |
+    | **Partition key (4)** | `/categoryId` |
+    | **Maximum RU/s (5)** | `4000` |
 
-    ![06](media/DB44.png)
+    ![06](media/CBD1.png)
 
 1. Return to **Visual Studio Code**.. 
 
