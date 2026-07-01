@@ -153,21 +153,21 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
 フルエント **WithApplicationRegion** メソッドは、ビルダー クラスを使用して後続の操作の優先リージョンを構成するために使用されます。
 
-1. Create a new instance of the [CosmosClientBuilder][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.fluent.cosmosclientbuilder] class named **builder** passing in the **endpoint** and **key** variables as constructor parameters:
+1. **endpoint** および **key** 変数をコンストラクターのパラメーターとして渡し、[CosmosClientBuilder][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.fluent.cosmosclientbuilder] クラスの新しいインスタンスを **builder** という名前で作成します:
 
     ```
     CosmosClientBuilder builder = new (endpoint, key);
     ```
 
-1. Create a new variable named **region** of type **string** with the name of the extra region you created earlier in the lab. For example, if you created your Azure Cosmos DB SQL API account in the **East US** region, and then added **Brazil South**; then your string variable would contain:
+1. このラボで以前に作成した追加リージョンの名前を使用して、**string** 型の **region** という名前の新しい変数を作成します。たとえば、Azure Cosmos DB SQL API アカウントを **East US** リージョンに作成し、さらに **Brazil South** を追加した場合、文字列変数は次のようになります:
 
     ```
     string region = "Brazil South"; 
     ```
 
-    > **Note:** Alternatively; you can use the [Microsoft.Azure.Cosmos.Regions][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.regions] static class which includes built-in string properties for various Azure regions.
+    > **注意:** 代わりに、さまざまな Azure リージョンに対する組み込みの文字列プロパティを含む [Microsoft.Azure.Cosmos.Regions][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.regions] 静的クラスを使用できます。
 
-1. Invoke the [WithApplicationRegion][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.fluent.cosmosclientbuilder.withapplicationregion] method with a parameter of **region** and the [Build][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.fluent.cosmosclientbuilder.build] method fluently on the **builder** variable storing the result in a variable named **client** of type **CosmosClient** that is encapsulated within a using statement:
+1. **builder** 変数で [WithApplicationRegion][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.fluent.cosmosclientbuilder.withapplicationregion] メソッドを **region** パラメーターで呼び出し、[Build][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.fluent.cosmosclientbuilder.build] メソッドをフルーエントにチェーンして呼び出します。結果を **CosmosClient** 型の **client** という名前の変数に格納し、`using` 文で囲みます:
 
     ```
     using CosmosClient client = builder
@@ -175,39 +175,39 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
         .Build();
     ```
 
-1. Use the **GetContainer** method of the **client** variable to retrieve the existing container using the name of the database (*cosmicworks*) and the name of the container (*products*):
+1. **client** 変数の **GetContainer** メソッドを使用して、データベース名 (*cosmicworks*) とコンテナー名 (*products*) を指定して既存のコンテナーを取得します:
 
     ```
     Container container = client.GetContainer("cosmicworks", "products");
     ```
 
-1. Create two **string** variables named **id** and **categoryId** by generating a new **Guid** value and then storing the result as a string:
+1. 新しい **Guid** 値を生成し、その結果を文字列として格納することで、**id** と **categoryId** という 2 つの **string** 変数を作成します:
 
     ```
     string id = $"{Guid.NewGuid()}";
     string categoryId = $"{Guid.NewGuid()}";
     ```
 
-1. Create a new variable named **item** of type **Product** passing in the **id** variable, a string value of **Polished Bike Frame**, and the **categoryId** variable as constructor parameters:
+1. **id** 変数、文字列値 **Polished Bike Frame**、および **categoryId** 変数をコンストラクター パラメーターとして渡して、**Product** 型の **item** という名前の新しい変数を作成します:
 
     ```
     Product item = new (id, "Polished Bike Frame", categoryId);
     ```
 
-1. Asynchronously invoke the **CreateItemAsync\<\>** method of the **container** variable passing in the **item** variable as a parameter and storing the result in a variable named **response**:
+1. **container** 変数の **CreateItemAsync<>** メソッドを非同期に呼び出し、**item** 変数をパラメーターとして渡し、結果を **response** という名前の変数に格納します:
 
     ```
     var response = await container.CreateItemAsync<Product>(item);
     ```
 
-1. Invoke the static **Console.WriteLine** method to print the response's HTTP status code and request charge (in request units):
+1. 静的 **Console.WriteLine** メソッドを呼び出して、レスポンスの HTTP ステータス コードと要求課金（リクエスト ユニット単位）を出力します:
 
     ```
     Console.WriteLine($"Status Code:\t{response.StatusCode}");
     Console.WriteLine($"Charge (RU):\t{response.RequestCharge:0.00}");
     ```
 
-1. Once you are done, your code file should now include:
+1. 完了すると、コード ファイルには次の内容が含まれているはずです:
 
     ```
     using Microsoft.Azure.Cosmos;
@@ -236,29 +236,29 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
     Console.WriteLine($"Charge (RU):\t{response.RequestCharge:0.00}");
     ```
 
-1. **Save** the **script.cs** code file.
+1. **script.cs** コード ファイルを **Save** します。
 
-1. In **Visual Studio Code**, open the context menu for the **22-sdk-multi-region** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+1. **Visual Studio Code** で **22-sdk-multi-region** フォルダーのコンテキスト メニューを開き、**Open in Integrated Terminal** を選択して新しいターミナル インスタンスを開きます。
 
-1. Build and run the project using the **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** command:
+1. **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** コマンドを使用してプロジェクトをビルドし、実行します:
 
     ```
     dotnet run
     ```
 
-1. Observe the output from the terminal. The HTTP status code and request charge (in RUs) should be printed to the console.
+1. ターミナルの出力を確認します。HTTP ステータス コードと要求課金（RU）がコンソールに表示されるはずです。
 
-1. Close the integrated terminal.
+1. 統合ターミナルを閉じます。
 
-1. Close **Visual Studio Code**.
+1. **Visual Studio Code** を閉じます。
 
-### Review
+### レビュー
 
-In this lab, you have completed:
+このラボでは、次の作業を完了しました:
 
-- Prepared your development environment.
-- Created an Azure Cosmos DB SQL API account.
-- Connected to the Azure Cosmos DB SQL API account from the SDK.
-- Configured write region for the SDK.
+- 開発環境を準備しました。
+- Azure Cosmos DB SQL API アカウントを作成しました。
+- SDK から Azure Cosmos DB SQL API アカウントに接続しました。
+- SDK の書き込みリージョンを構成しました。
 
-### You have successfully completed the lab
+### このラボは正常に完了しました
