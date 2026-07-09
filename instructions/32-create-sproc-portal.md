@@ -1,66 +1,65 @@
-# Create a stored procedure with the Azure portal
+# Azure ポータルでストアド プロシージャを作成する
 
-## Lab scenario
+## ラボ シナリオ
 
-Stored procedures are one of the ways you can execute business logic server-side in Azure Cosmos DB. With a stored procedure, you can perform basic CRUD (Create, Read, Update, Delete) operations with a container on multiple documents within a single transactional scope.
+ストアド プロシージャは、Azure Cosmos DB でサーバー側のビジネス ロジックを実行する方法の一つです。ストアド プロシージャを使用すると、単一のトランザクション スコープ内で複数のドキュメントに対してコンテナー内の基本的な CRUD（作成、読み取り、更新、削除）操作を実行できます。
 
-In this lab, you'll author a stored procedure that creates a document within your container. You will then use an SQL query to validate the results of the stored procedure.
+このラボでは、コンテナー内にドキュメントを作成するストアド プロシージャを作成します。その後、SQL クエリを使用してストアド プロシージャの結果を検証します。
 
-## Lab objectives
+## ラボの目的
 
-In this lab, you will complete the following tasks:
-- Task 1: Author a stored procedure.
-- Task 2: Implement best practices for a stored procedure.
-- Task 3: Query documents.
+このラボでは、次のタスクを完了します:
+- タスク 1: ストアド プロシージャを作成します。
+- タスク 2: ストアド プロシージャのベストプラクティスを実装します。
+- タスク 3: ドキュメントをクエリします。
 
-## Estimated Timing: 30 minutes
+## 想定所要時間: 30 分
 
-## Architecture Diagram
+## アーキテクチャ図
 
 ![image](architecturedia/lab31.png)
 
-## Exercise 1: 
+## 演習 1:
 
-### Task 1: Author a stored procedure
+### タスク 1: ストアド プロシージャを作成する
 
-In this task, you will provision an Azure Cosmos DB for NoSQL account
+このタスクでは、Azure Cosmos DB for NoSQL アカウントをプロビジョニングします。
 
-Stored procedures are authored in language-integrated JavaScript and support the execution of basic CRUD operations inside of the database engine. JavaScript running within the database engine is made possible using the server-side JavaScript SDK for Azure Cosmos DB and a series of helper methods.
+ストアド プロシージャは言語統合された JavaScript で作成され、データベース エンジン内で基本的な CRUD 操作を実行できます。データベース エンジン内で JavaScript を実行するには、Azure Cosmos DB 用のサーバー側 JavaScript SDK と一連のヘルパーメソッドが使用されます。
 
-1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
+1. Azure ポータルのページに戻り、ポータル上部の「Search resources, services and docs (G+/)」ボックスに **Azure Cosmos DB (1)** と入力し、サービスの下に表示される **Azure Cosmos DB (2)** を選択します。
 
    ![06](media/New-image1.png)
    
-1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
+1. **Azure Cosmos DB for NoSQL** の下で **+ Create** を選択し、**Create** をクリックして **Azure Cosmos DB for NoSQL** アカウントを作成します。
 
     ![06](media/New-image2.png)
 
     ![06](media/New-image3.png)
 
+1. 以下の設定を指定し、残りの設定はすべて既定値のままにして、**Review + create (9)** を選択します:
 
-1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create (9)**:
-
-    | **Setting** | **Value** |
+    | **設定** | **値** |
     | :--- | :--- |
-    | **Workload Type** | *Learning* **(1)** |    
-    | **Subscription** | *Your existing Azure subscription* **(2)** |
-    | **Resource group** | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* **(3)** |
-    | **Account Name** | *sql-<inject key="DeploymentID" enableCopy="false"/>* **(4)** |
-    | **Location** | *Choose any available region* **(5)** |
-    | **Capacity mode** | *Provisioned throughput* **(6)** |
-    | **Apply Free Tier Discount** | *Do Not Apply* **(7)** |
-    | **Limit total account throughput** | *Disable* **(8)** |        
+    | **ワークロードの種類** | *Learning* **(1)** |
+    | **サブスクリプション** | *既存の Azure サブスクリプション* **(2)** |
+    | **リソース グループ** | *既存の Cosmosdb-<inject key="DeploymentID" enableCopy="false"/> を選択* **(3)** |
+    | **アカウント名** | *sql-<inject key="DeploymentID" enableCopy="false"/>* **(4)** |
+    | **ロケーション** | *利用可能なリージョンを選択* **(5)** |
+    | **容量モード** | *Provisioned throughput* **(6)** |
+    | **無料利用枠割引の適用** | *Do Not Apply* **(7)** |
+    | **アカウントの合計スループットを制限する** | *Disable* **(8)** |
 
     ![06](media/c28.png) 
     ![06](media/c29.png)        
    
-1. Once after validation passed click on **Create**.
+1. 検証が成功したら **Create** をクリックします。
 
      ![06](media/DB52.png)
 
-1. Wait for the deployment task to complete before continuing with this task.
+1. このタスクを続行する前に、デプロイが完了するまで待ちます。
 
-1. Select **Go to resources**. On the newly created **Azure Cosmos DB** 
+1. **Go to resources** を選択します。新しく作成された **Azure Cosmos DB** アカウントに移動します。
 
     ![06](media/New-image6.png)
 
@@ -68,33 +67,33 @@ Stored procedures are authored in language-integrated JavaScript and support the
 
     ![06](media/DB04.png)
 
-1. In the **Data Explorer** page, click **New Container (1)** and then select **New Container (2)** from the drop-down menu.
+1. **Data Explorer** ページで、**New Container (1)** をクリックし、ドロップダウン メニューから **New Container (2)** を選択します。
 
      ![06](media/CDB18.png)
 
- 1. In the **New Container** dialog, configure the following settings and then click **OK (7)**.
+ 1. **New Container** ダイアログで、以下の設定を構成し、**OK (7)** をクリックします。
 
     | Setting | Value |
     |----------|----------|
-    | **Database id** | Select **Create new (1)** and enter `cosmicworks` **(2)** |
+    | **Database id** | **Create new (1)** を選択し、`cosmicworks` **(2)** と入力 |
     | **Container id** | `products` **(3)** |
     | **Partition key** | `/categoryId` **(4)** |
-    | **Container throughput** | Select **Manual (5)** |
+    | **Container throughput** | **Manual (5)** を選択 |
     | **Container Required RU/s** | `400` **(6)** |
 
        ![06](media/CDB19.png)
 
-1. In **Data Explorer**, expand the **cosmicworks (1)** database and select the **products (2)** container. Then, click **New Stored Procedure (3)** from the toolbar.
+1. **Data Explorer** で **cosmicworks (1)** データベースを展開し、**products (2)** コンテナーを選択します。次に、ツールバーから **New Stored Procedure (3)** をクリックします。
 
    ![06](media/New-image123.png)
 
-1. In the **Stored Procedure Id** field, enter the value **createDoc**.
+1. **Stored Procedure Id** フィールドに **createDoc** と入力します。
 
     ![06](media/New-image124.png)
 
-1. Delete the contents of the editor area.
+1. エディター領域の内容を削除します。
 
-1. Create a new JavaScript function named **createDoc** with no input parameters:
+1. 入力パラメーターなしで、**createDoc** という名前の新しい JavaScript 関数を作成します:
 
     ```
     function createDoc() {
@@ -102,21 +101,21 @@ Stored procedures are authored in language-integrated JavaScript and support the
     }
     ```
 
-1. Within the **createDoc** function, invoke the built-in [getContext][azure.github.io/azure-cosmosdb-js-server/global.html] method and store the result in a variable named **context**:
+1. **createDoc** 関数内で、組み込みの [getContext][azure.github.io/azure-cosmosdb-js-server/global.html] メソッドを呼び出し、その結果を **context** という変数に格納します:
 
     ```
     var context = getContext();
     ```
 
-1. Invoke the [getCollection][azure.github.io/azure-cosmosdb-js-server/context.html] method of the context object and store the result in a variable named **container**:
+1. context オブジェクトの [getCollection][azure.github.io/azure-cosmosdb-js-server/context.html] メソッドを呼び出し、その結果を **container** という変数に格納します:
 
     ```
     var container = context.getCollection();
     ```
 
-1. Create a new object named **doc** with two properties:
+1. 2 つのプロパティを持つ新しいオブジェクト **doc** を作成します:
 
-    | **Property** | **Value** |
+    | **プロパティ** | **値** |
     | :--- | :--- |
     | **Name** | *first document* |
     | **Category ID** | *demo* |
@@ -128,7 +127,7 @@ Stored procedures are authored in language-integrated JavaScript and support the
     };
     ```
 
-1. Invoke the **createDocument** method of the container object passing in the result of invoking the **getSelfLink** method of the container object and the new document as parameters:
+1. container オブジェクトの **createDocument** メソッドを呼び出し、container オブジェクトの **getSelfLink** メソッドの結果と新しいドキュメントをパラメーターとして渡します:
 
     ```
     container.createDocument(
@@ -137,7 +136,7 @@ Stored procedures are authored in language-integrated JavaScript and support the
     );
     ```
 
-1. Once you are done, your stored procedure code should now include:
+1. 完了すると、ストアド プロシージャのコードは次のようになります:
 
     ```
     function createDoc() {
@@ -154,77 +153,77 @@ Stored procedures are authored in language-integrated JavaScript and support the
     }
     ```
 
-1. Select **Save** to persist the changes to the stored procedure.
+1. **Save** を選択して、ストアド プロシージャへの変更を保存します。
 
     ![06](media/New-image125.png)
 
-1. Select **Execute** and then execute the stored procedure using the following input parameters:
+1. **Execute** を選択し、次の入力パラメーターを使用してストアド プロシージャを実行します:
 
-    | **Setting** | **Key** | **Value** |
+    | **設定** | **キー** | **値** |
     | :--- | :--- | :--- |
     | **Partition key value** | *String* | *demo* |
 
-1. Observe the empty result. While the stored procedure was executed successfully, the JavaScript code never returned a human-readable response.
+1. 空の結果を確認します。ストアド プロシージャは正常に実行されましたが、JavaScript コードは人間が読みやすい応答を返しませんでした。
 
 
-> **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
-> - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
-> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
+> **おめでとうございます**。ラボを完了しました。次は検証です。手順は次のとおりです:
+> - 対応するタスクの「Validate」ボタンを押します。成功メッセージが表示された場合、ラボの検証に成功しています。
+> - そうでない場合は、エラーメッセージを注意深く読み、ラボ ガイドの指示に従って手順をやり直します。
+> - 支援が必要な場合は、cloudlabs-support@spektrasystems.com までご連絡ください。24 時間 365 日対応しています。
     
 <validation step="f6406f6b-cf21-4093-a8e1-512fadade041" />
 
-### Task 2: Implement best practices for a stored procedure
+### タスク 2: ストアド プロシージャのベストプラクティスを実装する
 
-In this task, you're enhancing a stored procedure by implementing best practices to improve error handling, response handling, and parameter management. 
+このタスクでは、エラー処理、応答処理、およびパラメーター管理を改善するベストプラクティスを実装して、ストアド プロシージャを強化します。
 
-While the stored procedure authored earlier in this lab has basic functionality, it is also missing some common error-handling techniques that should be implemented in all stored procedures. First, the stored procedure assumes that it will always have time to complete the operation and doesn't check the return value of the **createDocument** method to ensure it has enough time. Second, the stored procedure assumes that all documents are successfully inserted without checking or throwing any potential error messages. Finally, the stored procedure doesn't return the newly created document as the HTTP response for the request that originally invoked the stored procedure. You will make these three changes to the stored procedure to implement common best practices.
+このラボで前に作成したストアド プロシージャは基本的な機能を備えていますが、すべてのストアド プロシージャに実装すべき一般的なエラー処理の手法が不足しています。まず、ストアド プロシージャは操作を完了する時間が常にあると想定しており、createDocument メソッドの戻り値を確認して十分な時間があるかどうかを判断していません。次に、すべてのドキュメントが正常に挿入されたと仮定しており、潜在的なエラーメッセージを確認またはスローしていません。最後に、ストアド プロシージャは、元の HTTP リクエストに対する応答として新しく作成されたドキュメントを返していません。これら 3 つの変更をストアド プロシージャに実装して、一般的なベストプラクティスを適用します。
 
-1. Return to the editor for the **createDoc** stored procedure.
+1. **createDoc** ストアド プロシージャのエディターに戻ります。
 
-1. Locate Line 1 in the code that defines the **createDoc** function:
+1. **createDoc** 関数を定義しているコードの 1 行目を見つけます:
 
     ```
     function createDoc() {
     ```
 
-    and update the line of code to include a parameter named **title**:
+    そして、**title** というパラメーターを含むようにコード行を更新します:
 
     ```
     function createDoc(title) {
     ```
 
-1. Locate Line 5 in the code that sets the **name** property of the **doc** object:
+1. **doc** オブジェクトの **name** プロパティを設定しているコードの 5 行目を見つけます:
 
     ```
     name: 'first document',
     ```
 
-    and update the line of code to use the value of the **title** parameter:
+    そして、コード行を **title** パラメーターの値を使用するように更新します:
 
     ```
     name: title,
     ```
 
-1. Locate Line 8 in the code that invokes the **createDocument** method:
+1. **createDocument** メソッドを呼び出しているコードの 8 行目を見つけます:
 
     ```
     container.createDocument(
     ```
 
-    and update the line of code to store the result of the method invocation in a variable named **accepted**
+    そして、メソッド呼び出しの結果を **accepted** という名前の変数に格納するようにコード行を更新します:
 
     ```
     var accepted = container.createDocument(
     ```
 
-1. Add a new line of code after the **createDocument** method invocation to check the value of the **accepted** variable and return the method if it is not true:
+1. **createDocument** メソッド呼び出しの後に新しいコード行を追加し、**accepted** 変数の値を確認して true でない場合はメソッドを返します:
 
     ```
     if (!accepted) return;
     ```
 
-1. Finally, add a third parameter to the **createDocument** method invocation which is a function that takes in two parameters named **error** and **newDoc**, checks to see if the error is null, and then sets the new doc to the response body of the stored procedure:
+1. 最後に、**createDocument** メソッド呼び出しに 3 番目の引数を追加します。この引数は **error** と **newDoc** という 2 つのパラメーターを受け取り、エラーが null かどうかを確認し、新しいドキュメントをストアド プロシージャのレスポンス本文に設定する関数です:
 
     ```
     (error, newDoc) => {
@@ -233,7 +232,7 @@ While the stored procedure authored earlier in this lab has basic functionality,
     }
     ```
 
-1. Once you are done, your stored procedure code should now include:
+1. 完了すると、ストアド プロシージャのコードは次のようになります:
 
     ```
     function createDoc(title) {
@@ -255,49 +254,49 @@ While the stored procedure authored earlier in this lab has basic functionality,
     }
     ```
 
-1. Select **Update** to persist the changes to the stored procedure.
+1. **Update** を選択して、ストアド プロシージャへの変更を保存します。
 
-1. Select **Execute** and then execute the stored procedure using the following input parameters:
+1. **Execute** を選択し、次の入力パラメーターを使用してストアド プロシージャを実行します:
 
-    | **Setting** | **Key** | **Value** |
+    | **設定** | **キー** | **値** |
     | :--- | :--- | :--- |
     | **Partition key value** | *String* | *demo* |
     | **Input parameters** | *String* | *second document* |
 
-1. Observe the JSON result. After the stored procedure was executed successfully, the newly created document was returned as a response to the original HTTP request.
+1. JSON 結果を確認します。ストアド プロシージャが正常に実行された後、作成されたドキュメントが元の HTTP リクエストへの応答として返されました。
 
-### Task 3: Query documents
+### タスク 3: ドキュメントをクエリする
 
-In this task, to wrap up things, you will use the Data Explorer to issue a SQL query that will return the two documents created in this lab.
+このタスクでは、Data Explorer を使用して SQL クエリを発行し、このラボで作成した 2 つのドキュメントを返します。
 
-1. In the **Data Explorer**, expand the **cosmicworks** database node, then select the **products** container node within the **API for NoSQL** navigation tree.
+1. **Data Explorer** で **cosmicworks** データベース ノードを展開し、**API for NoSQL** ナビゲーション ツリー内の **products** コンテナー ノードを選択します。
 
-1. Select **New SQL Query**.
+1. **New SQL Query** を選択します。
 
-1. Delete the contents of the editor area.
+1. エディター領域の内容を削除します。
 
-1. Create a new SQL query that will return all documents where the **categoryId** is equivalent to **demo**:
+1. **categoryId** が **demo** と等しいすべてのドキュメントを返す新しい SQL クエリを作成します:
 
     ```
     SELECT * FROM docs WHERE docs.categoryId = 'demo'
     ```
 
-1. Select **Execute Query**.
+1. **Execute Query** を選択します。
 
-1. Observe the two documents you created in this lab as the results of executing this query.
-
-
-### Summary 
-
-In this lab, you learned how to create a stored procedure in Azure Cosmos DB for NoSQL, implement best practices for error handling, and validate the procedure using SQL queries. Stored procedures enable you to execute server-side logic on multiple documents within a single transactional scope, which is useful for performing CRUD operations in Azure Cosmos DB.
-
-### Review
-
-In this lab, you have completed:
-
-- Task 1: Authored a stored procedure.
-- Task 2: Implemented best practices for a stored procedure.
-- Task 3: Queried documents.
+1. このクエリを実行した結果として、ラボで作成した 2 つのドキュメントが表示されることを確認します。
 
 
-### You have successfully completed the lab
+### サマリー
+
+このラボでは、Azure Cosmos DB for NoSQL でストアド プロシージャを作成し、エラー処理のベストプラクティスを実装し、SQL クエリを使って手順を検証する方法を学びました。ストアド プロシージャを使用すると、複数のドキュメントに対して単一のトランザクション スコープ内でサーバー側のロジックを実行でき、Azure Cosmos DB の CRUD 操作に便利です。
+
+### レビュー
+
+このラボでは、次の操作を完了しました:
+
+- タスク 1: ストアド プロシージャを作成しました。
+- タスク 2: ストアド プロシージャのベストプラクティスを実装しました。
+- タスク 3: ドキュメントをクエリしました。
+
+
+### ラボを正常に完了しました

@@ -1,108 +1,108 @@
-# Lab 11b - Monitor and troubleshoot an Azure Cosmos DB for NoSQL solution
+# Lab 11b - Azure Cosmos DB for NoSQL ソリューションを監視およびトラブルシューティングする
 
-## Lab scenario
+## ラボのシナリオ
 
-Azure Cosmos DB offers an extensive set of response codes, which help us easily troubleshoot issues that could arise with our different operation types. The catch is to make sure we program proper error handling when creating apps for Azure Cosmos DB.
+Azure Cosmos DB は、さまざまな操作タイプで発生する可能性がある問題のトラブルシューティングに役立つ豊富なレスポンス コードを提供します。ポイントは、Azure Cosmos DB 向けのアプリを作成するときに適切なエラー処理を実装することです。
 
-In this lab, we'll create a menu driven program that will allow us to insert or delete one of two documents. The main purpose of this lab is to introduce us to how to use some of the most common response codes and how to use them in our app's error handling code.  While we'll code error handling for multiple response codes, we'll only trigger two different types of conditions.  Additionally the error handling won't do anything complex, depending on the response code, it will either display a message to the screen or wait 10 seconds and retry the operation one more time. 
+このラボでは、2 つのドキュメントのいずれかを挿入または削除できるメニュー形式のプログラムを作成します。このラボの主な目的は、一般的なレスポンス コードのいくつかをどのように使用し、それらをアプリのエラー処理コードでどのように扱うかを紹介することです。複数のレスポンス コードのエラー処理を実装しますが、実際に発生させる条件は 2 種類のみになります。また、エラー処理は複雑な動作を行わず、レスポンス コードに応じて画面にメッセージを表示するか、10 秒待機して操作をもう一度実行します。
 
-## Lab objectives
+## ラボの目標
 
-In this lab, you will complete the following tasks:
-- Task 1: Prepare your development environment.
-- Task 2: Fetch the Keys and endpoint from Cosmos DB account.
-- Task 3: Import the Microsoft.Azure.Cosmos library into a .NET script.
-- Task 4: Run a script to create menu-driven options to insert and delete documents.
-- Task 5: Time to insert and delete documents.
+このラボでは、次のタスクを完了します:
+- タスク 1: 開発環境を準備します。
+- タスク 2: Cosmos DB アカウントからキーとエンドポイントを取得します。
+- タスク 3: Microsoft.Azure.Cosmos ライブラリを .NET スクリプトにインポートします。
+- タスク 4: ドキュメントの挿入と削除を行うメニュー形式のオプションを作成するスクリプトを実行します。
+- タスク 5: ドキュメントを挿入および削除します。
 
-## Estimated Timing: 30 minutes
+## 推定所要時間: 30 分
 
-## Architecture Diagram
+## アーキテクチャ図
 
 ![image](architecturedia/lab26.png)
 
-## Exercise 1: Troubleshoot an application using the Azure Cosmos DB for NoSQL SDK
+## Exercise 1: Azure Cosmos DB for NoSQL SDK を使用してアプリケーションをトラブルシューティングする
 
-### Task 1: Prepare your development environment
+### タスク 1: 開発環境を準備する
 
-1. Start Visual Studio Code (the program icon is pinned to the Desktop).
+1. Visual Studio Code を起動します（プログラム アイコンがデスクトップにピン留めされています）。
 
-2. Select the **Extension (1)** icon from the left pane. Enter **C# (2)** in the search bar and select the **extension (3)** that shows up and finally **Install (4)** on the extension. 
+2. 左側のペインから **Extension (1)** アイコンを選択します。検索バーに **C# (2)** と入力し、表示された **extension (3)** を選択して、最後に拡張機能の **Install (4)** をクリックします。
 
     ![](media/C-hash-extension.png)
 
-3. Select the **file** option on the top left of the screen, from the pane options, select **Open Folder** and navigate to **C:\AllFiles**.
+3. 画面左上の **file** オプションを選択し、ペインのオプションから **Open Folder** を選択して **C:\AllFiles** に移動します。
 
-4. Select the folder **dp-420-cosmos-db-dev** and click on **Select Folder**.
+4. **dp-420-cosmos-db-dev** フォルダーを選択し、**Select Folder** をクリックします。
 
 
-### Task 2: Fetch the Keys and endpoint from Cosmos DB account
+### タスク 2: Cosmos DB アカウントからキーとエンドポイントを取得する
 
-On the Azure Cosmos DB for NoSQL account ,you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
+Azure Cosmos DB for NoSQL アカウントでは、エンドポイントとキーを取得して、Azure SDK for .NET や任意の SDK を使用してアカウントに接続できます。
 
-1. In a new web browser window or tab, navigate to the Azure portal (``portal.azure.com``).
+1. 新しい Web ブラウザー ウィンドウまたはタブで、Azure ポータル (``portal.azure.com``) に移動します。
 
-1. If not already signed in, sign into the portal using the Microsoft credentials associated with your subscription.
+1. まだサインインしていない場合は、サブスクリプションに関連付けられた Microsoft 資格情報でポータルにサインインします。
 
-1. Select your resource group **DP-420-DeploymentID**, and select the **Cosmos DB** account you created in lab 1.
+1. リソース グループ **DP-420-DeploymentID** を選択し、ラボ 1 で作成した **Cosmos DB** アカウントを選択します。
 
-1. Navigate to the **Keys** pane.
+1. **Keys** ペインに移動します。
 
-1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
+1. このペインには、SDK からアカウントに接続するために必要な接続情報と資格情報が含まれています。具体的には:
 
-1. Record the value of the **URI** field. You will use this **endpoint** value later in this exercise.
+1. **URI** フィールドの値を記録します。この **endpoint** 値を後でこの演習で使用します。
     
-1. Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
+1. **PRIMARY KEY** フィールドの値を記録します。この **key** 値を後でこの演習で使用します。
 
-1. Close your web browser window or tab.
+1. Web ブラウザー ウィンドウまたはタブを閉じます。
 
 
-### Task 3: Import the Microsoft.Azure.Cosmos library into a .NET script
+### タスク 3: Microsoft.Azure.Cosmos ライブラリを .NET スクリプトにインポートする
 
-The .NET CLI includes an [add package][docs.microsoft.com/dotnet/core/tools/dotnet-add-package] command to import packages from a pre-configured package feed. A .NET installation uses NuGet as its default package feed.
+.NET CLI には、事前構成されたパッケージ フィードからパッケージをインポートするための [add package][docs.microsoft.com/dotnet/core/tools/dotnet-add-package] コマンドが含まれています。.NET のインストールでは、NuGet がデフォルトのパッケージ フィードとして使用されます。
 
-1. In **Visual Studio Code**, in the **Explorer** pane, browse to the **26-sdk-troubleshoot** folder.
+1. **Visual Studio Code** の **Explorer** ペインで **26-sdk-troubleshoot** フォルダーに移動します。
 
-1. Open the context menu for the **26-sdk-troubleshoot** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+1. **26-sdk-troubleshoot** フォルダーのコンテキスト メニューを開き、**Open in Integrated Terminal** を選択して新しいターミナルを開きます。
 
-    > &#128221; This command will open the terminal with the starting directory already set to the **26-sdk-troubleshoot** folder.
+    > &#128221; このコマンドは、開始ディレクトリが既に **26-sdk-troubleshoot** フォルダーに設定された状態でターミナルを開きます。
 
-1. Add the [Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1] package from NuGet using the following command:
+1. 次のコマンドを実行して、NuGet から [Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1] パッケージを追加します。
 
     ```
     dotnet add package Microsoft.Azure.Cosmos --version 3.22.1
     ```
 
-### Task 4: Run a script to create menu-driven options to insert and delete documents
+### タスク 4: ドキュメントの挿入および削除オプションを作成するメニューを実現するスクリプトを実行する
 
-Before we can run our application, we need to connect it to our Azure Cosmos DB account. 
+アプリケーションを実行する前に、Azure Cosmos DB アカウントへの接続を設定する必要があります。
 
-1. In **Visual Studio Code**, in the **Explorer** pane, browse to the **26-sdk-troubleshoot** folder.
+1. **Visual Studio Code** の **Explorer** ペインで **26-sdk-troubleshoot** フォルダーに移動します。
 
-1. Open the **Program.cs** code file.
+1. **Program.cs** コード ファイルを開きます。
 
-1. Update the existing variable named **endpoint** with its value set to the **endpoint** of the Azure Cosmos DB account you created earlier.
+1. 既存の **endpoint** という名前の変数を、前に作成した Azure Cosmos DB アカウントの **endpoint** に設定します。
   
     ```
     private static readonly string endpoint = "<cosmos-endpoint>";
     ```
 
-    > &#128221; For example, if your endpoint is: **https&shy;://dp420.documents.azure.com:443/**, then the C# statement would be: **private static readonly string endpoint = "https&shy;://dp420.documents.azure.com:443/";**.
+    > &#128221; たとえば、endpoint が **https&shy;://dp420.documents.azure.com:443/** の場合、C# の文は次のようになります: **private static readonly string endpoint = "https&shy;://dp420.documents.azure.com:443/";**.
 
-1. Update the existing variable named **key** with its value set to the **key** of the Azure Cosmos DB account you created earlier.
+1. 既存の **key** という名前の変数を、前に作成した Azure Cosmos DB アカウントの **key** に設定します。
 
     ```
     private static readonly string key = "<cosmos-key>";
     ```
 
-    > &#128221; For example, if your key is: **fDR2ci9QgkdkvERTQ==**, then the C# statement would be: **private static readonly string key = "fDR2ci9QgkdkvERTQ==";**.
+    > &#128221; たとえば、key が **fDR2ci9QgkdkvERTQ==** の場合、C# の文は次のようになります: **private static readonly string key = "fDR2ci9QgkdkvERTQ==";**.
 
-1. Build and run the project using the [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] command:
+1. [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] コマンドを使用してプロジェクトをビルドして実行します:
 
     ```
     dotnet run
     ```
-    > &#128221; This is a very simple program.  It will display a menu with five options as show below. Two options to insert a predefined document, two to delete a predefined document, and an option to exit the program.
+    > &#128221; これは非常にシンプルなプログラムです。以下のように、あらかじめ定義されたドキュメントを挿入する 2 つのオプション、あらかじめ定義されたドキュメントを削除する 2 つのオプション、およびプログラムを終了するオプションの 5 つのオプションを表示します。
 
     >```
     >1) Add Document 1 with id = '0C297972-BE1B-4A34-8AE1-F39E6AA3D828'
@@ -113,9 +113,9 @@ Before we can run our application, we need to connect it to our Azure Cosmos DB 
     >Select an option:
     >```
 
-### Task 5: Time to insert and delete documents
+### タスク 5: ドキュメントを挿入および削除する時間
 
-1. Select **1** and **ENTER** to insert the first document. The program will insert the first document and return the following message.
+1. **1** を選択して **ENTER** を押し、最初のドキュメントを挿入します。プログラムは最初のドキュメントを挿入し、次のメッセージを返します。
 
     ```
     Insert Successful.
@@ -123,28 +123,28 @@ Before we can run our application, we need to connect it to our Azure Cosmos DB 
     Press [ENTER] to continue
     ```
 
-1. Again, select **1** and **ENTER** to insert the first document. This time the program will crash with an exception. Looking through the error stack, we can find the reason for the program failure. As we can tell from the message extracted from the error stack, we come across an unhandled exception "Conflict (409)"
+1. 再度 **1** を選択して **ENTER** を押し、最初のドキュメントを挿入します。今回は、プログラムは例外でクラッシュします。エラー スタックを確認すると、プログラムの失敗理由がわかります。エラー スタックから抽出したメッセージを見ると、処理されていない例外「Conflict (409)」が発生していることがわかります。
 
     ```
     Unhandled exception. Microsoft.Azure.Cosmos.CosmosException : Response status code does not indicate success: Conflict (409);
     ```
 
-1. Since we're inserting a document, we'll need to review the list of common [create document status codes][/rest/api/cosmos-db/create-a-document#status-codes] returned when a document is created. The description of this code is, *the ID provided for the new document has been taken by an existing document*. This is obvious, since we just ran the menu option to create the same document a few moments ago.
+1. ドキュメントを挿入しているので、ドキュメント作成時に返される一般的な [create document status codes][/rest/api/cosmos-db/create-a-document#status-codes] の一覧を確認する必要があります。このコードの説明は、*新しいドキュメントに指定された ID が既存のドキュメントによって使用されている* です。これは、先ほど同じドキュメントを作成するメニュー オプションを実行したため、明らかです。
 
-1. Digging further into the stack, we can see that this exception was called from line 100, and that in turn was called from line 64.
+1. スタックをさらに掘り下げると、この例外は行 100 から呼び出され、さらにその行 100 は行 64 から呼び出されていることがわかります。
 
     ```
     at Program.CreateDocument1(Container Customer) in C:\Git\dp-420-cosmos-db-dev\26-sdk-troubleshoot\Program.cs:line 100   
    at Program.CompleteTaskOnCosmosDB(String consoleinputcharacter, Container container) in C:\Git\dp-420-cosmos-db-dev\26-sdk-troubleshoot\Program.cs:line 64
     ```
 
-1. Reviewing line 100, as expected, the error was caused by the *CreateItemAsync* operation. 
+1. 行 100 を確認すると、予想どおりエラーは *CreateItemAsync* 操作によって発生していました。
 
     ```C#
         ItemResponse<customerInfo> response = await Customer.CreateItemAsync<customerInfo>(customer, new PartitionKey(customerID));
     ```
 
-1. Furthermore, by reviewing lines 100 to 103, it's obvious that this code has no error handling. We'll need to fix that. 
+1. さらに行 100 から 103 を確認すると、このコードにエラー処理がまったくないことが明らかです。これを修正する必要があります。
 
     ```C#
         ItemResponse<customerInfo> response = await Customer.CreateItemAsync<customerInfo>(customer, new PartitionKey(customerID));
@@ -152,11 +152,11 @@ Before we can run our application, we need to connect it to our Azure Cosmos DB 
         Console.WriteLine("Document for customer with id = '" + customerID + "' Inserted.");
     ```
 
-1. We'll need to decide what our error-handling code should do. Reviewing the [create document status codes][/rest/api/cosmos-db/create-a-document#status-codes], we could choose to create error-handling code for every possible status code for this operation.  In this lab, we will only consider from this list, status Code 403 a 409.  All other status codes returned will just display the system error message.
+1. エラー処理コードで何を行うべきかを決める必要があります。[create document status codes][/rest/api/cosmos-db/create-a-document#status-codes] を確認すると、この操作に対して考えられるすべてのステータス コードに対するエラー処理コードを作成できます。このラボでは、この一覧から 403 と 409 のステータス コードのみを考慮します。他のすべてのステータス コードは、システムのエラーメッセージを表示するだけにします。
 
-    > &#128221; Note that while we will code a error-hadling task for a 403 exceptions, in this lab we will not generate a 403 exception.
+    > &#128221; ここでは 403 の例外に対するエラー処理コードも実装しますが、このラボでは 403 の例外は発生させません。
 
-1. Let's add error handling for the function named **CompleteTaskOnCosmosDB**. Locate the **while** loop in the function **Main** on line **45** and wrap up the calls of **CompleteTaskOnCosmosDB** with and error-handling code. We will replace the **CompleteTaskOnCosmosDB** statement on line **47** for the code below.  The first thing to notice in this new code, is that on the **catch** we're capturing an exception of type **CosmosException** class.  This class includes the property **StatusCode**, which returns the request completion status code from the Azure Cosmos DB service. The **StatusCode** property is of type **System.Net.HttpStatusCode**, we can use this value and compare it against the field names from the .NET [HTTP Status Code][dotnet/api/system.net.httpstatuscode].  
+1. **CompleteTaskOnCosmosDB** という名前の関数にエラー処理を追加しましょう。**Main** 関数の行 **45** にある **while** ループを見つけ、**CompleteTaskOnCosmosDB** の呼び出しをエラー処理コードで囲みます。行 **47** の **CompleteTaskOnCosmosDB** 文を以下のコードに置き換えます。この新しいコードで最初に注目すべき点は、**catch** で **CosmosException** 型の例外をキャッチしていることです。このクラスには **StatusCode** プロパティがあり、Azure Cosmos DB サービスからの要求完了ステータス コードを返します。**StatusCode** プロパティは **System.Net.HttpStatusCode** 型であり、この値を使用して .NET の [HTTP Status Code][dotnet/api/system.net.httpstatuscode] のフィールド名と比較できます。
 
     ```C#
         try
@@ -187,13 +187,13 @@ Before we can run our application, we need to connect it to our Azure Cosmos DB 
 
     ```
 
-1. Save the file and since we crashed, we need to run our Menu program again, so run the command:
+1. ファイルを保存し、クラッシュしたのでメニュー プログラムを再度実行します。次のコマンドを実行してください:
 
     ```
     dotnet run
     ```
  
-1. Again, select **1** and **ENTER** to insert the first document. This time we don't crash but get a more user-friendly message of what happened.
+1. 再度 **1** を選択して **ENTER** を押し、最初のドキュメントを挿入します。今度はクラッシュせず、何が起きたのかがよりユーザー向けに表示されます。
 
     ```
     Insert Failed. 
@@ -201,7 +201,7 @@ Before we can run our application, we need to connect it to our Azure Cosmos DB 
     Can not insert a duplicate partition key, customer with the same ID already exists.
     ```
 
-1. This code added the error-handling for *403* and *409* exceptions, let's now additionally add code for some common communication types of exceptions. There are three common communication type of exceptions: *429*, *503*, and *408* or too many request, service unavailable, and request time out respectively. Around line *66* there should now be a **default** statement, so add the code below right after the previous **break;** statement and right before the **default** statement.  The code will verify if we find any of these communication exceptions, and if so, wait 10 seconds, and then try to insert the document one more time.  Lets' add beyond the code:
+1. このコードでは *403* と *409* の例外に対するエラー処理を追加しました。次に、一般的な通信系の例外に対するコードも追加します。一般的な通信系の例外には、*429*、*503*、*408* の 3 つがあります。これはそれぞれ Too Many Requests、Service Unavailable、Request Timeout に対応します。行 *66* 付近には **default** 文があるはずなので、前の **break;** の直後、**default** 文の直前に次のコードを追加します。このコードは通信例外を検出した場合に 10 秒待機し、もう一度ドキュメントの挿入を試行します。次のコードを追加します:
 
     ```C#
                         case ("TooManyRequests"):
@@ -223,9 +223,9 @@ Before we can run our application, we need to connect it to our Azure Cosmos DB 
                             break;
     ```
 
-    > &#128221; Note that while we will code a task of what to do if we encounter a 429, 503 or 408 exception, in this lab we will not generate an error with that type of exception.
+    > &#128221; ここでは 429、503、408 の例外に対処するコードを追加しますが、このラボではこれらのタイプの例外を実際に発生させません。
 
-1. Our **Main** function should now look something like this:
+1. **Main** 関数は次のようになります。
 
     ```C#
         public static async Task Main(string[] args)
@@ -304,9 +304,9 @@ Before we can run our application, we need to connect it to our Azure Cosmos DB 
         }
     ```
 
-1. Note that **CreateDocument2** function will also be fixed by changes above.
+1. **CreateDocument2** 関数も上記の変更によって修正されることに注意してください。
 
-1. Finally the functions **DeleteDocument1** and **DeleteDocument2** also need the following code to be replaced for the proper error-handling code similar to the **CreateDocument1** function. The only difference with these functions besides using **DeleteItemAsync** instead of **CreateItemAsync** is that [deletes status codes][/rest/api/cosmos-db/delete-a-document] are different than the insert status codes. For the deletes, we only care about a **404** status code, which represents document not found. Lets update error handling of **CompleteTaskOnCosmosDB** function call with additional case.  On the **Main** function the following code needs to be added above **default** case:
+1. 最後に、**DeleteDocument1** と **DeleteDocument2** の関数も、**CreateDocument1** 関数と同様のエラー処理コードに置き換える必要があります。これらの関数の唯一の違いは、**CreateItemAsync** の代わりに **DeleteItemAsync** を使用している点であり、[deletes status codes][/rest/api/cosmos-db/delete-a-document] は挿入時のステータス コードとは異なる点です。削除では、ドキュメントが見つからないことを示す **404** ステータス コードのみが重要です。**Main** 関数の **default** ケースの上に、次のコードを追加して **CompleteTaskOnCosmosDB** のエラー処理を更新します:
 
     ```C#
                     case ("NotFound"):
@@ -315,14 +315,14 @@ Before we can run our application, we need to connect it to our Azure Cosmos DB 
                         break;         
     ```
 
-1. Once you're done fixing all functions, test all the menu options several times to make sure you that your app is returning a message when encountering an exception and not crashing.  If your app crashes, fix the errors and just rerun the command:
+1. すべての関数の修正が完了したら、メニューのすべてのオプションを何度かテストし、例外が発生したときにクラッシュせずメッセージを返すことを確認します。アプリがクラッシュする場合は、エラーを修正して次のコマンドを再実行します:
 
     ```
     dotnet run
     ```
 
 
-1. Don't peek, but once you're done, your `Main` codes should look something like this.
+1. 覗かないでください。修正が完了したら、`Main` のコードは次のようになっているはずです。
 
     ```C#
         public static async Task Main(string[] args)
@@ -404,9 +404,9 @@ Before we can run our application, we need to connect it to our Azure Cosmos DB 
         }
     ```
 
-## Conclusion
+## 結論
 
-Even the most junior developers knows that proper error handling must be added to all code. While the error handling in this code is simple, it should have given you the basics about the Azure Cosmos DB exception components that will let you create robust error-handling solutions in your code.
+最も経験の浅い開発者でも、すべてのコードに適切なエラー処理を追加する必要があることは知っています。このコードのエラー処理はシンプルですが、Azure Cosmos DB の例外コンポーネントについて基本を理解し、堅牢なエラー処理ソリューションを作成するための土台になったはずです。
 
 
 [code.visualstudio.com/docs/getstarted]: https://code.visualstudio.com/docs/getstarted/tips-and-tricks
@@ -417,14 +417,14 @@ Even the most junior developers knows that proper error handling must be added t
 [dotnet/api/system.net.httpstatuscode]:https://docs.microsoft.com/dotnet/api/system.net.httpstatuscode?view=net-6.0
 [/rest/api/cosmos-db/delete-a-document]:https://docs.microsoft.com/rest/api/cosmos-db/delete-a-document#status-codes
 
-### Review
+### レビュー
 
-In this lab, you have completed:
+このラボでは、次のことを完了しました:
 
-- Prepared your development environment.
-- Fetched the Keys and endpoint from Cosmos DB account.
-- Imported the Microsoft.Azure.Cosmos library into a .NET script.
-- Ran a script to create menu-driven options to insert and delete documents.
-- Inserted and deleted documents.
+- 開発環境を準備しました。
+- Cosmos DB アカウントからキーとエンドポイントを取得しました。
+- Microsoft.Azure.Cosmos ライブラリを .NET スクリプトにインポートしました。
+- ドキュメントの挿入と削除を行うメニュー形式のオプションを作成するスクリプトを実行しました。
+- ドキュメントを挿入および削除しました。
 
-### You have successfully completed the lab
+### ラボを正常に完了しました
