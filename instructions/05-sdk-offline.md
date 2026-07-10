@@ -1,4 +1,4 @@
-# Configure the Azure Cosmos DB for NoSQL SDK for offline development
+# Lab 04: Configure the Azure Cosmos DB for NoSQL SDK for offline development
 
 ### Estimated Duration: 60 Minutes
 
@@ -8,7 +8,7 @@ The Azure Cosmos DB Emulator is a local tool that simulates the Azure Cosmos DB 
 
 In this lab, you will connect to the Azure Cosmos DB Emulator using the Azure SDK for .NET.
 
-## Lab objectives
+## Lab Objectives
 
 In this lab, you will complete the following tasks:
 
@@ -17,10 +17,11 @@ In this lab, you will complete the following tasks:
 - Task 3: View the changes in the emulator.
 - Task 4: Create and view a new container.
 
-### Task 1: Start the Azure Cosmos DB Emulator
+## Task 1: Start the Azure Cosmos DB Emulator
+
 In this task, you will launch the Azure Cosmos DB Emulator, a local tool that simulates the Azure Cosmos DB environment. You'll retrieve the connection string from the emulator. The task involves verifying that the emulator is running and checking the initial state of the Data Explorer.
 
-Your environment should already have the emulator pre-installed. If not, refer to the [installation instructions][docs.microsoft.com/azure/cosmos-db/local-emulator] to install the Azure Cosmos DB Emulator. Once the emulator has started, you can retrieve the connection string and use it to connect to the emulator using the Azure SDK for .NET or any other SDK of your choice.
+Your environment should already have the emulator pre-installed. If not, refer to the [installation instructions] [docs.microsoft.com/azure/cosmos-db/local-emulator] to install the Azure Cosmos DB Emulator. Once the emulator has started, you can retrieve the connection string and use it to connect to the emulator using the Azure SDK for .NET or any other SDK of your choice.
 
 1. Search and Start the **Azure Cosmos DB Emulator** from Start Menu of window.
      ![06](media/DB31.png)
@@ -31,17 +32,18 @@ Your environment should already have the emulator pre-installed. If not, refer t
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-    1. Record the value of the **Primary Connection String** field. You will use this **connection string** value later in this exercise.
+    - Record the value of the **Primary Connection String** field. You will use this **connection string** value later in this exercise.
 
          ![06](media/New-image56.png)
 
 1. Navigate to the **Explorer** pane. In the **Data Explorer**, observe that there are no nodes within the **API for NoSQL** navigation tree.
 
-   ![06](media/New-image57.png)
+   ![06](media/M5E1T1S5.png)
 
 1. Close your web browser window or tab.
 
-###  Task 2: Connect to the emulator from the SDK
+##  Task 2: Connect to the emulator from the SDK
+
 In this task, you'll connect to the Azure Cosmos DB Emulator using the Microsoft.Azure.Cosmos SDK. You'll update the connection string in the provided script and write code to create a new database within the emulator, then test the connection by running the script.
 
 The **Microsoft.Azure.Cosmos** library has already been pre-installed in the .NET script you will use in this exercise. Further, some of the boilerplate code has already been written to save you time. You will need to update the boilerplate connection string value and write a couple of lines of code to complete the script.
@@ -74,13 +76,13 @@ The **Microsoft.Azure.Cosmos** library has already been pre-installed in the .NE
 
      >**Note**: *C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==* is the default key for all installations of the emulator. This key can be changed using command line options.
 
-1. Asynchronously invoke the [CreateDatabaseIfNotExistsAsync][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.cosmosclient.createdatabaseifnotexistsasync] method of the **client** variable passing in the name of the new database (**cosmicworks**) you would like to create within the emulator and storing the result in a variable of type [Database][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.database]:
+1. Asynchronously invoke the [CreateDatabaseIfNotExistsAsync] [docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.cosmosclient.createdatabaseifnotexistsasync] method of the **client** variable passing in the name of the new database (**cosmicworks**) you would like to create within the emulator and storing the result in a variable of type [Database] [docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.database]:
 
     ```
     Database database = await client.CreateDatabaseIfNotExistsAsync("cosmicworks");
     ```
 
-1. Use the built-in **Console.WriteLine** static method to print the [Id][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.database.id] property of the Database class with a header titled **New Database**:
+1. Use the built-in **Console.WriteLine** static method to print the [Id] [docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.database.id] property of the Database class with a header titled **New Database**:
 
     ```
     Console.WriteLine($"New Database:\tId: {database.Id}");
@@ -110,13 +112,13 @@ The **Microsoft.Azure.Cosmos** library has already been pre-installed in the .NE
     
     >**Note**: This command will open the terminal with the starting directory already set to the **05-sdk-offline** folder.
 
-1. Add the [Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1] package from NuGet using the following command:
+1. Add the [Microsoft.Azure.Cosmos] [nuget.org/packages/microsoft.azure.cosmos/3.22.1] package from NuGet using the following command:
 
     ```
     dotnet add package Microsoft.Azure.Cosmos --version 3.22.1
     ```
 
-1. Build and run the project using the [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] command:
+1. Build and run the project using the [dotnet run] [docs.microsoft.com/dotnet/core/tools/dotnet-run] command:
 
     ```
     dotnet run
@@ -135,7 +137,7 @@ The **Microsoft.Azure.Cosmos** library has already been pre-installed in the .NE
 
     <validation step="1e23a88b-ed78-4557-8384-97cc0833dcbb" />
 
-###  Task 3: View the changes in the emulator
+## Task 3: View the changes in the emulator
 
 In this task, you'll use the Data Explorer in the Azure Cosmos DB Emulator to view the new NoSQL database you created. By accessing the emulator through your browser, you can observe the new "cosmicworks" database in the API for NoSQL navigation tree.
 
@@ -151,7 +153,7 @@ Now that you have created a new database in the Azure Cosmos DB emulator, you wi
 
 1. Close your web browser window or tab.
 
-###  Task 4: Create and view a new container
+##  Task 4: Create and view a new container
 
 In this task, you will expand the previous script to create a new container called "products" in the "cosmicworks" database. After running the script, you'll verify the creation by viewing the container in the Azure Cosmos DB Emulator's Data Explorer. This process is similar to creating a database, and the code can be reused for both cloud and emulator environments by changing the connection string.
 
@@ -161,13 +163,13 @@ Creating a new container is similar to the pattern used to create a new database
 
     ![06](media/DB32.png)
 
-1. Asynchronously invoke the [CreateContainerIfNotExistsAsync][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.database.createcontainerifnotexistsasync] method of the **database** variable passing in the name of the new container (**products**), the partition key path (**/categoryId**), and the throughput (**400**) you would like to create within the **cosmicworks** database and storing the result in a variable of type [Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container]:
+1. Asynchronously invoke the [CreateContainerIfNotExistsAsync] [docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.database.createcontainerifnotexistsasync] method of the **database** variable passing in the name of the new container (**products**), the partition key path (**/categoryId**), and the throughput (**400**) you would like to create within the **cosmicworks** database and storing the result in a variable of type [Container] [docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container]:
 
     ```
     Container container = await database.CreateContainerIfNotExistsAsync("products", "/categoryId", 400);
     ```
 
-1. Use the built-in **Console.WriteLine** static method to print the [Id][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.id] property of the Container class with a header titled **New Container**:
+1. Use the built-in **Console.WriteLine** static method to print the [Id] [docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.id] property of the Container class with a header titled **New Container**:
 
     ```
     Console.WriteLine($"New Container:\tId: {container.Id}");
@@ -216,7 +218,7 @@ Creating a new container is similar to the pattern used to create a new database
 
 1. In the **Data Explorer**, expand the **cosmicworks** database node, then observe the new **products** container node within the **API for NoSQL** navigation tree.
 
-    ![06](media/New-image60.png)
+    ![06](media/M5E1T4S12.png)
    
 1. Close your web browser window or tab.
 
@@ -227,11 +229,11 @@ Creating a new container is similar to the pattern used to create a new database
 
     <validation step="d95b17d3-9a2e-4a03-adde-9ad042168bea" />
 
-### Summary
+## Summary
 
 In this lab, you have configured the Azure Cosmos DB Emulator for offline development with the API for NoSQL. Key tasks include starting the emulator, connecting to it via the Azure SDK for .NET, creating a new database named "cosmicworks," and adding a container called "products." Finally, users will verify their changes using the Data Explorer within the emulator, providing hands-on experience with the Cosmos DB development environment.
 
-### Review
+## Review
 
 In this lab, you have completed:
 
@@ -240,4 +242,4 @@ In this lab, you have completed:
 - Task 3: Viewed the changes in the emulator.
 - Task 4: Created and viewed a new container.
 
-### You have successfully completed the lab
+## You have successfully completed the lab

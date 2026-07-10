@@ -1,17 +1,19 @@
-# Migrate existing data using Azure Data Factory
+# Lab 02: Migrate existing data using Azure Data Factory
 
-## Lab scenario
+## Estimated Duration: 45 Minutes
+
+## Lab Scenario
 
 In Azure Data Factory, Azure Cosmos DB is supported as a source of data ingest and as a target (sink) of data output.
 In this lab, we will populate Azure Cosmos DB using a helpful command-line utility and then use Azure Data Factory to move a subset of data from one container to another.
 
-## Lab objectives
+## Lab Objectives
 
 In this lab, you will complete the following tasks:
 - Task 1: Create and seed your Azure Cosmos DB for NoSQL account.
 - Task 2: Create Azure Data Factory resource.
 
-### Task 1: Create and seed your Azure Cosmos DB for NoSQL account
+## Task 1: Create and seed your Azure Cosmos DB for NoSQL account
 
 In this task, you'll create and configure an Azure Cosmos DB for NoSQL account, followed by seeding it with a database and container using a command-line utility.
 
@@ -21,11 +23,11 @@ To accompany the products container, you will create a **flatproducts** containe
 
 1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
-   ![06](media/New-image1.png)
+   ![06](media/L1E1T1S1.png)
    
 1. Select **+ Create (1)** under **Azure Cosmos DB for NoSQL** click on **Create (2)** to create  **Azure Cosmos DB for NoSQL** account.
 
-    ![06](media/New-image2.png)
+    ![06](media/L1E1T1S2.png)
 
     ![06](media/New-image3.png)
 
@@ -60,13 +62,13 @@ To accompany the products container, you will create a **flatproducts** containe
 
 1. In the **Azure Cosmos DB account**, expand **Settings (1)** from the left menu, then select **Keys (2)**.
 
-    ![06](media/DB15.png)
+    ![06](media/L2E1T1S8.png)
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
 1. In the **Keys (1)** page, navigate to primary connection string and click the **Show (2)** icon to view the connection string, then click the **Copy (3)** icon to copy it and save it into notepad as e will use this in upcoming steps.
 
-    ![06](media/conn-string-2304.png)
+    ![06](media/L2E1T1S10.png)
 
 1. Keep the browser tab open, as we will return to it later.
 
@@ -100,7 +102,7 @@ To accompany the products container, you will create a **flatproducts** containe
 
     > **Note:** If you get an error while running the above command, **close** the visual studio code and **re-open** to run the above command.
 
-    ![06](media/DB17.png)
+    ![06](media/L2E1T1S16N.png)
 
 1. Wait for the **cosmicworks** command to finish populating the account with a database, container, and items.
 
@@ -115,31 +117,31 @@ To accompany the products container, you will create a **flatproducts** containe
 1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under 
    services.
 
-   ![06](media/New-image1.png)
+   ![06](media/L1E1T1S1.png)
 
 1. Select **sql-<inject key="DeploymentID" enableCopy="false"/>**.
 
-     ![06](media/New-image68.png)
+     ![06](media/L2E1T1S21.png)
 
 1. Within the **Azure Cosmos DB** account resource **overview page (1)** , navigate to the **Data Explorer (2)** pane. 
 
-    ![06](media/DB04.png)
+    ![06](media/L2E1T1S22.png)
 
-1. In the **Data Explorer**, expand the **cosmicworks (2)** database node, expand the **products (3)** container node, and then select **Items (4)**.
+1. In the **Data Explorer (1)**, expand the **cosmicworks (2)** database node, expand the **products (3)** container node, and then select **Items (4)**.
 
-    ![06](media/DB19.png)
+   ![06](media/L2E1T1S23.png)
 
 1. Observe and select the various JSON items in the **products** container. These are the items created by the command-line tool used in previous steps.
 
-   ![06](media/New-image12.png)
+   ![06](media/L2E1T1S24.png)
 
 1. Select the **Scale (1)** tab. In the Scale tab, select **Manual (2)**, update the **required throughput** setting from **4000 RU/s** to **400 RU/s (3)** and then **Save (4)** your changes**.
 
-    ![06](media/step23-2304.png)
+    ![06](media/L2E1T1S25.png)
 
 1. In the **Data Explorer** pane, select **+ New Container (1)** and select **+ New Container (2)**.
 
-    ![06](media/New-image14.png)
+    ![06](media/L2E1T1S26.png)
 
 1. In the **New Container** popup, enter the following values for each setting.
 
@@ -160,7 +162,7 @@ To accompany the products container, you will create a **flatproducts** containe
 
 1. Back in the **Data Explorer** pane, expand the **cosmicworks** database node and then observe the **flatproducts** container node within the hierarchy.
 
-     ![06](media/New-image17.png)
+     ![06](media/L2E1T1S29.png)
    
 1. Return to the **Home** of the Azure portal.
 
@@ -171,7 +173,7 @@ To accompany the products container, you will create a **flatproducts** containe
 
     <validation step="4f0ebcc4-a71c-450a-b7e0-5099feed58d5" />
 
-### Task 2: Create Azure Data Factory resource
+## Task 2: Create Azure Data Factory resource
 
 In this task, you will create an Azure Data Factory resource and configure it to perform a one-time ETL (Extract, Transform, Load) operation. The goal is to move data from one Azure Cosmos DB NoSQL container (products) to another container (flatproducts), applying a transformation during the process.
 
@@ -179,7 +181,7 @@ Now that the Azure Cosmos DB for NoSQL resources are in place, you will create a
 
 1. On Azure portal home page select **+ Create a resource**.
   
-     ![06](media/New-image37.png)
+     ![06](media/L2E1T2S1.png)
    
 1. On **Create a resource** page search and select **Azure Data Factory (1)**, and then create a new **Azure Data Factory (2** resource with the following settings, leaving
 
@@ -217,7 +219,7 @@ Now that the Azure Cosmos DB for NoSQL resources are in place, you will create a
 
 1. Select **Launch studio** under **Azure Data Factory Studio**.
 
-    ![06](media/New-image22.png)
+    ![06](media/L2E1T2S8.png)
    
     > &#128161; Alternatively, you can navigate to (``adf.azure.com/home``), select your newly created Data Factory resource, and then select the home icon.
 
@@ -290,13 +292,13 @@ Now that the Azure Cosmos DB for NoSQL resources are in place, you will create a
 
 1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
-   ![06](media/New-image1.png)
+   ![06](media/L1E1T1S1.png)
 
 1. Select **sql-<inject key="DeploymentID" enableCopy="false"/>**.
 
 1. Within the **Azure Cosmos DB** account resource, navigate to the **Data Explorer (1)** pane. In the **Data Explorer**, expand the **cosmicworks** database node, select the **flatproducts (2)** container node, and then select **New SQL Query (3)**.
 
-    ![06](media/New-image33.png)
+    ![06](media/L2E1T2S24.png)
 
 1. Delete the contents of the editor area.
 
@@ -313,7 +315,7 @@ Now that the Azure Cosmos DB for NoSQL resources are in place, you will create a
         p.name = 'HL Headset'
     ```
 
-    ![06](media/New-image34.png)
+    ![06](media/L2E1T2S26.png)
 
 1. Observe the results of the query.
 

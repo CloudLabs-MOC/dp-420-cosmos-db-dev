@@ -1,4 +1,6 @@
-# Process Azure Cosmos DB for NoSQL data using Azure Functions
+# Lab 08: Process Azure Cosmos DB for NoSQL data using Azure Functions
+
+## Estimated Timing: 60 minutes
 
 ## Lab Scenario
 
@@ -13,8 +15,6 @@ In this lab, you will complete the following tasks:
 - Task 4: Implement function code in .NET
 - Task 5: Seed your Azure Cosmos DB for NoSQL account with sample data
 
-## Estimated Timing: 60 minutes
-
 ## Architecture Diagram
 
 ![image](architecturedia/lab14.png)
@@ -27,11 +27,11 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. On **Azure Portal** page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
-   ![06](media/New-image1.png)
+   ![06](media/L1E1T1S1.png)
    
 1. Select **+ Create (1)** under **Azure Cosmos DB for NoSQL**.
 
-    ![06](media/New-image2.png)
+    ![06](media/L1E1T1S2.png)
 
     - Click on **Create (2)** to create **Azure Cosmos DB for NoSQL** account.
 
@@ -57,19 +57,23 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Wait for the deployment task to complete before continuing with this task.
 
-1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys** pane.
+1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings (1)** navigate to the **Keys (2)** pane.
 
     ![06](media/New-image6.png)
 
-    ![06](media/New-image7.png)
+    ![06](media/L2E1T1S8.png)
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-    - Record the value of the **URI** field. You will use this **endpoint** value later in this exercise.
+    - Record the value of the **URI (1)** field. You will use this **endpoint** value later in this exercise.
 
-    - Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
+    - Record the value of the **PRIMARY KEY (2)** field. You will use this **key** value later in this exercise.
 
-      ![06](media/New-image9.png)
+        ![06](media/M8E1T1S9.png)
+
+    - Notice the **Primary Connection String** field on the same page **(1)**. Click in the **eye** icon **(2)**. Copy the value you will use this **connection string** value later in this exercise **(3)**.
+
+        ![06](media/L2E1T1S10.png)    
 
 1. Select **Data Explorer** from the resource menu.
 
@@ -77,7 +81,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. In the **Data Explorer** pane, expand **+ New Container (1)** and then select **+ New Database (2)** from the drop down.
 
-    ![06](media/New-image80.png)
+    ![06](./media/M9E1T1S9.png)
       
 1. In the **New Database** pane, configure the following settings and then click **OK (2)**.
 
@@ -89,11 +93,11 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Back in the **Data Explorer** pane, observe the **cosmicworks** database node within the hierarchy.
 
-      ![06](media/New-image82.png)
+      ![06](media/M9E1T1S11.png)
    
 1. In the **Data Explorer** pane, click **New Container (1)** and then select **New Container (2)**.
 
-     ![06](media/New-image83.png)
+     ![06](media/M9E1T1S12.png)
 
 1. In the **New Container** pane, configure the following settings and then click **OK (7)**.
 
@@ -112,7 +116,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. In the **Data Explorer** pane, click **New Container (1)** and then select **New Container (2)**.
 
-    ![06](media/New-image85.png)
+    ![06](media/M9E1T1S15.png)
 
 1. In the **New Container** pane, configure the following settings and then click **OK (7)**.
 
@@ -129,7 +133,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
    
 1. Back in the **Data Explorer** pane, expand the **cosmicworks** database node and then observe the **productslease** container node within the hierarchy.
 
-     ![06](media/New-image87.png)
+     ![06](media/M9E1T1S17.png)
    
 1. Return to the **Home** of the Azure portal.
 
@@ -146,11 +150,11 @@ In this task, you'll set up Azure Application Insights to monitor your Azure Fun
 
 1. On **Azure Portal** page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Log Analytics workspaces (1)**, and then select **Log Analytics workspaces (2)** under services.
 
-    ![06](media/New-image88.png)
+    ![06](media/M9E1T2S1.png)
         
 1. Select to **+ Create** a new *Log Analytics* workspace.
 
-    ![06](media/New-image89.png)
+    ![06](media/M9E1T2S2.png)
 
 1. In the **Log Analytics workspace** dialog, enter the following values for each setting, and then select **Review + Create (5)**: 
 
@@ -171,7 +175,7 @@ In this task, you'll set up Azure Application Insights to monitor your Azure Fun
 
 1. Select to **+ Create** a new *Application Insight*.
 
-      ![06](media/CDB33.png)
+      ![06](media/M9E1T2S6.png)
 
 1. In the **Application Insights** dialog, enter the following values for each setting, and then select **Review + Create (5)**: 
 
@@ -244,23 +248,23 @@ In this task, you'll create an Azure Function app with a Cosmos DB-triggered fun
 
 1. Navigate to the **Functions (1)** pane. In the **Functions** pane, select **Create in Azure Portal (2)**.
 
-    ![06](media/c35.png)
+    ![06](media/M9E1T3S9.png)
 
       > **Note:** If you do not see the **Create in Azure Portal** option in the **Functions** pane, update the **FUNCTIONS_WORKER_RUNTIME** application setting by following these steps:
 
-    1. Under **Settings (1)**, select **Environment variables (2)** and locate the **FUNCTIONS_WORKER_RUNTIME (3)** application setting.
+      -  Under **Settings (1)**, select **Environment variables (2)** and locate the **FUNCTIONS_WORKER_RUNTIME (3)** application setting.
 
          ![Update Environment Variable](media/CDB37.png)
 
-    1. Open the **FUNCTIONS_WORKER_RUNTIME** setting, click the **Show value (1)** icon, verify that the **Value (2)** is set to **dotnet**, and then click **Apply (3)**.
+      -  Open the **FUNCTIONS_WORKER_RUNTIME** setting, click the **Show value (1)** icon, verify that the **Value (2)** is set to **dotnet**, and then click **Apply (3)**.
 
-        ![Verify FUNCTIONS_WORKER_RUNTIME](media/CDB38.png)
+          ![Verify FUNCTIONS_WORKER_RUNTIME](media/CDB38.png)
 
-    1. On the **App settings** page, click **Apply** to save the configuration changes.
+      - On the **App settings** page, click **Apply** to save the configuration changes.
 
          ![Apply App Settings](media/CDB39.png)
 
-    1. When prompted with the **Save changes** confirmation dialog, click **Confirm**. Wait for the Function App to restart, then refresh the **Functions** page and verify that the **Create in Azure Portal** option is available.
+      - When prompted with the **Save changes** confirmation dialog, click **Confirm**. Wait for the Function App to restart, then refresh the **Functions** page and verify that the **Create in Azure Portal** option is available.
 
          ![Confirm Changes](media/CDB40.png)
 
@@ -284,14 +288,12 @@ In this task, you'll create an Azure Function app with a Cosmos DB-triggered fun
 
     ![06](media/New-image106.png)
 
-
-   
-    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
-    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
+> **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
+> - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
     
-    <validation step="3d866562-569f-41c5-8f1c-286e16e92767" />
+<validation step="3d866562-569f-41c5-8f1c-286e16e92767" />
 
 ## Task 4: Implement function code in .NET
 
@@ -309,7 +311,7 @@ The function you created earlier is a C# script that is edited in-portal. You wi
     #r "Microsoft.Azure.DocumentDB.Core"
     ```
 
-1. Add using blocks for the **System**, **System.Collections.Generic**, and [Microsoft.Azure.Documents][docs.microsoft.com/dotnet/api/microsoft.azure.documents] namespaces:
+1. Add using blocks for the **System**, **System.Collections.Generic**, and [Microsoft.Azure.Documents] [docs.microsoft.com/dotnet/api/microsoft.azure.documents] namespaces:
 
     ```
     using System;
@@ -319,15 +321,15 @@ The function you created earlier is a C# script that is edited in-portal. You wi
 
 1. Create a new static method named **Run** that has two parameters:
 
-    1. A parameter named **input** of type **IReadOnlyList\<\>** with a generic type of [Document][docs.microsoft.com/dotnet/api/microsoft.azure.documents.document].
+    - A parameter named **input** of type **IReadOnlyList\<\>** with a generic type of [Document][docs.microsoft.com/dotnet/api/microsoft.azure.documents.document].
 
-    1. A parameter named **log** of type **ILogger**.
+    - A parameter named **log** of type **ILogger**.
 
-    ```
-    public static void Run(IReadOnlyList<Document> input, ILogger log)
-    {
-    }
-    ```
+       ```
+       public static void Run(IReadOnlyList<Document> input, ILogger log)
+       {
+       }
+       ```
 
 1. Within the **Run** method, invoke the **LogInformation** method of the **log** variable passing in a string that calculates the count of items in the current batch:
 
@@ -368,8 +370,7 @@ The function you created earlier is a C# script that is edited in-portal. You wi
         }
     }
     ```
-
-    ![06](media/c36.png)    
+      ![06](media/c36.png)    
 
 1. Expand the **Logs** section to connect to the streaming logs for the current function.
 
@@ -424,9 +425,10 @@ In this task, You will use a command-line utility that creates a **cosmicworks**
 
     - If you recieve any dotnet compatibilty related error, please run the following command `choco install dotnet-6.0-runtime dotnet-7.0-runtime -y` and wait for it to finish.
 
-1. If it prompts you to provide the **Connection String**, please navigate to **Keys (1)** in CosmosDB. Select the **eye (2)** icon and copy the value **(3)**.
+1. You will be prompted for placing the **Parsing Connection String**, place the copied value from the **Task 1**.
 
-    ![06](media/c37.png)
+    ![06](media/M7E1T2S6.png)
+
 
 1. Paste the value in the terminal.    
 
@@ -442,10 +444,19 @@ In this task, You will use a command-line utility that creates a **cosmicworks**
 
 1. Close your web browser window or tab.
 
-### Summary 
+## Summary 
 
 By completing this lab, you gained practical experience in setting up Azure Cosmos DB, creating Azure Functions, and implementing a change feed processor to handle data changes. This knowledge equips you to build responsive applications that leverage Azure's serverless architecture and NoSQL capabilities effectively.
 
+## Review
+
+In this lab, you accomplished the following tasks:
+
+- Created an Azure Cosmos DB for NoSQL account.
+- Created an Application Insights resource for monitoring and diagnostics.
+- Created an Azure Function App and configured an Azure Cosmos DB-triggered function.
+- Implemented the Azure Function code using .NET.
+- Seeded the Azure Cosmos DB for NoSQL account with sample data to trigger and validate the function.
 
 
-### You have successfully completed the lab
+## You have successfully completed the lab

@@ -1,27 +1,25 @@
-# Create a stored procedure with the Azure portal
+# Lab 12: Create a Stored Procedure with the Azure portal
 
-## Lab scenario
+## Estimated Timing: 30 minutes
+
+## Lab Scenario
 
 Stored procedures are one of the ways you can execute business logic server-side in Azure Cosmos DB. With a stored procedure, you can perform basic CRUD (Create, Read, Update, Delete) operations with a container on multiple documents within a single transactional scope.
 
 In this lab, you'll author a stored procedure that creates a document within your container. You will then use an SQL query to validate the results of the stored procedure.
 
-## Lab objectives
+## Lab Objectives
 
 In this lab, you will complete the following tasks:
-- Task 1: Author a stored procedure.
+- Task 1: Author a Stored Procedure.
 - Task 2: Implement best practices for a stored procedure.
 - Task 3: Query documents.
-
-## Estimated Timing: 30 minutes
 
 ## Architecture Diagram
 
 ![image](architecturedia/lab31.png)
 
-## Exercise 1: 
-
-### Task 1: Author a stored procedure
+## Task 1: Author a stored procedure
 
 In this task, you will provision an Azure Cosmos DB for NoSQL account
 
@@ -29,11 +27,11 @@ Stored procedures are authored in language-integrated JavaScript and support the
 
 1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
-   ![06](media/New-image1.png)
+   ![06](media/L1E1T1S1.png)
    
 1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
 
-    ![06](media/New-image2.png)
+    ![06](media/L1E1T1S2.png)
 
     ![06](media/New-image3.png)
 
@@ -66,7 +64,7 @@ Stored procedures are authored in language-integrated JavaScript and support the
 
 1. Within the **Azure Cosmos DB** account resource **overview page (1)** , navigate to the **Data Explorer (2)** pane. 
 
-    ![06](media/DB04.png)
+    ![06](media/L2E1T1S22.png)
 
 1. In the **Data Explorer** page, click **New Container (1)** and then select **New Container (2)** from the drop-down menu.
 
@@ -86,11 +84,11 @@ Stored procedures are authored in language-integrated JavaScript and support the
 
 1. In **Data Explorer**, expand the **cosmicworks (1)** database and select the **products (2)** container. Then, click **New Stored Procedure (3)** from the toolbar.
 
-   ![06](media/New-image123.png)
+   ![06](media/M13E1T1S8.png)
 
 1. In the **Stored Procedure Id** field, enter the value **createDoc**.
 
-    ![06](media/New-image124.png)
+    ![06](media/M13E1T1S9.png)
 
 1. Delete the contents of the editor area.
 
@@ -156,7 +154,7 @@ Stored procedures are authored in language-integrated JavaScript and support the
 
 1. Select **Save** to persist the changes to the stored procedure.
 
-    ![06](media/New-image125.png)
+    ![06](media/M13E1T1S17.png)
 
 1. Select **Execute** and then execute the stored procedure using the following input parameters:
 
@@ -174,7 +172,7 @@ Stored procedures are authored in language-integrated JavaScript and support the
     
 <validation step="f6406f6b-cf21-4093-a8e1-512fadade041" />
 
-### Task 2: Implement best practices for a stored procedure
+## Task 2: Implement best practices for a stored procedure
 
 In this task, you're enhancing a stored procedure by implementing best practices to improve error handling, response handling, and parameter management. 
 
@@ -266,7 +264,7 @@ While the stored procedure authored earlier in this lab has basic functionality,
 
 1. Observe the JSON result. After the stored procedure was executed successfully, the newly created document was returned as a response to the original HTTP request.
 
-### Task 3: Query documents
+## Task 3: Query documents
 
 In this task, to wrap up things, you will use the Data Explorer to issue a SQL query that will return the two documents created in this lab.
 
@@ -287,11 +285,11 @@ In this task, to wrap up things, you will use the Data Explorer to issue a SQL q
 1. Observe the two documents you created in this lab as the results of executing this query.
 
 
-### Summary 
+## Summary 
 
 In this lab, you learned how to create a stored procedure in Azure Cosmos DB for NoSQL, implement best practices for error handling, and validate the procedure using SQL queries. Stored procedures enable you to execute server-side logic on multiple documents within a single transactional scope, which is useful for performing CRUD operations in Azure Cosmos DB.
 
-### Review
+## Review
 
 In this lab, you have completed:
 
@@ -300,4 +298,4 @@ In this lab, you have completed:
 - Task 3: Queried documents.
 
 
-### You have successfully completed the lab
+## You have successfully completed the lab

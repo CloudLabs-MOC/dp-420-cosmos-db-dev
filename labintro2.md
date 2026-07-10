@@ -26,7 +26,7 @@ This architecture illustrates the process of integrating Azure Cosmos DB with Az
 
 ## Architechture Diagram
 
-![](/instructions/architecturedia/lab3.png)
+![](./instructions/architecturedia/lab3.png)
 
 ## Explanation of Components
 

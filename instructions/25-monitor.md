@@ -1,12 +1,14 @@
-# Use Azure Monitor to analyze an Azure Cosmos DB for NoSQL account
+# Lab 11: Use Azure Monitor to analyze an Azure Cosmos DB for NoSQL account
 
-## Lab scenario
+## Estimated Timing: 30 minutes
+
+## Lab Scenario
 
 Azure Monitor is a full-stack monitoring service in Azure that provides a complete set of features to monitor Azure resources. Azure Cosmos DB creates monitoring data using Azure Monitor. Azure Monitor captures Cosmos DB's metrics and telemetry data.
 
 In this lab, you'll run a simulated workload against Azure Cosmos DB containers and analyze how that workload affects the Azure Cosmos DB account.
 
-## Lab objectives
+## Lab Objectives
 
 In this lab, you will complete the following tasks:
 - Task 1: Prepare your development environment.
@@ -15,13 +17,11 @@ In this lab, you will complete the following tasks:
 - Task 4: Run a script to create the containers and the workload.
 - Task 5: Use Azure Monitor to Analyze the Azure Cosmos DB account usage
 
-## Estimated Timing: 30 minutes
-
 ## Architecture Diagram
 
 ![image](architecturedia/lab25.png)
 
-### Task 1: Prepare your development environment
+## Task 1: Prepare your development environment
 
 In this task, you will set up your development environment in Visual Studio Code. 
 
@@ -39,11 +39,11 @@ In this task, you will set up your development environment in Visual Studio Code
 
     ![](media/lab12-1.png)
 
-    >**Note:** On **Do you trust the authors of the files in this folder?** pop-up, select **Yes, I trust the authors**.
+      >**Note:** On **Do you trust the authors of the files in this folder?** pop-up, select **Yes, I trust the authors**.
 
       ![06](media/lab12-2.png)
 
-### Task 2: Create an Azure Cosmos DB for NoSQL account
+## Task 2: Create an Azure Cosmos DB for NoSQL account
 
 In this task, you will create an Azure Cosmos DB account using the API for NoSQL. After provisioning the account, you'll retrieve the necessary connection details, including the endpoint (URI) and primary key. 
 
@@ -53,11 +53,11 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
-   ![06](media/New-image1.png)
+   ![06](media/L1E1T1S1.png)
    
 1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
 
-    ![06](media/New-image2.png)
+    ![06](media/L1E1T1S2.png)
 
     ![06](media/New-image3.png)
 
@@ -88,7 +88,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
     ![06](media/New-image6.png)
 
-    ![06](media/CDB3.png)
+    ![06](media/L2E1T1S8.png)
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
@@ -96,7 +96,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
     - Record the value of the **PRIMARY KEY (2)** field. You will use this **key** value later in this exercise.
 
-        ![06](media/New-image9.png)
+        ![06](media/M8E1T1S9.png)
 
     > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
     > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
@@ -105,7 +105,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     
     <validation step="f7d09acb-1ee3-4b09-97b4-04f9af7a3aa9" />
 
-### Task 3: Import the Microsoft.Azure.Cosmos and Newtonsoft.Json libraries into a .NET script
+## Task 3: Import the Microsoft.Azure.Cosmos and Newtonsoft.Json libraries into a .NET script
 
 In this task, you will use the .NET CLI includes an [add package][docs.microsoft.com/dotnet/core/tools/dotnet-add-package] command to import packages from a pre-configured package feed. A .NET installation uses NuGet as its default package feed.
 
@@ -113,21 +113,21 @@ In this task, you will use the .NET CLI includes an [add package][docs.microsoft
 
 1. Right-click on the **25-monitor** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
 
-    >**Note:** This command will open the terminal with the starting directory already set to the **25-monitor** folder.
+      >**Note:** This command will open the terminal with the starting directory already set to the **25-monitor** folder.
 
-1. Add the [Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1] package from NuGet by running the following command:
+1. Add the [Microsoft.Azure.Cosmos] [nuget.org/packages/microsoft.azure.cosmos/3.22.1] package from NuGet by running the following command:
 
     ```
     dotnet add package Microsoft.Azure.Cosmos --version 3.22.1
     ```
 
-1. Add the [Newtonsoft.Json][nuget.org/packages/Newtonsoft.Json/13.0.1] package from NuGet by running the following command:
+1. Add the [Newtonsoft.Json] [nuget.org/packages/Newtonsoft.Json/13.0.1] package from NuGet by running the following command:
 
     ```
     dotnet add package Newtonsoft.Json --version 13.0.1
     ```
 
-### Task 4: Run a script to create the containers and the workload
+## Task 4: Run a script to create the containers and the workload
 
 In this task, you will run a script to create and monitor a workload using your Azure Cosmos DB account. The script will set up three containers, load data, and simulate multiple user applications querying the database with SQL queries. This will help you monitor usage and performance metrics in Azure Cosmos DB.
 
@@ -157,7 +157,7 @@ We're now ready to run a workload to monitor its usage of the Azure Cosmos DB Ac
 
 1. Return to the *Integrated Terminal*.
 
-1. Build and run the project using the [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] command:
+1. Build and run the project using the [dotnet run] [docs.microsoft.com/dotnet/core/tools/dotnet-run] command:
 
     ```
     dotnet run
@@ -183,11 +183,11 @@ We're now ready to run a workload to monitor its usage of the Azure Cosmos DB Ac
     <validation step="ff1fcfa9-5e37-4665-85cc-9628e4ffb657" />
 
 
-### Task 5: Use Azure Monitor to Analyze the Azure Cosmos DB account usage
+## Task 5: Use Azure Monitor to Analyze the Azure Cosmos DB account usage
 
 In this task, we'll go back to the browser and review some of the Azure Monitor Insight and Metric reports.
 
-#### Subtask 1: Azure Monitor Metrics's reports
+### Subtask 1: Azure Monitor Metrics's reports
 
 1. Go back to the opened browser window we minimized earlier. If you closed it, open a new one and go to your Azure Cosmos DB account page under [Azure Portal](portal.azure.com).
 
@@ -219,7 +219,7 @@ In this task, we'll go back to the browser and review some of the Azure Monitor 
 
 > &#128221; One more way to share your chart is by clicking on the Share pulldown and downloading it as an Excel file or the Copy link option.
 
-#### Subtask 2: Azure Monitor Insights reports
+### Subtask 2: Azure Monitor Insights reports
 
 We might need to spend some time fine-tuning our Azure Monitor Metrics diagnostics reports.  Cosmos DB Insights provides a view of the overall performance, failures, and operational health of your Azure Cosmos DB resources. These Insight charts will be pre-built charts similar to the Metric ones. Let's take a look at some of them.
 
@@ -239,7 +239,7 @@ We might need to spend some time fine-tuning our Azure Monitor Metrics diagnosti
 
 1. Select the System Tab. If your application was creating, deleting, or querying the account metadata frequently, it's possible to have 429 exceptions. These charts help us determine if frequent metadata access is the cause of our 429 exceptions. Additionally, we can determine the status of our metadata requests.  
 
-#### Subtask 3: Azure Monitor Insights reports
+### Subtask 3: Azure Monitor Insights reports
 
 1. If the Program is still running, go back to the Visual Studio Code Command Terminal.
 

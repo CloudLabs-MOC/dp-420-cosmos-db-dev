@@ -1,9 +1,9 @@
 # Lab 01: Explore Azure Cosmos DB
 
-## Lab scenario
-In this lab, you'll provision an Azure Cosmos DB database in your Azure subscription, and explore the various ways you can use it to store non-relational data.
+## Lab Scenario
+In this lab, you'll provision an Azure Cosmos DB database in your Azure subscription that uses the core (SQL) API, and explore the various ways you can use it to store non-relational data.
 
-## Lab objectives
+## Lab Objectives
 
 In this lab, you will perform the following tasks:
 
@@ -12,20 +12,16 @@ In this lab, you will perform the following tasks:
 + Task 3: View and create items
 + Task 4: Query the database
 
-### Exercise 1: Explore Azure Cosmos DB
-
-To use Cosmos DB, you must provision a Cosmos DB account in your Azure subscription. In this exercise, you'll provision a Cosmos DB account that uses the core (SQL) API.
-
-#### Task 1: Create a Cosmos DB account
+## Task 1: Create a Cosmos DB account
 In this task, you will provision an Azure Cosmos DB SQL account, configuring essential settings and retrieving the necessary connection details for future development.
 
 1. On **Azure Portal** page, in Search resources, services and docs (G+/) box at the top of the portal, **enter Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
-   ![06](media/New-image1.png)
+   ![06](media/L1E1T1S1.png)
    
 1. Select **+ Create (1)** under **Azure Cosmos DB for NoSQL** click on **Create (2)** to create **Azure Cosmos DB for NoSQL** account.
 
-    ![06](media/New-image2.png)
+    ![06](media/L1E1T1S2.png)
 
     ![06](media/New-image3.png)
 
@@ -54,7 +50,7 @@ In this task, you will provision an Azure Cosmos DB SQL account, configuring ess
 
     ![](media/DB3.png)
 
-### Task 2 : Create a sample database
+## Task 2 : Create a sample database
 
 This task involves reviewing pre-configured settings and observing the creation process of the SampleDB database and its container.
 *Throughout this procedure, close any tips that are displayed in the portal*.
@@ -79,7 +75,7 @@ This task involves reviewing pre-configured settings and observing the creation 
 
     ![](media/DB8.png)
 
-### Task 3 : View and create items
+## Task 3 : View and create items
 
 This task demonstrates how to view existing items, create new items, and work with JSON data in a Cosmos DB container using the Data Explorer interface, simulating how developers interact with and manage data in real world applications.
 
@@ -109,7 +105,7 @@ This task demonstrates how to view existing items, create new items, and work wi
     
 1.  After saving the new item, notice that additional metadata properties are added automatically.
 
-### Task 4  : Query the database
+## Task 4  : Query the database
 
 This task demonstrates how to create, view, and query items in a Cosmos DB container using the Data Explorer interface, simulating how developers would interact with the database using SDKs in real-world applications.
 
@@ -152,6 +148,7 @@ This task demonstrates how to create, view, and query items in a Cosmos DB conta
 In this lab you gained hands-on experience with creating, viewing, modifying, and querying data in Azure Cosmos DB, which is valuable for storing non-relational data in real-world applications.
 
 ## Review
+
 In this lab, you have completed:
 - Create a Cosmos DB account
 - Create a sample database

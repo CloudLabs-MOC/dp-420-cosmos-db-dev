@@ -1,4 +1,6 @@
-# Execute a query with the Azure Cosmos DB for NoSQL SDK
+# Lab 06: Execute a query with the Azure Cosmos DB for NoSQL SDK
+
+## Estimated Timing: 30 minutes
 
 ## Lab Scenario
 
@@ -16,13 +18,13 @@ In this lab, you will complete the following tasks:
 - Task 3: Seed the Azure Cosmos DB for NoSQL account with data.
 - Task 4: Iterate over the results of a SQL query using the SDK.
 
-## Estimated Timing: 30 minutes
+
 
 ## Architecture Diagram
 
 ![image](architecturedia/lab9.png)
 
-### Task 1: Prepare your development environment
+## Task 1: Prepare your development environment
 
 In this task, you will prepare your development environment for working with Azure Cosmos DB by setting up Visual Studio Code.
 
@@ -44,7 +46,7 @@ In this task, you will prepare your development environment for working with Azu
 
 5. If **When Do you trust the author of the files in this folder** click on **Yes, I trust the authors**.
 
-### Task 2: Create an Azure Cosmos DB for NoSQL account
+## Task 2: Create an Azure Cosmos DB for NoSQL account
 
 In this task, you will create an Azure Cosmos DB account using the API for NoSQL. After provisioning the account, you'll retrieve the necessary connection details, including the endpoint (URI) and primary key. These credentials will allow you to connect to the Cosmos DB account using the Azure SDK or another SDK of your choice.
 
@@ -52,11 +54,11 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
-   ![06](media/New-image1.png)
+   ![06](media/L1E1T1S1.png)
    
 1. Select **+ Create (1)** under **Azure Cosmos DB for NoSQL**.
 
-    ![06](media/New-image2.png)
+    ![06](media/L1E1T1S2.png)
 
     - Click on **Create (2)** to create **Azure Cosmos DB for NoSQL** account.
 
@@ -91,17 +93,21 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
     ![06](media/New-image6.png)
 
-1. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys (1)** pane. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
+1. On the newly created **Azure Cosmos DB** account under **Settings (1)** navigate to the **Keys (2)** pane. This pane contains the connection details and credentials necessary to connect to the account from the SDK.
 
-    - Record the value of the **URI (2)** field. You will use this **endpoint** value later in this exercise.
+    ![06](media/L2E1T1S8.png)
 
-        ![06](media/c18.png)
+1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-    - Notice the **Primary Connection String** field. Click in the **eye** icon **(1)**. Copy the value you will use this **connection string** value later in this exercise **(2)**.
+    - Record the value of the **URI (1)** field. You will use this **endpoint** value later in this exercise.
 
-      - Click in the **eye** icon **(3)** next to PRIMARY KEY. Record the value of the **PRIMARY KEY (4)** field. You will use this **key** value later in this exercise.
+    - Record the value of the **PRIMARY KEY (2)** field. You will use this **key** value later in this exercise.
 
-        ![06](media/c19.png)    
+        ![06](media/M8E1T1S9.png)
+
+    - Notice the **Primary Connection String** field on the same page **(1)**. Click in the **eye** icon **(2)**. Copy the value you will use this **connection string** value later in this exercise **(3)**.
+
+        ![06](media/L2E1T1S10.png)    
         
 1. Switch back to **Visual Studio Code**.
 
@@ -112,7 +118,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
     <validation step="1365501c-f12d-434e-9c4f-6262ecb20955" />
 
-### Task 3: Seed the Azure Cosmos DB for NoSQL account with data
+## Task 3: Seed the Azure Cosmos DB for NoSQL account with data
 
 In this task, you will install the cosmicworks command-line tool to seed your Azure Cosmos DB for NoSQL account with sample product data by running a command that includes your account's endpoint and key.
 
@@ -154,7 +160,7 @@ The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys samp
 
 1. Close the integrated terminal.
 
-### Task 4: Iterate over the results of a NoSQL query using the SDK
+## Task 4: Iterate over the results of a NoSQL query using the SDK
 
 In this task, you will modify a C# script to connect to your Cosmos DB, execute a SQL query to retrieve all products, and use an asynchronous loop to display each product's ID, name, and price. This task helps reinforce querying and data handling in a NoSQL environment with the Azure Cosmos DB SDK.
 
@@ -205,13 +211,13 @@ You will now use an asynchronous stream to create a simple-to-understand for-eac
     string sql = "SELECT * FROM products p";
     ```
 
-1. Create a new variable of type [QueryDefinition][docs.microsoft.com/dotnet/api/azure.cosmos.querydefinition] passing in the **sql** variable as a parameter to the constructor:
+1. Create a new variable of type [QueryDefinition] [docs.microsoft.com/dotnet/api/azure.cosmos.querydefinition] passing in the **sql** variable as a parameter to the constructor:
 
     ```
     QueryDefinition query = new (sql);
     ```
 
-1. Create a new **await foreach** loop by invoking the generic [GetItemQueryIterator][docs.microsoft.com/dotnet/api/azure.cosmos.cosmoscontainer.getitemqueryiterator] method of the [CosmosContainer][docs.microsoft.com/dotnet/api/azure.cosmos.cosmoscontainer] class passing in the **query** variable as a parameter, and then asynchronously iterating over the results using the variable **product** to represent an instance of type **Product**:
+1. Create a new **await foreach** loop by invoking the generic [GetItemQueryIterator] [docs.microsoft.com/dotnet/api/azure.cosmos.cosmoscontainer.getitemqueryiterator] method of the [CosmosContainer] [docs.microsoft.com/dotnet/api/azure.cosmos.cosmoscontainer] class passing in the **query** variable as a parameter, and then asynchronously iterating over the results using the variable **product** to represent an instance of type **Product**:
 
     ```
     await foreach (Product product in container.GetItemQueryIterator<Product>(query))
@@ -272,10 +278,18 @@ You will now use an asynchronous stream to create a simple-to-understand for-eac
 
 1. Close **Visual Studio Code**.
 
-
-### Summary 
+## Summary 
 
 In this lab, you set up Visual Studio Code and created an Azure Cosmos DB for NoSQL account. After seeding the database with product data using the cosmicworks tool, you modified a C# script to query the database asynchronously. You used the Cosmos DB SDK to execute a SQL query, iterate over the results using an asynchronous loop, and display product information efficiently. This lab provided hands-on experience in querying and handling data in Azure Cosmos DB using .NET SDK and C#.
 
 
-### You have successfully completed the lab
+## Review
+
+In this lab, you have completed:
+
+- Prepared your development environment for building applications with the Azure Cosmos DB for NoSQL SDK.
+- Created an Azure Cosmos DB for NoSQL account.
+Seeded the Azure Cosmos DB for NoSQL account with sample data.
+- Used the Azure Cosmos DB for NoSQL .NET SDK to execute a SQL query and iterate through the query results.
+
+## You have successfully completed the lab

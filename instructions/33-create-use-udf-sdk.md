@@ -1,12 +1,14 @@
-# Implement and then use user-defined functions with the SDK
+# Lab 13: Implement and then use user-defined functions with the SDK
 
-## Lab scenario
+## Estimated Timing: 30 minutes
+
+## Lab Scenario
 
 The .NET SDK for Azure Cosmos DB for NoSQL can be used to manage and invoke server-side programming constructs directly from a container. When preparing a new container, it may make sense to use the .NET SDK to publish UDFs directly to a container instead of performing the tasks manually using the Data Explorer.
 
 In this lab, you'll create a new UDF using the .NET SDK and then use the Data Explorer to validate that the UDF is working correctly.
 
-## Lab objectives
+## Lab Objectives
 
 In this lab, you will complete the following tasks:
 - Task 1: Prepare your development environment.
@@ -15,13 +17,12 @@ In this lab, you will complete the following tasks:
 - Task 4: Create a user-defined function (UDF) using the .NET SDK.
 - Task 5: Test the UDF using the Data Explorer.
 
-## Estimated Timing: 30 minutes
-
 ## Architecture Diagram
 
 ![image](architecturedia/lab32.png)
 
-### Task 1: Prepare your development environment
+
+## Task 1: Prepare your development environment
 
 In this task, you will prepare your development environment for working with Azure Cosmos DB by setting up Visual Studio Code.
 
@@ -42,7 +43,7 @@ In this task, you will prepare your development environment for working with Azu
     ![06](media/lab12-2.png)
 
 
-### Task 2: Create an Azure Cosmos DB for NoSQL account
+## Task 2: Create an Azure Cosmos DB for NoSQL account
 
 In this task, you will provision an Azure Cosmos DB SQL account, configuring essential settings and retrieving the necessary connection details for future development.
 
@@ -81,16 +82,23 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Wait for the deployment task to complete before continuing with this task.
 
-
 1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings (1)** navigate to the **Keys (2)** pane.
 
     ![06](media/New-image6.png)
 
     ![06](media/CDB3.png)
 
-1. On the **Keys** page, locate the **Primary Connection String** section. If the value is hidden, click the **Show/Hide (eye) icon (2)** to reveal it, then click the **Copy (3)** button to copy the **Primary Connection String**. Save this value as it will be used in a later step.
+1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-      ![06](media/New-image127.png)
+    - Record the value of the **URI (1)** field. You will use this **endpoint** value later in this exercise.
+
+    - Record the value of the **PRIMARY KEY (2)** field. You will use this **key** value later in this exercise.
+
+        ![06](media/M8E1T1S9.png)
+
+    - Notice the **Primary Connection String** field on the same page **(1)**. Click in the **eye** icon **(2)**. Copy the value you will use this **connection string** value later in this exercise **(3)**.
+
+        ![06](media/L2E1T1S10.png)    
 
 
 1. Without closing the browser window, open **Visual Studio Code**.
@@ -102,7 +110,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     
     <validation step="74eda0bf-4b7b-47d2-9d83-0bb7e6bc8ffa" />
 
-### Task 3: Seed the Azure Cosmos DB for NoSQL account with data
+## Task 3: Seed the Azure Cosmos DB for NoSQL account with data
 
 In this task, you will use the cosmicworks command-line tool to deploy sample data into your Azure Cosmos DB for NoSQL account. This tool is installed via NuGet and allows you to quickly populate the database with predefined datasets, such as product data, to facilitate testing and development.
 
@@ -137,17 +145,12 @@ The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys samp
     >**For example:** if your endpoint is: **https&shy;://dp420.documents.azure.com:443/** and your key is: **fDR2ci9QgkdkvERTQ==**, then the command would be:
     > ``cosmicworks --endpoint https://dp420.documents.azure.com:443/ --key fDR2ci9QgkdkvERTQ== --datasets product``
 
-    > **Note:** If the command using the Cosmos DB endpoint and key does not execute successfully, use the **Primary Connection String** copied in the previous task and run the following command instead:
-
-    ```bash
-    cosmicworks --connection-string "<primary-connection-string>" --datasets product
-    ```
-    
-    >**Note**: If ask for **What is your connection string** then navigate back to Azure cosmos db in left navigation pane select **Key** copy the **primary connection 
-     string** and right-click on the mouse to enter the primary string inside Visual Studio.
-
-     ![06](media/New-image127.png)
-    
+    > **Note:** If the command using the Cosmos DB endpoint and key does not execute successfully, use the **Primary Connection String** copied in the previous task i.e., Task 2 and run the following command instead:
+    > 
+    >    ```
+    >    cosmicworks --connection-string "<your-connection-string>" --datasets product
+    >    ```
+        
 1. Wait for the **cosmicworks** command to finish populating the account with a database, container, and items.
    
    >**Note**: If you're getting an error, close the visual studio code reopen it and try to run the command once again.
@@ -161,7 +164,7 @@ The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys samp
     
     <validation step="dd92f2ca-c14f-4181-8374-d60868d94589" />
 
-### Task 4: Create a user-defined function (UDF) using the .NET SDK
+## Task 4: Create a user-defined function (UDF) using the .NET SDK
 
 In this task, you will use the Azure Cosmos DB .NET SDK to create a UDF that calculates the product price with tax. This task involves writing a C# script to define and deploy the UDF to an Azure Cosmos DB for NoSQL container, enabling tax-based queries on product prices.
 
@@ -169,109 +172,108 @@ The [Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] 
 
 1. In **Visual Studio Code**, expand the **33-create-use-udf-sdk (1)** project folder and open the **script.cs (2)** file.
 
-    ![06](media/CDB28.png)
+      ![06](media/CDB28.png)
 
 1. Open the **script.cs** code file.
 
 1. Add a using block for the [Microsoft.Azure.Cosmos.Scripts][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.scripts] namespace:
 
-    ```
-    using Microsoft.Azure.Cosmos.Scripts;
-    ```
+      ```
+      using Microsoft.Azure.Cosmos.Scripts;
+      ```
 
 1. Update the existing variable named **endpoint** with its value set to the **endpoint** of the Azure Cosmos DB account you created earlier.
   
-    ```
-    string endpoint = "<cosmos-endpoint>";
-    ```
+      ```
+      string endpoint = "<cosmos-endpoint>";
+      ```
 
-    > **For example:** if your endpoint is: **https&shy;://dp420.documents.azure.com:443/**, then the C# statement would be: **string endpoint = "https&shy;://dp420.documents.azure.com:443/";**.
+      > **For example:** if your endpoint is: **https&shy;://dp420.documents.azure.com:443/**, then the C# statement would be: **string endpoint = "https&shy;://dp420.documents.azure.com:443/";**.
 
 1. Update the existing variable named **key** with its value set to the **key** of the Azure Cosmos DB account you created earlier.
 
-    ```
-    string key = "<cosmos-key>";
-    ```
+      ```
+      string key = "<cosmos-key>";
+      ```
+      > **For example:** if your key is: **fDR2ci9QgkdkvERTQ==**, then the C# statement would be: **string key = "fDR2ci9QgkdkvERTQ==";**.
 
-    > **For example:** if your key is: **fDR2ci9QgkdkvERTQ==**, then the C# statement would be: **string key = "fDR2ci9QgkdkvERTQ==";**.
+1. Create a new variable of type [UserDefinedFunctionProperties] [docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.scripts.userdefinedfunctionproperties] named props using the default empty constructor:
 
-1. Create a new variable of type [UserDefinedFunctionProperties][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.scripts.userdefinedfunctionproperties] named props using the default empty constructor:
+      ```
+      UserDefinedFunctionProperties props = new ();
+      ```
 
-    ```
-    UserDefinedFunctionProperties props = new ();
-    ```
+1. Set the [Id] [docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.scripts.userdefinedfunctionproperties.id] property of the **props** variable to a value of **tax**:
 
-1. Set the [Id][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.scripts.userdefinedfunctionproperties.id] property of the **props** variable to a value of **tax**:
+      ```
+      props.Id = "tax";
+      ```
 
-    ```
-    props.Id = "tax";
-    ```
+1. Set the [Body] [docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.scripts.userdefinedfunctionproperties.body] property of the **props** variable to a value of **props.Body = "function tax(i) { return i * 1.25; }";**:
 
-1. Set the [Body][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.scripts.userdefinedfunctionproperties.body] property of the **props** variable to a value of **props.Body = "function tax(i) { return i * 1.25; }";**:
+      ```
+      props.Body = "function tax(i) { return i * 1.25; }";
+      ```
 
-    ```
-    props.Body = "function tax(i) { return i * 1.25; }";
-    ```
+1. Asynchronously call the **container** variable's [Scripts.CreateUserDefinedFunctionAsync] [docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.scripts] method passing in the **props** variable as a parameter and saving the result in a variable named **udf** of type [UserDefinedFunctionResponse] [docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.scripts.userdefinedfunctionresponse]:
 
-1. Asynchronously call the **container** variable's [Scripts.CreateUserDefinedFunctionAsync][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.scripts] method passing in the **props** variable as a parameter and saving the result in a variable named **udf** of type [UserDefinedFunctionResponse][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.scripts.userdefinedfunctionresponse]:
-
-    ```
-    UserDefinedFunctionResponse udf = await container.Scripts.CreateUserDefinedFunctionAsync(props);
-    ```
+      ```
+      UserDefinedFunctionResponse udf = await container.Scripts.CreateUserDefinedFunctionAsync(props);
+      ```
 
 1. Use the built-in **Console.WriteLine** static method to print the [Resource.Id][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.scripts.userdefinedfunctionresponse.resource] property of the UserDefinedFunctionResponse class with a header titled **Created UDF**:
 
-    ```
-    Console.WriteLine($"Created UDF [{udf.Resource?.Id}]");
+      ```
+      Console.WriteLine($"Created UDF [{udf.Resource?.Id}]");
     ```
 
 1. Once you are done, your code file should now include:
   
-    ```
-    using System;
-    using Microsoft.Azure.Cosmos;
-    using Microsoft.Azure.Cosmos.Scripts;
+      ```
+      using System;
+      using Microsoft.Azure.Cosmos;
+      using Microsoft.Azure.Cosmos.Scripts;
 
-    string endpoint = "<cosmos-endpoint>";
+      string endpoint = "<cosmos-endpoint>";
 
-    string key = "<cosmos-key>";
+      string key = "<cosmos-key>";
 
-    CosmosClient client = new CosmosClient(endpoint, key);
+      CosmosClient client = new CosmosClient(endpoint, key);
 
-    Database database = await client.CreateDatabaseIfNotExistsAsync("cosmicworks");
+      Database database = await client.CreateDatabaseIfNotExistsAsync("cosmicworks");
 
-    Container container = await database.CreateContainerIfNotExistsAsync("products", "/category/name");
+      Container container = await database.CreateContainerIfNotExistsAsync("products", "/category/name");
 
-    UserDefinedFunctionProperties props = new ();
-    props.Id = "tax";
-    props.Body = "function tax(i) { return i * 1.25; }";
+      UserDefinedFunctionProperties props = new ();
+      props.Id = "tax";
+      props.Body = "function tax(i) { return i * 1.25; }";
     
-    UserDefinedFunctionResponse udf = await container.Scripts.CreateUserDefinedFunctionAsync(props);
+      UserDefinedFunctionResponse udf = await container.Scripts.CreateUserDefinedFunctionAsync(props);
     
-    Console.WriteLine($"Created UDF [{udf.Resource?.Id}]");
-    ```
+      Console.WriteLine($"Created UDF [{udf.Resource?.Id}]");
+      ```
 
 1. Review the code in the **script.cs** file and verify that the Azure Cosmos DB endpoint, key, database, container, and User Defined Function (UDF) configuration are present. Press **Ctrl+S** to save the code changes.
 
-    ![06](media/CDB26.png)
+      ![06](media/CDB26.png)
 
 1. In **Visual Studio Code**, right-click the **33-create-use-udf-sdk (1)** project folder and select **Open in Integrated Terminal (2)**.
 
-    ![06](media/CDB20.png)
+      ![06](media/CDB20.png)
 
 1. Build and run the project using the [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] command:
 
-    ```
-    dotnet run
-    ```
+      ```
+      dotnet run
+      ```
 
- Verify that the command executes successfully and displays the message **Created UDF [tax]**, confirming that the User Defined Function (UDF) was created in the Azure Cosmos DB container.
+1. Verify that the command executes successfully and displays the message **Created UDF [tax]**, confirming that the User Defined Function (UDF) was created in the Azure Cosmos DB container.
 
-    ```
-    Created UDF [tax]
-    ```
+      ```
+      Created UDF [tax]
+      ```
 
-![06](media/CDB27.png) 
+      ![06](media/CDB27.png) 
 
 1. Close the integrated terminal.
 
@@ -284,21 +286,21 @@ The [Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] 
     
     <validation step="01aa9434-9775-4fd0-baa1-1dcfc60bdba6" />
 
-### Task 5: Test the UDF using the Data Explorer
+## Task 5: Test the UDF using the Data Explorer
 
 In this task, you will validate the user-defined function (UDF) created earlier in Azure Cosmos DB by running a SQL query in the Data Explorer.
 
 1. Within the **Azure Cosmos DB** account resource, navigate to the **Data Explorer (1)** pane. Expand the **cosmicworks** database and select the **products (2)** container. Click the **ellipsis (...) (3)** next to the container and then select **New SQL Query (4)**.
 
-    ![06](media/CDB21.png)
+      ![06](media/CDB21.png)
 
 1. In the query editor, select **Execute Query** to run the default query and view all documents in the **products** container.
 
-    ![06](media/CDB22.png)
+      ![06](media/CDB22.png)
 
 1. Review the query results displayed in the **Results** pane.
 
-    ![06](media/CDB23.png)
+      ![06](media/CDB23.png)
 
 1. Delete the existing query and enter the following SQL statement in the query editor:**(1)**
 
@@ -308,21 +310,21 @@ In this task, you will validate the user-defined function (UDF) created earlier 
 
 1. Select **Execute Query (2)** to run the query.
 
-    ![06](media/CDB24.png)
+      ![06](media/CDB24.png)
 
 1. Review the query results and compare the **price** and **priceWithTax** values returned for each document.
 
-    ![06](media/CDB25.png)
+      ![06](media/CDB25.png)
 
-    > **Note:** The **priceWithTax** value should be 25% greater than the corresponding **price** value, demonstrating that the User Defined Function (UDF) is being applied successfully.
+      > **Note:** The **priceWithTax** value should be 25% greater than the corresponding **price** value, demonstrating that the User Defined Function (UDF) is being applied successfully.
 
 1. Close the query tab or browser tab when you have finished reviewing the results.
 
-### Summary
+## Summary
 
 In this lab, you successfully implemented and tested user-defined functions (UDFs) in Azure Cosmos DB using the .NET SDK. The main objectives were to familiarize yourself with the development environment, create and configure an Azure Cosmos DB for NoSQL account, seed it with data, and develop a UDF that computes the price of products with tax.
 
-### Review
+## Review
 
 In this lab, you have completed:
 
@@ -332,4 +334,4 @@ In this lab, you have completed:
 - Created a user-defined function (UDF) using the .NET SDK.
 - Tested the UDF using the Data Explorer.
 
-### You have successfully completed the lab
+## You have successfully completed the lab

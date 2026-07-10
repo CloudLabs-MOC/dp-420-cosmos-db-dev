@@ -24,7 +24,7 @@ This architecture illustrates the process of provisioning and using Azure Cosmos
 
 ## Architechture Diagram
 
-![](/instructions/media/dp900lab3.png)
+![](./instructions/media/dp900lab3.png)
 
 ## Explanation of Components
 
