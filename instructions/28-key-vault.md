@@ -1,60 +1,60 @@
-# Lab 11d - Monitor and troubleshoot an Azure Cosmos DB for NoSQL solution
+# Lab 11d - Azure Cosmos DB for NoSQL ソリューションの監視とトラブルシューティング
 
-## Lab scenario
+## ラボシナリオ
 
-Adding an Azure Cosmos DB account connection code to your application is as simple as providing the account's URI and keys. This security information might sometimes be hard-coded into the application code. However, if your application is being deployed to the Azure App Service, you can save the encrypt connection information into Azure Key Vault.
+Azure Cosmos DB アカウントの接続コードをアプリケーションに追加するのは、アカウントの URI とキーを指定するだけで簡単です。この機密情報はアプリケーション コードにハードコーディングされることがあります。しかし、アプリケーションを Azure App Service にデプロイする場合、接続情報を Azure Key Vault に保存できます。
 
-In this lab, we'll encrypt and store the Azure Cosmos DB account connection string into the Azure Key Vault. We will then create an Azure App Service webapp that will retrieve those credentials from the Azure Key Vault. The application will use these credentials and connect to the Azure Cosmos DB account. The application will then create some documents in the Azure Cosmos DB account containers and return its status back to a web page.
+このラボでは、Azure Cosmos DB アカウントの接続文字列を Azure Key Vault に暗号化して保存します。その後、Azure Key Vault から資格情報を取得する Azure App Service Web アプリを作成します。アプリケーションはこれらの資格情報を使用して Azure Cosmos DB アカウントに接続し、Cosmos DB アカウントのコンテナーにドキュメントを作成し、そのステータスを Web ページに返します。
 
-## Lab objectives
+## ラボの目的
 
-In this lab, you will complete the following tasks:
-- Task 1: Prepare your development environment.
-- Task 2: Create an Azure Cosmos DB for NoSQL account.
-- Task 3: Create an Azure Key Vault and store the Azure Cosmos DB account credentials as a secret.
-- Task 4: Create an Azure App Service webapp.
-- Task 5: Import the multiple missing libraries into the .NET script.
-- Task 6: Adding the Secret Identifier to your webapp.
-- Task 7: (Optional) Install the Azure App Services Extension.
-- Task 8: Deploy your application to Azure App Services.
-- Task 9: Allow our app to use a managed identity.
-- Task 10: Granting our web application an access policy to the Key Vault secrets.
+このラボでは、以下のタスクを完了します:
+- Task 1: 開発環境を準備します。
+- Task 2: Azure Cosmos DB for NoSQL アカウントを作成します。
+- Task 3: Azure Key Vault を作成し、Azure Cosmos DB アカウントの資格情報をシークレットとして保存します。
+- Task 4: Azure App Service Web アプリを作成します。
+- Task 5: .NET スクリプトに不足している複数のライブラリをインポートします。
+- Task 6: Web アプリに Secret Identifier を追加します。
+- Task 7: (オプション) Azure App Services 拡張機能をインストールします。
+- Task 8: アプリケーションを Azure App Services にデプロイします。
+- Task 9: アプリがマネージド ID を使用できるようにします。
+- Task 10: Web アプリに Key Vault シークレットへのアクセス ポリシーを付与します。
 
-## Estimated Timing: 30 minutes
+## 所要時間: 30 分
 
-## Architecture Diagram
+## アーキテクチャ図
 
 ![image](architecturedia/lab28.png)
 
-## Exercise 1: Store Azure Cosmos DB for NoSQL account keys in Azure Key Vault
+## 演習 1: Azure Cosmos DB for NoSQL アカウントのキーを Azure Key Vault に保存する
 
-### Task 1: Prepare your development environment
+### タスク 1: 開発環境を準備する
 
-1. Start Visual Studio Code (the program icon is pinned to the Desktop).
+1. Visual Studio Code を起動します（プログラム アイコンはデスクトップにピン留めされています）。
 
-2. Select the **Extension (1)** icon from the left pane. Enter **C# (2)** in the search bar and select the **extension (3)** that shows up and finally **Install (4)** on the extension. 
+2. 左ペインの **Extensions (1)** アイコンを選択します。検索バーに **C# (2)** と入力し、表示された **拡張機能 (3)** を選択してから、**Install (4)** をクリックします。
 
     ![](media/C-hash-extension.png)
 
-3. Select the **file** option on the top left of the screen, from the pane options, select **Open Folder** and navigate to **C:\AllFiles**.
+3. 画面左上の **File** オプションを選択し、ペインのオプションから **Open Folder** を選択して **C:\AllFiles** に移動します。
 
-4. Select the folder **dp-420-cosmos-db-dev** and click on **Select Folder**.
+4. **dp-420-cosmos-db-dev** フォルダーを選択し、**Select Folder** をクリックします。
 
-### Task 2: Create an Azure Cosmos DB for NoSQL account
+### タスク 2: Azure Cosmos DB for NoSQL アカウントを作成する
 
-Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you'll select which of the APIs you want the account to support (for example, **API for MongoDB** or **API for NoSQL**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key. Use the endpoint and key to connect to the Azure Cosmos DB for NoSQL account programatically. Use the endpoint and key on the connection strings of the Azure SDK for .NET or any other SDK.
+Azure Cosmos DB は、複数の API をサポートするクラウドベースの NoSQL データベース サービスです。Azure Cosmos DB アカウントを初めてプロビジョニングする際には、サポートする API を選択します（たとえば、**API for MongoDB** や **API for NoSQL**）。Azure Cosmos DB for NoSQL アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得できます。これらのエンドポイントとキーを使用して、Azure Cosmos DB for NoSQL アカウントにプログラムから接続します。.NET 用 Azure SDK やその他の SDK の接続文字列にエンドポイントとキーを使用します。
 
-1. In a new web browser window or tab, navigate to the Azure portal (``portal.azure.com``).
+1. 新しい Web ブラウザー ウィンドウまたはタブで Azure ポータル（``portal.azure.com``）に移動します。
 
-1. Sign into the portal using the Microsoft credentials associated with your subscription.
+1. サブスクリプションに関連付けられた Microsoft 資格情報でポータルにサインインします。
 
-1. Within the **Azure services** category, select **Create a resource**, and then select **Azure Cosmos DB**.
+1. **Azure services** カテゴリで **Create a resource** を選択し、**Azure Cosmos DB** を選択します。
 
-    > &#128161; Alternatively; expand the **&#8801;** menu, select **All Services**, in the **Databases** category, select **Azure Cosmos DB**, and then select **Create**.
+    > &#128161; 代替手順: **≡** メニューを展開し、**All Services** を選択します。**Databases** カテゴリで **Azure Cosmos DB** を選択し、**Create** を選択します。
 
-1. In the **Select API option** pane, select the **Create** option within the **Azure Cosmos DB for NoSQL** section.
+1. **Select API option** ペインで、**Azure Cosmos DB for NoSQL** セクション内の **Create** オプションを選択します。
 
-1. Within the **Create Azure Cosmos DB Account** pane, observe the **Basics** tab
+1. **Create Azure Cosmos DB Account** ペインで、**Basics** タブを確認します
 
     | **Setting** | **Value** |
     | --- | --- |
@@ -65,25 +65,25 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     | **Capacity mode** | *Provisioned throughput* |
     | **Apply Free Tier Discount** | *Do Not Apply* |
 
-    >**Note** : DeploymentID is the a unique id associated to each environment. You can find the value inside the environment details page.
+    >**注意** : DeploymentID は各環境に関連付けられた一意の ID です。環境の詳細ページで値を確認できます。
 
-1. Click on **Review + Create** and after validation get Success click on **Create**.
+1. **Review + Create** をクリックし、検証が成功したら **Create** をクリックします。
 
-1. Wait for the deployment task to complete before continuing with this task.
+1. 展開タスクが完了するまで待ちます。
 
-1. Go to the newly created **Azure Cosmos DB** account resource and navigate to the **Keys** pane.
+1. 新しく作成した **Azure Cosmos DB** アカウント リソースに移動し、**Keys** ペインに移動します。
 
-1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
+1. このペインには SDK からアカウントに接続するために必要な接続情報と資格情報が含まれています。具体的には:
 
-    1. Record the value of the **PRIMARY CONNECTION STRING** field. You'll use this **connection string** value later in this exercise.
+    1. **PRIMARY CONNECTION STRING** フィールドの値を記録します。この **接続文字列** の値は、この演習で後ほど使用します。
 
-### Task 3: Create an Azure Key Vault and store the Azure Cosmos DB account credentials as a secret
+### タスク 3: Azure Key Vault を作成し、Azure Cosmos DB アカウントの資格情報をシークレットとして保存する
 
-Before we create our web app, we will secure the Azure Cosmos DB account connection string by copying them to an *Azure Key Vault* encrypted *secret*. Let's do that now.
+Web アプリを作成する前に、Azure Cosmos DB アカウントの接続文字列を Azure Key Vault の暗号化されたシークレットにコピーして保護します。さあ、これを行いましょう。
 
-1. In the Azure portal, navigate to the **Key vaults** page.
+1. Azure ポータルで **Key vaults** ページに移動します。
 
-1. Add a vault by selecting the ***+ Create*** button, and fill out the vault with the following settings, *leaving all remaining settings to their default values*, then select to create the vault:
+1. ***+ Create*** ボタンを選択してボールトを追加し、次の設定を入力して（残りの設定はすべて既定値のままにします）、ボールトを作成します:
 
     | **Setting** | **Value** |
     | --- | --- |
@@ -92,90 +92,90 @@ Before we create our web app, we will secure the Azure Cosmos DB account connect
     | **Key vault name** | *Enter a globally unique name* |
     | **Region** | *Choose any available region* |
 
-1. Click on **Review + Create** and after validation get Success click on **Create**.
+1. **Review + Create** をクリックし、検証が成功したら **Create** をクリックします。
 
-1. Once the vault is created, navigate to the vault.
+1. ボールトが作成されたら、そのボールトに移動します。
 
-1. Under the *Settings* section, select **Secrets**.
+1. *Settings* セクションで **Secrets** を選択します。
 
-1. Select the **+ Generate/Import** to encrypt our credential connection string and fill in the *secret* values with the following settings, *leaving all remaining settings to their default values*, then select to create the secret:
+1. **+ Generate/Import** を選択して接続文字列を暗号化し、次の設定で *secret* の値を入力し、残りの設定はすべて既定値のままにしてからシークレットを作成します:
 
     | **Setting** | **Value** |
     | --- | --- |
     | **Upload options** | *Manual* |
-    | **Name** | *The name you will label your secret with* |
-    | **Value** | *This field is the most important field to fill out. This value is the PRIMARY CONNECTION STRING you previously copied from the key section of your Azure Cosmos DB account. This value will be convert into a secret.* |
+    | **Name** | *シークレットに付ける名前* |
+    | **Value** | *このフィールドは入力する最も重要なフィールドです。この値には、Azure Cosmos DB アカウントのキー セクションから以前にコピーした PRIMARY CONNECTION STRING を使用します。この値はシークレットに変換されます。* |
     | **Enabled** | *Yes* |
 
-1. click on **Create**
+1. **Create** をクリックします。
 
-1. Under the Secrets, you should now see your new secret listed. We need to get the *secret identifier* that we will add to the code of our webapp. Select the **secret** you created.
+1. **Secrets** の下に新しいシークレットが一覧表示されているはずです。Web アプリのコードに追加する *secret identifier* を取得する必要があります。作成した **secret** を選択します。
 
-1. Azure Key Vault allows you to create multiple versions of your secret, but for this lab, we only need one version. Select the **Current version**.
+1. Azure Key Vault ではシークレットの複数バージョンを作成できますが、このラボでは 1 つのバージョンだけが必要です。**Current version** を選択します。
 
-1. Record the value of the **Secret Identifier** field. This value is what we will use in our application's code to get the secret from the Key Vault.  Notice that this value is a URL. There is one more step we need to get this secret working properly, but we will do that step a little later.
+1. **Secret Identifier** フィールドの値を記録します。この値をアプリケーションのコードで使用して Key Vault からシークレットを取得します。この値は URL であることに注意してください。シークレットを正しく動作させるにはもう 1 つ手順が必要ですが、それは後で行います。
 
-### Task 4: Create an Azure App Service webapp
+### タスク 4: Azure App Service Web アプリを作成する
 
-We'll create a webapp that will connect to the Azure Cosmos DB account and create some containers and documents. We won't hard code the Azure Cosmos DB *credentials* in this app, but instead, hard code the **Secret Identifier** from the key vault. We'll see how this identifier is useless without the proper rights assigned to the webapp on the Azure layer. Let's start coding.
+Web アプリを作成し、Azure Cosmos DB アカウントに接続していくつかのコンテナーとドキュメントを作成します。このアプリでは Azure Cosmos DB の *資格情報* をハードコードせず、代わりに Key Vault から取得した **Secret Identifier** をハードコードします。この識別子は、Web アプリに適切な権限が Azure 側で付与されていなければ無意味になります。コードを開始しましょう。
 
-1. Open **Visual Studio Code**.  Open the **28-key-vault** folder, by selecting File->Open folder, and browsing all the way into the **28-key-vault** folder.
+1. **Visual Studio Code** を開きます。**File->Open folder** で **28-key-vault** フォルダーを開きます。
 
-    > &#128221; Note, you should only see the **28-key-vault** folder and its files and subfolders in the **Explorer** tree. If you can see the whole GitHub repository we cloned earlier, the web app will not work correctly, so make sure you can only see the **28-key-vault** folder and its files and subfolder in the **Explorer** tree.
+    > &#128221; エクスプローラー ツリーに **28-key-vault** フォルダーとそのファイルとサブフォルダーだけが表示されていることを確認します。クローンした GitHub リポジトリ全体が表示されている場合、Web アプリは正しく動作しない可能性があります。
 
-1. Open the context menu for the **28-key-vault** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+1. **28-key-vault** フォルダーを右クリックして **Open in Integrated Terminal** を選択し、新しいターミナル インスタンスを開きます。
 
-    > &#128221; This command will open the terminal with the starting directory already set to the **28-key-vault** folder.
+    > &#128221; このコマンドは、開始ディレクトリが **28-key-vault** フォルダーに設定された状態でターミナルを開きます。
 
-1. Let's create and MVC webapp shell. We will replace a couple of the generated files in a moment. Run the following command to create the webapp:
+1. MVC Web アプリのシェルを作成します。あとで生成されたファイルのうちいくつかを置き換えます。次のコマンドを実行して Web アプリを作成します:
 
     ```
     dotnet new mvc
     ```
 
-1. That command created the shell of a web app, so it added several files and directories. We already have a couple of files with all the code we need. Replace the files **.\Controllers\HomeController.cs** and **.\Views\Home\Index.cshtml** for their respective files in the **.\KeyvaultFiles** directory.
+1. このコマンドにより Web アプリのシェルが作成され、いくつかのファイルとディレクトリが追加されます。すでに必要なコードが含まれたファイルがいくつかあります。**.\Controllers\HomeController.cs** と **.\Views\Home\Index.cshtml** を **.\KeyvaultFiles** ディレクトリ内のそれぞれのファイルで置き換えます。
 
-1. Once you replace the files ***DELETE*** the **.\KeyvaultFiles** directory.
+1. ファイルを置き換えたら、**.\KeyvaultFiles** ディレクトリを***削除***します。
 
-### Task 5: Import the multiple missing libraries into the .NET script
+### タスク 5: .NET スクリプトに不足している複数のライブラリをインポートする
 
-The .NET CLI includes an [add package][docs.microsoft.com/dotnet/core/tools/dotnet-add-package] command to import packages from a pre-configured package feed. A .NET installation uses NuGet as its default package feed.
+.NET CLI には、事前構成されたパッケージ フィードからパッケージをインポートするための [add package][docs.microsoft.com/dotnet/core/tools/dotnet-add-package] コマンドが含まれています。.NET のインストールでは NuGet がデフォルトのパッケージ フィードとして使用されます。
 
-1. If you have not done so, in **Visual Studio Code**, in the **Explorer** pane, browse to the **28-key-vault** folder.
+1. まだ行っていない場合は、**Visual Studio Code** の **Explorer** ペインで **28-key-vault** フォルダーを参照してください。
 
-1. If you have not done so, open the context menu for the **28-key-vault** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+1. まだ行っていない場合は、**28-key-vault** フォルダーを右クリックしてコンテキスト メニューを開き、**Open in Integrated Terminal** を選択して新しいターミナルを開きます。
 
-    > &#128221; This command will open the terminal with the starting directory already set to the **28-key-vault** folder.
+    > &#128221; このコマンドにより、開始ディレクトリが **28-key-vault** フォルダーに設定された状態でターミナルが開きます。
 
-1. Add the [Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1] package from NuGet using the following command:
+1. 次のコマンドを実行して NuGet から [Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1] パッケージを追加します:
 
     ```
     dotnet add package Microsoft.Azure.Cosmos --version 3.22.1
     ```
 
-1. Add the [Newtonsoft.Json][nuget.org/packages/Newtonsoft.Json/13.0.1] package from NuGet using the following command:
+1. 次のコマンドを実行して NuGet から [Newtonsoft.Json][nuget.org/packages/Newtonsoft.Json/13.0.1] パッケージを追加します:
 
     ```
     dotnet add package Newtonsoft.Json --version 13.0.1
     ```
 
-1. Add the [Microsoft.Azure.KeyVault][nuget.org/packages/Microsoft.Azure.KeyVault] package from NuGet using the following command:
+1. 次のコマンドを実行して NuGet から [Microsoft.Azure.KeyVault][nuget.org/packages/Microsoft.Azure.KeyVault] パッケージを追加します:
 
     ```
     dotnet add package Microsoft.Azure.KeyVault
     ```
 
-1. Add the [Microsoft.Azure.Services.AppAuthentication][nuget.org/packages/Microsoft.Azure.Services.AppAuthentication] package from NuGet using the following command:
+1. 次のコマンドを実行して NuGet から [Microsoft.Azure.Services.AppAuthentication][nuget.org/packages/Microsoft.Azure.Services.AppAuthentication] パッケージを追加します:
 
     ```
     dotnet add package Microsoft.Azure.Services.AppAuthentication
     ```
 
-### Task 6: Adding the Secret Identifier to your webapp
+### タスク 6: Web アプリに Secret Identifier を追加する
 
-1. In visual studio, open the `.\Controllers\HomeControler.cs` file
+1. Visual Studio で `.\\Controllers\\HomeControler.cs` ファイルを開きます。
 
-1. The **GetKeyVaultSecret** user-defined function will get the Azure Cosmos DB account secret. The function start in *line 98*, should look like the script below.
+1. **GetKeyVaultSecret** というユーザー定義関数は、Azure Cosmos DB アカウントのシークレットを取得します。この関数は *98 行目* 付近から始まり、以下のスクリプトのようになっているはずです。
 
 ```
         private static async Task<Tuple<bool,string>>  GetKeyVaultSecret()
@@ -201,148 +201,148 @@ The .NET CLI includes an [add package][docs.microsoft.com/dotnet/core/tools/dotn
         }
 ```
 
-3. Let's review the important calls this function makes.
+3. この関数が行う重要な呼び出しを確認します。
 
-    - In *line 100*, we define the token of the current web app. This token will be provided to the Azure Key Vault to identify what app is trying to access the vault. 
-    - In *line 104-105*, we prepare the *Key Vault Client* that will connect to the Azure Key Vault. Notice we send the webapp token as a parameter. 
-    - In *lines 107-108*, we provide the Key Vault Client with the URL address of our **Secret Identifier** which would return the secret stored in that key vault. 
+    - *100 行目* では、現在の Web アプリのトークンを定義します。このトークンは Azure Key Vault に渡され、どのアプリがボールトにアクセスしようとしているかを識別します。
+    - *104–105 行目* では、Azure Key Vault に接続する *Key Vault Client* を準備します。Web アプリのトークンをパラメーターとして渡している点に注意してください。
+    - *107–108 行目* では、Key Vault Client に **Secret Identifier** の URL を指定し、その URL から Key Vault に格納されたシークレットを取得します。
 
-1.  Before we can deploy our webapp, we still need to send the **Secret Identifier** URL.  On *line 107*, replace the string ***<Key Vault Secret Identifier>*** with the **Secret Identifier** URL we recorded in the *secret* section and save the file.
+1. Web アプリをデプロイする前に、**Secret Identifier** の URL を設定する必要があります。*107 行目* の文字列 ***<Key Vault Secret Identifier>*** を、シークレット セクションで記録した **Secret Identifier** の URL に置き換えてファイルを保存してください。
 
 ```
         var KeyVaultSecret = await KVClient.GetSecretAsync("<Key Vault Secret Identifier>")
 ```
 
-### Task 7: (Optional) Install the Azure App Services Extension
+### タスク 7: (オプション) Azure App Services 拡張機能をインストールする
 
-In Visual studio, if you bring up the command pallet (**CTRL+SHIFT+P**), and it does not return anything when searching for Azure App Resource commands, we need to install the extension.
+Visual Studio でコマンド パレット（**CTRL+SHIFT+P**）を開き、Azure App Resource コマンドを検索して何も表示されない場合は、拡張機能をインストールする必要があります。
 
-1. In Visual Studio Code left-hand menu, select the **Extensions** option.
+1. Visual Studio Code の左側メニューで **Extensions** を選択します。
 
-1. In the search bar, search for Azure App Service and select it.
+1. 検索バーで「Azure App Service」を検索し、それを選択します。
 
-1. Select the Install button to install it.
+1. **Install** ボタンを選択してインストールします。
 
-1. Close the **Extensions** Tab and go back to your code.
+1. **Extensions** タブを閉じて、コードに戻ります。
 
-### Task 8: Deploy your application to Azure App Services
+### タスク 8: アプリケーションを Azure App Services にデプロイする
 
-The rest of the code is straight forward, get the connection string, connect to Azure Cosmos DB, and add some documents. The application should also provide us with some feedback on any issues. We should not need to do any more changes after we deploy the application. Let's get started. 
+残りのコードは単純です。接続文字列を取得し、Azure Cosmos DB に接続し、いくつかのドキュメントを追加します。アプリケーションは問題がある場合にフィードバックも提供するはずです。デプロイ後にこれ以上変更する必要はないはずです。さあ始めましょう。
 
-> &#128221; Most of the steps below will be run in the command pallet in the upper middle of your Visual Studio screen.
+> &#128221; 以下のほとんどの手順は、Visual Studio 画面上部中央のコマンド パレットで実行されます。
 
-1. In Visual Studio Code, from the left side pannel click on **Azure(shift+alt+a)**, right click on ***App Service*** and select the ***Create New Web App ... (Advanced)***
+1. Visual Studio Code で左側ペインから **Azure(shift+alt+a)** をクリックし、***App Service*** を右クリックして ***Create New Web App ... (Advanced)*** を選択します。
 
     ![Screenshot of App Service.](media/DP-420-M11-lab4-appservice.png)
     
-1. Select ***Sign-in to Azure...***. This option will open a web browser window, follow the sign-in process, and close the browser when done.
+1. ***Sign-in to Azure...*** を選択します。このオプションは Web ブラウザー ウィンドウを開きますので、サインイン プロセスを完了し、終了後にブラウザーを閉じます。
 
-1. (Optional) If it asks for your subscription select your subscription.
+1. （オプション）サブスクリプションを選択するよう求められた場合は、サブスクリプションを選択します。
 
-1. Enter a globally unique name for your web app.
+1. Web アプリ用のグローバルに一意の名前を入力します。
 
-1. Select an existing Resource Group or create a new one if needed.
+1. 必要に応じて既存のリソース グループを選択するか、新しいリソース グループを作成します。
 
-1. Select **.NET 6 (LTS)**.
+1. **.NET 6 (LTS)** を選択します。
 
-1. Select **Windows**.
+1. **Windows** を選択します。
 
-1. Select an available Location.
+1. 利用可能なロケーションを選択します。
 
-1. Select  **+ Create a new App Service Plan**.
+1. **+ Create a new App Service Plan** を選択します。
 
-1. Accept the default name for the App Service Plan (it should be the same as your web app name), or pick a new name.
+1. App Service プランの既定名を受け入れるか（Web アプリ名と同じになるはずです）、別の名前を選択します。
 
-1. Select **Free (F1) Try out Azure at no cost**.
+1. **Free (F1) Try out Azure at no cost** を選択します。
 
-1. Select **Skip for now** for the Application Insights.
+1. Application Insights では **Skip for now** を選択します。
 
-1. The deployment should now be running with a status bar in the lower right-hand corner. 
+1. 右下隅にステータス バーが表示され、デプロイが実行中であるはずです。
 
-1. Select **Deploy** when prompted.
+1. プロンプトが表示されたら **Deploy** を選択します。
 
-1. Select **Browse** and you should be inside the **28-key-vault** folder, Select that folder.
+1. **Browse** を選択し、**28-key-vault** フォルダー内にいることを確認して、そのフォルダーを選択します。
 
-1. A popup with the message **Required configuration to deploy is missing from "28-key-vault"** should appear, select the Add Config button.  This option will create the missing `.vscode` folder.
+1. **Required configuration to deploy is missing from "28-key-vault"** というメッセージのポップアップが表示されたら、**Add Config** ボタンを選択します。このオプションにより、欠落している `.vscode` フォルダーが作成されます。
 
-    > &#128221; Very important, if this pop-up does not appear on your first deployment of the app, the upload to the Azure App Services will be missing files. The deployment will succeed, but the website will always return the message *You do not have permission to view this directory or page.*. The most likely culprit is that Visual Studio Code was opened on the GitHub Cloned repository instead of only the  **28-key-vault** folder.
+    > &#128221; このポップアップが最初のデプロイ時に表示されない場合、Azure App Services へのアップロードにファイルが欠落します。デプロイは成功しますが、Web サイトは常に *You do not have permission to view this directory or page.* というメッセージを返します。この問題の最も可能性の高い原因は、Visual Studio Code が GitHub クローン リポジトリ全体ではなく **28-key-vault** フォルダーだけを開いていないことです。
 
-1. Select **Yes** when prompted to always deploy to that workspace.
+1. そのワークスペースに常にデプロイするように促されたら、**Yes** を選択します。
 
-1. Select Browse Website when prompted.  Alternatively, open a browser and go to **`https://<yourwebappname>.azurewebsites.net`**. In either case, we have a problem. We should have gotten a user-defined message on our web page. The message should be, **Key Vault was not accessible** with an extended error message. Let's fix that.
+1. プロンプトが表示されたら **Browse Website** を選択します。あるいはブラウザーを開いて **`https://<yourwebappname>.azurewebsites.net`** にアクセスします。どちらの場合でも問題があります。Web ページにユーザー定義のメッセージが表示されるはずですが、表示されません。表示されるべきメッセージは **Key Vault was not accessible** で、拡張エラーメッセージが付くはずです。これを修正しましょう。
 
-### Task 9: Allow our app to use a managed identity
+### タスク 9: アプリがマネージド ID を使用できるようにする
 
-The first problem we need to fix is to allow our app use a managed identity. Using a managed identity, will allow our app to use Azure Services like Azure Key Vault.
+最初に修正すべき問題は、アプリがマネージド ID を使用できるようにすることです。マネージド ID を使用すると、アプリは Azure Key Vault などの Azure サービスを使用できるようになります。
 
-1. Open up your browser and login to the Azure portal.
+1. ブラウザーを開き、Azure ポータルにサインインします。
 
-1. Open up the **App Services** page. Your webapp name should be listed, select it.
+1. **App Services** ページを開きます。Web アプリ名が一覧に表示されているはずです。選択します。
 
-1. Under the *Settings* section, select **Identity**.
+1. *Settings* セクションで **Identity** を選択します。
 
-1. Under Status, select **On** and **Save**.  Select **Yes** if prompted to enable the *Assigned Managed Identity*.
+1. **Status** を **On** にし、**Save** をクリックします。*Assigned Managed Identity* を有効にするように求められたら **Yes** を選択します。
 
-1. Let's try our web app again.  On your browser, go to  **`https://<yourwebappname>.azurewebsites.net`**.
+1. Web アプリを再度試してみます。ブラウザーで **`https://<yourwebappname>.azurewebsites.net`** にアクセスします。
 
-1. There is still one problem. While the first message is a user-defined message our program is sending, the second one is a System generated one. What the second message means is that we have been granted access to the connect to the Key vault, but we have not been granted access to view the secret inside the vault.  Let's set one final setting to fix this issue.
+1. まだ問題があります。最初のメッセージはプログラムが送信しているユーザー定義メッセージですが、2 番目のメッセージはシステム生成のものです。2 番目のメッセージは、Key Vault への接続権限は付与されたが、Vault 内のシークレットを表示する権限は付与されていないことを意味します。この問題を修正する最後の設定を行いましょう。
 
-### Task 10: Granting our web application an access policy to the Key Vault secrets
+### タスク 10: Web アプリに Key Vault シークレットへのアクセス ポリシーを付与する
 
-The original goal of this lab was to prevent our Azure Cosmos DB Accounts from being hard-coded in our applications. But, we did hard coded our **Secret Identifier** URL which anybody can see. So how can we secure our credentials? The good news is that the Secret Identifier by itself is useless. The **Secret Identifier** only gets you to the Azure Key vault door, but the vault will decide who comes in and who stays at the door. What this means is that we'll need to create a Key Vault access policy for our application so it can see the secrets in that vault. Let's take a look at that solution.
+このラボの元々の目的は、Azure Cosmos DB アカウントをアプリケーションにハードコーディングするのを防ぐことでした。しかし、**Secret Identifier** URL を誰でも見られるようにハードコーディングしてしまいました。では、資格情報をどのように保護できるでしょうか？良いニュースは、Secret Identifier 自体は無意味であるということです。**Secret Identifier** は Azure Key Vault の入り口までしか導きません。Vault が入り口で誰を許可するかを判断します。つまり、アプリがその Vault 内のシークレットを見ることができるように、Key Vault のアクセス ポリシーを作成する必要があります。それでは、その手順を見ていきます。
 
-1. (Optional) Before we create the policy let's review the current content of our Azure Cosmos DB database.  In the Azure portal go to your Azure Cosmos DB account, is there a **GlobalCustomers** Database? If it isn't there, it will be created by the successful run of the web app. If it is there, review the number of items in the database, and the successful run of the web app will add more items.
+1. （オプション）ポリシーを作成する前に、現在の Azure Cosmos DB データベースの内容を確認しましょう。Azure ポータルで Azure Cosmos DB アカウントに移動し、**GlobalCustomers** データベースが存在するか確認します。存在しない場合は、Web アプリの正常な実行で作成されます。存在する場合は、データベース内のアイテム数を確認します。Web アプリを正常に実行すると、さらにアイテムが追加されます。
 
-1. In the Azure portal, go to the Key vault we created earlier.
+1. Azure ポータルで、以前に作成した Key vault に移動します。
 
-1. Under the *Settings* section, select **Access policies**.
+1. *Settings* セクションで **Access policies** を選択します。
 
-1. Select **+ Create**.
+1. **+ Create** を選択します。
 
-1. Fill in the *Access policy* values with the following settings, *leaving all remaining settings to their default values*, then select to add the policy:
+1. 以下の設定で *Access policy* の値を入力し、残りの設定はすべて既定値のままにしてからポリシーを追加します:
 
     | **Setting** | **Value** |
     | --- | --- |
     | **Key permissions** | *Get* |
     | **Secret permissions** | *Get* |
   
-    > &#128221; Don't select an Authorized application.
+    > &#128221; Authorized application は選択しないでください。
 
-1. Click on **Next** in **principal** blade **Search and select your application name**, click **Next** 
+1. **principal** ブレードで **Next** をクリックし、アプリケーション名を検索して選択し、**Next** をクリックします。
     
-1. In **Application (optional)** blade leave it as default and click on **Next**. 
+1. **Application (optional)** ブレードでは既定のままにして **Next** をクリックします。
     
-1. **Create** the new policy.
+1. **Create** で新しいポリシーを作成します。
 
-1. Let's try our web app again.  On your browser, go to  **`https://<yourwebappname>.azurewebsites.net`**.
+1. Web アプリをもう一度試します。ブラウザーで **`https://<yourwebappname>.azurewebsites.net`** にアクセスします。
 
-1. Success! Our web page should indicate that we inserted new items into the customer container. We can also see the actual Secret being displayed.
+1. 成功です！Web ページには、customer コンテナーに新しいアイテムを挿入したことが表示されるはずです。また、実際のシークレットが表示される場合もあります。
 
-    > &#128221; In a production environment **never** display the secret, this was just done for illustration purposes.
+    > &#128221; 本番環境では **決して** シークレットを表示しないでください。これは説明のためだけに行っています。
 
-1. Go to your Azure Cosmos DB account and verify that you either have a new **GlobalCustomers** database with data in it, or if the database already existed, if there are now more items in the database.
+1. Azure Cosmos DB アカウントに移動し、新しい **GlobalCustomers** データベースにデータがあるか、既存のデータベースにアイテムが追加されているかを確認します。
 
-We have now successfully used Azure Key Vault to protect the keys of your Azure Cosmos DB account.
+これで Azure Key Vault を使用して Azure Cosmos DB アカウントのキーを保護することに成功しました。
 
-## Cleanup
+## クリーンアップ
 
-1. Delete the Azure Cosmos DB accounts that were created by in this lab.
+1. このラボで作成された Azure Cosmos DB アカウントを削除します。
 
-1. Delete the original Azure Cosmos DB account.
+1. 元の Azure Cosmos DB アカウントを削除します。
 
-### Review
+### レビュー
 
-In this lab, you have completed:
+このラボでは、次のことを完了しました:
 
-- Prepared your development environment.
-- Created an Azure Cosmos DB for NoSQL account.
-- Created an Azure Key Vault and store the Azure Cosmos DB account credentials as a secret.
-- Created an Azure App Service webapp.
-- Imported the multiple missing libraries into the .NET script.
-- Added the Secret Identifier to your webapp.
-- (Optional) Installed the Azure App Services Extension.
-- Deployed your application to Azure App Services.
-- Allowed our app to use a managed identity.
-- Granted our web application an access policy to the Key Vault secrets.
+- 開発環境を準備しました。
+- Azure Cosmos DB for NoSQL アカウントを作成しました。
+- Azure Key Vault を作成し、Azure Cosmos DB アカウントの資格情報をシークレットとして保存しました。
+- Azure App Service Web アプリを作成しました。
+- .NET スクリプトに不足している複数のライブラリをインポートしました。
+- Web アプリに Secret Identifier を追加しました。
+- (オプション) Azure App Services 拡張機能をインストールしました。
+- アプリケーションを Azure App Services にデプロイしました。
+- アプリがマネージド ID を使用できるようにしました。
+- Web アプリに Key Vault シークレットへのアクセス ポリシーを付与しました。
 
-### You have successfully completed the lab
+### ラボを正常に完了しました

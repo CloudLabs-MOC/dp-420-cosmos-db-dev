@@ -1,103 +1,101 @@
-# Lab 09a - Design and implement a replication strategy for Azure Cosmos DB for NoSQL
+# Lab 09a - Azure Cosmos DB for NoSQL のレプリケーション戦略を設計・実装する
 
-## Lab scenario
+## ラボのシナリオ
 
-In this lab, you'll measure the difference for customer entities when you model entities as separate containers versus when you model for a NoSQL database by embedding entities in a single document.
+このラボでは、エンティティを別々のコンテナーとしてモデル化した場合と、NoSQL データベース向けにエンティティを単一ドキュメントに埋め込んでモデル化した場合の顧客エンティティの違いを測定します。
 
-## Lab objectives
+## ラボの目的:
 
-In this lab, you will complete the following tasks:
-- Task 1: Prepare your development environment.
-- Task 2: Create an Azure Cosmos DB for NoSQL account.
-- Task 3: Connect to the Azure Cosmos DB for NoSQL account from the SDK.
-- Task 4: Configure the .NET SDK with a preferred region list.
+このラボでは、次のタスクを完了します:
+- タスク 1: 開発環境を準備する。
+- タスク 2: Azure Cosmos DB for NoSQL アカウントを作成する。
+- タスク 3: SDK から Azure Cosmos DB for NoSQL アカウントに接続する。
+- タスク 4: .NET SDK を優先リージョン リストで構成する。
 
-## Estimated Timing: 60 minutes
+## 推定所要時間: 60 分
 
-## Architecture Diagram
+## アーキテクチャ図
 
 ![image](architecturedia/lab20.png)
 
-## Exercise 1: Connect to different regions with the Azure Cosmos DB for NoSQL SDK
+## 演習 1: Azure Cosmos DB for NoSQL SDK で異なるリージョンに接続する
 
-When you enable geo-redundancy for an Azure Cosmos DB for NoSQL account, you can then use the SDK to read data from regions in any order you configure. This technique is beneficial when you distribute your read requests across all of your available read regions.
+Azure Cosmos DB for NoSQL アカウントでジオ冗長性を有効にすると、SDK を使用して構成した任意の順序でリージョンからデータを読み取ることができます。この手法は、利用可能な読み取りリージョン全体に読み取りリクエストを分散させるときに有効です。
 
-In this lab, you will configure the CosmosClient class to connect to read regions in a fallback order that you manually configure.
+このラボでは、CosmosClient クラスを手動で構成したフォールバック順序で読み取りリージョンに接続するように設定します。
 
-### Task 1: Prepare your development environment
+### タスク 1: 開発環境を準備する
 
-1. Start Visual Studio Code (the program icon is pinned to the Desktop).
+1. Visual Studio Code を起動します（プログラムのアイコンはデスクトップにピン留めされています）。
 
-2. Select the **Extension (1)** icon from the left pane. Enter **C# (2)** in the search bar and select the **extension (3)** that shows up and finally **Install (4)** on the extension. 
+2. 左側のペインから **Extension (1)** アイコンを選択します。検索バーに **C# (2)** と入力し、表示された **extension (3)** を選択して最後に **Install (4)** をクリックします。
 
     ![](media/C-hash-extension.png)
 
-3. Select the **file** option on the top left of the screen, from the pane options, select **Open Folder** and navigate to **C:\AllFiles**.
+3. 画面左上の **file** オプションを選択し、ペインオプションから **Open Folder** を選択して **C:\AllFiles** に移動します。
 
-4. Select the folder **dp-420-cosmos-db-dev** and click on **Select Folder**.
+4. フォルダー **dp-420-cosmos-db-dev** を選択し、**Select Folder** をクリックします。
 
-### Task 2: Create an Azure Cosmos DB for NoSQL account
+### タスク 2: Azure Cosmos DB for NoSQL アカウントを作成する
 
-Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **API for MongoDB** or **API for NoSQL**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
+Azure Cosmos DB は複数の API をサポートするクラウドベースの NoSQL データベース サービスです。Azure Cosmos DB アカウントを初めてプロビジョニングするときは、アカウントでサポートする API を選択します（たとえば **API for MongoDB** や **API for NoSQL**）。Azure Cosmos DB for NoSQL アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得して、Azure SDK for .NET やその他の SDK を使用して接続できます。
 
-1. In a new web browser window or tab, navigate to the Azure portal (``portal.azure.com``).
+1. 新しい Web ブラウザー ウィンドウまたはタブで Azure ポータル（``portal.azure.com``）に移動します。
 
-1. Sign into the portal using the Microsoft credentials associated with your subscription.
-1. Within the **Azure services** category, select **Create a resource**, and then select **Azure Cosmos DB**.
+1. サブスクリプションに関連付けられた Microsoft 資格情報でポータルにサインインします。
+1. **Azure services** カテゴリで **Create a resource** を選択し、次に **Azure Cosmos DB** を選択します。
 
-    > &#128161; Alternatively; expand the **&#8801;** menu, select **All Services**, in the **Databases** category, select **Azure Cosmos DB**, and then select **Create**.
+    > 💡 代わりに、**≡** メニューを展開し、**All Services** を選択し、**Databases** カテゴリで **Azure Cosmos DB** を選択して **Create** をクリックしてもかまいません。
 
-1. In the **Select API option** pane, select the **Create** option within the **Azure Cosmos DB for NoSQL** section.
+1. **Select API option** ペインで、**Azure Cosmos DB for NoSQL** セクションの **Create** オプションを選択します。
 
-1. Within the **Create Azure Cosmos DB Account** pane, observe the **Basics** tab.
+1. **Create Azure Cosmos DB Account** ペインで、**Basics** タブを確認します。
 
-    | **Setting** | **Value** |
+    | **設定** | **値** |
     | --- | --- |
-    | **Subscription** | *Your existing Azure subscription* |
+    | **Subscription** | *既存の Azure サブスクリプション* |
     | **Resource group** | *DP-420-DeploymentID* |
-    | **Account Name** | *Enter a globally unique name* |
-    | **Location** | *Choose any available region* |
+    | **Account Name** | *グローバルに一意の名前を入力* |
+    | **Location** | *利用可能なリージョンを選択* |
     | **Capacity mode** | *Provisioned throughput* |
     | **Apply Free Tier Discount** | *Do Not Apply* |
 
 
-      >**Note** : DeploymentID is the a unique id associated to each environment. You can find the value inside the environment details page.
+      > **注意**: DeploymentID は各環境に関連付けられた一意の ID です。環境の詳細ページで値を確認できます。
 
-1. Click on **Review + Create** and after validation get Success click on **Create**.
+1. **Review + Create** をクリックし、検証が成功したら **Create** をクリックします。
 
-1. Wait for the deployment task to complete before continuing with this task.
+1. このタスクを続行する前に、デプロイメント タスクが完了するまで待ちます。
 
-1. Go to the newly created **Azure Cosmos DB** account resource and navigate to the **Replicate data globally** pane.
+1. 新しく作成した **Azure Cosmos DB** アカウント リソースに移動し、**Replicate data globally** ペインに移動します。
 
-1. In the **Replicate data globally** pane, add two extra read regions to the account and then **Save** your changes.
+1. **Replicate data globally** ペインで、アカウントに追加の 2 つの読み取りリージョンを追加し、変更を **Save** します。
 
-1. Wait for the replication task to complete before continuing with this task.
+1. このタスクを続行する前に、レプリケーション タスクが完了するまで待ちます。
 
-    > **Note:** This operation can take approximately 5-10 minutes.
+    > **注意:** この操作には約 5〜10 分かかる場合があります。
 
-1. Record the names of the **Write** (primary) region and the two **Read** regions. You will use these region names later in this exercise.
+1. **Write**（プライマリ）リージョンと 2 つの **Read** リージョンの名前を記録します。これらのリージョン名は、この演習の後で使用します。
 
-    > **Note:** For example, if your primary region is **North Europe**, and your two read secondary regions are **East US 2**, and **South Africa North**; you will record all three of those names as-is.
+    > **注意:** たとえば、プライマリ リージョンが **North Europe**、2 つの読み取りセカンダリ リージョンが **East US 2** と **South Africa North** の場合、これら 3 つの名前をそのまま記録します。
 
-1. In the resource blade, navigate to the **Data Explorer** pane.
+1. リソース ブレードで、**Data Explorer** ペインに移動します。
 
-1. In the **Data Explorer** pane, select **New Container**.
+1. **Data Explorer** ペインで **New Container** を選択します。
 
-1. In the **New Container** popup, enter the following values for each setting, and then select **OK**:
+1. **New Container** のポップアップで、各設定に次の値を入力し、**OK** を選択します。
 
-    | **Setting** | **Value** |
+    | **設定** | **値** |
     | --- | --- |
-    | **Database id** | *Create new* &vert; *cosmicworks* |
+    | **Database id** | *Create new* | *cosmicworks* |
     | **Share throughput across containers** | *Do not select* |
     | **Container id** | *products* |
     | **Partition key** | */categoryId* |
-    | **Container throughput** | *Manual* &vert; *400* |
+    | **Container throughput** | *Manual* | *400* |
 
-1. Back in the **Data Explorer** pane, expand the **cosmicworks** database node and then observe the **products** container node within the hierarchy.
+1. **Data Explorer** ペインに戻り、**cosmicworks** データベース ノードを展開して、階層内の **products** コンテナー ノードを確認します。
 
-1. In the **Data Explorer** pane, expand the **cosmicworks** database node, expand the **products** container node, and then select **Items**.
-
-1. Still in the **Data Explorer** pane, select **New Item** from the command bar. In the editor, replace the placeholder JSON item with the following content:
+1. 引き続き **Data Explorer** ペインで、コマンド バーから **New Item** を選択します。エディターでプレースホルダーの JSON アイテムを次の内容に置き換えます:
 
     ```
     {
@@ -110,67 +108,67 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     }
     ```
 
-1. Select **Save** from the command bar to add the JSON item:
+1. コマンド バーから **Save** を選択し、JSON アイテムを追加します。
 
-1. In the **Items** tab, observe the new item in the **Items** pane.
+1. **Items** タブで、**Items** ペインに新しいアイテムが表示されていることを確認します。
 
-1. In the resource blade, navigate to the **Keys** pane.
+1. リソース ブレードで、**Keys** ペインに移動します。
 
-1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
+1. このペインには、SDK からアカウントに接続するために必要な接続情報と資格情報が含まれています。具体的には:
 
-    1. Record the value of the **URI** field. You will use this **endpoint** value later in this exercise.
+    1. **URI** フィールドの値を記録します。この **endpoint** 値は後でこの演習で使用します。
 
-    1. Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
+    1. **PRIMARY KEY** フィールドの値を記録します。この **key** 値は後でこの演習で使用します。
 
-1. Close your web browser window or tab.
+1. Web ブラウザー ウィンドウまたはタブを閉じます。
 
-### Task 3: Connect to the Azure Cosmos DB for NoSQL account from the SDK
+### タスク 3: SDK から Azure Cosmos DB for NoSQL アカウントに接続する
 
-Using the credentials from the newly created account, you will connect with the SDK classes and access the database and container instance from a different region.
+新しく作成したアカウントの資格情報を使用して、SDK クラスに接続し、別のリージョンからデータベースとコンテナー インスタンスにアクセスします。
 
-1. In **Visual Studio Code**, in the **Explorer** pane, browse to the **20-sdk-regions** folder.
+1. **Visual Studio Code** の **Explorer** ペインで、**20-sdk-regions** フォルダーに移動します。
 
-1. Open the context menu for the **20-sdk-regions** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+1. **20-sdk-regions** フォルダーのコンテキスト メニューを開き、**Open in Integrated Terminal** を選択して新しいターミナル インスタンスを開きます。
 
-    > **Note:** This command will open the terminal with the starting directory already set to the **20-sdk-regions** folder.
+    > **注意:** このコマンドは、開始ディレクトリが **20-sdk-regions** フォルダーに設定された状態でターミナルを開きます。
 
-1. Build the project using the [dotnet build][docs.microsoft.com/dotnet/core/tools/dotnet-build] command:
+1. [dotnet build][docs.microsoft.com/dotnet/core/tools/dotnet-build] コマンドを使用してプロジェクトをビルドします:
 
     ```
     dotnet build
     ```
 
-    > **Note:** You may see a compiler warning that the **endpoint** and **key** variables are current unused. You can safely ignore this warning as you will use these variable in this task.
+    > **注意:** **endpoint** および **key** 変数が現在未使用であるというコンパイラー警告が表示される場合があります。この警告は、このタスクでこれらの変数を使用するため、無視しても問題ありません。
 
-1. Close the integrated terminal.
+1. 統合ターミナルを閉じます。
 
-1. Open the **script.cs** code file within the **20-sdk-regions** folder.
+1. **20-sdk-regions** フォルダー内の **script.cs** コード ファイルを開きます。
 
-    > **Note:** The **[Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1]** library has already been pre-imported from NuGet.
+    > **注意:** **[Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1]** ライブラリは、NuGet から既に事前にインポートされています。
 
-1. Locate the **string** variable named **endpoint**. Set its value to the **endpoint** of the Azure Cosmos DB account you created earlier.
+1. **endpoint** という名前の **string** 変数を見つけます。これを、先ほど作成した Azure Cosmos DB アカウントの **endpoint** に設定します。
   
     ```
     string endpoint = "<cosmos-endpoint>";
     ```
 
-    > **Note:** For example, if your endpoint is: **https&shy;://dp420.documents.azure.com:443/**, then the C# statement would be: **string endpoint = "https&shy;://dp420.documents.azure.com:443/";**.
+    > **注意:** たとえば、エンドポイントが **https&shy;://dp420.documents.azure.com:443/** の場合、C# の文は **string endpoint = "https&shy;://dp420.documents.azure.com:443/";** となります。
 
-1. Locate the **string** variable named **key**. Set its value to the **key** of the Azure Cosmos DB account you created earlier.
+1. **key** という名前の **string** 変数を見つけます。これを、先ほど作成した Azure Cosmos DB アカウントの **key** に設定します。
 
     ```
     string key = "<cosmos-key>";
     ```
 
-    > **Note:** For example, if your key is: **fDR2ci9QgkdkvERTQ==**, then the C# statement would be: **string key = "fDR2ci9QgkdkvERTQ==";**.
+    > **注意:** たとえば、キーが **fDR2ci9QgkdkvERTQ==** の場合、C# の文は **string key = "fDR2ci9QgkdkvERTQ==";** となります。
 
-1. **Save** the **script.cs** code file.
+1. **script.cs** コード ファイルを **Save** します。
 
-### Task 4: Configure the .NET SDK with a preferred region list
+### タスク 4: 優先リージョン リストで .NET SDK を構成する
 
-The **CosmosClientOptions** class includes a property to configure the list of regions you would like to connect to with the SDK. The list is ordered by failover priority, attempting to connect to each region in the order that you configure.
+**CosmosClientOptions** クラスには、SDK で接続したいリージョンのリストを構成するプロパティが含まれています。リストはフェールオーバーの優先度順に並び、構成した順序で各リージョンへの接続を試行します。
 
-1. Create a new variable of generic type **List\<string\>** that contains a list of the regions you configured with your account, starting with the third region and ending with the first (primary) region. For example, if you created your Azure Cosmos DB for NoSQL account in the **West US** region, and then added **South Africa North**, and finally added **East Asia**; then your list variable would contain:
+1. ジェネリック型 **List\<string\>** の新しい変数を作成し、アカウントで構成したリージョンのリストを、3 番目のリージョンから開始して 1 番目の（プライマリ）リージョンで終わるように指定します。たとえば、Azure Cosmos DB for NoSQL アカウントを **West US** リージョンに作成し、その後に **South Africa North** と **East Asia** を追加した場合、リスト変数は次のようになります:
 
     ```
     List<string> regions = new()
@@ -181,9 +179,9 @@ The **CosmosClientOptions** class includes a property to configure the list of r
     };
     ```
 
-    > **Note:** Alternatively; you can use the [Microsoft.Azure.Cosmos.Regions][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.regions] static class which includes built-in string properties for various Azure regions.
+    > **注意:** あるいは、さまざまな Azure リージョンの組み込み文字列プロパティを含む [Microsoft.Azure.Cosmos.Regions][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.regions] 静的クラスを使用することもできます。
 
-1. Create a new instance of the **CosmosClientOptions** named **options** class with the [ApplicationPreferredRegions][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.cosmosclientoptions.applicationpreferredregions] property set to the **regions** variable:
+1. **ApplicationPreferredRegions** プロパティを **regions** 変数に設定して、**CosmosClientOptions** の新しいインスタンス **options** を作成します:
 
     ```
     CosmosClientOptions options = new () 
@@ -192,19 +190,19 @@ The **CosmosClientOptions** class includes a property to configure the list of r
     };
     ```
 
-1. Create a new instance of the **CosmosClient** class named **client** passing in the **endpoint**, **key**, and **options** variables as constructor parameters:
+1. **CosmosClient** クラスの新しいインスタンス **client** を作成し、コンストラクター パラメーターとして **endpoint**、**key**、**options** 変数を渡します:
 
     ```
     CosmosClient client = new (endpoint, key, options); 
     ```
 
-1. Use the **GetContainer** method of the **client** variable to retrieve the existing container using the name of the database (*cosmicworks*) and the name of the container (*products*):
+1. **client** 変数の **GetContainer** メソッドを使用して、データベース名 (*cosmicworks*) とコンテナー名 (*products*) で既存のコンテナーを取得します:
 
     ```
     Container container = client.GetContainer("cosmicworks", "products");
     ```
 
-1. Use the [ReadItemAsync][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.readitemasync] method of the **container** variable to retrieve the a specific item from the server and store the result in a variable named **response** of the nullable [ItemResponse][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.itemresponse] type:
+1. **container** 変数の [ReadItemAsync][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.readitemasync] メソッドを使用してサーバーから特定のアイテムを取得し、nullable な [ItemResponse][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.itemresponse] 型の **response** という変数に結果を格納します:
 
     ```
     ItemResponse<dynamic> response = await container.ReadItemAsync<dynamic>(
@@ -213,7 +211,7 @@ The **CosmosClientOptions** class includes a property to configure the list of r
     );
     ```
 
-1. Invoke the static **Console.WriteLine** method to print the current item identifier and the JSON diagnostic data:
+1. 静的な **Console.WriteLine** メソッドを呼び出して、現在のアイテム識別子と JSON 診断データを出力します:
 
     ```
     Console.WriteLine($"Item Id:\t{response.Resource.Id}");
@@ -221,7 +219,7 @@ The **CosmosClientOptions** class includes a property to configure the list of r
     Console.WriteLine($"{response.Diagnostics}");
     ```
 
-1. Once you are done, your code file should now include:
+1. 実行が完了すると、コード ファイルには次の内容が含まれているはずです:
   
     ```
     using Microsoft.Azure.Cosmos;
@@ -255,37 +253,37 @@ The **CosmosClientOptions** class includes a property to configure the list of r
     Console.WriteLine($"{response.Diagnostics}");
     ```
 
-1. **Save** the **script.cs** code file.
+1. **script.cs** コード ファイルを **Save** します。
 
-1. In **Visual Studio Code**, open the context menu for the **20-sdk-regions** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+1. **Visual Studio Code** で **20-sdk-regions** フォルダーのコンテキスト メニューを開き、**Open in Integrated Terminal** を選択して新しいターミナル インスタンスを開きます。
 
-1. Build and run the project using the **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** command:
+1. **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** コマンドを使用してプロジェクトをビルドし、実行します:
 
     ```
     dotnet run
     ```
 
-1. Observe the output from the terminal. The name of the container and the JSON diagnostic data should print to the console output.
+1. ターミナルの出力を確認します。コンテナー名と JSON 診断データがコンソール出力に表示されるはずです。
 
-1. Review the JSON diagnostic data. Search for a property named **HttpResponseStats** and a child property named **RequestUri**. The value of this property should be a URI that includes the name and region you configured earlier in this lab.
+1. JSON 診断データを確認します。**HttpResponseStats** というプロパティと、その子プロパティ **RequestUri** を検索します。このプロパティの値には、前の手順で構成した名前とリージョンを含む URI が表示されているはずです。
 
-    > **Note:** For example, if your account name is: **dp420** and the first region you configured is **East Asia**; then the value of the JSON property would be: **dp420-eastasia.documents.azure.com/dbs/cosmicworks/colls/products**.
+    > **注意:** たとえば、アカウント名が **dp420** で、最初に構成したリージョンが **East Asia** の場合、JSON プロパティの値は **dp420-eastasia.documents.azure.com/dbs/cosmicworks/colls/products** になります。
 
-1. Close the integrated terminal.
+1. 統合ターミナルを閉じます。
 
-1. Close **Visual Studio Code**.
+1. **Visual Studio Code** を閉じます。
 
-## Cleanup
+## クリーンアップ
 
-1. Delete the Azure Cosmos DB accounts that were created in this lab.
+1. このラボで作成した Azure Cosmos DB アカウントを削除します。
 
-### Review
+### レビュー
 
-In this lab, you have completed:
+このラボで完了したこと:
 
-- Prepared your development environment.
-- Created an Azure Cosmos DB for NoSQL account.
-- Connected to the Azure Cosmos DB for NoSQL account from the SDK.
-- Configured the .NET SDK with a preferred region list.
+- 開発環境を準備しました。
+- Azure Cosmos DB for NoSQL アカウントを作成しました。
+- SDK から Azure Cosmos DB for NoSQL アカウントに接続しました。
+- 優先リージョン リストで .NET SDK を構成しました。
 
-### You have successfully completed the lab
+### ラボを正常に完了しました

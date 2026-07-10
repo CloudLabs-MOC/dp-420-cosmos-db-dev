@@ -1,45 +1,45 @@
-# Process Azure Cosmos DB for NoSQL data using Azure Functions
+# Azure Functions を使用して Azure Cosmos DB for NoSQL データを処理する
 
-## Lab Scenario
+## ラボのシナリオ
 
-The Azure Cosmos DB trigger for Azure Functions is implemented using a change feed processor. You can create functions that respond to create and update operations in your Azure Cosmos DB for NoSQL container with this knowledge. If you have implemented a change feed processor manually, the setup for Azure Functions is similar.
+Azure Functions の Azure Cosmos DB トリガーは change feed processor を使用して実装されています。この知識を使って、Azure Cosmos DB for NoSQL コンテナーの作成および更新操作に応答する関数を作成できます。change feed processor を手動で実装したことがある場合、Azure Functions のセットアップは似ています。
 
-## Lab Objectives
+## ラボの目的
 
-In this lab, you will complete the following tasks:
-- Task 1: Create an Azure Cosmos DB for NoSQL account
-- Task 2: Create Application Insight
-- Task 3: Create an Azure Function app and Azure Cosmos DB-triggered function
-- Task 4: Implement function code in .NET
-- Task 5: Seed your Azure Cosmos DB for NoSQL account with sample data
+このラボでは、次のタスクを完了します:
+- タスク 1: Azure Cosmos DB for NoSQL アカウントを作成する
+- タスク 2: Application Insight を作成する
+- タスク 3: Azure Function アプリと Azure Cosmos DB トリガー関数を作成する
+- タスク 4: .NET で関数コードを実装する
+- タスク 5: Azure Cosmos DB for NoSQL アカウントにサンプル データをシードする
 
-## Estimated Timing: 60 minutes
+## 推定所要時間: 60 分
 
-## Architecture Diagram
+## アーキテクチャ図
 
 ![image](architecturedia/lab14.png)
 
-## Task 1: Create an Azure Cosmos DB for NoSQL account
+## タスク 1: Azure Cosmos DB for NoSQL アカウントを作成する
 
-In this task, you will provision an Azure Cosmos DB SQL account, configuring essential settings and retrieving the necessary connection details for future development.
+このタスクでは、Azure Cosmos DB SQL アカウントをプロビジョニングし、重要な設定を構成し、今後の開発に必要な接続情報を取得します。
 
-Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **API for MongoDB** or **API for NoSQL**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
+Azure Cosmos DB は複数の API をサポートするクラウドベースの NoSQL データベース サービスです。Azure Cosmos DB アカウントを初めてプロビジョニングする際には、アカウントでサポートする API を選択します（たとえば **API for MongoDB** や **API for NoSQL**）。Azure Cosmos DB for NoSQL アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得し、Azure SDK for .NET やその他の SDK を使用してそのアカウントに接続できます。
 
-1. On **Azure Portal** page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
+1. **Azure Portal** ページで、ポータル上部の「Search resources, services and docs (G+/)」ボックスに **Azure Cosmos DB (1)** と入力し、サービスの一覧から **Azure Cosmos DB (2)** を選択します。
 
    ![06](media/New-image1.png)
    
-1. Select **+ Create (1)** under **Azure Cosmos DB for NoSQL**.
+1. **Azure Cosmos DB for NoSQL** の下で **+ Create (1)** を選択します。
 
     ![06](media/New-image2.png)
 
-    - Click on **Create (2)** to create **Azure Cosmos DB for NoSQL** account.
+    - **Create (2)** をクリックして **Azure Cosmos DB for NoSQL** アカウントを作成します。
 
       ![06](media/New-image3.png)
 
-1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create (9)**:
+1. 次の設定を指定し、残りの設定はすべて既定値のままにして **Review + create (9)** を選択します:
 
-    | **Setting** | **Value** |
+    | **設定** | **値** |
     | :--- | :--- |
     | **Workload Type** | *Learning* **(1)** |    
     | **Subscription** | *Your existing Azure subscription* **(2)** |
@@ -53,35 +53,35 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     ![06](media/c28.png) 
     ![06](media/c29.png)        
    
-1. Once after validation passed click on **Create**.
+1. 検証が完了したら **Create** をクリックします。
 
-1. Wait for the deployment task to complete before continuing with this task.
+1. デプロイが完了するまで待ちます。
 
-1. Select **Go to resources**. On the newly created **Azure Cosmos DB** account under **Settings** navigate to the **Keys** pane.
+1. **Go to resources** を選択します。新しく作成した **Azure Cosmos DB** アカウントで、**Settings** の下にある **Keys** ペインに移動します。
 
     ![06](media/New-image6.png)
 
     ![06](media/New-image7.png)
 
-1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
+1. このペインには、SDK からアカウントに接続するために必要な接続情報と資格情報が含まれています。具体的には:
 
-    - Record the value of the **URI** field. You will use this **endpoint** value later in this exercise.
+    - **URI** フィールドの値を記録します。この **endpoint** 値は、この演習で後ほど使用します。
 
-    - Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
+    - **PRIMARY KEY** フィールドの値を記録します。この **key** 値は、この演習で後ほど使用します。
 
       ![06](media/New-image9.png)
 
-1. Select **Data Explorer** from the resource menu.
+1. リソース メニューから **Data Explorer** を選択します。
 
-     >**Note**: Click the "X" button on the pop-up, which is commonly located at the top right corner.
+     >**注意**: ポップアップの右上にある「X」ボタンをクリックします。
 
-1. In the **Data Explorer** pane, expand **+ New Container (1)** and then select **+ New Database (2)** from the drop down.
+1. **Data Explorer** ペインで **+ New Container (1)** を展開し、ドロップダウンから **+ New Database (2)** を選択します。
 
     ![06](media/New-image80.png)
       
-1. In the **New Database** popup, enter the following values for each setting, and then select **OK (5)**:
+1. **New Database** ポップアップで、各設定に次の値を入力し、**OK (5)** を選択します:
 
-    | **Setting** | **Value** |
+    | **設定** | **値** |
     | --: | :-- |
     | **Database id** | *``cosmicworks``* **(1)** |
     | **Provision throughput** | enabled **(2)** |
@@ -90,17 +90,17 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
     ![06](media/c30.png)
 
-1. Back in the **Data Explorer** pane, observe the **cosmicworks** database node within the hierarchy.
+1. **Data Explorer** ペインに戻り、階層内の **cosmicworks** データベース ノードを確認します。
 
       ![06](media/New-image82.png)
    
-1. In the **Data Explorer** pane, select **+ New Container (1)** > **+ New Container (2)**.
+1. **Data Explorer** ペインで **+ New Container (1)** > **+ New Container (2)** を選択します。
 
      ![06](media/New-image83.png)
 
-1. In the **New Container** popup, enter the following values for each setting, and then select **OK (5)**:
+1. **New Container** ポップアップで、各設定に次の値を入力し、**OK (5)** を選択します:
 
-    | **Setting** | **Value** |
+    | **設定** | **値** |
     | :-- | :-- |
     | **Database id** | *Use existing (1)* &vert; *cosmicworks (2)* |
     | **Container id** | *``products`` (3)* |
@@ -109,15 +109,15 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     ![06](media/c31.png)
     ![06](media/c32.png)    
 
-1. Back in the **Data Explorer** pane, expand the **cosmicworks** database node and then observe the **products** container node within the hierarchy.
+1. **Data Explorer** ペインに戻り、**cosmicworks** データベース ノードを展開して、階層内に **products** コンテナー ノードが表示されていることを確認します。
 
-1. In the **Data Explorer** pane, select **+ New Container (1)** > **+ New Container (2)** again.
+1. **Data Explorer** ペインで、再度 **+ New Container (1)** > **+ New Container (2)** を選択します。
 
     ![06](media/New-image85.png)
 
-1. In the **New Container** popup, enter the following values for each setting, and then select **OK**:
+1. **New Container** ポップアップで、各設定に次の値を入力し、**OK** を選択します:
 
-    | **Setting** | **Value** |
+    | **設定** | **値** |
     | :-- | :-- |
     | **Database id** | *Use existing* &vert; *cosmicworks* |
     | **Container id** | *``productslease``* |
@@ -125,34 +125,34 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
       ![06](media/New-image86.png)
    
-1. Back in the **Data Explorer** pane, expand the **cosmicworks** database node and then observe the **productslease** container node within the hierarchy.
+1. **Data Explorer** ペインに戻り、**cosmicworks** データベース ノードを展開して、階層内に **productslease** コンテナー ノードが表示されていることを確認します。
 
      ![06](media/New-image87.png)
    
-1. Return to the **Home** of the Azure portal.
+1. Azure ポータルの **Home** に戻ります。
 
-    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
-    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
+    > **おめでとうございます**。タスクが完了しました！次に検証を行います。手順は次のとおりです:
+    > - 対応するタスクの **Validate** ボタンを押します。成功メッセージが表示された場合は次のタスクに進みます。
+    > - そうでない場合は、エラーメッセージをよく読み、ラボ ガイドの指示に従って手順をやり直します。
+    > - サポートが必要な場合は cloudlabs-support@spektrasystems.com までご連絡ください。24 時間 365 日対応しています。
     
     <validation step="8ec90c15-4d62-42be-8eff-76a215f8689b" />
 
-## Task 2: Create Application Insight
+## タスク 2: Application Insight を作成する
 
-In this task, you'll set up Azure Application Insights to monitor your Azure Function application. First, you'll create a Log Analytics workspace, which will store monitoring data. Then, you'll create an Application Insights instance and link it to the Log Analytics workspace, enabling you to track the performance and activity of your application.
+このタスクでは、Azure Function アプリケーションを監視するための Azure Application Insights を設定します。まず、監視データを保存する Log Analytics ワークスペースを作成します。次に、Application Insights インスタンスを作成して Log Analytics ワークスペースにリンクし、アプリケーションのパフォーマンスとアクティビティを追跡できるようにします。
 
-1. On **Azure Portal** page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Log Analytics workspaces (1)**, and then select **Log Analytics workspaces (2)** under services.
+1. **Azure Portal** のページで、ポータル上部の「Search resources, services and docs (G+/)」ボックスに **Log Analytics workspaces (1)** と入力し、サービス一覧から **Log Analytics workspaces (2)** を選択します。
 
     ![06](media/New-image88.png)
         
-1. Select to **+ Create** a new *Log Analytics* workspace.
+1. **+ Create** を選択して、新しい *Log Analytics* ワークスペースを作成します。
 
     ![06](media/New-image89.png)
 
-1. In the **Log Analytics workspace** dialog, enter the following values for each setting, and then select **Review + Create (5)**: 
+1. **Log Analytics workspace** ダイアログで、各設定に次の値を入力し、**Review + Create (5)** を選択します:
 
-    | **Setting** | **Value** |
+    | **設定** | **値** |
     | :--- | :--- |
     | **Subscription** | *Your existing Azure subscription* **(1)** |
     | **Resource group** | *Select an existing or create a new resource group* **(2)** |
@@ -161,17 +161,17 @@ In this task, you'll set up Azure Application Insights to monitor your Azure Fun
 
      ![06](media/New-image90.png)
 
-1. Then select **Create**:     
+1. その後、**Create** を選択します。
    
-1. Once your *Log Analytics workspace* is created, in the search box search for **Application Insights**.
+1. *Log Analytics workspace* が作成されたら、検索ボックスで **Application Insights** を検索します。
 
     ![06](media/New-image91.png)
 
-1. Select to **+ Create** a new *Application Insight*.
+1. **+ Create** を選択して、新しい *Application Insights* を作成します。
 
-1. In the **Application Insights** dialog, enter the following values for each setting, and then select **Review + Create (5)**: 
+1. **Application Insights** ダイアログで、各設定に次の値を入力し、**Review + Create (5)** を選択します:
 
-    | **Setting** | **Value** |
+    | **設定** | **値** |
     | :--- | :--- |
     | **Subscription (both entries)** | *Your existing Azure subscription* **(1)** |
     | **Resource group** | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* **(2)** |
@@ -181,42 +181,42 @@ In this task, you'll set up Azure Application Insights to monitor your Azure Fun
 
      ![06](media/New-image92.png)
 
-1. Then select **Create**:     
+1. その後、**Create** を選択します。
      
-1. You should now be able to monitor your application function.
+1. これでアプリケーション関数を監視できるようになります。
 
-    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
-    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
+    > **おめでとうございます**。タスクが完了しました！次に検証を行います。手順は次のとおりです:
+    > - 対応するタスクの **Validate** ボタンを押します。成功メッセージが表示された場合は次のタスクに進みます。
+    > - そうでない場合は、エラーメッセージをよく読み、ラボ ガイドの指示に従って手順をやり直します。
+    > - サポートが必要な場合は cloudlabs-support@spektrasystems.com までご連絡ください。24 時間 365 日対応しています。
     
     <validation step="d6eb6de3-1d82-40ff-a083-c08a5887fd64" />
 
-## Task 3: Create an Azure Function app and Azure Cosmos DB-triggered function
+## タスク 3: Azure Function アプリと Azure Cosmos DB トリガー関数を作成する
 
-In this task, you'll create an Azure Function app with a Cosmos DB-triggered function. First, you'll set up the Function app in the Azure portal by specifying necessary configurations. After deployment, you'll create a new function using the Azure Cosmos DB trigger template, linking it to your Cosmos DB account and specifying the database and container details. This allows the function to respond to changes in the Cosmos DB container.
+このタスクでは、Cosmos DB トリガー関数を持つ Azure Function アプリを作成します。最初に Azure Portal で Function アプリをセットアップし、必要な構成を指定します。デプロイが完了したら、Azure Cosmos DB トリガーテンプレートを使用して新しい関数を作成し、以前に作成した Cosmos DB アカウントに接続し、データベースとコンテナーの詳細を指定します。これにより、コンテナー内の変更に応じて関数が実行されます。
 
-1. Select **+ Create a resource** on Azure portal home page.
+1. Azure ポータルのホームページで **+ Create a resource** を選択します。
 
      ![06](media/New-image95.png)
    
-1. Search for **Functions** and select **Function app**. then select a **Function app** on market place page.
+1. **Functions** を検索し、**Function app** を選択します。その後、マーケットプレース ページで **Function app** を選択します。
 
     ![06](media/New-image96.png)
 
     ![06](media/New-image97.png)
 
-1. On the **Function App** page click on **Create**.
+1. **Function App** ページで **Create** をクリックします。
 
     ![06](media/New-image98.png)
 
-1. On the **Select a hosting option** page, select **App service (1)** and then **Select (2)**.    
+1. **Select a hosting option** ページで **App service (1)** を選択し、次に **Select (2)** を選択します。    
 
     ![06](media/c33.png)
    
-1. Specify the following settings, leaving all remaining settings to their default values and then select **Review + Create (8)**.
+1. 次の設定を指定し、残りの設定はすべて既定値のままにして **Review + Create (8)** を選択します。
 
-    | **Setting** | **Value** |
+    | **設定** | **値** |
     | :--- | :--- |
     | **Subscription** | *Your existing Azure subscription* **(1)** |
     | **Resource group** | *Select an existing or create a new resource group* **(2)** |
@@ -228,23 +228,23 @@ In this task, you'll create an Azure Function app with a Cosmos DB-triggered fun
 
     ![06](media/c34.png)
 
-1. Then select **Create**:    
+1. その後、**Create** を選択します。    
 
-1. Wait for the deployment task to complete before continuing with this task.
+1. このタスクを続行する前に、デプロイが完了するまで待ちます。
 
-1. Select **Go to resource**, to navigate to the newly created **Azure Functions** account resource.
+1. **Go to resource** を選択して、作成した **Azure Functions** リソースに移動します。
 
-1. Navigate to the **Functions (1)** pane. In the **Functions** pane, select **Create in Azure Portal (2)**.
+1. **Functions (1)** ペインに移動します。**Functions** ペインで **Create in Azure Portal (2)** を選択します。
 
     ![06](media/c35.png)
 
-1. In the **Create function** popup on the **Select a template** tab choose **Azure Cosmos DB trigger (1)** and click on **Next (2)**.
+1. **Create function** ポップアップの **Select a template** タブで **Azure Cosmos DB trigger (1)** を選択し、**Next (2)** をクリックします。
 
     ![06](media/New-image104.png)
    
-1. In the **Create function** popup, on the **Template details** tab create a new function with the following settings, leaving all remaining settings to their default values and select **Create (11)**:
+1. **Create function** ポップアップの **Template details** タブで、次の設定を使用して新しい関数を作成し、残りの設定はすべて既定値のままにして **Create (11)** を選択します:
 
-    | **Setting** | **Value** |
+    | **設定** | **値** |
     | :--- | :--- |
     | **Select a template** | *Azure Cosmos DB trigger* **(1)** |
     | **Function Name** | *``ItemsListener``* **(2)** |
@@ -258,30 +258,30 @@ In this task, you'll create an Azure Function app with a Cosmos DB-triggered fun
 
     ![06](media/New-image106.png)
    
-    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
-    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
+    > **おめでとうございます**。タスクが完了しました！次に検証を行います。手順は次のとおりです:
+    > - 対応するタスクの **Validate** ボタンを押します。成功メッセージが表示された場合は次のタスクに進みます。
+    > - そうでない場合は、エラーメッセージをよく読み、ラボ ガイドの指示に従って手順をやり直します。
+    > - サポートが必要な場合は cloudlabs-support@spektrasystems.com までご連絡ください。24 時間 365 日対応しています。
     
     <validation step="3d866562-569f-41c5-8f1c-286e16e92767" />
 
 ## Task 4: Implement function code in .NET
 
-In this task, you'll implement the Azure Cosmos DB-triggered function by editing the run.csx script in the Azure portal. You'll reference necessary libraries, create a Run method to log the count of modified items, and iterate through each item to log its unique identifier. After saving the code, you'll connect to the streaming logs to observe the output when items are generated in the Cosmos DB container.
+このタスクでは、Azure ポータルで `run.csx` スクリプトを編集して、Azure Cosmos DB トリガー関数を実装します。必要なライブラリを参照し、変更されたアイテム数をログに記録する `Run` メソッドを作成し、各アイテムの一意の識別子をログに出力するためにアイテムを反復処理します。コードを保存した後、ストリーミングログに接続して、Cosmos DB コンテナー内でアイテムが生成されたときの出力を確認します。
 
-The function you created earlier is a C# script that is edited in-portal. You will now use the portal to write a short function to output the unique identifier of any item inserted or updated in the container.
+以前に作成した関数は、ポータル内で編集する C# スクリプトです。ここでは、コンテナーに挿入または更新されたアイテムの一意の識別子を出力する短い関数を書きます。
 
-1. In the **ItemsListener** &vert; **Function** pane, navigate to the **Code + Test** pane.
+1. **ItemsListener** | **Function** ペインで、**Code + Test** ペインに移動します。
 
-1. In the editor for the **run.csx** script, delete the contents of the editor area.
+1. **run.csx** スクリプトのエディターで、エディター領域の内容を削除します。
 
-1. In the editor area, reference the **Microsoft.Azure.DocumentDB.Core** library:
+1. エディター領域で、**Microsoft.Azure.DocumentDB.Core** ライブラリを参照します:
 
     ```
     #r "Microsoft.Azure.DocumentDB.Core"
     ```
 
-1. Add using blocks for the **System**, **System.Collections.Generic**, and [Microsoft.Azure.Documents][docs.microsoft.com/dotnet/api/microsoft.azure.documents] namespaces:
+1. **System**、**System.Collections.Generic**、および [Microsoft.Azure.Documents][docs.microsoft.com/dotnet/api/microsoft.azure.documents] 名前空間の using ブロックを追加します:
 
     ```
     using System;
@@ -289,11 +289,11 @@ The function you created earlier is a C# script that is edited in-portal. You wi
     using Microsoft.Azure.Documents;
     ```
 
-1. Create a new static method named **Run** that has two parameters:
+1. 2 つのパラメーターを持つ `Run` という名前の新しい static メソッドを作成します:
 
-    1. A parameter named **input** of type **IReadOnlyList\<\>** with a generic type of [Document][docs.microsoft.com/dotnet/api/microsoft.azure.documents.document].
+    1. ジェネリック型が [Document][docs.microsoft.com/dotnet/api/microsoft.azure.documents.document] の `IReadOnlyList<>` 型の **input** という名前のパラメーター。
 
-    1. A parameter named **log** of type **ILogger**.
+    1. **ILogger** 型の **log** という名前のパラメーター。
 
     ```
     public static void Run(IReadOnlyList<Document> input, ILogger log)
@@ -301,13 +301,13 @@ The function you created earlier is a C# script that is edited in-portal. You wi
     }
     ```
 
-1. Within the **Run** method, invoke the **LogInformation** method of the **log** variable passing in a string that calculates the count of items in the current batch:
+1. `Run` メソッド内で、現在のバッチに含まれるアイテム数を計算する文字列を渡し、**log** 変数の `LogInformation` メソッドを呼び出します:
 
     ```
-    log.LogInformation($"# Modified Items:\t{input?.Count ?? 0}"); 
+    log.LogInformation($"# Modified Items:\t{input?.Count ?? 0}");
     ```
 
-1. Still within the **Run** method, create a foreach loop that iterates over the **input** variable using the variable **item** to represent an instance of type **Document**:
+1. 依然として `Run` メソッド内で、`input` 変数を反復処理する `foreach` ループを作成し、`item` 変数を `Document` 型のインスタンスとして使用します:
 
     ```
     foreach(Document item in input)
@@ -315,13 +315,13 @@ The function you created earlier is a C# script that is edited in-portal. You wi
     }
     ```
 
-1. Within the foreach loop of the **Run** method, invoke the **LogInformation** method of the **log** variable passing in a string that prints the [Id][docs.microsoft.com/dotnet/api/microsoft.azure.documents.resource.id] property of the **item** variable:
+1. `Run` メソッドの `foreach` ループ内で、`item` 変数の [Id][docs.microsoft.com/dotnet/api/microsoft.azure.documents.resource.id] プロパティを出力する文字列を渡し、**log** 変数の `LogInformation` メソッドを呼び出します:
 
     ```
     log.LogInformation($"Detected Operation:\t{item.Id}");
     ```
 
-1. Once you are done, your code file should now include:
+1. 完了すると、コード ファイルは次のようになります:
   
     ```
     #r "Microsoft.Azure.DocumentDB.Core"
@@ -343,43 +343,43 @@ The function you created earlier is a C# script that is edited in-portal. You wi
 
     ![06](media/c36.png)    
 
-1. Expand the **Logs** section to connect to the streaming logs for the current function.
+1. **Logs** セクションを展開して、現在の関数のストリーミングログに接続します。
 
-    > &#128161; It can take a couple of seconds to connect to the streaming log service. You will see a message in the log output once you are connected.
+    > &#128161; ストリーミング ログ サービスへの接続には数秒かかる場合があります。接続されるとログ出力にメッセージが表示されます。
 
-1. **Save** the current function code.
+1. 現在の関数コードを **Save** します。
 
-1. Observe the result of the C# code compilation. You should expect to see a **Compilation succeeded** message at the end of the log output.
+1. C# コードのコンパイル結果を確認します。ログ出力の最後に **Compilation succeeded** メッセージが表示されるはずです。
 
-    > &#128221; You may see warning messages in the log output. These warnings will not impact this lab.
+    > &#128221; ログ出力に警告メッセージが表示される場合があります。これらの警告は本ラボには影響しません。
 
-1. **Maximize** the log section to expand the output window to fill the maximum available space.
+1. ログ セクションを **Maximize** して、出力ウィンドウを最大化します。
 
-    > &#128221; You will use another tool to generate items in your Azure Cosmos DB for NoSQL container. Once you generate the items, you will return to this browser window to observe the output. Do not close the browser window prematurely.
+    > &#128221; この後、別のツールを使用して Azure Cosmos DB for NoSQL コンテナーにアイテムを生成します。アイテムを生成したら、このブラウザー ウィンドウに戻り、出力を確認してください。ブラウザー ウィンドウを早期に閉じないでください。
 
-## Task 5: Seed your Azure Cosmos DB for NoSQL account with sample data
+## タスク 5: Azure Cosmos DB for NoSQL アカウントにサンプル データをシードする
 
-In this task, You will use a command-line utility that creates a **cosmicworks** database and a **products** container. The tool will then create a set of items that you will observe using the change feed processor running in your terminal window.
+このタスクでは、**cosmicworks** データベースと **products** コンテナーを作成するコマンドライン ユーティリティを使用します。ツールは、その後、ターミナル ウィンドウで change feed processor を使用して観察するアイテムのセットを作成します。
 
-1. Start Visual Studio Code (the program icon is pinned to the Desktop).
+1. Visual Studio Code を起動します（プログラム アイコンはデスクトップにピン留めされています）。
 
    ![Visual Studio Code Icon](./media/vscode1.jpg)
 
-1. In **Visual Studio Code**, open the **Terminal** menu by selecting **... (ellipses) (1)** > **Terminal (2)** > **New Terminal (3)** to open a new terminal with your existing instance.
+1. **Visual Studio Code** で、**... (ellipses) (1)** > **Terminal (2)** > **New Terminal (3)** を選択し、既存のインスタンスで新しいターミナルを開きます。
 
     ![06](media/terminal.png)
 
-1. Install the [cosmicworks][nuget.org/packages/cosmicworks] command-line tool for global use on your machine.
+1. グローバルに使用するための [cosmicworks][nuget.org/packages/cosmicworks] コマンドライン ツールをインストールします。
 
     ```
     dotnet tool install cosmicworks --global --version 1.*
     ```
 
-    > &#128161; This command may take a couple of minutes to complete. This command will output the warning message (*Tool 'cosmicworks' is already installed') if you have already installed the latest version of this tool in the past.
+    > &#128161; このコマンドは数分かかる場合があります。すでに最新バージョンがインストールされている場合、(*Tool 'cosmicworks' is already installed*) という警告メッセージが出力されます。
 
-1. Once the Installation is completed, make sure to close the **Visual Studio Code** and re-open it to perform the below command.
+1. インストールが完了したら、以下のコマンドを実行するために **Visual Studio Code** を閉じて再起動してください。
 
-1. Run cosmicworks to seed your Azure Cosmos DB account with the following command-line options:
+1. 次のコマンドライン オプションを使用して、Azure Cosmos DB アカウントにデータをシードします:
 
     | **Option** | **Value** |
     | :--- | :--- |
@@ -391,33 +391,33 @@ In this task, You will use a command-line utility that creates a **cosmicworks**
     cosmicworks --endpoint <cosmos-endpoint> --key <cosmos-key> --datasets product
     ```
 
-    > &#128221; For example, if your endpoint is: **https&shy;://dp420.documents.azure.com:443/** and your key is: **fDR2ci9QgkdkvERTQ==**, then the command would be:
+    > &#128221; たとえば、エンドポイントが **https&shy;://dp420.documents.azure.com:443/** でキーが **fDR2ci9QgkdkvERTQ==** の場合、コマンドは次のようになります:
     > ``cosmicworks --endpoint https://dp420.documents.azure.com:443/ --key fDR2ci9QgkdkvERTQ== --datasets product``
 
-    - If you recieve any dotnet compatibilty related error, please run the following command `choco install dotnet-6.0-runtime dotnet-7.0-runtime -y` and wait for it to finish.
+    - dotnet の互換性に関連するエラーが発生した場合は、次のコマンドを実行してください: `choco install dotnet-6.0-runtime dotnet-7.0-runtime -y`
 
-1. If it prompts you to provide the **Connection String**, please navigate to **Keys (1)** in CosmosDB. Select the **eye (2)** icon and copy the value **(3)**.
+1. **Connection String** の入力を求められた場合は、CosmosDB の **Keys (1)** に移動します。**eye (2)** アイコンを選択し、値 **(3)** をコピーします。
 
     ![06](media/c37.png)
 
-1. Paste the value in the terminal.    
+1. ターミナルにその値を貼り付けます。
 
     ![06](media/c38.png)
 
-    >**Note:** You may encounter a partition key error while running this command. This typically occurs because the products container already exists with a different partition key configuration.
+    > **Note:** このコマンドの実行中にパーティション キー エラーが発生する場合があります。これは通常、products コンテナーが異なるパーティション キー構成で既に存在するためです。
 
-    - If you receive this error, you can ignore it. However, to resolve it completely, delete the existing products container and rerun the command. After deleting the container, the command will execute successfully without any errors.
+    - このエラーが発生した場合は無視できます。ただし、完全に解決するには、既存の products コンテナーを削除してコマンドを再実行してください。コンテナーを削除した後、コマンドはエラーなく正常に実行されます。
 
-1. Wait for the **cosmicworks** command to finish populating the account with a database, container, and items.
+1. **cosmicworks** コマンドがデータベース、コンテナー、およびアイテムの作成を完了するまで待ちます。
 
-1. Close the integrated terminal.
+1. 統合ターミナルを閉じます。
 
-1. Close your web browser window or tab.
+1. Web ブラウザーのウィンドウまたはタブを閉じます。
 
-### Summary 
+### サマリー 
 
-By completing this lab, you gained practical experience in setting up Azure Cosmos DB, creating Azure Functions, and implementing a change feed processor to handle data changes. This knowledge equips you to build responsive applications that leverage Azure's serverless architecture and NoSQL capabilities effectively.
+このラボを完了することで、Azure Cosmos DB のセットアップ、Azure Functions の作成、およびデータ変更を処理する change feed processor の実装に関する実践的な経験を得られます。この知識を活用すると、Azure のサーバーレス アーキテクチャと NoSQL 機能を効果的に活用した応答型アプリケーションを構築できます。
 
 
 
-### You have successfully completed the lab
+### ラボを正常に完了しました

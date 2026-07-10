@@ -1,73 +1,73 @@
-# Lab 01 - Get started with Azure Cosmos DB for NoSQL
+# Lab 01 - Azure Cosmos DB for NoSQL を使って始める
 
-## Lab scenario
+## ラボ シナリオ
 
-Before diving too deeply into Azure Cosmos DB, it's important to get a handle on the basics of creating the resources you will use the most. In most scenarios, you will need to be comfortable creating accounts, databases, containers, and items. In a real-world scenario, you should also have a few basic queries "on hand" to test that you created all of your resources correctly.
+Azure Cosmos DB を深く掘り下げる前に、最もよく使用するリソースの作成に関する基本を把握しておくことが重要です。多くのシナリオでは、アカウント、データベース、コンテナー、アイテムの作成に慣れている必要があります。実運用に近いシナリオでは、作成したリソースが正しく動作するか確認するための基本的なクエリをいくつか用意しておくと良いでしょう。
 
-In this lab, you'll create a new Azure Cosmos DB account using the API for NoSQL. You will then use the Data Explorer to create a database, a container, and two items. Finally, you will query the database for the items you created.
+このラボでは、API for NoSQL を使用して新しい Azure Cosmos DB アカウントを作成します。その後、Data Explorer を使ってデータベース、コンテナー、2 つのアイテムを作成し、最後に作成したアイテムをクエリします。
 
-## Lab objectives
+## ラボの目的
 
-In this lab, you will complete the following tasks:
-- Task 1: Create a new Azure Cosmos DB account.
-- Task 2: Use the Data Explorer to create a new database and container.
-- Task 3: Use the Data Explorer to create new items.
-- Task 4: Use the Data Explorer to issue a basic query.
+このラボで完了するタスク:
+- タスク 1: 新しい Azure Cosmos DB アカウントを作成する。
+- タスク 2: Data Explorer を使用して新しいデータベースとコンテナーを作成する。
+- タスク 3: Data Explorer を使用して新しいアイテムを作成する。
+- タスク 4: Data Explorer を使用して基本的なクエリを実行する。
 
-## Estimated Timing: 30 minutes
+## 推定所要時間: 30 分
 
-## Architecture Diagram
+## アーキテクチャ図
 
 ![image](architecturedia/lab1.png)
 
-## Exercise 1: Create an Azure Cosmos DB for NoSQL account
+## 演習 1: Azure Cosmos DB for NoSQL アカウントを作成する
 
-### Task 1: Create a new Azure Cosmos DB account
+### タスク 1: 新しい Azure Cosmos DB アカウントを作成する
 
-Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **API for MongoDB** or **API for NoSQL**).
+Azure Cosmos DB は複数の API をサポートするクラウドベースの NoSQL データベース サービスです。Azure Cosmos DB アカウントを初めてプロビジョニングする際は、アカウントでサポートする API（例: **API for MongoDB** や **API for NoSQL**）を選択します。
 
-1. In a new web browser window or tab, navigate to the Azure portal (``portal.azure.com``).
+1. 新しい Web ブラウザーのウィンドウまたはタブで、Azure ポータル (``portal.azure.com``) に移動します。
 
-1. Sign into the portal using the Microsoft credentials associated with your subscription.
+1. サブスクリプションに関連付けられた Microsoft の資格情報を使用してポータルにサインインします。
 
-1. Within the **Azure services** category, select **Create a resource**, and then select **Azure Cosmos DB**.
+1. **Azure services** カテゴリで **Create a resource** を選択し、次に **Azure Cosmos DB** を選択します。
 
-    > &#128161; Alternatively; expand the **&#8801;** menu, select **All Services**, in the **Databases** category, select **Azure Cosmos DB**, and then select **Create**.
+    > &#128161; 代替手順: **&#8801;** メニューを展開し **All Services** を選択、**Databases** カテゴリで **Azure Cosmos DB** を選択してから **Create** を選びます。
 
-1. In the **Select API option** pane, select the **Create** option within the **Azure Cosmos DB for NoSQL** section.
+1. **Select API option** ウィンドウで、**Azure Cosmos DB for NoSQL** セクション内の **Create** オプションを選択します。
 
-1. Within the **Create Azure Cosmos DB Account** pane, observe the **Basics** tab.
+1. **Create Azure Cosmos DB Account** ウィンドウの **Basics** タブを確認します。
 
-1. On the **Basics** tab, enter the following values for each setting:
+1. **Basics** タブで、各設定に対して次の値を入力します:
 
-    | **Setting** | **Value** |
+    | **設定** | **値** |
     | --: | :-- |
-    | **Subscription** | *Your existing Azure subscription* |
+    | **Subscription** | *既存の Azure サブスクリプション* |
     | **Resource Group** | *DP-420-DeploymentID* |
-    | **Account Name** | *Enter a globally unique name* |
-    | **Location** | *Choose any available region* |
-    | **Capacity mode** | *Select provisioned throughput* |
-    | **Apply Free Tier Discount** | *Do Not Apply* |
+    | **Account Name** | *グローバルに一意の名前を入力* |
+    | **Location** | *利用可能なリージョンを選択* |
+    | **Capacity mode** | *プロビジョニング済みスループットを選択* |
+    | **Apply Free Tier Discount** | *適用しない* |
 
-    >**Note** : DeploymentID is the a unique id associated to each environment. You can find the value inside the environment details page.
+    >**注** : DeploymentID は各環境に関連付けられた一意の ID です。値は環境の詳細ページで確認できます。
 
-1. Select **Review + Create** to navigate to the **Review + Create** tab, and then select **Create**.
+1. **Review + Create** を選択して **Review + Create** タブに移動し、続けて **Create** を選択します。
 
-    > &#128221; It can take 10-15 minutes for the Azure Cosmos DB for NoSQL account to be ready for use.
+    > &#128221; Azure Cosmos DB for NoSQL アカウントが使用可能になるまでに 10～15 分かかることがあります。
 
-1. Observe the **Deployment** pane. When the deployment is complete, the pane will update with a **Deployment successful** message.
+1. **Deployment** ペインを確認します。デプロイが完了すると、ペインに **Deployment successful** のメッセージが表示されます。
 
-1. Still within the **Deployment** pane, select **Go to resource**.
+1. 引き続き **Deployment** ペイン内で、**Go to resource** を選択します。
 
-### Task 2: Use the Data Explorer to create a new database and container
+### タスク 2: Data Explorer を使って新しいデータベースとコンテナーを作成する
 
-The Data Explorer will be your primary tool to manage the Azure Cosmos DB for NoSQL database and containers in the Azure portal. You will create a basic database and container to use in this lab.
+Data Explorer は、Azure ポータル内で Azure Cosmos DB for NoSQL のデータベースとコンテナーを管理するための主要なツールです。このラボでは、基本的なデータベースとコンテナーを作成します。
 
-1. From within the **Azure Cosmos DB account** pane, select **Data Explorer** from the resource menu.
+1. **Azure Cosmos DB account** ペイン内のリソース メニューから **Data Explorer** を選択します。
 
-1. In the **Data Explorer** pane, select **New Container**.
+1. **Data Explorer** ペインで **New Container** を選択します。
 
-1. In the **New Container** popup, enter the following values for each setting, and then select **OK**:
+1. **New Container** ポップアップで、各設定に対して次の値を入力し、**OK** を選択します:
 
     | **Setting** | **Value** |
     | --: | :-- |
@@ -78,15 +78,15 @@ The Data Explorer will be your primary tool to manage the Azure Cosmos DB for No
     | **Container throughput (autoscale)** | *Manual* |
     | **RU/s** | *400* |
 
-1. Back in the **Data Explorer** pane, expand the **cosmicworks** database node and then observe the **products** container node within the hierarchy.
+1. **Data Explorer** ペインに戻り、**cosmicworks** データベース ノードを展開して、階層内の **products** コンテナー ノードを確認します。
 
-### Task 3: Use the Data Explorer to create new items
+### タスク 3: Data Explorer を使って新しいアイテムを作成する
 
-The Data Explorer also includes a suite of features to query, create, and manage items in an Azure Cosmos DB for NoSQL container. You will create two basic items using raw JSON in the Data Explorer.
+Data Explorer には、Azure Cosmos DB for NoSQL コンテナー内のアイテムをクエリ、作成、管理するための機能が一式含まれています。ここでは、Data Explorer の生の JSON を使って 2 つの基本アイテムを作成します。
 
-1. In the **Data Explorer** pane, expand the **cosmicworks** database node, expand the **products** container node, and then select **Items**.
+1. **Data Explorer** ペインで **cosmicworks** データベース ノードを展開し、**products** コンテナー ノードを展開してから **Items** を選択します。
 
-1. Still in the **Data Explorer** pane, select **New Item** from the command bar. In the editor, replace the placeholder JSON item with the following content:
+1. 引き続き **Data Explorer** ペインで、コマンド バーから **New Item** を選択します。エディターでプレースホルダーの JSON アイテムを次の内容に置き換えます:
 
     ```
     {
@@ -98,9 +98,9 @@ The Data Explorer also includes a suite of features to query, create, and manage
     }
     ```
 
-1. Select **Save** from the command bar to add the first JSON item:
+1. コマンド バーの **Save** を選択して、最初の JSON アイテムを追加します。
 
-1. Back in the **Items** tab, select **New Item** from the command bar. In the editor, replace the placeholder JSON item with the following content:
+1. **Items** タブに戻り、コマンド バーから **New Item** を選択します。エディターでプレースホルダーの JSON アイテムを次の内容に置き換えます:
 
     ```
     {
@@ -112,48 +112,47 @@ The Data Explorer also includes a suite of features to query, create, and manage
     }
     ```
 
-1. Select **Save** from the command bar to add the second JSON item:
+1. コマンド バーの **Save** を選択して、2 つ目の JSON アイテムを追加します。
 
-1. In the **Items** tab, observe the two new items in the **Items** pane.
+1. **Items** タブで、**Items** ペインに 2 つの新しいアイテムが表示されていることを確認します。
 
-### Task 4: Use the Data Explorer to issue a basic query
+### タスク 4: Data Explorer を使って基本的なクエリを実行する
 
-Finally, the Data Explorer has a built-in query editor that is used to issue queries, observe the results, and measure impact in terms of request units per second (RU/s).
+最後に、Data Explorer には組み込みのクエリエディターがあり、クエリの発行、結果の確認、および要求単位（RU/s）での影響測定に使用されます。
 
-1. In the **Data Explorer** pane, select **New SQL Query**.
+1. **Data Explorer** ペインで **New SQL Query** を選択します。
 
-1. In the query tab, select **Execute Query** to view a standard query that selects all items without any filters.
+1. クエリ タブで **Execute Query** を選択し、フィルターなしで全アイテムを選択する標準クエリを表示します。
 
-1. Delete the contents of the editor area.
+1. エディター領域の内容を削除します。
 
-1. In the **Query** tab, replace the placeholder query with the following content:
+1. **Query** タブで、プレースホルダーのクエリを次の内容に置き換えます:
 
     ```
     SELECT * FROM products p WHERE p.price > 500
     ```
 
-    > &#128221; This query will select all items where the **price** is greater than $500.
+    > &#128221; このクエリは **price** が $500 より大きいすべてのアイテムを選択します。
 
-1. Select **Execute Query**.
+1. **Execute Query** を選択します。
 
-1. Observe the results of the query, which should include a single JSON item and all of its properties.
+1. クエリの結果を確認します。結果には単一の JSON アイテムとそのすべてのプロパティが含まれているはずです。
 
-1. In the **Query** tab, select **Query Stats**.
+1. **Query** タブで **Query Stats** を選択します。
 
-1. Still in the **Query** tab, observe the value of the **Request Charge** field within the **Query Statistics** section.
+1. 引き続き **Query** タブで、**Query Statistics** セクション内の **Request Charge** フィールドの値を確認します。
 
-    > &#128221; Typically, the request charge for this simple query is between 2 and 3 RU/s when the container size is small.
+    > &#128221; 通常、この単純なクエリのリクエスト チャージは、コンテナー サイズが小さい場合に約 2～3 RU/s です。
 
-1. Close your web browser window or tab.
+1. Web ブラウザーのウィンドウまたはタブを閉じます。
 
-### Review
+### レビュー
 
-In this lab, you have completed:
+このラボで行ったこと:
+- 新しい Azure Cosmos DB アカウントを作成しました。
+- Data Explorer を使用して新しいデータベースとコンテナーを作成しました。
+- Data Explorer を使用して新しいアイテムを作成しました。
+- Data Explorer を使用して基本的なクエリを実行しました。
 
-- Created a new Azure Cosmos DB account.
-- Used the Data Explorer to create a new database and container.
-- Used the Data Explorer to create new items.
-- Used the Data Explorer to issue a basic query.
-
-### You have successfully completed the lab
+### ラボを正常に完了しました
 

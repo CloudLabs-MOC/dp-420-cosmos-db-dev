@@ -1,67 +1,67 @@
-# Create and update documents with the Azure Cosmos DB for NoSQL SDK
+# Azure Cosmos DB for NoSQL SDK を使ってドキュメントを作成および更新する
 
-## Lab scenario
+## ラボ シナリオ
 
-The [Microsoft.Azure.Cosmos.Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] class includes a set of member methods to create, retrieve, update, and delete items within an Azure Cosmos DB for NoSQL container. Together, these methods perform some of the most common “CRUD” operations across various items within API for NoSQL containers.
+[Microsoft.Azure.Cosmos.Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] クラスには、Azure Cosmos DB for NoSQL コンテナー内のアイテムを作成、取得、更新、削除するためのメンバー メソッドが含まれています。これらのメソッドは、API for NoSQL コンテナー内のさまざまなアイテムに対する一般的な CRUD 操作を実行します。
 
-In this lab, you’ll use the SDK to perform everyday CRUD operations on an item within an Azure Cosmos DB for NoSQL container.
+このラボでは、SDK を使って Azure Cosmos DB の NoSQL コンテナー内のアイテムに対して日常的な CRUD 操作を実行します。
 
-## Lab objectives
+## ラボの目的
 
-In this lab, you will complete the following tasks:
-- Task 1: Create an Azure Cosmos DB for NoSQL account.
-- Task 2: Connect to the Azure Cosmos DB for NoSQL account from the SDK.
-- Task 3: Perform create and read point operations on items with the SDK.
-- Task 4: Perform update and delete point operations with the SDK.
+このラボでは、以下のタスクを完了します:
+- タスク 1: Azure Cosmos DB for NoSQL アカウントを作成する。
+- タスク 2: SDK から Azure Cosmos DB for NoSQL アカウントに接続する。
+- タスク 3: SDK を使ってアイテムの作成と読み取りポイント操作を実行する。
+- タスク 4: SDK を使ってアイテムの更新と削除ポイント操作を実行する。
 
-## Estimated Timing: 60 minutes
+## 推定所要時間: 60 分
 
-## Architecture Diagram
+## アーキテクチャ図
 
 ![image](architecturedia/lab6.png)
 
-## Prepare your development environment
+## 開発環境の準備
 
-1. Open Visual Studio Code from the desktop.
+1. デスクトップから Visual Studio Code を開きます。
 
      ![Visual Studio Code Icon](./media/vscode1.jpg)
 
-1. Select the **Extensions (1)** blade from the left panel. Search with **C# (2)** and select **Install (3)** to install the extension.
+1. 左側のパネルから **Extensions (1)** を選択します。**C# (2)** を検索し、**Install (3)** を選択して拡張機能をインストールします。
 
     ![06](media/New-image50.png)
 
 
-1. Select the **file (1)** option on the top left of the screen, from the pane options, select **Open Folder (2)**. navigate to **C:\AllFiles\dp-420-cosmos-db-dev**.
+1. 画面左上の **file (1)** オプションを選択し、ペインのオプションから **Open Folder (2)** を選択します。**C:\AllFiles\dp-420-cosmos-db-dev** に移動します。
 
      ![06](media/New-image51.png)
 
-1. Navigate to **C:\AllFiles\dp-420-cosmos-db-dev** select **dp-420-cosmos-db-dev** and click on **Select Folder**.
+1. **C:\AllFiles\dp-420-cosmos-db-dev** に移動し、**dp-420-cosmos-db-dev** を選択して **Select Folder** をクリックします。
 
     ![06](media/New-image54.png)
 
-1. If when **Do you trust the author of the files in this folder** click on **Yes, I trust the authors**.
+1. **このフォルダー内のファイルの作成者を信頼しますか** と表示された場合は、**Yes, I trust the authors** をクリックします。
 
    ![06](media/DB24.png)
 
-### Task 1: Create an Azure Cosmos DB for NoSQL account
+### タスク 1: Azure Cosmos DB for NoSQL アカウントの作成
 
-In this task, you will create an Azure Cosmos DB account using the API for NoSQL. After provisioning the account, you'll retrieve the necessary connection details, including the endpoint (URI) and primary key. These credentials will allow you to connect to the Cosmos DB account using the Azure SDK or another SDK of your choice.
+このタスクでは、API for NoSQL を使用して Azure Cosmos DB アカウントを作成します。アカウントのプロビジョニング後、エンドポイント (URI) とプライマリキーなどの接続情報を取得します。これらの資格情報を使用して、Azure SDK またはその他の SDK から Cosmos DB アカウントに接続できます。
 
-Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **API for MongoDB** or **API for NoSQL**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
+Azure Cosmos DB は、複数の API をサポートするクラウドベースの NoSQL データベース サービスです。Azure Cosmos DB アカウントを初めてプロビジョニングする際には、サポートする API を選択します（たとえば、**API for MongoDB** や **API for NoSQL**）。Azure Cosmos DB for NoSQL アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得し、Azure SDK for .NET や任意の SDK を使って接続できます。
 
-1. Navigate back to Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
+1. Azure ポータル ページに戻り、ポータル上部の [Search resources, services and docs (G+/)] ボックスに **Azure Cosmos DB (1)** と入力し、サービスとして表示される **Azure Cosmos DB (2)** を選択します。
 
    ![06](media/New-image1.png)
    
-1. Select **+ Create (1)** under **Azure Cosmos DB for NoSQL** click on **Create (2)** to create  **Azure Cosmos DB for NoSQL** account.
+1. **Azure Cosmos DB for NoSQL** の下にある **+ Create (1)** を選択し、**Create (2)** をクリックして Azure Cosmos DB for NoSQL アカウントを作成します。
 
     ![06](media/New-image2.png)
 
     ![06](media/New-image3.png)
 
-1. Specify the following settings, leaving all remaining settings to their default values, and select **Next: Global Distribution (9)**:
+1. 以下の設定を指定し、それ以外の設定はすべて既定値のままにして、**Next: Global Distribution (9)** を選択します:
 
-    | Setting | Value |
+    | **設定** | **値** |
     |----------|----------|
     | **Workload Type** | *Production* **(1)** |
     | **Subscription** | *Your existing Azure subscription* **(2)** |
@@ -74,74 +74,74 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
      ![06](media/DB1000000.png)
 
-1. Click on **Next: Networking** on the Global Distribution page. Select **All networks (1)** for the **Connectivity method** and click on **Review + Create (2)**. 
+1. Global Distribution ページで **Next: Networking** をクリックします。**Connectivity method** に **All networks (1)** を選択し、**Review + Create (2)** をクリックします。
 
      ![06](media/DB0002.png)
 
-1. Click on **Create**.
+1. **Create** をクリックします。
 
     ![06](media/New-image5.png)
 
-1. Wait for the deployment task to complete before continuing with this task.
+1. このタスクを続行する前に、デプロイメント タスクが完了するまで待ちます。
 
-1. Once deployment is completed, select **Go to resources**. 
+1. デプロイメントが完了したら、**Go to resources** を選択します。
 
     ![06](media/New-image6.png)
 
-1. In the **Azure Cosmos DB account**, expand **Settings (1)** from the left menu, then select **Keys (2)**.
+1. **Azure Cosmos DB アカウント** で、左側メニューの **Settings (1)** を展開し、**Keys (2)** を選択します。
 
     ![06](media/DB15.png)
 
-1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
+1. このペインには、SDK からアカウントに接続するために必要な接続情報と資格情報が表示されます。具体的には:
 
-    1. Record the value of the **URI** field. You will use this **endpoint** value later in this exercise.
+    1. **URI** フィールドの値を記録します。この **endpoint** 値は後ほど本演習で使用します。
 
-    1. Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
+    1. **PRIMARY KEY** フィールドの値を記録します。この **key** 値は後ほど本演習で使用します。
 
         ![06](media/New-image9.png)
        
-1. Switch back to **Visual Studio Code**.
+1. **Visual Studio Code** に戻ります。
 
-    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
-    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
+    > **おめでとうございます**、ラボを完了しました！次は検証です。手順は次のとおりです:
+    > - 該当タスクの検証ボタンをクリックします。成功メッセージが表示された場合、ラボの検証に成功しています。
+    > - そうでない場合は、エラーメッセージを注意深く読み、ラボ ガイドの指示に従って手順を再実行してください。
+    > - サポートが必要な場合は、cloudlabs-support@spektrasystems.com までお問い合わせください。24時間体制でサポートしています。
     
 <validation step="185fcc24-d57e-4db3-a26d-1b9d4b61dbf2" />
 
-### Task 2: Connect to the Azure Cosmos DB for NoSQL account from the SDK
+### タスク 2: SDK から Azure Cosmos DB for NoSQL アカウントに接続する
 
-In this task, you will connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET. You'll use Visual Studio Code to run a script that creates a new database and container within your Cosmos DB account. Once the database and container are created, you will validate their existence using the Data Explorer in the Azure portal.
+このタスクでは、Azure SDK for .NET を使用して Azure Cosmos DB for NoSQL アカウントに接続します。Visual Studio Code を使い、Cosmos DB アカウント内に新しいデータベースとコンテナーを作成するスクリプトを実行します。データベースとコンテナーが作成されたら、Azure ポータルの Data Explorer を使って存在を確認します。
 
-1. In **Visual Studio Code**, in the **Explorer** pane, browse to the **06-sdk-crud** folder.
+1. **Visual Studio Code** の **Explorer** ペインで、**06-sdk-crud** フォルダーに移動します。
 
-1. Open the context menu for the **06-sdk-crud (1)** folder and then select **Open in Integrated Terminal (2)** to open a new terminal instance.
+1. **06-sdk-crud (1)** フォルダーのコンテキスト メニューを開き、**Open in Integrated Terminal (2)** を選択して新しいターミナルを開きます。
 
      ![06](media/New-image67.png)
         
-    >**Note**: This command will open the terminal with the starting directory already set to the **06-sdk-crud** folder.
+    >**補足**: このコマンドは、開始ディレクトリが **06-sdk-crud** フォルダーに設定された状態でターミナルを開きます。
 
-1. Add the [Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1] package from NuGet using the following command:
+1. 次のコマンドを使用して、NuGet から [Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1] パッケージを追加します:
 
     ```
     dotnet add package Microsoft.Azure.Cosmos --version 3.22.1
     ```
 
-1. Build the project using the [dotnet build][docs.microsoft.com/dotnet/core/tools/dotnet-build] command:
+1. 次のコマンドを使用してプロジェクトをビルドします:
 
     ```
     dotnet build
     ```
 
-1. Close the integrated terminal.
+1. 統合ターミナルを閉じます。
 
-1. In **Visual Studio Code**, in the **06-sdk-crud (1)** folder open the empty **script.cs (2)** code file.
+1. **Visual Studio Code** で、**06-sdk-crud (1)** フォルダーの空の **script.cs (2)** コード ファイルを開きます。
 
     ![06](media/DB38.png)
 
-    >**Note**: The **[Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1]** library has already been pre-imported from NuGet.
+    >**補足**: **[Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1]** ライブラリは既に NuGet からインポートされています。
 
-1. Locate the **string** variable named **endpoint**. Set its value to the **endpoint** of the Azure Cosmos DB account you created in the previous lab.
+1. **endpoint** という名前の **string** 変数を探します。前のラボで作成した Azure Cosmos DB アカウントの **endpoint** をその値に設定します。
 
     ```
     string endpoint = "<cosmos-endpoint>";
@@ -149,9 +149,9 @@ In this task, you will connect to the Azure Cosmos DB for NoSQL account using th
       
      ![06](media/New-image64.png)
 
-    >**Note**: For example, if your endpoint is: **https&shy;://dp420.documents.azure.com:443/**, then the C# statement would be: **string endpoint = "https&shy;://dp420.documents.azure.com:443/";**.
+    >**補足**: 例えば、エンドポイントが **https&shy;://dp420.documents.azure.com:443/** の場合、C# の文は **string endpoint = "https&shy;://dp420.documents.azure.com:443/";** になります。
 
-1. Locate the **string** variable named **key**. Set its value to the **key** of the Azure Cosmos DB account you created in the previous lab.
+1. **key** という名前の **string** 変数を探します。前のラボで作成した Azure Cosmos DB アカウントの **key** をその値に設定します。
 
     ```
     string key = "<cosmos-key>";
@@ -159,21 +159,21 @@ In this task, you will connect to the Azure Cosmos DB for NoSQL account using th
     
     ![06](media/New-image65.png)
 
-    >**Note**: For example, if your key is: **fDR2ci9QgkdkvERTQ==**, then the C# statement would be: **string key = "fDR2ci9QgkdkvERTQ==";**.
+    >**補足**: 例えば、キーが **fDR2ci9QgkdkvERTQ==** の場合、C# の文は **string key = "fDR2ci9QgkdkvERTQ==";** になります。
 
-1. Add the below command to Asynchronously invoke the CreateDatabaseIfNotExistsAsync method of the **client** variable passing in the name of the new database (**cosmicworks**) you would like to create, and store the result in a variable of type **Database**:
+1. 次のコマンドを追加し、**client** 変数の `CreateDatabaseIfNotExistsAsync` メソッドを非同期で呼び出して、新しいデータベース名 (**cosmicworks**) を渡し、結果を **Database** 型の変数に格納します:
 
     ```
     Database database = await client.CreateDatabaseIfNotExistsAsync("cosmicworks");
     ```
 
-1. Add the below command Asynchronously invoke the **CreateContainerIfNotExistsAsync** method of the **database** variable passing in the name of the new container (**products**), the partition key path (**/categoryId**), and the throughput (**400**) you would like to create within the **cosmicworks** database and storing the result in a variable of type **Container**:
+1. 次のコマンドを追加し、**database** 変数の `CreateContainerIfNotExistsAsync` メソッドを非同期で呼び出して、新しいコンテナー名 (**products**)、パーティション キー パス (**/categoryId**)、スループット (**400**) を渡し、結果を **Container** 型の変数に格納します:
   
     ```
     Container container = await database.CreateContainerIfNotExistsAsync("products", "/categoryId", 400);    
     ```
 
-1. Once you are done, your code file should now include:
+1. 完了すると、コード ファイルには次の内容が含まれているはずです:
   
     ```
     using System;
@@ -189,59 +189,59 @@ In this task, you will connect to the Azure Cosmos DB for NoSQL account using th
     Container container = await database.CreateContainerIfNotExistsAsync("products", "/categoryId", 400);
     ```
 
-1. **Save** the **script.cs** code file.
+1. **script.cs** コード ファイルを **保存** します。
 
     ![06](media/DB39.png)
 
-1. In **Visual Studio Code**, open the context menu for the **06-sdk-crud (1)** folder and then select **Open in Integrated Terminal (2)** to open a new terminal instance.
+1. **Visual Studio Code** で **06-sdk-crud (1)** フォルダーのコンテキスト メニューを開き、**Open in Integrated Terminal (2)** を選択して新しいターミナルを開きます。
 
     ![06](media/New-image67.png)
      
-1. Build and run the project using the [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] command:
+1. 次のコマンドを使用してプロジェクトをビルドおよび実行します:
 
     ```
     dotnet run
     ```
    ![06](media/New-image66.png)
 
-1. Close the integrated terminal.
+1. 統合ターミナルを閉じます。
 
-1. Navigate back to Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
+1. Azure ポータル ページに戻り、ポータル上部の [Search resources, services and docs (G+/)] ボックスに **Azure Cosmos DB (1)** と入力し、サービスとして表示される **Azure Cosmos DB (2)** を選択します。
 
    ![06](media/New-image1.png)
 
-1. Select **sql-<inject key="DeploymentID" enableCopy="false"/>**.
+1. **sql-<inject key="DeploymentID" enableCopy="false"/>** を選択します。
 
      ![06](media/New-image68.png)
 
-1. Within the **Azure Cosmos DB** account resource **overview page (1)** , navigate to the **Data Explorer (2)** pane. 
+1. **Azure Cosmos DB** アカウント リソースの **overview page (1)** で、**Data Explorer (2)** ペインに移動します。
 
     ![06](media/DB04.png)
 
-1. In the **Data Explorer**, expand the **cosmicworks (2)** database node, expand the **products (3)** container node.
+1. **Data Explorer** で **cosmicworks (2)** データベース ノードを展開し、**products (3)** コンテナー ノードを展開します。
 
     ![06](media/DB41.png)
    
-    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
-    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
+    > **おめでとうございます**、ラボを完了しました！次は検証です。手順は次のとおりです:
+    > - 対応するタスクの検証ボタンをクリックします。成功メッセージが表示された場合、ラボの検証に成功しています。
+    > - そうでない場合は、エラーメッセージを注意深く読み、ラボ ガイドの指示に従って手順を再実行してください。
+    > - サポートが必要な場合は、cloudlabs-support@spektrasystems.com までお問い合わせください。24時間体制でサポートしています。
 
 <validation step="efd4c72c-608a-423e-97eb-a3700baca703" />
 
-### Task 3: Perform create and read point operations on items with the SDK
+### タスク 3: SDK を使用したアイテムの作成と読み取りポイント操作
 
-In this task, You'll now use the set of asynchronous methods in the Microsoft.Azure.Cosmos.Container class to perform common operations on items within a API for NoSQL container. These operations are all done using the task asynchronous programming model in C#.
+このタスクでは、`Microsoft.Azure.Cosmos.Container` クラスの一連の非同期メソッドを使用して、API for NoSQL コンテナー内のアイテムに対する一般的な操作を実行します。これらの操作はすべて、C# のタスク非同期プログラミング モデルを使用して実行されます。
 
-1. Return to **Visual Studio Code**. Open the **product.cs** code file within the **06-sdk-crud** folder.
+1. **Visual Studio Code** に戻ります。**06-sdk-crud** フォルダー内の **product.cs** コード ファイルを開きます。
 
-    >**Note**: Do not close the editor for the **script.cs** file.
+    >**補足**: **script.cs** ファイルのエディターは閉じないでください。
 
-1. Observe the **Product** class within this code file. This class represents a product item that will be stored and manipulated within this container.
+1. このコード ファイル内の **Product** クラスを確認します。このクラスは、このコンテナー内に格納および操作される製品アイテムを表します。
 
-1. Return to the editor tab for the **script.cs** code file.
+1. **script.cs** コード ファイルのエディター タブに戻ります。
 
-1. Create a new object of type **Product** named **saddle** by running following command :
+1. 次のコマンドを実行して、**Product** 型の新しいオブジェクト **saddle** を作成します:
 
     | Property | Value |
     | --- | --- |
@@ -267,13 +267,13 @@ In this task, You'll now use the set of asynchronous methods in the Microsoft.Az
     };
     ```
 
-1. Add the below command Asynchronously invoke the generic [CreateItemAsync<>][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.createitemasync] method of the **container** variable passing in the **saddle** variable as the method parameter and using **Product** as the generic type:
+1. 次のコマンドを追加し、**container** 変数のジェネリック メソッド `CreateItemAsync<>` を非同期で呼び出して、**saddle** 変数を渡します。ジェネリック型には **Product** を指定します:
 
     ```
     await container.CreateItemAsync<Product>(saddle);
     ```
 
-1. Once you are done, your code file should now include:
+1. 完了すると、コード ファイルには次の内容が含まれているはずです:
   
     ```
     using System;
@@ -305,21 +305,21 @@ In this task, You'll now use the set of asynchronous methods in the Microsoft.Az
     await container.CreateItemAsync<Product>(saddle);
     ```
 
-1. **Save** the **script.cs** code file.
+1. **script.cs** コード ファイルを **保存** します。
 
-1. In **Visual Studio Code**, open the context menu for the **06-sdk-crud** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
+1. **Visual Studio Code** で **06-sdk-crud** フォルダーのコンテキスト メニューを開き、**Open in Integrated Terminal** を選択して新しいターミナルを開きます。
 
-1. Build and run the project using the **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** command:
+1. 次のコマンドを使用してプロジェクトをビルドおよび実行します:
 
     ```
     dotnet run
     ```
 
-1. Close the integrated terminal.
+1. 統合ターミナルを閉じます。
 
-1. Return to the editor tab for the **script.cs** code file.
+1. **script.cs** コード ファイルのエディター タブに戻ります。
 
-1. Delete the following lines of code:
+1. 次のコード行を削除します:
 
     ```
     Product saddle = new()
@@ -339,37 +339,37 @@ In this task, You'll now use the set of asynchronous methods in the Microsoft.Az
     await container.CreateItemAsync<Product>(saddle);
     ```
 
-1. Add the below command to create a string variable named **id** with a value of **706cd7c6-db8b-41f9-aea2-0e0c7e8eb009**:
+1. 次のコマンドを追加し、**id** という名前の文字列変数を作成します。値は **706cd7c6-db8b-41f9-aea2-0e0c7e8eb009** です:
 
     ```
     string id = "706cd7c6-db8b-41f9-aea2-0e0c7e8eb009";
     ```
 
-1. Add the below command to create a string variable named **categoryId** with a value of **9603ca6c-9e28-4a02-9194-51cdb7fea816**:
+1. 次のコマンドを追加し、**categoryId** という名前の文字列変数を作成します。値は **9603ca6c-9e28-4a02-9194-51cdb7fea816** です:
 
     ```
     string categoryId = "9603ca6c-9e28-4a02-9194-51cdb7fea816";
     ```
 
-1. Add the below command to create a variable of type [PartitionKey][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.partitionkey] named **partitionKey** passing in the **categoryId** variable as a constructor parameter:
+1. 次のコマンドを追加し、**categoryId** 変数をコンストラクター引数として渡して、[PartitionKey][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.partitionkey] 型の変数 **partitionKey** を作成します:
 
     ```
     PartitionKey partitionKey = new (categoryId);
     ```
 
-1. Add the below command to Asynchronously invoke the generic [ReadItemAsync<>][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.readitemasync] method of the **container** variable passing in the **id** and **partitionkey** variables as method parameters, using **Product** as the generic type, and storing the result in a variable named **saddle** of type **Product**:
+1. 次のコマンドを追加し、**container** 変数のジェネリック メソッド `ReadItemAsync<>` を非同期で呼び出します。`id` と `partitionKey` 変数を渡し、ジェネリック型には **Product** を指定して、結果を **Product** 型の **saddle** という変数に格納します:
 
     ```
     Product saddle = await container.ReadItemAsync<Product>(id, partitionKey);
     ```
 
-1. Add the below command to Invoke the static **Console.WriteLine** method to print the saddle object using a formatted output string:
+1. 次のコマンドを追加し、静的メソッド **Console.WriteLine** を呼び出して、整形された出力文字列で `saddle` オブジェクトを表示します:
 
     ```
     Console.WriteLine($"[{saddle.id}]\t{saddle.name} ({saddle.price:C})");
     ```
 
-1. Once you are done, your code file should now include:
+1. 完了すると、コード ファイルには次の内容が含まれているはずです:
   
     ```
     using System;
@@ -394,44 +394,43 @@ In this task, You'll now use the set of asynchronous methods in the Microsoft.Az
     Console.WriteLine($"[{saddle.id}]\t{saddle.name} ({saddle.price:C})");
     ```
 
-1. **Save** the **script.cs** code file.
+1. **script.cs** コード ファイルを **保存** します。
 
-1. In **Visual Studio Code**, open the context menu for the **06-sdk-crud (1)** folder and then select **Open in Integrated Terminal (2)** to open a new terminal instance.
+1. **Visual Studio Code** で **06-sdk-crud (1)** フォルダーのコンテキスト メニューを開き、**Open in Integrated Terminal (2)** を選択して新しいターミナルを開きます。
 
     ![06](media/New-image67.png)
 
-1. Build and run the project using the **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** command:
+1. **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** コマンドを使用してプロジェクトをビルドおよび実行します:
 
     ```
     dotnet run
     ```
 
-1. Observe the output from the terminal. Specifically, observe the formatted output text with the ID, name, and price of the item.
+1. ターミナルの出力を確認します。特に、アイテムの ID、名前、価格が整形されたテキストとして表示されていることを確認します。
 
     ![06](media/New-image70.png)
    
-1. Close the integrated terminal.
+1. 統合ターミナルを閉じます。
 
-### Task 4: Perform update and delete point operations with the SDK
+### タスク 4: SDK を使用した更新と削除のポイント操作
 
-In this task, you will update the product's price and name using the UpsertItemAsync method and verify the changes in the Azure portal. After confirming the update, you will delete the item with the DeleteItemAsync method and ensure the item is removed by checking the Data Explorer.
+このタスクでは、`UpsertItemAsync` メソッドを使用して製品の価格と名前を更新し、Azure ポータルで変更を確認します。更新が確認できたら、`DeleteItemAsync` メソッドでアイテムを削除し、Data Explorer でアイテムが削除されたことを確認します。
 
-While learning the SDK, it's not uncommon to use an online Azure Cosmos DB SDK account or the emulator to update an item and  oscillate back and forth between the Data Explorer and your IDE of choice as you perform an operation and check to see if your change has been applied. Here, you will do just that as you update and delete an item using the SDK.
+SDK を学習する際には、オンラインの Azure Cosmos DB SDK アカウントやエミュレーターを使用してアイテムを更新し、操作の結果を確認するために Data Explorer と IDE を行き来することがよくあります。ここでは、SDK を使ってアイテムを更新および削除する際にそのような手順を実行します。
 
-1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under 
-   services.
+1. Azure ポータル ページで、ポータル上部の [Search resources, services and docs (G+/)] ボックスに **Azure Cosmos DB (1)** と入力し、サービスとして表示される **Azure Cosmos DB (2)** を選択します。
 
    ![06](media/New-image1.png)
 
-1. Select **sql-<inject key="DeploymentID" enableCopy="false"/>**.
+1. **sql-<inject key="DeploymentID" enableCopy="false"/>** を選択します。
 
      ![06](media/New-image68.png)
 
-1. Within the **Azure Cosmos DB** account resource **overview page (1)** , navigate to the **Data Explorer (2)** pane. 
+1. **Azure Cosmos DB** アカウント リソースの **overview page (1)** で、**Data Explorer (2)** ペインに移動します。
 
     ![06](media/DB04.png)
 
-1. In the **Data Explorer**, expand the **cosmicworks (2)** database node, expand the **products (3)** container node, and then select **Items (4)**.And then observe the values of the **name** and **price** properties of the item.
+1. **Data Explorer** で **cosmicworks (2)** データベース ノードを展開し、**products (3)** コンテナー ノードを展開してから **Items (4)** を選択します。続いて、アイテムの **name** と **price** プロパティの値を確認します。
 
     ![06](media/DB19.png)
 
@@ -442,35 +441,35 @@ While learning the SDK, it's not uncommon to use an online Azure Cosmos DB SDK a
 
     ![06](media/New-image71.png)
 
-    >**Note**: At this point, these values should not have been changed since you created the item. You will change these values in this exercise.
+    >**補足**: この時点では、これらの値はアイテムを作成したときから変更されていないはずです。この演習でこれらの値を変更します。
 
-1. Return to **Visual Studio Code**. Return to the editor tab for the **script.cs** code file.
+1. **Visual Studio Code** に戻り、**script.cs** コード ファイルのエディター タブに戻ります。
 
-1. Delete the following lines of code:
+1. 次のコード行を削除します:
 
     ```
     Console.WriteLine($"[{saddle.id}]\t{saddle.name} ({saddle.price:C})");
     ```
 
-1. Add the below command to change the **saddle** variable by setting the value of the price property to **32.55**:
+1. 次のコマンドを追加して、**saddle** 変数の `price` プロパティの値を **32.55** に変更します:
 
     ```
     saddle.price = 32.55d;
     ```
 
-1. Add the below command to modify the **saddle** variable again by setting the value of the **name** property to **Road LL Saddle**:
+1. 次のコマンドを追加して、**saddle** 変数の `name` プロパティの値を **Road LL Saddle** に変更します:
 
     ```
     saddle.name = "Road LL Saddle";
     ```
 
-1. Add the below command to Asynchronously invoke the generic [UpsertItemAsync<>][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.upsertitemasync] method of the **container** variable passing in the **saddle** variable as the method parameter and using **Product** as the generic type:
+1. 次のコマンドを追加し、**container** 変数のジェネリック メソッド `UpsertItemAsync<>` を非同期で呼び出して、**saddle** 変数を渡します。ジェネリック型には **Product** を指定します:
 
     ```
     await container.UpsertItemAsync<Product>(saddle);
     ```
 
-1. Once you are done, your code file should now include:
+1. 完了すると、コード ファイルには次の内容が含まれているはずです:
   
     ```
     using System;
@@ -498,45 +497,46 @@ While learning the SDK, it's not uncommon to use an online Azure Cosmos DB SDK a
     await container.UpsertItemAsync<Product>(saddle);
     ```
 
-1. **Save** the **script.cs** code file.
+1. **script.cs** コード ファイルを **保存** します。
 
-1. In **Visual Studio Code**, open the context menu for the **06-sdk-crud (1)** folder and then select **Open in Integrated Terminal (2)** to open a new terminal instance.
+1. **Visual Studio Code** で **06-sdk-crud (1)** フォルダーのコンテキスト メニューを開き、**Open in Integrated Terminal (2)** を選択して新しいターミナルを開きます。
 
     ![06](media/New-image67.png)
 
-1. Build and run the project using the **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** command:
+1. **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** コマンドを使用してプロジェクトをビルドおよび実行します:
 
     ```
     dotnet run
     ```
 
-1. Close the integrated terminal.
+1. 統合ターミナルを閉じます。
 
-1. Navigate back to Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under 
-   services.
+1. Azure ポータル ページに戻り、ポータル上部の [Search resources, services and docs (G+/)] ボックスに **Azure Cosmos DB (1)** と入力し、サービスとして表示される **Azure Cosmos DB (2)** を選択します。
 
    ![06](media/New-image1.png)
 
-1. Select **sql-<inject key="DeploymentID" enableCopy="false"/>**.
+1. **sql-<inject key="DeploymentID" enableCopy="false"/>** を選択します。
 
      ![06](media/New-image68.png)
 
-1. Within the **Azure Cosmos DB** account resource **overview page (1)** , navigate to the **Data Explorer (2)** pane. 
+1. **Azure Cosmos DB** アカウント リソースの **overview page (1)** で、**Data Explorer (2)** ペインに移動します。
 
-    ![06](media/DB04.png) and then observe the values of the **name** and **price** properties of the item.
+    ![06](media/DB04.png)
+
+1. **Data Explorer** で **cosmicworks (2)** データベース ノードを展開し、**products (3)** コンテナー ノードを展開してから **Items (4)** を選択します。アイテムの **name** と **price** プロパティの値を確認します。
 
     | **Property** | **Value** |
     | --- | --- |
     | **Name** | *Road LL Saddle* |
     | **Price** | *$32.55* |
 
-    ![06](media/New-image72.png) 
+    ![06](media/New-image72.png)
 
-    >**Note**: At this point, these values should  have been changed since you have observed the item.
+    >**補足**: この時点では、これらの値が変更されているはずです。
 
-1. Return to **Visual Studio Code**. Return to the editor tab for the **script.cs** code file.
+1. **Visual Studio Code** に戻り、**script.cs** コード ファイルのエディター タブに戻ります。
 
-1. Delete the following lines of code:
+1. 次のコード行を削除します:
 
     ```
     Product saddle = await container.ReadItemAsync<Product>(id, partitionKey);
@@ -547,58 +547,57 @@ While learning the SDK, it's not uncommon to use an online Azure Cosmos DB SDK a
     await container.UpsertItemAsync<Product>(saddle);
     ```
 
-1. Add the below command to Asynchronously invoke the generic [DeleteItemAsync<>][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.deleteitemasync] method of the **container** variable passing in the **id** and **partitionkey** variables as method parameters and using **Product** as the generic type:
+1. 次のコマンドを追加し、**container** 変数のジェネリック メソッド `DeleteItemAsync<>` を非同期で呼び出します。**id** と **partitionKey** 変数を渡し、ジェネリック型には **Product** を指定します:
 
     ```
     await container.DeleteItemAsync<Product>(id, partitionKey);
     ```
 
-1. **Save** the **script.cs** code file.
+1. **script.cs** コード ファイルを **保存** します。
 
-1. In **Visual Studio Code**, open the context menu for the **06-sdk-crud (1)** folder and then select **Open in Integrated Terminal (2)** to open a new terminal instance.
+1. **Visual Studio Code** で **06-sdk-crud (1)** フォルダーのコンテキスト メニューを開き、**Open in Integrated Terminal (2)** を選択して新しいターミナルを開きます。
 
     ![06](media/New-image67.png)
 
-1. Build and run the project using the **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** command:
+1. **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** コマンドを使用してプロジェクトをビルドおよび実行します:
 
     ```
     dotnet run
     ```
 
-1. Close the integrated terminal.
+1. 統合ターミナルを閉じます。
 
-1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under 
-   services.
+1. Azure ポータル ページに戻り、ポータル上部の [Search resources, services and docs (G+/)] ボックスに **Azure Cosmos DB (1)** と入力し、サービスとして表示される **Azure Cosmos DB (2)** を選択します。
 
    ![06](media/New-image1.png)
 
-1. Select **sql-<inject key="DeploymentID" enableCopy="false"/>**.
+1. **sql-<inject key="DeploymentID" enableCopy="false"/>** を選択します。
 
      ![06](media/New-image68.png)
 
-1. Within the **Azure Cosmos DB** account resource **overview page (1)** , navigate to the **Data Explorer (2)** pane. 
+1. **Azure Cosmos DB** アカウント リソースの **overview page (1)** で、**Data Explorer (2)** ペインに移動します。
 
     ![06](media/DB04.png)
 
-1. Select the **Items** node. Observe that the items list is now empty.
+1. **Items** ノードを選択します。アイテム一覧が空であることを確認します。
 
      ![06](media/New-image73.png)
     
-1. Close your web browser window or tab.
+1. ブラウザーのウィンドウまたはタブを閉じます。
 
-1. Close **Visual Studio Code**.
+1. **Visual Studio Code** を閉じます。
 
-### Summary 
+### 要約
 
-In this lab, you explored how to perform essential CRUD operations using the Azure Cosmos DB for NoSQL SDK. You began by creating an Azure Cosmos DB for NoSQL account, followed by establishing a connection to the account using the SDK, and then creating a database and container. Next, you executed create and read operations on items within the container, which provided hands-on experience in managing data. Finally, you updated and deleted items, reinforcing your understanding of data manipulation in Cosmos DB. By the end of the lab, you gained valuable insights into integrating CRUD operations programmatically, enabling efficient data management within a NoSQL environment.
+このラボでは、Azure Cosmos DB for NoSQL SDK を使用して基本的な CRUD 操作を実行する方法を学習しました。まず Azure Cosmos DB for NoSQL アカウントを作成し、次に SDK を使用してアカウントに接続し、データベースとコンテナーを作成しました。続いてコンテナー内のアイテムに対して作成と読み取り操作を実行し、データの管理を実践的に体験しました。最後に、アイテムを更新および削除し、Cosmos DB におけるデータ操作の理解を深めました。ラボの終了時には、プログラムによる CRUD 操作の統合により、NoSQL 環境での効率的なデータ管理が可能になることを理解しました。
 
-### Review
+### レビュー
 
-In this lab, you have completed:
+このラボで完了した項目:
 
-- Created an Azure Cosmos DB for NoSQL account.
-- Connected to the Azure Cosmos DB for NoSQL account from the SDK.
-- Created and read point operations on items with the SDK.
-- Updated and deleted point operations with the SDK.
+- Azure Cosmos DB for NoSQL アカウントを作成しました。
+- SDK から Azure Cosmos DB for NoSQL アカウントに接続しました。
+- SDK を使用してアイテムの作成および読み取りポイント操作を実行しました。
+- SDK を使用してアイテムの更新および削除ポイント操作を実行しました。
 
-### You have successfully completed the lab
+### ラボを正常に完了しました

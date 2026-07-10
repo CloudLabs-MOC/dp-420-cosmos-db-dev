@@ -1,63 +1,65 @@
 ---
 lab:
-    title: 'Setup lab environment'
-    module: 'Setup'
+    title: 'ラボ環境のセットアップ'
+    module: 'セットアップ'
 ---
 
-# Setup local lab environment
+# ローカルラボ環境のセットアップ
 
-Ideally, you should complete these labs in a hosted lab environment. If you want to complete them on your own computer, you can do so by installing the following software. You may experience unexpected dialogs and behavior when using your own environment. Due to the wide range of possible local configurations, the course team cannot support issues you may encounter in your own environment.
+理想的には、これらのラボはホストされたラボ環境で実施してください。ご自身のコンピュータで実施する場合は、以下のソフトウェアをインストールすることで進められます。ご自身の環境では予期しないダイアログや動作が発生することがあり得ます。ローカル環境の構成は多岐にわたるため、コースチームは個別の環境で発生する問題についてサポートできない場合があります。
 
-## Windows Installation
+## Windows のインストール
 
-> &#128221; The instructions below are for a Windows 10 computer. You can also use Linux or MacOS. You may need to adapt the lab instructions for your chosen OS.
+> &#128221; 以下の手順は Windows 10 コンピュータ向けです。Linux や MacOS でも実行できます。選択した OS に合わせてラボ手順を調整する必要があるかもしれません。
 
 ### Windows 10 (OS)
 
-1. Install Windows 10 (*version 2004 or later*).
+1. Windows 10 をインストールします（*version 2004 以降*）。
 
-1. Apply all available updates.
+1. 利用可能なすべての更新プログラムを適用します。
 
 ### Edge
 
-1. Install the latest version of Microsoft Edge from [microsoft.com/edge].
+1. 以下から最新の Microsoft Edge をインストールしてください: [microsoft.com/edge].
 
 ### .NET 6 SDK
 
-1. Download and install the SDK (not runtime) from [dotnet.microsoft.com/download/dotnet/6.0].
+1. SDK（ランタイムではなく）を以下からダウンロードしてインストールしてください: [dotnet.microsoft.com/download/dotnet/6.0].
 
 ### PowerShell 7
 
-1. Download and install from [github.com/powershell/powershell/releases].
+1. 以下からダウンロードしてインストールしてください: [github.com/powershell/powershell/releases].
 
 ### Git
 
-1. Download and install from [git-scm.com/downloads].
+1. 以下からダウンロードしてインストールしてください: [git-scm.com/downloads].
 
-    - Use the default options in the installer.
+    - インストーラーではデフォルトのオプションを使用してください。
 
 ### Windows Terminal
 
-1. Download and install from [github.com/microsoft/terminal/releases].
+1. 以下からダウンロードしてインストールしてください: [github.com/microsoft/terminal/releases].
 
-1. Configure **PowerShell** as the default terminal
+1. **PowerShell** を既定のターミナルとして設定してください
 
 ### Visual Studio Code (and extensions)
 
-1. Download and install from [code.visualstudio.com/download].
+### Visual Studio Code（および拡張機能）
 
-    - Use the default options in the installer.
+1. 以下からダウンロードしてインストールしてください: [code.visualstudio.com/download].
 
-1. After installation, start Visual Studio Code.
+    - インストーラーではデフォルトのオプションを使用してください。
 
-1. In the **Extensions** menu, search for and install the following extensions from Microsoft:
+1. インストール後、Visual Studio Code を起動してください。
+
+1. **Extensions**（拡張機能）メニューで、Microsoft の以下の拡張機能を検索してインストールしてください:
 
     - [C#][marketplace.visualstudio.com/ms-dotnettools.csharp]
 
-### Azure Cosmos DB Emulator
+### Azure Cosmos DB エミュレーター
 
-1. Download and install from [docs.microsoft.com/azure/cosmos-db/local-emulator].
-    - Use the default options in the installer.
+1. 以下からダウンロードしてインストールしてください: [docs.microsoft.com/azure/cosmos-db/local-emulator].
+    - インストーラーではデフォルトのオプションを使用してください。
 
 [code.visualstudio.com/download]: https://code.visualstudio.com/download
 [docs.microsoft.com/azure/cosmos-db/local-emulator]: https://docs.microsoft.com/azure/cosmos-db/local-emulator#download-the-emulator
