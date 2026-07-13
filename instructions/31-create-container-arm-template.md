@@ -187,7 +187,6 @@ Azure Resource Manager の **Microsoft.DocumentDB** リソースプロバイダ�
 1. 統合ターミナルを開いたまま、**deploy.json** ファイルに戻ります。
 
 1. **resources** 配列内に、Azure Cosmos DB for NoSQL コンテナーを作成する JSON オブジェクトを追加します:
-``` 
     ```
     ,
     {
