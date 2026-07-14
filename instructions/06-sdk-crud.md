@@ -1,20 +1,20 @@
-# Create and update documents with the Azure Cosmos DB for NoSQL SDK
+# Lab 05: Create and update documents with the Azure Cosmos DB for NoSQL SDK
 
-## Lab scenario
+## Estimated Duration: 60 minutes
 
-The [Microsoft.Azure.Cosmos.Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] class includes a set of member methods to create, retrieve, update, and delete items within an Azure Cosmos DB for NoSQL container. Together, these methods perform some of the most common “CRUD” operations across various items within API for NoSQL containers.
+## Lab Scenario
+
+The [Microsoft.Azure.Cosmos.Container] [docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] class includes a set of member methods to create, retrieve, update, and delete items within an Azure Cosmos DB for NoSQL container. Together, these methods perform some of the most common “CRUD” operations across various items within API for NoSQL containers.
 
 In this lab, you’ll use the SDK to perform everyday CRUD operations on an item within an Azure Cosmos DB for NoSQL container.
 
-## Lab objectives
+## Lab Objectives
 
 In this lab, you will complete the following tasks:
 - Task 1: Create an Azure Cosmos DB for NoSQL account.
 - Task 2: Connect to the Azure Cosmos DB for NoSQL account from the SDK.
 - Task 3: Perform create and read point operations on items with the SDK.
 - Task 4: Perform update and delete point operations with the SDK.
-
-## Estimated Timing: 60 minutes
 
 ## Architecture Diagram
 
@@ -43,7 +43,7 @@ In this lab, you will complete the following tasks:
 
    ![06](media/DB24.png)
 
-### Task 1: Create an Azure Cosmos DB for NoSQL account
+## Task 1: Create an Azure Cosmos DB for NoSQL account
 
 In this task, you will create an Azure Cosmos DB account using the API for NoSQL. After provisioning the account, you'll retrieve the necessary connection details, including the endpoint (URI) and primary key. These credentials will allow you to connect to the Cosmos DB account using the Azure SDK or another SDK of your choice.
 
@@ -51,11 +51,11 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Navigate back to Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
-   ![06](media/New-image1.png)
+   ![06](media/L1E1T1S1.png)
    
 1. Select **+ Create (1)** under **Azure Cosmos DB for NoSQL** click on **Create (2)** to create  **Azure Cosmos DB for NoSQL** account.
 
-    ![06](media/New-image2.png)
+    ![06](media/L1E1T1S2.png)
 
     ![06](media/New-image3.png)
 
@@ -90,15 +90,15 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. In the **Azure Cosmos DB account**, expand **Settings (1)** from the left menu, then select **Keys (2)**.
 
-    ![06](media/DB15.png)
+    ![06](media/L2E1T1S8.png)
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-    1. Record the value of the **URI** field. You will use this **endpoint** value later in this exercise.
+    - Record the value of the **URI** field. You will use this **endpoint** value later in this exercise.
 
-    1. Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
+    - Record the value of the **PRIMARY KEY** field. You will use this **key** value later in this exercise.
 
-        ![06](media/New-image9.png)
+        ![06](media/M8E1T1S9.png)
        
 1. Switch back to **Visual Studio Code**.
 
@@ -109,7 +109,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     
 <validation step="185fcc24-d57e-4db3-a26d-1b9d4b61dbf2" />
 
-### Task 2: Connect to the Azure Cosmos DB for NoSQL account from the SDK
+## Task 2: Connect to the Azure Cosmos DB for NoSQL account from the SDK
 
 In this task, you will connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET. You'll use Visual Studio Code to run a script that creates a new database and container within your Cosmos DB account. Once the database and container are created, you will validate their existence using the Data Explorer in the Azure portal.
 
@@ -121,13 +121,13 @@ In this task, you will connect to the Azure Cosmos DB for NoSQL account using th
         
     >**Note**: This command will open the terminal with the starting directory already set to the **06-sdk-crud** folder.
 
-1. Add the [Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1] package from NuGet using the following command:
+1. Add the [Microsoft.Azure.Cosmos] [nuget.org/packages/microsoft.azure.cosmos/3.22.1] package from NuGet using the following command:
 
     ```
     dotnet add package Microsoft.Azure.Cosmos --version 3.22.1
     ```
 
-1. Build the project using the [dotnet build][docs.microsoft.com/dotnet/core/tools/dotnet-build] command:
+1. Build the project using the [dotnet build] [docs.microsoft.com/dotnet/core/tools/dotnet-build] command:
 
     ```
     dotnet build
@@ -139,7 +139,7 @@ In this task, you will connect to the Azure Cosmos DB for NoSQL account using th
 
     ![06](media/DB38.png)
 
-    >**Note**: The **[Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1]** library has already been pre-imported from NuGet.
+    >**Note**: The **[Microsoft.Azure.Cosmos] [nuget.org/packages/microsoft.azure.cosmos/3.22.1]** library has already been pre-imported from NuGet.
 
 1. Locate the **string** variable named **endpoint**. Set its value to the **endpoint** of the Azure Cosmos DB account you created in the previous lab.
 
@@ -208,15 +208,15 @@ In this task, you will connect to the Azure Cosmos DB for NoSQL account using th
 
 1. Navigate back to Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
-   ![06](media/New-image1.png)
+   ![06](media/L1E1T1S1.png)
 
 1. Select **sql-<inject key="DeploymentID" enableCopy="false"/>**.
 
-     ![06](media/New-image68.png)
+     ![06](media/M8E1T3S3.png)
 
 1. Within the **Azure Cosmos DB** account resource **overview page (1)** , navigate to the **Data Explorer (2)** pane. 
 
-    ![06](media/DB04.png)
+    ![06](media/L2E1T1S22.png)
 
 1. In the **Data Explorer**, expand the **cosmicworks (2)** database node, expand the **products (3)** container node.
 
@@ -229,7 +229,7 @@ In this task, you will connect to the Azure Cosmos DB for NoSQL account using th
 
 <validation step="efd4c72c-608a-423e-97eb-a3700baca703" />
 
-### Task 3: Perform create and read point operations on items with the SDK
+## Task 3: Perform create and read point operations on items with the SDK
 
 In this task, You'll now use the set of asynchronous methods in the Microsoft.Azure.Cosmos.Container class to perform common operations on items within a API for NoSQL container. These operations are all done using the task asynchronous programming model in C#.
 
@@ -400,7 +400,7 @@ In this task, You'll now use the set of asynchronous methods in the Microsoft.Az
 
     ![06](media/New-image67.png)
 
-1. Build and run the project using the **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** command:
+1. Build and run the project using the **[dotnet run] [docs.microsoft.com/dotnet/core/tools/dotnet-run]** command:
 
     ```
     dotnet run
@@ -412,7 +412,7 @@ In this task, You'll now use the set of asynchronous methods in the Microsoft.Az
    
 1. Close the integrated terminal.
 
-### Task 4: Perform update and delete point operations with the SDK
+## Task 4: Perform update and delete point operations with the SDK
 
 In this task, you will update the product's price and name using the UpsertItemAsync method and verify the changes in the Azure portal. After confirming the update, you will delete the item with the DeleteItemAsync method and ensure the item is removed by checking the Data Explorer.
 
@@ -421,19 +421,19 @@ While learning the SDK, it's not uncommon to use an online Azure Cosmos DB SDK a
 1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under 
    services.
 
-   ![06](media/New-image1.png)
+   ![06](media/L1E1T1S1.png)
 
 1. Select **sql-<inject key="DeploymentID" enableCopy="false"/>**.
 
-     ![06](media/New-image68.png)
+     ![06](media/L1E1T1S2.png)
 
 1. Within the **Azure Cosmos DB** account resource **overview page (1)** , navigate to the **Data Explorer (2)** pane. 
 
-    ![06](media/DB04.png)
+    ![06](media/L2E1T1S22.png)
 
 1. In the **Data Explorer**, expand the **cosmicworks (2)** database node, expand the **products (3)** container node, and then select **Items (4)**.And then observe the values of the **name** and **price** properties of the item.
 
-    ![06](media/DB19.png)
+    ![06](./media/M6E1T4S4.png)
 
     | **Property** | **Value** |
     | :--- | :--- |
@@ -515,15 +515,15 @@ While learning the SDK, it's not uncommon to use an online Azure Cosmos DB SDK a
 1. Navigate back to Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under 
    services.
 
-   ![06](media/New-image1.png)
+   ![06](media/L1E1T1S1.png)
 
 1. Select **sql-<inject key="DeploymentID" enableCopy="false"/>**.
 
-     ![06](media/New-image68.png)
+     ![06](media/M8E1T3S3.png)
 
 1. Within the **Azure Cosmos DB** account resource **overview page (1)** , navigate to the **Data Explorer (2)** pane. 
 
-    ![06](media/DB04.png) and then observe the values of the **name** and **price** properties of the item.
+    ![06](media/L2E1T1S22.png) and then observe the values of the **name** and **price** properties of the item.
 
     | **Property** | **Value** |
     | --- | --- |
@@ -570,29 +570,29 @@ While learning the SDK, it's not uncommon to use an online Azure Cosmos DB SDK a
 1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under 
    services.
 
-   ![06](media/New-image1.png)
+   ![06](media/L1E1T1S1.png)
 
 1. Select **sql-<inject key="DeploymentID" enableCopy="false"/>**.
 
-     ![06](media/New-image68.png)
+     ![06](media/M8E1T3S3.png)
 
 1. Within the **Azure Cosmos DB** account resource **overview page (1)** , navigate to the **Data Explorer (2)** pane. 
 
-    ![06](media/DB04.png)
+    ![06](media/L2E1T1S22.png)
 
 1. Select the **Items** node. Observe that the items list is now empty.
 
-     ![06](media/New-image73.png)
+     ![06](./media/M6E1T4S28.png)
     
 1. Close your web browser window or tab.
 
 1. Close **Visual Studio Code**.
 
-### Summary 
+## Summary 
 
 In this lab, you explored how to perform essential CRUD operations using the Azure Cosmos DB for NoSQL SDK. You began by creating an Azure Cosmos DB for NoSQL account, followed by establishing a connection to the account using the SDK, and then creating a database and container. Next, you executed create and read operations on items within the container, which provided hands-on experience in managing data. Finally, you updated and deleted items, reinforcing your understanding of data manipulation in Cosmos DB. By the end of the lab, you gained valuable insights into integrating CRUD operations programmatically, enabling efficient data management within a NoSQL environment.
 
-### Review
+## Review
 
 In this lab, you have completed:
 
@@ -601,4 +601,4 @@ In this lab, you have completed:
 - Created and read point operations on items with the SDK.
 - Updated and deleted point operations with the SDK.
 
-### You have successfully completed the lab
+## You have successfully completed the lab

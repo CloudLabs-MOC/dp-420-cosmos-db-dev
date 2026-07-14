@@ -1,12 +1,14 @@
-# Search data using Azure AI Search and Azure Cosmos DB for NoSQL
+# Lab 09: Search data using Azure AI Search and Azure Cosmos DB for NoSQL
 
-## Lab scenario
+## Estimated Timing: 30 minutes
+
+## Lab Scenario
 
 Azure AI Search combines a search engine as a service with deep integration with AI capabilities to enrich the information in the search index.
 
 In this lab, you will build an Azure AI Search index that automatically indexes data in an Azure Cosmos DB for NoSQL container and enriches the data using the Azure AI Translator functionality.
 
-## Lab objectives
+## Lab Objectives
 
 In this lab, you will complete the following tasks:
 - Task 1: Create an Azure Cosmos DB for NoSQL account.
@@ -15,23 +17,21 @@ In this lab, you will complete the following tasks:
 - Task 4: Build indexer and index for Azure Cosmos DB for NoSQL data.
 - Task 5: Validate the index with example search queries.
 
-## Estimated Timing: 30 minutes
-
 ## Architecture Diagram
 
 ![image](architecturedia/lab15.png)
 
-### Task 1: Create an Azure Cosmos DB for NoSQL account
+## Task 1: Create an Azure Cosmos DB for NoSQL account
 
 Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple APIs. When provisioning an Azure Cosmos DB account for the first time, you will select which of the APIs you want the account to support (for example, **API for MongoDB** or **API for NoSQL**). Once the Azure Cosmos DB for NoSQL account is done provisioning, you can retrieve the endpoint and key and use them to connect to the Azure Cosmos DB for NoSQL account using the Azure SDK for .NET or any other SDK of your choice.
 
 1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
-   ![06](media/New-image1.png)
+   ![06](media/L1E1T1S1.png)
    
 1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
 
-    ![06](media/New-image2.png)
+    ![06](media/L1E1T1S2.png)
 
     ![06](media/New-image3.png)
 
@@ -62,7 +62,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
     ![06](media/New-image6.png)
 
-    ![06](media/CDB3.png)
+    ![06](media/L2E1T1S8.png)
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
@@ -70,17 +70,20 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
     - Record the value of the **PRIMARY KEY (2)** field. You will use this **key** value later in this exercise.
 
-        ![06](media/New-image9.png)
+        ![06](media/M8E1T1S9.png)
 
+    - Notice the **Primary Connection String** field on the same page **(1)**. Click in the **eye** icon **(2)**. Copy the value you will use this **connection string** value later in this exercise **(3)**.
+
+        ![06](media/L2E1T1S10.png)    
 
     > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
-    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
+        > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+        > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+        > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
     
-    <validation step="527d4167-c9f9-49aa-9489-c384ed66b37f" />
+     <validation step="527d4167-c9f9-49aa-9489-c384ed66b37f" />
 
-### Task 2: Send your Azure Cosmos DB for NoSQL account with sample data
+## Task 2: Send your Azure Cosmos DB for NoSQL account with sample data
 
 You will use a command-line utility that creates a **cosmicworks** database and a **products** container. The tool will then create a set of items that you will observe using the change feed processor running in your terminal window.
 
@@ -122,34 +125,34 @@ You will use a command-line utility that creates a **cosmicworks** database and 
     >**Note**: If you're getting an error, close the visual studio code reopen it and try to run the command once again.
 
     > **Note:** If the error still occurs, perform the following steps and run the command again.
+    >
+    > -  In the Azure portal, open your **Cosmos DB account**, expand **Settings (1)**, and select **Networking (2)**.
+    >
+    > -  Under **Firewall**, click **Add your current IP (3)** or enter the IP address manually.
+    >
+    >    ![06](media/DB60.png)
+    >
+    >-  Click **Save (4)** to apply the changes.
+    >
+    >    ![06](media/DB61.png)
+    >
+    >-  Wait a few minutes for the firewall rule to take effect.
+    >
+    >- You will be prompted for placing the **Parsing Connection String**, place the copied value from the previous task.
+    >
+    >   ![06](media/M7E1T2S6.png)
 
-    1. In the Azure portal, open your **Cosmos DB account**, expand **Settings (1)**, and select **Networking (2)**.
-
-    1. Under **Firewall**, click **Add your current IP (3)** or enter the IP address manually.
-
-        ![06](media/DB60.png)
-
-    1. Click **Save (4)** to apply the changes.
-
-        ![06](media/DB61.png)
-
-    1. Wait a few minutes for the firewall rule to take effect.
-
-    1. In your **Cosmos DB account**, expand **Settings (1)** and select **Keys (2)**.
-
-    1. Copy the **Primary Connection String (4)** and use the **Show/Hide (3)** option if needed to view the value.
-
-     ![06](media/DB63.png)
-
-    ```
-    cosmicworks --connection-string "<your-connection-string>" --datasets product
-    ```
+    > **Note:** If the error still occurs, perform the following steps and run the below command, replace the connection string with the value you have copied in Task 1.
+    > 
+    >    ```
+    >    cosmicworks --connection-string "<your-connection-string>" --datasets product
+    >    ```
 
 1. Wait for the **cosmicworks** command to finish populating the account with a database, container, and items.
 
 1. Close the integrated terminal. And close **Visual Studio Code**.
 
-### Task 3: Create an Azure AI Search resource
+## Task 3: Create an Azure AI Search resource
 
 Before continuing with this exercise, you must first create a new Azure AI Search instance.
 
@@ -191,13 +194,13 @@ Before continuing with this exercise, you must first create a new Azure AI Searc
     
 <validation step="6dc66a44-b1ce-4dc5-91f8-35180452aaaa" />
 
-### Task 4: Build indexer and index for Azure Cosmos DB for NoSQL data
+## Task 4: Build indexer and index for Azure Cosmos DB for NoSQL data
 
 You will create an indexer that indexes a subset of data in a specific Azure Cosmos DB for NoSQL container on an hourly basis.
 
 1. On the **Azure AI Search** service Overview page, click **Import data** to begin creating a search index from Azure Cosmos DB.
 
-    ![06](media/importdata.png)
+    ![06](media/M10E1T4S1.png)
 
 1. On the **Choose a data source** page, select **Azure Cosmos DB** as the data source for the search index.
 
@@ -270,7 +273,7 @@ You will create an indexer that indexes a subset of data in a specific Azure Cos
 
     >**Note:** You may need to use the **Refresh** option to update the blade if it does not update automatically.
 
-    ![06](media/indexers.png)
+    ![06](media/M10E1T4S14.png)
 
 1. Navigate to the **Indexes** tab under **Search Management** in the left navigation pane and then select the **products-index** index.
 
@@ -281,7 +284,7 @@ You will create an indexer that indexes a subset of data in a specific Azure Cos
     
 <validation step="0e28166a-b18c-4b9b-8f4b-0b4d113890bc" />
 
-### Task 5: Validate index with example search queries
+## Task 5: Validate index with example search queries
 
 Now that your materialized view of the Azure Cosmos DB for NoSQL data is in the search index, you can perform a few basic queries that take advantage of the features in Azure AI Search.
 
@@ -291,11 +294,11 @@ Now that your materialized view of the Azure Cosmos DB for NoSQL data is in the 
 
 1. Notice in the **JSON query editor** the syntax of the default JSON search query that returns all possible results using a **\*** (wildcard) operator.
 
-   ```json
-   {
-       "search": "*"
-   }
-   ```
+    ```json
+    {
+        "search": "*"
+    }
+    ```
 
 1. Select the **Search** button to perform the search.
 
@@ -376,7 +379,11 @@ Now that your materialized view of the Azure Cosmos DB for NoSQL data is in the 
 
 1. Close your web browser window or tab.
 
-### Review
+## Summary
+
+This lab guides you through integrating Azure AI Search with Azure Cosmos DB for NoSQL, where you'll create a Cosmos DB account, populate it with sample data, set up an Azure AI Search resource, and build an indexer. 
+
+## Review
 
 In this lab, you have completed:
 
@@ -386,8 +393,4 @@ In this lab, you have completed:
 - Built indexer and index for Azure Cosmos DB for NoSQL data.
 - Validated index with example search queries.
 
-### Summary
-
-This lab guides you through integrating Azure AI Search with Azure Cosmos DB for NoSQL, where you'll create a Cosmos DB account, populate it with sample data, set up an Azure AI Search resource, and build an indexer. 
-
-### You have successfully completed the lab
+## You have successfully completed the lab

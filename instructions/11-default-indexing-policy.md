@@ -1,19 +1,19 @@
-# Review the default index policy for an Azure Cosmos DB for NoSQL container with the portal
+# Lab 07: Review the default index policy for an Azure Cosmos DB for NoSQL container with the portal
 
-## Lab scenario
+## Estimated Timing: 30 minutes
+
+## Lab Scenario
 
 Every container in Azure Cosmos DB has an indexing policy that directs the service on how to index items within the container. By default, this indexing policy indexes every property of every item. The default indexing policy makes it easy to get started with Azure Cosmos DB quickly as you don't have to think about indexing, performance, and management at the start of a project.
 
 In this lab, you'll observe and manipulate the default index policy for a few containers using the Data Explorer.
 
-## Lab objectives
+## Lab Objectives
 
 In this lab, you will complete the following tasks:
 - Task 1: Create an Azure Cosmos DB for NoSQL account.
 - Task 2: Seed the Azure Cosmos DB for NoSQL account with data.
 - Task 3: View and manipulate the default indexing policy.
-
-## Estimated Timing: 30 minutes
 
 ## Architecture Diagram
 
@@ -27,11 +27,11 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
-   ![06](media/New-image1.png)
+   ![06](media/L1E1T1S1.png)
    
 1. Select **+ Create (1)** under **Azure Cosmos DB for NoSQL** click on **Create (2)** to create  **Azure Cosmos DB for NoSQL** account.
 
-    ![06](media/New-image2.png)
+    ![06](media/L1E1T1S2.png)
 
     ![06](media/New-image3.png)
 
@@ -67,12 +67,15 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
-    1. Record the value of the **URI (1)** field. You will use this **endpoint** value later in this exercise.
+    - Record the value of the **URI (1)** field. You will use this **endpoint** value later in this exercise.
 
-    1. Record the value of the **PRIMARY KEY (2)** field. You will use this **key** value later in this exercise.
+    - Record the value of the **PRIMARY KEY (2)** field. You will use this **key** value later in this exercise.
 
-        ![06](media/New-image9.png)
+        ![06](media/M8E1T1S9.png)
 
+    - Notice the **Primary Connection String** field on the same page **(1)**. Click in the **eye** icon **(2)**. Copy the value you will use this **connection string** value later in this exercise **(3)**.
+
+        ![06](media/L2E1T1S10.png)    
 1. Keep your web browser window or tab open.
 
     > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
@@ -82,7 +85,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
     <validation step="140fa89d-d46a-4ae0-a198-9c51019a9b40" />
 
-### Task 2: Seed the Azure Cosmos DB for NoSQL account with data
+## Task 2: Seed the Azure Cosmos DB for NoSQL account with data
 
 In this task, you'll use the CosmicWorks tool to seed your Azure Cosmos DB NoSQL account with sample product data. After installing the tool in Visual Studio Code's terminal, you'll provide your Cosmos DB endpoint and key to run the seeding command. The tool will create a database, container, and insert product data into your account.
 
@@ -125,6 +128,10 @@ The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys samp
 
     >**Note**: If you're getting an error, close the Visual Studio code reopen it and try to run the command once again.
 
+1. You will be prompted for placing the **Parsing Connection String**, place the copied value from the Task 1.
+
+    ![06](media/M7E1T2S6.png)
+
 1. Wait for the **cosmicworks** command to finish populating the account with a database, container, and items.
 
 1. Close the integrated terminal.
@@ -138,7 +145,7 @@ The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys samp
 
     <validation step="eb8c6d06-bc6e-4170-a124-a95072d907a0" />
 
-### Task 3: View and manipulate the default indexing policy
+## Task 3: View and manipulate the default indexing policy
 
 In this task, you'll view and modify the default indexing policy of a Cosmos DB container. After navigating to the Azure Cosmos DB in the Azure portal, you'll observe the default indexing policy, which indexes all paths except _etag. You'll then modify the policy to only index the /price path. After making the changes, you'll run SQL queries to compare the request charge before and after the indexing change, noting how the efficiency of queries changes based on which fields are indexed.
 
@@ -146,20 +153,19 @@ When a container is created by code, portal, or a tool; the indexing policy is s
 
 1. Navigate to the **Azure portal**.
 
-1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under 
-   services.
+1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
 
-   ![06](media/New-image1.png)
+     ![06](media/L1E1T1S1.png)
 
 1. Select **sql-<inject key="DeploymentID" enableCopy="false"/>**.
 
-     ![06](media/New-image68.png)
+     ![06](media/M8E1T3S3.png)
    
 1. Within the **Azure Cosmos DB** account resource, navigate to the **Data Explorer** pane.
 
 1. In the **Data Explorer**, expand the **cosmicworks** database node, then observe the new **products** container node within navigation tree and then select **New SQL Query**.
 
-     ![06](media/New-image74.png)
+     ![06](media/M8E1T3S5.png)
 
 1. Delete the contents of the editor area.
 
@@ -169,13 +175,13 @@ When a container is created by code, portal, or a tool; the indexing policy is s
     SELECT * FROM p WHERE p.name = 'HL Headset'
     ```
 
-   ![06](media/New-image75.png)
+      ![06](media/M8E1T3S7.png)
 
 1. Observe the results of the query.
 
 1. Select **Query Stats**. observe the value of the **Request Charge** field within the **Query Statistics** section.
 
-     ![06](media/New-image76.png)
+     ![06](media/M8E1T3S9.png)
    
     > &#128221; All paths are currently indexed, so this query should be relatively efficient.
 
@@ -221,7 +227,7 @@ When a container is created by code, portal, or a tool; the indexing policy is s
     }
     ```
 
-   ![06](media/New-image77.png)
+      ![06](media/M8E1T3S12.png)
 
 1. Select **New SQL Query**.
   
@@ -233,7 +239,7 @@ When a container is created by code, portal, or a tool; the indexing policy is s
     SELECT * FROM p WHERE p.name = 'HL Headset'
     ```
 
-   ![06](media/New-image78.png)
+      ![06](media/M8E1T3S15.png)
     
 1. Observe the results of the query.
 
@@ -241,7 +247,7 @@ When a container is created by code, portal, or a tool; the indexing policy is s
      
     > &#128221; Now that the **name** property is not indexed, the request charge has increased.
     
-    ![06](media/New-image79.png)
+    ![06](media/M8E1T3S17.png)
 
 1. Delete the contents of the editor area.
 
