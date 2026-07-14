@@ -35,7 +35,7 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
     ![06](media/New-image3.png)
 
-1. 次の設定を指定し、その他の設定はすべて既定値のままにして **Review + create (10)** を選択します:
+1. 次の設定を指定し、その他の設定はすべて既定値のままにして **Review + create (9)** を選択します:
 
     | **設定** | **値** |
     | --------------------|--------------------------------------------------- |
@@ -156,13 +156,13 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
    
 1. **Azure Cosmos DB** アカウント リソース内で、**Data Explorer** ペインに移動します。
 
-1. **Data Explorer** で **cosmicworks** データベース ノードを展開し、ナビゲーション ツリー内の新しい **products** コンテナー ノードを確認してから、**New SQL Query** を選択します。
+1. **Data Explorer (1)** で **cosmicworks (2)** データベース ノードを展開し、ナビゲーション ツリー内の新しい **products (3)** コンテナー ノードを確認してから、**New SQL Query (4)** を選択します。
 
      ![06](media/New-image74.png)
 
 1. エディター領域の内容を削除します。
 
-1. **name** が **HL Headset** と等しいすべてのドキュメントを返す新しい SQL クエリを作成し、**Execute Query** を選択します。
+1. **name** が **HL Headset (1)** と等しいすべてのドキュメントを返す新しい SQL クエリを作成し、**Execute Query (2)** を選択します。
 
     ```
     SELECT * FROM p WHERE p.name = 'HL Headset'
@@ -180,7 +180,7 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
 1. **products** コンテナー ノード内で **Scale & Settings** を選択します。
 
-1. **Indexing Policy** セクションで既定のインデックス ポリシーを確認します:
+1. **Indexing Policy (1)** セクションで既定のインデックス ポリシーを確認します:
 
     ```
     {
@@ -201,7 +201,7 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
     > &#128221; この既定のポリシーは、**_etag** を除くすべてのパスをインデックスします。
 
-1. エディター内でインデックス ポリシーの内容を **/price** パスのみをインデックスするように置き換え、**Save** を選択して変更を保存します。
+1. エディター内でインデックス ポリシーの内容を **/price** パスのみをインデックスするように置き換え、**Save (2)** を選択して変更を保存します。
 
     ```
     {
@@ -226,7 +226,7 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
   
 1. エディター領域の内容を削除します。
 
-1. **name** が **HL Headset** と等しいすべてのドキュメントを返す新しい SQL クエリを作成し、**Execute Query** を選択します。
+1. **name** が **HL Headset (1)** と等しいすべてのドキュメントを返す新しい SQL クエリを作成し、**Execute Query (2)** を選択します。
 
     ```
     SELECT * FROM p WHERE p.name = 'HL Headset'
@@ -236,7 +236,7 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
     
 1. クエリの結果を確認します。
 
-1. **Query Stats** を選択し、**Query Statistics** セクションの **Request Charge** フィールドの値を確認します。
+1. **Query Stats** を選択し、**Query Statistics (1)** セクションの **Request Charge (2)** フィールドの値を確認します。
      
     > &#128221; **name** プロパティがインデックスされていないため、要求量が増加しています。
     
