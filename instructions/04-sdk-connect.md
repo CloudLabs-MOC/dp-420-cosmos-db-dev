@@ -28,19 +28,19 @@
 
 1. 左ペインから **Extensions (1)** ブレードを選択します。**C# (2)** で検索し、**Install (3)** を選択して拡張機能をインストールします。
 
-   ![06](media/New-image50.png)
+   ![06](media/02-01.png)
 
 1. 画面左上の **file (1)** オプションを選択し、ペインのオプションから **Open Folder (2)** を選択します。**C:\AllFiles\dp-420-cosmos-db-dev** に移動します。
 
-    ![06](media/New-image51.png)
+    ![06](media/02-02.png)
 
 1. **C:\AllFiles\dp-420-cosmos-db-dev** に移動し、**dp-420-cosmos-db-dev** を選択して **Select Folder** をクリックします。
 
-   ![06](media/New-image54.png)
+   ![06](media/02-03.png)
 
 1. 「このフォルダー内のファイルの作成者を信頼しますか（Do you trust the author of the files in this folder）」と表示された場合は **Yes, I trust the authors** をクリックします。
 
-   ![06](media/DB24.png)
+   ![06](media/02-04.png)
 
 ### タスク 2: Azure Cosmos DB SQL API アカウントの作成
 
@@ -50,13 +50,13 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
 1. Azure ポータルの上部にある「Search resources, services and docs (G+/)」ボックスに **Azure Cosmos DB (1)** と入力し、サービス一覧から **Azure Cosmos DB (2)** を選択します。
 
-   ![06](media/New-image1.png)
+   ![06](media/02-05.png)
    
 1. **Azure Cosmos DB for NoSQL** の下で **+ Create (1)** を選択し、**Create (2)** をクリックして **Azure Cosmos DB for NoSQL** アカウントを作成します。
 
-   ![06](media/New-image2.png)
+   ![06](media/02-06.png)
 
-   ![06](media/New-image3.png)
+   ![06](media/02-07.png)
 
 1. 以下の設定を指定し、残りはすべてデフォルトのままにして **Review + create (10)** を選択します:
 
@@ -71,21 +71,21 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
    | **Apply Free Tier Discount** | *Do Not Apply* (7) |
    | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* (8) |
 
-    ![06](media/DB25.png)
+    ![06](media/02-08.png)
 
 1. **Create** をクリックします。
 
-   ![06](media/New-image5.png)
+   ![06](media/02-09.png)
 
 1. デプロイが完了するまで待ちます。
 
 1. デプロイが完了したら **Go to resources** を選択します。
 
-   ![06](media/New-image6.png)
+   ![06](media/02-10.png)
 
 1. **Azure Cosmos DB アカウント** で左メニューの **Settings (1)** を展開し、**Keys (2)** を選択します。
 
-   ![06](media/DB15.png)
+   ![06](media/02-11.png)
 
 1. このペインには、SDK からアカウントに接続するために必要な接続情報と資格情報が含まれています。具体的には:
 
@@ -93,7 +93,7 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
    1. **PRIMARY KEY (2)** フィールドの値を記録します。後でこの **key** 値を使用します。
 
-      ![06](media/New-image9.png)
+      ![06](media/02-12.png)
        
    > **おめでとうございます** — ラボを完了しました！ 検証手順は次のとおりです:
    > - 対応するタスクの検証ボタンをクリックします。成功メッセージが表示されれば、ラボの検証に成功しています。
@@ -109,11 +109,11 @@ NuGet のサイトには、.NET アプリケーションにインポート可能
 
 1. ブラウザーを開き、**nuget.org (1)** に移動して利用可能な .NET パッケージを表示します。
 
-   ![06](media/DB26.png)
+   ![06](media/02-13.png)
 
 2. **NuGet** ページで **Packages (1)** を選択し、**Microsoft.Azure.Cosmos (2)** を検索して **.NET Standard (3)** を展開し、**netstandard2.0 (4)** を選択します。
 
-   ![06](media/DB27.png)
+   ![06](media/02-14.png)
 
 3. **.NET CLI** タブを選択して、このライブラリを .NET プロジェクトにインポートするために必要なコマンドを確認します。
    
@@ -132,7 +132,7 @@ NuGet のサイトには、.NET アプリケーションにインポート可能
 
 1. **Visual Studio Code** で、**04-sdk-connect (1)** フォルダーを右クリックし、**Open in Integrated Terminal (2)** を選択して新しいターミナル インスタンスを開きます。
 
-    ![06](media/2.png)
+    ![06](media/02-15.png)
 
     >**注意**: この操作により、ターミナルの開始ディレクトリが **04-sdk-connect** フォルダーに設定された状態で開きます。
 
@@ -151,7 +151,7 @@ NuGet のサイトには、.NET アプリケーションにインポート可能
 
 1. **Visual Studio Code** で `04-sdk-connect (1)` フォルダー内の空の `script.cs (2)` コード ファイルを開きます。
 
-    ![06](media/DB28.png)
+    ![06](media/02-16.png)
 
 1. 組み込みの `System` と `System.Linq` 名前空間の using ブロックを追加します:
    
@@ -219,8 +219,7 @@ NuGet のサイトには、.NET アプリケーションにインポート可能
     ```
 1. `script.cs` コード ファイルを **保存** します。
 
-    ![06](media/DB29.png)
-       ![06](media/DB29.png)
+    ![06](media/02-17.png)
 
    ### タスク 6: スクリプトのテスト
    このタスクでは、Visual Studio Code の統合ターミナルを開いてプロジェクトを `dotnet run` コマンドで実行し、スクリプトをテストします。出力にはアカウント名と最初の書き込み可能リージョンが表示されます。
@@ -229,7 +228,7 @@ NuGet のサイトには、.NET アプリケーションにインポート可能
 
    1. **Visual Studio Code** で `04-sdk-connect (1)` フォルダーを右クリックし、**Open in Integrated Terminal (2)** を選択して新しいターミナルを開きます。
 
-        ![06](media/2.png)
+        ![06](media/02-15.png)
 
    2. 次のコマンドで `Newtonsoft.Json` パッケージを追加します。
 
@@ -246,7 +245,7 @@ NuGet のサイトには、.NET アプリケーションにインポート可能
 
    5. 統合ターミナルを閉じます。
 
-        ![06](media/DB30.png)
+        ![06](media/02-18.png)
 
    6. **Visual Studio Code** を閉じます。
 
