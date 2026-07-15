@@ -23,7 +23,8 @@ Azure Cosmos DB Emulator は、開発とテストのために Azure Cosmos DB �
 環境にエミュレーターが事前インストールされていることを想定しています。インストールされていない場合は、[インストール手順][docs.microsoft.com/azure/cosmos-db/local-emulator] を参照して Azure Cosmos DB Emulator をインストールしてください。エミュレーターが起動したら、接続文字列を取得して Azure SDK for .NET や任意の SDK からエミュレーターに接続できます。
 
 1. スタートメニューから **Azure Cosmos DB Emulator** を検索して起動します。
-    ![06](media/DB31.png)
+   
+    ![06](media/02-19.png)
 
 1. **3〜4分待ちます**。エミュレーターが起動すると既定のブラウザーが自動的に開き、**localhost:8081/_explorer/index.html** のランディングページに移動します。
 
@@ -33,11 +34,11 @@ Azure Cosmos DB Emulator は、開発とテストのために Azure Cosmos DB �
 
     1. **Primary Connection String** フィールドの値を記録します。後でこの **connection string** を使用します。
 
-        ![06](media/New-image56.png)
+        ![06](media/02-20.png)
 
 1. **Explorer** ペインに移動します。**Data Explorer** で **NoSQL API** ナビゲーション ツリーにノードが存在しないことを確認します。
 
-   ![06](media/New-image57.png)
+   ![06](media/02-21.png)
 
 1. ブラウザーのウィンドウまたはタブを閉じます。
 
@@ -52,17 +53,17 @@ Azure Cosmos DB Emulator は、開発とテストのために Azure Cosmos DB �
 
 1. 画面左上の **file (1)** オプションを選択し、ペインのオプションから **Open Folder (2)** を選択して **C:\AllFiles\dp-420-cosmos-db-dev** に移動します。
 
-     ![06](media/New-image51.png)
+     ![06](media/02-22.png)
 
 1. **C:\AllFiles\dp-420-cosmos-db-dev** に移動し、**dp-420-cosmos-db-dev** を選択して **Select Folder** をクリックします。
 
-    ![06](media/New-image54.png)
+    ![06](media/02-23.png)
 
 1. **05-sdk-offline** フォルダーを選択し、**Select Folder** をクリックします。
 
 1. **Visual Studio Code** で、**05-sdk-offline (1)** フォルダー内の空の **script.cs (2)** コード ファイルを開きます。
 
-    ![06](media/DB32.png)
+    ![06](media/02-24.png)
 
 1. 既存の `connectionString` 変数を Azure Cosmos DB Emulator の接続文字列に更新します。
   
@@ -102,11 +103,11 @@ Azure Cosmos DB Emulator は、開発とテストのために Azure Cosmos DB �
 
 1. **script.cs** コード ファイルを **保存** します。
 
-    ![06](media/DB33.png)
+    ![06](media/02-25.png)
 
 1. **Visual Studio Code** で **05-sdk-offline (1)** フォルダーを右クリックし、**Open in Integrated Terminal (2)** を選択して新しいターミナルを開きます。
     
-    ![06](media/1.png)
+    ![06](media/02-26.png)
     
     > **注意**: この操作により、開始ディレクトリが **05-sdk-offline** フォルダーに設定された状態でターミナルが開きます。
 
@@ -124,7 +125,7 @@ Azure Cosmos DB Emulator は、開発とテストのために Azure Cosmos DB �
 
     > **注意:** アプリケーションの実行中に VS Code がクラッシュした場合は、すべてのアプリを閉じてから再度実行してください。
 
-    ![06](media/DB35.png)
+    ![06](media/02-27.png)
 
 1. 統合ターミナルを閉じます。
 
@@ -147,7 +148,7 @@ Azure Cosmos DB Emulator 内に新しいデータベースを作成したので�
 
 1. **Data Explorer** で **SQL API** ナビゲーション ツリー内の新しい **cosmicworks** データベース ノードを確認します。
 
-    ![06](media/DB34.png)
+    ![06](media/02-28.png)
 
 1. ブラウザーのウィンドウまたはタブを閉じます。
 
@@ -159,7 +160,7 @@ Azure Cosmos DB Emulator 内に新しいデータベースを作成したので�
 
 1. **Visual Studio Code** で、**05-sdk-offline (1)** フォルダー内の空の **script.cs (2)** コード ファイルを開きます。
 
-    ![06](media/DB32.png)
+    ![06](media/02-29.png)
 
 1. **database** 変数の `CreateContainerIfNotExistsAsync` メソッドを非同期で呼び出し、新しいコンテナー名 (**products**)、パーティション キー パス (**/categoryId**)、およびスループット (**400**) を渡して、結果を [Container] 型の変数に格納します:
 
@@ -192,11 +193,11 @@ Azure Cosmos DB Emulator 内に新しいデータベースを作成したので�
 
 1. **script.cs** コード ファイルを **保存** します。
 
-     ![06](media/DB36.png)
+     ![06](media/02-30.png)
 
 1. **Visual Studio Code** で **05-sdk-offline** フォルダーを右クリックし、**Open in Integrated Terminal** を選択して新しいターミナルを開きます。
     
-    ![06](media/1.png)
+    ![06](media/02-31.png)
 
 1. 次の [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] コマンドを使用してプロジェクトをビルドおよび実行します:
 
@@ -204,7 +205,7 @@ Azure Cosmos DB Emulator 内に新しいデータベースを作成したので�
     dotnet run
     ```
 
-    ![06](media/DB37.png)
+    ![06](media/02-32.png)
 
 1. 統合ターミナルを閉じます。
 
@@ -216,9 +217,9 @@ Azure Cosmos DB Emulator 内に新しいデータベースを作成したので�
 
 1. **Data Explorer** で **cosmicworks** データベース ノードを展開し、**NoSQL API** ナビゲーション ツリー内に新しい **products** コンテナー ノードが表示されていることを確認します。
 
-    ![06](media/New-image60.png)
+    ![06](media/02-33done.png)
    
-1. ブラウザーのウィンドウまたはタブを閉じます。
+1. ブラウザーのウィンドウまたはタブを閉じます。3
 
     > **おめでとうございます** — ラボを完了しました！ 検証手順は次のとおりです:
     > - 対応するタスクの検証ボタンをクリックします。成功メッセージが表示されれば、ラボの検証に成功しています。
