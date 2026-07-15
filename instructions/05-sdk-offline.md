@@ -217,7 +217,7 @@ Azure Cosmos DB Emulator 内に新しいデータベースを作成したので�
 
 1. **Data Explorer** で **cosmicworks** データベース ノードを展開し、**NoSQL API** ナビゲーション ツリー内に新しい **products** コンテナー ノードが表示されていることを確認します。
 
-    ![06](media/02-33done.png)
+    ![06](media/02-33.png)
    
 1. ブラウザーのウィンドウまたはタブを閉じます。3
 
