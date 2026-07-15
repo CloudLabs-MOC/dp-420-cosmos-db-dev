@@ -29,15 +29,15 @@
 
 2. 左側のパネルから **Extensions (1)** を選択します。**C# (2)** を検索し、**Install (3)** を選択して拡張機能をインストールします。インストールが完了するまで待ちます。
 
-    ![06](media/New-image50.png)
+    ![06](media/04-01.png)
 
 3. 画面左上の **File (1)** オプションを選択し、ペインのオプションから **Open Folder (2)** を選択します。
 
-    ![06](media/c3.png)
+    ![06](media/04-02.png)
 
 4. **C:\AllFiles (1)** に移動し、**dp-420-cosmos-db-dev-main (2)** を選択して **Select Folder (3)** をクリックします。
 
-    ![06](media/c2.png)
+    ![06](media/04-03.png)
 
 5. 「このフォルダー内のファイルの作成者を信頼しますか」と表示された場合は、**Yes, I trust the authors** をクリックします。
 
@@ -47,15 +47,15 @@
 
 1. Azure ポータル ページに戻り、ポータル上部の [Search resources, services and docs (G+/)] ボックスに **Azure Cosmos DB (1)** と入力し、サービス一覧に表示される **Azure Cosmos DB (2)** を選択します。
 
-   ![06](media/New-image1.png)
+   ![06](media/04-04.png)
    
 1. **Azure Cosmos DB for NoSQL** の下にある **+ Create (1)** を選択します。
 
-    ![06](media/New-image2.png)
+    ![06](media/04-05.png)
 
     - **Create (2)** をクリックして Azure Cosmos DB for NoSQL アカウントを作成します。
 
-      ![06](media/New-image3.png)
+      ![06](media/04-06.png)
    
 1. 以下の設定を指定し、それ以外の設定はすべて既定値のままにして、**Review + create (8)** を選択します:
 
@@ -69,18 +69,68 @@
     | **Capacity mode** | *Provisioned throughput* **(6)** |
     | **Apply Free Tier Discount** | *Do Not Apply* **(7)** |
 
-    ![06](media/c4.png) 
-    ![06](media/c5.png)        
+    ![06](media/04-07.png)         
 
-1. バリデーションが通ったら **Create** をクリックします。
+1. 検証が正常に完了したら、**Create** をクリックします。
 
-1. このタスクを続行する前に、デプロイが完了するまで待ちます。
+2. このタスクを続行する前に、デプロイ タスクが完了するまで待機します。
+
+3. **リソースに移動** を選択します。
+
+   ![06](media/04-08.png)
+
+1. 新しく作成された **Azure Cosmos DB** アカウントで、**Settings** の **Keys** ペインに移動します。
+
+   ![06](media/04-09.png)
+
+1. このペインには、SDK からこのアカウントに接続するために必要な接続情報と資格情報が含まれています。具体的には次の内容を確認します。
+
+   * **URI (1)** フィールドの値を記録します。この **endpoint** 値は、この演習の後半で使用します。
+     <br>
+
+   * **eye** アイコン **(2)** をクリックします。**PRIMARY KEY (3)** フィールドの値を記録します。この **key** 値は、この演習の後半で使用します。
+
+     ![06](media/04-10.png)
+
+1. **Visual Studio Code** に戻ります。
+
+2. **Visual Studio Code** の **Explorer** ペインで、**07-sdk-batch (1)** フォルダーを展開し、**script.cs (2)** コード ファイルを選択します。
+
+
+   ![06](media/04-11.png)
+
+1. **07-sdk-batch** フォルダー内の **script.cs** コード ファイルを開きます。
+
+   > **注**: **\[Microsoft.Azure.Cosmos]\[nuget.org/packages/microsoft.azure.cosmos/3.22.1]** ライブラリは、すでに NuGet からインポートされています。
+   > 
+
+2. **endpoint** という名前の **string** 変数を見つけます。その値を、前のラボで作成した Azure Cosmos DB アカウントの **endpoint** に設定します。
+
+   ```
+   string endpoint = "<cosmos-endpoint>";
+   ```
+
+   ![06](media/04-12.png)
+
+> **注**: たとえば、endpoint が **<https://dp420.documents.azure.com:443/>** の場合、C# のステートメントは次のようになります。  
+> **string endpoint = "<https://dp420.documents.azure.com:443/>";**
+
+1. **key** という名前の **string** 変数を見つけます。その値を、前のラボで作成した Azure Cosmos DB アカウントの **key** に設定します。
+
+   ```
+   string key = "<cosmos-key>";
+   ```
+   
+![06](media/04-13.png)
+
+> **注**: たとえば、key が **fDR2ci9QgkdkvERTQ==** の場合、C# のステートメントは次のようになります。  
+> **string key = "fDR2ci9QgkdkvERTQ==";**
 
 1. **script.cs** コード ファイルを **保存** します。
+   
+2. **07-sdk-batch** フォルダーのコンテキスト メニューを開き、フォルダーを右クリック **(1)** してから **Open in Integrated Terminal (2)** を選択し、新しいターミナル インスタンスを開きます。
 
-1. **07-sdk-batch** フォルダーのコンテキスト メニューを開き、右クリック **(1)** して **Open in Integrated Terminal (2)** を選択し、新しい統合ターミナルを開きます。
-
-    ![06](media/c7.png)
+    ![06](media/04-14.png)
 
      >**補足**: このコマンドは、開始ディレクトリが既に **07-sdk-batch** フォルダーに設定された状態でターミナルを開きます。
 
@@ -96,7 +146,7 @@
     dotnet build
     ```
 
-    ![06](media/c8.png)    
+    ![06](media/04-15.png)    
 
 1. 統合ターミナルを閉じます。
 
@@ -152,7 +202,6 @@
     ```
     Console.WriteLine($"Status:\t{response.StatusCode}");
     ```
-    ```
 
 1. `container` 変数の `CreateTransactionalBatch` メソッドを呼び出し、フルエント構文で `CreateItem<>` ジェネリック メソッドを連鎖して **saddle** と **handlebar** を作成する操作を追加し、結果を `TransactionalBatch` 型の **batch** に格納します:
 
@@ -202,7 +251,7 @@
     Console.WriteLine($"Status:\t{response.StatusCode}");
     ```
 
-    ![06](media/c9.png)
+    ![06](media/04-16.png)
 
 1. **script.cs** コード ファイルを **保存** します。
 
@@ -216,19 +265,7 @@
 
 1. ターミナルの出力を確認します。ステータス コードは HTTP 200 **OK** であるはずです。
 
-    ![06](media/c10.png)
-
-1. これでアプリケーションの動作を確認できます。
-
-1. 次のコマンドを使用してプロジェクトをビルドおよび実行します:
-
-    ```
-    dotnet run
-    ```
-
-1. ターミナルの出力を確認します。ステータス コードは HTTP 200 **OK** であるはずです。
-
-    ![06](media/c10.png)
+    ![06](media/04-17.png)
 
 1. これでアプリケーションの動作を確認できます。
 
