@@ -22,13 +22,13 @@ products コンテナーに加えて、ETL 変換とロード操作のターゲ�
 
 1. Azure ポータルの上部にある「Search resources, services and docs (G+/)」ボックスに **Azure Cosmos DB (1)** と入力し、サービス一覧から **Azure Cosmos DB (2)** を選択します。
 
-   ![06](media/03-05.png)
+   ![06](media/00-06.png)
    
 1. **Azure Cosmos DB for NoSQL** の下で **+ Create (1)** を選択し、**Create (2)** をクリックして **Azure Cosmos DB for NoSQL** アカウントを作成します。
 
-    ![06](media/03-06.png)
+    ![06](media/00-07.png)
 
-    ![06](media/03-07.png)
+    ![06](media/00-08.png)
 
 1. 以下の設定を指定し、残りはデフォルトのままにして **Next: Global Distribution (9)** を選択します:
 
@@ -43,7 +43,7 @@ products コンテナーに加えて、ETL 変換とロード操作のターゲ�
     | **Apply Free Tier Discount** | *Do Not Apply* (7) |
     | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* (8) |
 
-     ![06](media/03-08.png)
+     ![06](media/00-09.png)
 
 1. Global Distribution ページで **Next: Networking** をクリックします。**Connectivity method** で **All networks (1)** を選択し、**Review + Create (2)** をクリックします。
 
