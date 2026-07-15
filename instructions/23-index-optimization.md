@@ -30,19 +30,19 @@
 
 2. 左側のペインから **Extensions** ブレードを選択します。**C#** で検索し、**Install** を選択して拡張機能をインストールします。
 
-   ![06](media/New-image50.png)
+   ![06](media/06-01.png)
 
 3. 画面左上の **file** オプションを選択し、ペインのオプションから **Open Folder** を選択します。**C:\AllFiles\dp-420-cosmos-db-dev** に移動します。
 
-   ![06](media/New-image51.png)
+   ![06](media/06-02.png)
 
 4. **C:\AllFiles\dp-420-cosmos-db-dev** に移動し、**dp-420-cosmos-db-dev** を選択して **Select Folder** をクリックします。
 
-    ![06](media/New-image54.png)
+    ![06](media/06-03.png)
 
-5. 「**Do you trust the author of the files in this folder**」が表示された場合は、**Yes, I trust the authors** をクリックします。
+5. 「**はい、フォルダー内のファイルの作成者を信頼しますか？**」が表示された場合は、**はい、作成者を信頼します** をクリックします。
 
-   ![06](media/lab12-2.png)
+   ![06](media/03-04.png)
 
 ### タスク 2: Azure Cosmos DB for NoSQL アカウントを作成する
 
@@ -52,13 +52,13 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
 1. **Azure Portal** ページで、ポータル上部の「Search resources, services and docs (G+/)」ボックスに **Azure Cosmos DB** と入力し、サービスの下に表示される **Azure Cosmos DB** を選択します。
 
-   ![06](media/New-image1.png)
+   ![06](media/07-01.png)
 
 1. **Azure Cosmos DB for NoSQL** の下で **+ Create** を選択し、**Create** をクリックして **Azure Cosmos DB for NoSQL** アカウントを作成します。
 
-   ![06](media/New-image2.png)
+   ![06](media/07-02.png)
 
-   ![06](media/New-image3.png)
+   ![06](media/07-03.png)
    
 1. 以下の設定を指定し、残りの設定はすべて既定値のままにして、**Review + create** を選択します:
 
@@ -70,15 +70,21 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
    | **Location** | *Choose any available region* |
    | **Capacity mode** | *Serverless* |
 
+   ![06](media/07-04.png)
+
 1. 検証が成功したら **Create** をクリックします。
+   
+   ![06](media/07-05.png)
    
 1. このタスクを続行する前に、デプロイメント タスクが完了するまで待ちます。
 
-1. 新しく作成した **Azure Cosmos DB** アカウント リソースに移動し、**Data Explorer** ペインに移動します。
+1. Azure Cosmos DB アカウント リソースの overview page (1) で、Data Explorer (2) ペインに移動します。
+
+    ![06](media/11LB-4.png)
 
 1. **Data Explorer** ペインで **+ New Container** > **+ New Container** を選択します。
 
-   ![06](media/New-image107.png)
+   ![06](media/11LB-5.png)
 
 1. **New Container** ポップアップで、各設定に次の値を入力し、**OK** を選択します:
 
@@ -88,15 +94,16 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
    | **Container id** | *``products``* |
    | **Partition key** | *``/categoryId``* |
 
-   ![06](media/New-image108.png)
+   ![06](media/11LB-6.png)
+   ![06](media/11LB-7.png)
 
 1. **Data Explorer** ペインに戻り、**cosmicworks** データベース ノードを展開し、階層内の **products** コンテナー ノードを確認します。
 
-   ![06](media/New-image109.png)
+   ![06](media/11LB-8.png)
 
 1. 左側のナビゲーション メニューで **Settings** セクションの **Keys** ペインに移動します。
 
-   ![06](media/New-image7.png)
+   ![06](media/11LB-9.png)
 
 1. このペインには、SDK からアカウントに接続するために必要な接続情報と資格情報が含まれています。具体的には:
 
@@ -104,7 +111,7 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
    - **PRIMARY KEY** フィールドの値を記録します。後でこの演習でこの **key** 値を使用します。
 
-     ![06](media/New-image9.png)
+     ![06](media/12LB-12.png)
 
 1. **Visual Studio Code** に戻ります。
 
