@@ -47,27 +47,27 @@ products コンテナーに加えて、ETL 変換とロード操作のターゲ�
 
 1. Global Distribution ページで **Next: Networking** をクリックします。**Connectivity method** で **All networks (1)** を選択し、**Review + Create (2)** をクリックします。
 
-     ![06](media/03-09.png)
+     ![06](media/01-07.png)
 
 1. **Create** をクリックします。
 
-    ![06](media/03-10.png)
+    ![06](media/01-08.png)
 
 1. デプロイが完了するまで待ちます。
 
 1. デプロイが完了したら **Go to resources** を選択します。
 
-    ![06](media/03-11.png)
+    ![06](media/01-09.png)
 
 1. **Azure Cosmos DB account** の左メニューで **Settings (1)** を展開し、**Keys (2)** を選択します。
 
-    ![06](media/03-12.png)
+    ![06](media/01-10.png)
 
 1. このペインには、SDK からアカウントに接続するための接続情報と資格情報が含まれています。具体的には:
 
 1. **Keys (1)** ページで **Show (2)** アイコンをクリックして接続文字列を表示し、**Copy (3)** アイコンをクリックしてコピーし、メモ帳などに保存します。今後の手順で使用します。
 
-    ![06](media/03-13.png)
+    ![06](media/01-11.png)
 
 1. 後で戻るので、ブラウザーのタブは開いたままにしておいてください。
 
@@ -77,7 +77,7 @@ products コンテナーに加えて、ETL 変換とロード操作のターゲ�
 
 1. **Visual Studio Code** で、**... (ellipsis) (1)** → **Terminal (2)** → **New Terminal (3)** の順に選択して新しいターミナルを開きます。
 
-    ![06](media/06-12.png)
+    ![06](media/01-13.png)
 
 1. ターミナルで次のコマンドを実行し、[cosmicworks][nuget.org/packages/cosmicworks] コマンドライン ツールをグローバルにインストールします。
 
@@ -115,19 +115,19 @@ products コンテナーに加えて、ETL 変換とロード操作のターゲ�
 
 1. Azure ポータルの上部にある「Search resources, services and docs (G+/)」ボックスに **Azure Cosmos DB (1)** と入力し、サービス一覧から **Azure Cosmos DB (2)** を選択します。
 
-   ![06](media/03-21.png)
+   ![06](media/01-17.png)
 
 1. **sql-<inject key="DeploymentID" enableCopy="false"/>** を選択します。
 
-     ![06](media/03-22.png)
+     ![06](media/01-18.png)
 
 1. **Azure Cosmos DB** アカウント リソースの **overview page (1)** で、**Data Explorer (2)** ペインに移動します。
 
-    ![06](media/03-23.png)
+    ![06](media/01-19.png)
 
 1. **Data Explorer** で、**cosmicworks (2)** データベース ノードを展開し、**products (3)** コンテナー ノードを展開してから、**Items (4)** を選択します。
 
-    ![06](media/03-27.png)
+    ![06](media/01-20.png)
 
 1. **products** コンテナー内のさまざまな JSON アイテムを確認して選択します。これらは前の手順で使用したコマンドライン ツールによって作成されたアイテムです。
 
