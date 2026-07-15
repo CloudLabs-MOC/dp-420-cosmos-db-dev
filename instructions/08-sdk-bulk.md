@@ -27,17 +27,17 @@
 
 3. 左側ペインの **拡張機能 (1)** アイコンを選択します。検索バーに **C# (2)** と入力し、表示された **拡張機能 (3)** を選択して、最後に **インストール (4)** をクリックします。
 
-    ![](media/visualstudioo.png)
+    ![](media/05-01.png)
 
 4. 画面左上の **ファイル** オプションを選択し、ペインのオプションから **フォルダーを開く** を選択して **C:\AllFiles** に移動します。
 
 5. **dp-420-cosmos-db-dev-main** フォルダーを選択し、**フォルダーの選択** をクリックします。
 
-   ![06](media/New-image54.png)
+   ![06](media/05-02.png)
 
    >**注意:** **このフォルダー内のファイルの作成者を信頼しますか？** のポップアップでは、**はい、作成者を信頼します** を選択します。
 
-    ![06](media/DB24.png)
+    ![06](media/05-03.png)
 
 ### タスク 1: Azure Cosmos DB for NoSQL アカウントを作成し、SDK プロジェクトを構成する
 
@@ -45,13 +45,13 @@
 
 1. Azure ポータルページで、ポータル上部の **リソース、サービス、ドキュメントを検索 (G+/)** ボックスに **Azure Cosmos DB (1)** と入力し、サービスの下に表示される **Azure Cosmos DB (2)** を選択します。
 
-   ![06](media/New-image1.png)
+   ![06](media/05-04.png)
    
 1. **Azure Cosmos DB for NoSQL** の下で **+ 作成 (1)** を選択し、**作成 (2)** をクリックして **Azure Cosmos DB for NoSQL** アカウントを作成します。
 
-    ![06](media/New-image2.png)
+    ![06](media/05-05.png)
 
-    ![06](media/New-image3.png)
+    ![06](media/05-06.png)
 
 1. 次の設定を指定し、残りの設定はデフォルトのままにして、**確認および作成 (10)** を選択します。
 
@@ -66,21 +66,21 @@
     | **Apply Free Tier Discount** | *Do Not Apply* (7) |
     | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* (8) |
 
-     ![06](media/DB25.png)
+     ![06](media/05-07.png)
 
 1. **作成** をクリックします。
 
-    ![06](media/New-image5.png)
+    ![06](media/05-08.png)
 
 1. 展開タスクが完了するまで、このタスクを続行せずに待ちます。
 
 1. 展開が完了したら、**リソースに移動** を選択します。
 
-    ![06](media/New-image6.png)
+    ![06](media/05-09.png)
 
 1. **Azure Cosmos DB アカウント** で左側のメニューから **設定 (1)** を展開し、**キー (2)** を選択します。
 
-    ![06](media/DB15.png)
+    ![06](media/05-10.png)
 
 1. このペインには、SDK からアカウントに接続するための接続情報と資格情報が含まれています。具体的には:
 
@@ -88,15 +88,15 @@
 
    - **PRIMARY KEY** フィールドをコピーします。この **key** 値は後で使用します。
 
-       ![06](media/New-image9.png)
+       ![06](media/05-11.png)
 
 1. **Azure Cosmos DB** アカウントのリソース概要ページ (1) で、**Data Explorer (2)** ペインに移動します。
 
-    ![06](media/DB04.png)
+    ![06](media/05-12.png)
 
 1. **Data Explorer (1)** ページで **新規 (2)** をクリックし、**新しいコンテナー (3)** を選択します。
 
-     ![06](media/DB42.png)
+     ![06](media/05-13.png)
 
 1. **新しいコンテナー** ペインで次の詳細を入力し、**OK (6)** をクリックします。
 
@@ -108,7 +108,8 @@
     | **Partition key** | `/categoryId` **(4)** |
     | **Container throughput** | Autoscale \| `4000` **(5)** |
 
-    ![06](media/DB44.png)
+    ![06](media/05-14.png)
+    ![06](media/05-15.png)
 
 1. **Visual Studio Code** に戻ります。
 
@@ -116,7 +117,7 @@
 
 1. **Visual Studio Code** の **06-sdk-crud (1)** フォルダー内で空の **script.cs (2)** コードファイルを開きます。
 
-    ![06](media/DB45.png)
+    ![06](media/05-16.png)
 
     >**注意**: **[Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1]** ライブラリは NuGet から既に事前にインポートされています。
 
@@ -140,7 +141,7 @@
 
 1. **08-sdk-bulk (1)** フォルダーのコンテキストメニューを開き、**統合ターミナルで開く (2)** を選択して新しいターミナルを開きます。
  
-    ![](media/DB46.png)
+    ![](media/05-17.png)
 
    >**注意**: このコマンドは、開始ディレクトリが **08-sdk-bulk** フォルダーに設定された状態でターミナルを開きます。
 
@@ -287,7 +288,7 @@
 
 1. **08-sdk-bulk (1)** フォルダーのコンテキストメニューを開き、**統合ターミナルで開く (2)** を選択して新しいターミナルを開きます。
  
-    ![](media/DB46.png)
+    ![](media/05-18.png)
 
 1. **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** コマンドを使用してプロジェクトをビルドして実行します。
 
@@ -297,7 +298,7 @@
 
 1. アプリケーションはサイレントに実行されるはずです。実行が完了するまでに約 1～2 分かかる場合があります。
 
-    ![](media/DB47.png)
+    ![](media/05-19.png)
 
 1. 統合ターミナルを閉じます。
 
@@ -318,15 +319,15 @@
 
 1. **Azure Cosmos DB** アカウントのリソース概要ページ (1) で、**Data Explorer (2)** ペインに移動します。
 
-    ![06](media/DB04.png)
+    ![06](media/05-20.png)
 
 1. **Data Explorer** で **cosmicworks (2)** データベースノードを展開し、**products (3)** コンテナノードを展開します。
 
-    ![06](media/DB41.png)
+    ![06](media/05-21.png)
 
 1. **NoSQL API** ナビゲーションツリー内の **products** コンテナノードを選択し、**... (1)** をクリックして **新しい SQL クエリ (2)** を選択します。
 
-   ![](media/DB48.png)
+   ![](media/05-22.png)
 
 1. エディター領域の内容を削除します。
 
@@ -336,7 +337,7 @@
     SELECT COUNT(1) FROM items
     ```
 
-     ![](media/DB49.png)
+     ![](media/05-23.png)
 
 1. **結果 (3)** を確認し、コンテナー内のアイテム数を確認します。
 
