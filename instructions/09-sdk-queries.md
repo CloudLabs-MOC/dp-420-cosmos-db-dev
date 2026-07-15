@@ -32,15 +32,15 @@ Azure Cosmos DB for NoSQL 用の .NET SDK の最新バージョンは、コン�
 
 2. 左側のパネルから **拡張機能 (1)** ブレードを選択します。**C# (2)** で検索し、**インストール (3)** を選択して拡張機能をインストールします。インストールが完了するまで待ちます。
 
-    ![06](media/New-image50.png)
+    ![06](media/06-01.png)
 
 3. 画面左上の **ファイル (1)** オプションを選択し、ペインのオプションから **フォルダーを開く (2)** を選択します。
 
-    ![06](media/c3.png)
+    ![06](media/06-02.png)
 
 4. **C:\AllFiles (1)** に移動し、**dp-420-cosmos-db-dev-main (2)** を選択して **フォルダーの選択 (3)** をクリックします。
 
-    ![06](media/c2.png)
+    ![06](media/06-03.png)
 
 5. **このフォルダー内のファイルの作成者を信頼しますか** のメッセージが表示された場合は、**はい、作成者を信頼します** をクリックします。
 
@@ -52,15 +52,15 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
 1. Azure ポータルページに戻り、ポータル上部の **リソース、サービス、ドキュメントを検索 (G+/)** ボックスに **Azure Cosmos DB (1)** と入力し、サービスの下に表示される **Azure Cosmos DB (2)** を選択します。
 
-   ![06](media/New-image1.png)
+   ![06](media/06-04.png)
    
 1. **Azure Cosmos DB for NoSQL** の下で **+ 作成 (1)** を選択します。
 
-    ![06](media/New-image2.png)
+    ![06](media/06-05.png)
 
     - **Azure Cosmos DB for NoSQL** アカウントを作成するには、**作成 (2)** をクリックします。
 
-      ![06](media/New-image3.png)
+      ![06](media/06-06.png)
 
 1. 次の設定を指定し、残りの設定はすべて既定値のままにして、**次へ: グローバル分散 (9)** を選択します。
 
@@ -75,13 +75,11 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
     | **Apply Free Tier Discount** | *Do Not Apply* (7) |
     | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* (8) |
 
-     ![06](media/c12.png)
-
-     ![06](media/c13.png)
+     ![06](media/06-07.png)
 
 1. グローバル分散ページで **次へ: ネットワーク** をクリックします。**接続方法** で **すべてのネットワーク (1)** を選択し、**確認および作成 (2)** をクリックします。
 
-    ![06](media/c14.png)
+    ![06](media/06-08.png)
 
 1. 検証が完了したら、**作成** をクリックします。
 
@@ -89,19 +87,19 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
 1. **リソースに移動** を選択します。
 
-    ![06](media/New-image6.png)
+    ![06](media/06-09.png)
 
 1. 新しく作成された **Azure Cosmos DB** アカウントで、**設定** の **キー (1)** ペインに移動します。このペインには、SDK からアカウントに接続するための接続情報と資格情報が含まれています。具体的には:
 
     - **URI (2)** フィールドの値を記録します。この **endpoint** 値はこの演習で後ほど使用します。
 
-        ![06](media/c18.png)
+        ![06](media/06-10.png)
 
     - **Primary Connection String** フィールドを確認します。**目のアイコン (1)** をクリックします。後でこの演習で使用する **connection string** の値をコピーします **(2)**。
 
       - PRIMARY KEY の横にある **目のアイコン (3)** をクリックします。**PRIMARY KEY (4)** フィールドの値を記録します。この **key** 値は後で使用します。
 
-        ![06](media/c19.png)    
+        ![06](media/06-11.png)    
         
 1. **Visual Studio Code** に戻ります。
 
@@ -120,7 +118,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
 1. **Visual Studio Code** で、**... (省略記号) (1)** > **ターミナル (2)** > **新しいターミナル (3)** を選択して、既存のインスタンスで新しいターミナルを開きます。
 
-    ![06](media/New-image36.png)
+    ![06](media/06-12.png)
 
 1. マシンでグローバルに使用するために [cosmicworks][nuget.org/packages/cosmicworks] コマンドライン ツールをインストールします。
 
@@ -148,7 +146,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
 1. **cosmicworks** コマンドがデータベース、コンテナー、およびアイテムの作成を完了するまで待ちます。
 
-   ![06](media/c16.png)
+   ![06](media/06-13.png)
    
     >**注意**: エラーが発生した場合は、Visual Studio Code を閉じて再起動し、再度コマンドを実行してください。
 
@@ -165,7 +163,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
     - **product.cs (2)** コードファイルを開きます。
     - **Product** クラスとそのプロパティを確認します。このラボでは、特に **id**、**name**、**price** プロパティを使用します。
 
-      ![06](media/c17.png)    
+      ![06](media/06-14.png)    
 
 1. **Visual Studio Code** の **エクスプローラー** ペインに戻り、**script.cs** コードファイルを開きます。
 
@@ -183,13 +181,13 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
     string key = "<cosmos-key>";
     ```
 
-    ![06](media/c-21.png)     
+    ![06](media/06-15.png)     
 
      >**注意**: 例えば、key が **fDR2ci9QgkdkvERTQ==** の場合、C# 文は **string key = "fDR2ci9QgkdkvERTQ==";** になります。
 
 1. 12 行目の `CosmosContainer container = await database.CreateContainerIfNotExistsAsync("products", "/categoryId");` を削除します。
 
-    ![06](media/c22.png) 
+    ![06](media/06-16.png) 
 
 1. 以下の文を追加します。
 
@@ -197,7 +195,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
     CosmosContainer container = database.GetContainer("products");
     ```
 
-    ![06](media/c23.png) 
+    ![06](media/06-17.png) 
 
 1. スクリプトの末尾に、値が **SELECT * FROM products p** の *string* 型の新しい変数 **sql** を作成する以下のコマンドを追加します。
 
@@ -250,13 +248,13 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
     }
     ```
 
-    ![06](media/c24.png)    
+    ![06](media/06-18.png)    
 
 1. **Ctrl+S** を押して、script.cs ファイルを保存します。
 
 1. **Visual Studio Code** で **09-execute-query-sdk** フォルダーのコンテキストメニューを開き、フォルダー **(1)** を右クリックして **統合ターミナルで開く (2)** を選択し、新しいターミナルを開きます。
 
-    ![06](media/c25.png)
+    ![06](media/06-19.png)
 
 1. [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] コマンドを使用してプロジェクトをビルドおよび実行します:
 
@@ -266,7 +264,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
 1. スクリプトは、コンテナー内のすべての製品を出力します。
 
-    ![06](media/c26.png)
+    ![06](media/06-20.png)
 
 1. 統合ターミナルを閉じます。
 
