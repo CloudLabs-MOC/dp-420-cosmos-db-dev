@@ -30,19 +30,19 @@
 
 2. 左側パネルから **Extensions** ブレードを選択してください。**C#** で検索し、**Install** を選択して拡張機能をインストールしてください。
 
-   ![06](media/New-image50.png)
+   ![06](media/14LB-11.png)
 
 3. 画面左上の **file** オプションを選択し、メニューから **Open Folder** を選択してください。**C:\AllFiles\dp-420-cosmos-db-dev** に移動してください。
 
-   ![06](media/New-image51.png)
+   ![06](media/02-02.png)
 
 4. **C:\AllFiles\dp-420-cosmos-db-dev** に移動し、**dp-420-cosmos-db-dev** を選択して **Select Folder** をクリックしてください。
 
-    ![06](media/New-image54.png)
+    ![06](media/14LB-12.png)
 
 5. **Do you trust the author of the files in this folder** が表示された場合は、**Yes, I trust the authors** をクリックしてください。
 
-   ![06](media/lab12-2.png)
+   ![06](media/14LB-13.png)
 
 ### タスク 2: Azure Cosmos DB for NoSQL アカウントを作成する
 
@@ -52,13 +52,13 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
 1. **Azure Portal** ページで、ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB** と入力し、services の **Azure Cosmos DB** を選択してください。
 
-   ![06](media/New-image1.png)
+   ![06](media/14LB-14.png)
 
 1. **Azure Cosmos DB for NoSQL** の **+ Create** を選択し、**Create** をクリックして **Azure Cosmos DB for NoSQL** アカウントを作成してください。
 
-   ![06](media/New-image2.png)
+   ![06](media/14LB-15.png)
 
-   ![06](media/New-image3.png)
+   ![06](media/14LB-16.png)
 
 1. 以下の設定を指定し、その他の設定は既定値のままにして **Review + create** を選択してください。
 
@@ -78,7 +78,7 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
 1. **Data Explorer** ペインで **+ New Container** > **+ New Container** を選択してください。
 
-   ![06](media/New-image107.png)
+   ![06](media/11LB-5.png)
 
 1. **New Container** ポップアップで各設定に次の値を入力し、**OK** を選択してください。
 
@@ -88,15 +88,16 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
    | **Container id** | *``products``* |
    | **Partition key** | *``/categoryId``* |
 
-   ![06](media/New-image108.png)
+   ![06](media/11LB-6.png)
+   ![06](media/11LB-7.png)
 
 1. **Data Explorer** ペインに戻り、**cosmicworks** データベース ノードを展開して、階層内の **products** コンテナー ノードを確認してください。
 
-   ![06](media/New-image109.png)
+   ![06](media/11LB-8.png)
 
 1. 左側ナビゲーション メニューの **Settings** セクションから **Keys** ペインに移動してください。
 
-   ![06](media/New-image7.png)
+   ![06](media/New-image9.png)
 
 1. このペインには、SDK からアカウントに接続するために必要な接続情報と資格情報が含まれています。具体的には次のとおりです。
 
@@ -104,7 +105,7 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
    - **PRIMARY KEY** フィールドの値を記録してください。この演習の後半でこの **key** 値を使用します。
 
-     ![06](media/New-image9.png)
+     ![06](media/02LB-12.png)
 
 1. **Visual Studio Code** に戻ってください。
 
