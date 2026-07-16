@@ -27,15 +27,15 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
 1. **Azure Portal** ページ上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB (1)** と入力し、services の **Azure Cosmos DB (2)** を選択してください。
 
-   ![06](media/New-image1.png)
+   ![06](media/08-01.png)
 
 1. **Azure Cosmos DB for NoSQL** の下にある **+ Create (1)** を選択します。
 
-    ![06](media/New-image2.png)
+    ![06](media/08-02.png)
 
     - **Create (2)** をクリックして **Azure Cosmos DB for NoSQL** アカウントを作成します。
 
-      ![06](media/New-image3.png)
+      ![06](media/08-03.png)
 
 1. 以下の設定を指定し、その他の設定は既定値のままにして **Review + create (9)** を選択してください。
 
@@ -50,8 +50,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
     | **Apply Free Tier Discount** | *Do Not Apply* **(7)** |
     | **Limit total account throughput** | *Disable* **(8)** |
 
-    ![06](media/c28.png)
-    ![06](media/c29.png)
+    ![06](media/08-04.png)
 
 1. 検証が成功したら **Create** をクリックします。
 
@@ -59,9 +58,9 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
 1. **Go to resources** を選択します。新しく作成された **Azure Cosmos DB** アカウントの **Settings** で **Keys** ペインに移動します。
 
-    ![06](media/New-image6.png
+    ![06](media/08-05.png)
 
-    ![06](media/New-image7.png)
+    ![06](media/08-06.png)
 
 1. このペインには、SDK からアカウントに接続するために必要な接続情報と資格情報が含まれています。具体的には次のとおりです。
 
@@ -69,7 +68,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
     - **PRIMARY KEY** フィールドの値を記録します。この演習の後半でこの **key** 値を使用します。
 
-      ![06](media/New-image9.png)
+      ![06](media/08-07.png)
 
 1. リソース メニューから **Data Explorer** を選択します。
 
@@ -77,7 +76,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
 1. **Data Explorer** ペインで **+ New Container (1)** を展開し、ドロップダウンから **+ New Database (2)** を選択します。
 
-    ![06](media/New-image80.png)
+    ![06](media/08-08.png)
 
 1. **New Database** ポップアップで、各設定に次の値を入力し、**OK (5)** を選択します。
 
@@ -88,15 +87,15 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
     | **Database throughput** | **Manual (3)** |
     | **Database Required RU/s** | ``1000`` **(4)** |
 
-    ![06](media/c30.png)
+    ![06](08-09)
 
 1. **Data Explorer** ペインに戻り、階層内にある **cosmicworks** データベース ノードを確認します。
 
-      ![06](media/New-image82.png)
+      ![06](media/08-10.png)
 
 1. **Data Explorer** ペインで **+ New Container (1)** > **+ New Container (2)** を選択します。
 
-     ![06](media/New-image83.png)
+     ![06](media/08-11.png)
 
 1. **New Container** ポップアップで、各設定に次の値を入力し、**OK (5)** を選択します。
 
@@ -106,14 +105,14 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
     | **Container id** | *``products`` (3)* |
     | **Partition key** | *``/category/name`` (4)* |
 
-    ![06](media/c31.png)
-    ![06](media/c32.png)
+    ![06](media/08-12.png)
+    ![06](media/08-13.png)
 
 1. **Data Explorer** ペインに戻り、**cosmicworks** データベース ノードを展開して、階層内の **products** コンテナー ノードを確認します。
 
 1. **Data Explorer** ペインでもう一度 **+ New Container (1)** > **+ New Container (2)** を選択します。
 
-    ![06](media/New-image85.png)
+    ![06](media/08-14.png)
 
 1. **New Container** ポップアップで、各設定に次の値を入力し、**OK** を選択します。
 
@@ -123,11 +122,11 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
     | **Container id** | *``productslease``* |
     | **Partition key** | *``/id``* |
 
-      ![06](media/New-image86.png)
+      ![06](media/08-15.png)
 
 1. **Data Explorer** ペインに戻り、**cosmicworks** データベース ノードを展開して、階層内の **productslease** コンテナー ノードを確認します。
 
-     ![06](media/New-image87.png)
+     ![06](media/08-17.png)
 
 1. Azure portal の **Home** に戻ります。
 
@@ -144,11 +143,11 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
 1. **Azure Portal** ページ上部の Search resources, services and docs (G+/) ボックスに **Log Analytics workspaces (1)** と入力し、services の **Log Analytics workspaces (2)** を選択します。
 
-    ![06](media/New-image88.png)
+    ![06](media/08-18.png)
 
 1. **+ Create** を選択して、新しい *Log Analytics* ワークスペースを作成します。
 
-    ![06](media/New-image89.png)
+    ![06](media/08-19.png)
 
 1. **Log Analytics workspace** ダイアログで、各設定に次の値を入力し、**Review + Create (5)** を選択します。
 
@@ -159,13 +158,13 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
     | **Name** | *``lab14laworkspace``* **(3)** |
     | **Location** | *Choose any available region* **(4)** |
 
-     ![06](media/New-image90.png)
+     ![06](media/08-20.png)
 
 1. 次に **Create** を選択します。
 
 1. *Log Analytics workspace* の作成完了後、検索ボックスで **Application Insights** を検索します。
 
-    ![06](media/New-image91.png)
+    ![06](media/08-21.png)
 
 1. **+ Create** を選択して、新しい *Application Insight* を作成します。
 
@@ -179,7 +178,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
     | **Location** | **Choose any available region (4)** |
     | **Log Analytics Workspace** | **lab14laworkspace (5)** |
 
-     ![06](media/New-image92.png)
+     ![06](media/08-23.png)
 
 1. 次に **Create** を選択します。
 
@@ -198,21 +197,21 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
 1. Azure portal のホーム ページで **+ Create a resource** を選択します。
 
-     ![06](media/New-image95.png)
+     ![06](media/08-25.png)
 
 1. **Functions** を検索して **Function app** を選択します。次に、market place ページで **Function app** を選択します。
 
-    ![06](media/New-image96.png)
+    ![06](media/08-26.png)
 
-    ![06](media/New-image97.png)
+    ![06](media/08-27.png)
 
 1. **Function App** ページで **Create** をクリックします。
 
-    ![06](media/New-image98.png)
+    ![06](media/08-28.png)
 
 1. **Select a hosting option** ページで **App service (1)** を選択し、続けて **Select (2)** をクリックします。
 
-    ![06](media/c33.png)
+    ![06](media/08-29.png)
 
 1. 次の設定を指定し、その他の設定は既定値のままにして **Review + Create (8)** を選択します。
 
@@ -226,7 +225,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
     | **Version** | **8 (LTS) in-process model (6)** |
     | **Region** | *Choose any available region* **(7)** |
 
-    ![06](media/c34.png)
+    ![06](media/08-30.png)
 
 1. 次に **Create** を選択します。
 
@@ -236,11 +235,11 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
 1. **Functions (1)** ペインに移動します。**Functions** ペインで **Create in Azure Portal (2)** を選択します。
 
-    ![06](media/c35.png)
+    ![06](media/08-32.png)
 
 1. **Create function** ポップアップの **Select a template** タブで **Azure Cosmos DB trigger (1)** を選択し、**Next (2)** をクリックします。
 
-    ![06](media/New-image104.png)
+    ![06](media/08-35.png)
 
 1. **Create function** ポップアップの **Template details** タブで、以下の設定で新しい関数を作成します。その他の設定は既定値のままにし、**Create (11)** を選択します。
 
@@ -254,9 +253,9 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
     | **Container name for leases** | *``productslease``* **(9)** |
     | **Create lease container if it does not exist** | *No* **(10)** |
 
-    ![06](media/New-image105.png)
+    ![06](media/08-36.png)
 
-    ![06](media/New-image106.png)
+    ![06](media/08-37.png)
 
     > **Congratulations** タスク完了です。次に検証を行います。手順は次のとおりです。
     > - 対応するタスクの Validate ボタンを押します。成功メッセージが表示されたら次のタスクに進みます。
@@ -341,7 +340,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
     }
     ```
 
-    ![06](media/c36.png)
+    ![06](media/08-38.png)
 
 1. **Logs** セクションを展開し、現在の関数のストリーミング ログに接続します。
 
@@ -367,7 +366,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
 1. **Visual Studio Code** で、**... (ellipses) (1)** > **Terminal (2)** > **New Terminal (3)** を選択して **Terminal** メニューを開き、既存インスタンスと並べて新しいターミナルを開きます。
 
-    ![06](media/terminal.png)
+    ![06](media/08-39.png)
 
 1. [cosmicworks][nuget.org/packages/cosmicworks] コマンドライン ツールをマシン全体で利用できるようにインストールします。
 
