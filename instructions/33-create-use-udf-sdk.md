@@ -31,17 +31,17 @@ Azure Cosmos DB SQL API 用 .NET SDK は、サーバー側プログラミング�
 
 2. 左側ペインの **Extension (1)** アイコンを選択してください。検索バーに **C# (2)** を入力し、表示された **extension (3)** を選択して、最後に **Install (4)** を選択してください。
 
-    ![](media/visualstudioo.png)
+    ![](media/14LB-11.png)
 
 3. 画面左上の **file** オプションを選択し、メニューから **Open Folder** を選択して **C:\AllFiles** に移動してください。
 
 4. **dp-420-cosmos-db-dev-main** フォルダーを選択し、**Select Folder** をクリックしてください。
 
-   ![](media/lab12-1.png)
+   ![](media/14LB-12.png)
 
     >**Note:** **Do you trust the authors of the files in this folder?** ポップアップで **Yes, I trust authors** を選択してください。
 
-    ![06](media/lab12-2.png)
+    ![06](media/14LB-13.png)
 
 
 ### タスク 2: Azure Cosmos DB for NoSQL アカウントを作成する
@@ -52,13 +52,13 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
 1. Azure Portal ページに戻ってください。ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB** と入力し、services の **Azure Cosmos DB** を選択してください。
 
-   ![06](media/New-image1.png)
+   ![06](media/14LB-14.png)
    
 1. **Azure Cosmos DB for NoSQL** の下にある **+ Create** を選択し、**Create** をクリックして **Azure Cosmos DB for NoSQL** アカウントを作成してください。
 
-    ![06](media/New-image2.png)
+    ![06](media/14LB-15.png)
 
-    ![06](media/New-image3.png)
+    ![06](media/14LB-16.png)
 
 1. 次の設定を指定し、それ以外の設定は既定値のままにして、**Review + create** を選択してください。
 
@@ -77,9 +77,9 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
 1. **Go to resources** を選択してください。新しく作成した **Azure Cosmos DB** アカウントの **Settings** から **Keys** ペインに移動してください。
 
-    ![06](media/New-image6.png)
+    ![06](media/14LB-20.png)
 
-    ![06](media/New-image7.png)
+    ![06](media/14LB-21.png)
 
 1. このペインには、SDK からアカウントへ接続するために必要な接続情報と資格情報が含まれています。具体的には次のとおりです。
 
@@ -87,7 +87,7 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
     1. **PRIMARY KEY** フィールドの値を記録してください。この演習の後半でこの **key** 値を使用します。
 
-        ![06](media/New-image9.png)
+        ![06](media/12LB-12.png)
 
 1. ブラウザー ウィンドウを閉じずに、**Visual Studio Code** を開いてください。
 
@@ -106,7 +106,7 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
 1. **Visual Studio Code** で **... (ellipses) (1)** > **Terminal (2)** > **New Terminal (3)** を選択して **Terminal** メニューを開き、既存インスタンスで新しいターミナルを開いてください。
 
-    ![06](media/terminal.png)
+    ![06](media/14LB-23.png)
 
 1. [cosmicworks][nuget.org/packages/cosmicworks] コマンドライン ツールを、マシンでグローバルに利用できるようにインストールしてください。
 
@@ -135,7 +135,7 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
     
     >**Note**: **What is your connection string** と表示された場合は、Azure Cosmos DB に戻り、左側ナビゲーション ペインで **Key** を選択して **primary connection string** をコピーし、Visual Studio 上で右クリックして貼り付けてください。
 
-     ![06](media/New-image127.png)
+     ![06](media/14LB-22.png)
     
 1. **cosmicworks** コマンドが、アカウントへのデータベース、コンテナー、および項目の投入を完了するまで待機してください。
    
