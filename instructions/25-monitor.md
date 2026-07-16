@@ -31,17 +31,17 @@ Azure Monitor は Azure リソースを監視するための機能を包括的�
 
 2. 左側ペインの **Extension (1)** アイコンを選択してください。検索バーに **C# (2)** を入力し、表示された **extension (3)** を選択して、最後に拡張機能の **Install (4)** を選択してください。
 
-    ![](media/visualstudioo.png)
+    ![](media/12LB-1.png)
 
 3. 画面左上の **file** オプションを選択し、メニューから **Open Folder** を選択して **C:\AllFiles** に移動してください。
 
 4. **dp-420-cosmos-db-dev-main** フォルダーを選択し、**Select Folder** をクリックしてください。
 
-    ![](media/lab12-1.png)
+    ![](media/12LB-2.png)
 
     >**Note:** **Do you trust the authors of the files in this folder?** ポップアップが表示されたら、**Yes, I trust the authors** を選択してください。
 
-      ![06](media/lab12-2.png)
+      ![06](media/12LB-3.png)
 
 ### タスク 2: Azure Cosmos DB for NoSQL アカウントを作成する
 
@@ -53,15 +53,15 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
 1. *Azure Cosmos DB (1)* を検索し、**Azure Cosmos DB (2)** を選択してください。
 
-     ![05](media/lab12-3.png)
+     ![05](media/12LB-4.png)
 
 1. **Azure Cosmos DB** ページで **+ Create** を選択してください。
 
-     ![05](media/lab12-4.png)
+     ![05](media/12LB-5.png)
 
 1. Create an Azure Cosmos DB account ページで、**Azure Cosmos DB for NoSQL** タブの **Create** を選択してください。
 
-     ![05](media/T2S9.png)
+     ![05](media/12LB-6.png)
 
 1. **Create Azure Cosmos DB Account** ペインで **Basics** タブを確認してください。
 
@@ -75,7 +75,7 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
     | **Apply Free Tier Discount** | *`Do Not Apply`* |
     | **Limit the total amount of throughput that can be provisioned on this account** | *Uncheck* |
 
-     ![05](media/lab12-6.png)
+     ![05](media/lab12-7.png)
 
 1. **Review + Create** をクリックし、検証で Success が表示されたら **Create** をクリックしてください。
 
