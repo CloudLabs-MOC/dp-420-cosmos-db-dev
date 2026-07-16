@@ -28,20 +28,20 @@
 
 1. 左側のパネルで **Extensions (1)** を選択してください。**C# (2)** を検索し、**Install (3)** を選択して拡張機能をインストールしてください。
 
-    ![06](media/New-image50.png)
+    ![06](media/03-01.png)
 
 
 1. 画面左上の **file (1)** を選択し、メニューから **Open Folder (2)** を選択してください。**C:\AllFiles\dp-420-cosmos-db-dev** に移動してください。
 
-     ![06](media/New-image51.png)
+     ![06](media/03-02.png)
 
 1. **C:\AllFiles\dp-420-cosmos-db-dev** に移動し、**dp-420-cosmos-db-dev** を選択して **Select Folder** をクリックしてください。
 
-    ![06](media/New-image54.png)
+    ![06](media/03-03.png)
 
 1. **Do you trust the author of the files in this folder** と表示された場合は、**Yes, I trust the authors** をクリックしてください。
 
-   ![06](media/DB24.png)
+   ![06](media/03-04.png)
 
 ### タスク 1: Azure Cosmos DB for NoSQL アカウントを作成する
 
@@ -51,13 +51,13 @@ Azure Cosmos DB は、複数の API をサポートするクラウド ベース�
 
 1. Azure Portal ページに戻り、ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB (1)** と入力し、services の下にある **Azure Cosmos DB (2)** を選択してください。
 
-   ![06](media/New-image1.png)
+   ![06](media/03-05.png)
    
 1. **Azure Cosmos DB for NoSQL** の下で **+ Create (1)** を選択し、**Create (2)** をクリックして **Azure Cosmos DB for NoSQL** アカウントを作成してください。
 
-    ![06](media/New-image2.png)
+    ![06](media/03-06.png)
 
-    ![06](media/New-image3.png)
+    ![06](media/03-07.png)
 
 1. 次の設定を指定し、他の設定は既定値のままにして **Next: Global Distribution (9)** を選択してください。
 
@@ -72,25 +72,25 @@ Azure Cosmos DB は、複数の API をサポートするクラウド ベース�
     | **Capacity mode** | *Provisioned throughput* **(7)** |
     | **Limit the total amount of throughput that can be provisioned on this account** | *Leave unchecked* **(8)** |
 
-     ![06](media/DB1000000.png)
+     ![06](media/03-08.png)
 
 1. Global Distribution ページで **Next: Networking** をクリックしてください。**Connectivity method** で **All networks (1)** を選択し、**Review + Create (2)** をクリックしてください。
 
-     ![06](media/DB0002.png)
+     ![06](media/03-09.png)
 
 1. **Create** をクリックしてください。
 
-    ![06](media/New-image5.png)
+    ![06](media/03-10.png)
 
 1. このタスクを続行する前に、デプロイが完了するまで待機してください。
 
 1. デプロイ完了後、**Go to resources** を選択してください。
 
-    ![06](media/New-image6.png)
+    ![06](media/03-11.png)
 
 1. **Azure Cosmos DB account** で、左側メニューの **Settings (1)** を展開し、**Keys (2)** を選択してください。
 
-    ![06](media/DB15.png)
+    ![06](media/03-12.png)
 
 1. このペインには、SDK からアカウントに接続するために必要な接続情報と資格情報が含まれています。具体的には次のとおりです。
 
@@ -98,7 +98,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウド ベース�
 
     1. **PRIMARY KEY** フィールドの値を記録してください。この演習の後半でこの **key** 値を使用します。
 
-        ![06](media/New-image9.png)
+        ![06](media/03-13.png)
        
 1. **Visual Studio Code** に戻ってください。
 
@@ -117,7 +117,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウド ベース�
 
 1. **06-sdk-crud (1)** フォルダーのコンテキスト メニューを開き、**Open in Integrated Terminal (2)** を選択して新しいターミナルを開いてください。
 
-     ![06](media/New-image67.png)
+     ![06](media/03-14.png)
         
     >**Note**: このコマンドでは、開始ディレクトリがすでに **06-sdk-crud** フォルダーに設定された状態でターミナルが開きます。
 
@@ -137,7 +137,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウド ベース�
 
 1. **Visual Studio Code** の **06-sdk-crud (1)** フォルダーで、空の **script.cs (2)** コード ファイルを開いてください。
 
-    ![06](media/DB38.png)
+    ![06](media/03-15.png)
 
     >**Note**: **[Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1]** ライブラリは NuGet からすでに事前にインポートされています。
 
@@ -147,7 +147,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウド ベース�
     string endpoint = "<cosmos-endpoint>";
     ```
       
-     ![06](media/New-image64.png)
+     ![06](media/03-16.png)
 
     >**Note**: たとえば endpoint が **https&shy;://dp420.documents.azure.com:443/** の場合、C# ステートメントは **string endpoint = "https&shy;://dp420.documents.azure.com:443/";** になります。
 
@@ -157,7 +157,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウド ベース�
     string key = "<cosmos-key>";
     ```
     
-    ![06](media/New-image65.png)
+    ![06](media/03-17.png)
 
     >**Note**: たとえば key が **fDR2ci9QgkdkvERTQ==** の場合、C# ステートメントは **string key = "fDR2ci9QgkdkvERTQ==";** になります。
 
@@ -191,36 +191,36 @@ Azure Cosmos DB は、複数の API をサポートするクラウド ベース�
 
 1. **script.cs** コード ファイルを **Save** してください。
 
-    ![06](media/DB39.png)
+    ![06](media/03-18.png)
 
 1. **Visual Studio Code** で **06-sdk-crud (1)** フォルダーのコンテキスト メニューを開き、**Open in Integrated Terminal (2)** を選択して新しいターミナルを開いてください。
 
-    ![06](media/New-image67.png)
+    ![06](media/03-19.png)
      
 1. [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] コマンドを使用してプロジェクトをビルドおよび実行してください。
 
     ```
     dotnet run
     ```
-   ![06](media/New-image66.png)
+   ![06](media/03-20.png)
 
 1. 統合ターミナルを閉じてください。
 
 1. Azure Portal ページに戻り、ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB (1)** と入力し、services の下にある **Azure Cosmos DB (2)** を選択してください。
 
-   ![06](media/New-image1.png)
+   ![06](media/03-21.png)
 
 1. **sql-<inject key="DeploymentID" enableCopy="false"/>** を選択してください。
 
-     ![06](media/New-image68.png)
+     ![06](media/03-22.png)
 
 1. **Azure Cosmos DB** アカウント リソースの **overview page (1)** で、**Data Explorer (2)** ペインに移動してください。
 
-    ![06](media/DB04.png)
+    ![06](media/03-23.png)
 
 1. **Data Explorer** で、**cosmicworks (2)** データベース ノードを展開し、**products (3)** コンテナー ノードを展開してください。
 
-    ![06](media/DB41.png)
+    ![06](media/03-24.png)
    
     > ラボ完了おめでとうございます。次は検証です。手順は次のとおりです。
     > - 対応するタスクの Validate ボタンを押してください。成功メッセージが表示された場合、ラボは正常に検証されています。
@@ -398,7 +398,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウド ベース�
 
 1. **Visual Studio Code** で **06-sdk-crud (1)** フォルダーのコンテキスト メニューを開き、**Open in Integrated Terminal (2)** を選択して新しいターミナルを開いてください。
 
-    ![06](media/New-image67.png)
+    ![06](media/03-25.png)
 
 1. **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** コマンドを使用してプロジェクトをビルドおよび実行してください。
 
@@ -408,7 +408,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウド ベース�
 
 1. ターミナルの出力を確認してください。特に、項目の ID、名前、価格が整形された出力テキストを確認してください。
 
-    ![06](media/New-image70.png)
+    ![06](media/03-26.png)
    
 1. 統合ターミナルを閉じてください。
 
@@ -420,26 +420,26 @@ SDK 学習時には、オンラインの Azure Cosmos DB SDK アカウントま�
 
 1. Azure Portal ページで、ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB (1)** と入力し、services の下にある **Azure Cosmos DB (2)** を選択してください。
 
-   ![06](media/New-image1.png)
+   ![06](media/01-17.png)
 
 1. **sql-<inject key="DeploymentID" enableCopy="false"/>** を選択してください。
 
-     ![06](media/New-image68.png)
+     ![06](media/01-18.png)
 
 1. **Azure Cosmos DB** アカウント リソースの **overview page (1)** で、**Data Explorer (2)** ペインに移動してください。
 
-    ![06](media/DB04.png)
+    ![06](media/01-19.png)
 
 1. **Data Explorer** で **cosmicworks (2)** データベース ノードを展開し、**products (3)** コンテナー ノードを展開して、**Items (4)** を選択してください。その後、項目の **name** と **price** プロパティの値を確認してください。
 
-    ![06](media/DB19.png)
+    ![06](media/03-27.png)
 
     | **Property** | **Value** |
     | :--- | :--- |
     | **Name** | *Road Saddle* |
     | **Price** | *$45.99* |
 
-    ![06](media/New-image71.png)
+    ![06](media/03-28.png)
 
     >**Note**: この時点では、項目を作成してからこれらの値は変更されていないはずです。この演習でこれらの値を変更します。
 
@@ -501,7 +501,7 @@ SDK 学習時には、オンラインの Azure Cosmos DB SDK アカウントま�
 
 1. **Visual Studio Code** で **06-sdk-crud (1)** フォルダーのコンテキスト メニューを開き、**Open in Integrated Terminal (2)** を選択して新しいターミナルを開いてください。
 
-    ![06](media/New-image67.png)
+    ![06](media/03-29.png)
 
 1. **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** コマンドを使用してプロジェクトをビルドおよび実行してください。
 
@@ -513,22 +513,22 @@ SDK 学習時には、オンラインの Azure Cosmos DB SDK アカウントま�
 
 1. Azure Portal ページに戻り、ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB (1)** と入力し、services の下にある **Azure Cosmos DB (2)** を選択してください。
 
-   ![06](media/New-image1.png)
+   ![06](media/01-17.png)
 
 1. **sql-<inject key="DeploymentID" enableCopy="false"/>** を選択してください。
 
-     ![06](media/New-image68.png)
+     ![06](media/01-18.png)
 
 1. **Azure Cosmos DB** アカウント リソースの **overview page (1)** で、**Data Explorer (2)** ペインに移動し、項目の **name** と **price** プロパティの値を確認してください。
 
-    ![06](media/DB04.png)
+    ![06](media/01-19.png)
 
     | **Property** | **Value** |
     | --- | --- |
     | **Name** | *Road LL Saddle* |
     | **Price** | *$32.55* |
 
-    ![06](media/New-image72.png)
+    ![06](media/03-30.png)
 
     >**Note**: この時点では、項目を確認した結果として、これらの値が変更されているはずです。
 
@@ -555,7 +555,7 @@ SDK 学習時には、オンラインの Azure Cosmos DB SDK アカウントま�
 
 1. **Visual Studio Code** で **06-sdk-crud (1)** フォルダーのコンテキスト メニューを開き、**Open in Integrated Terminal (2)** を選択して新しいターミナルを開いてください。
 
-    ![06](media/New-image67.png)
+    ![06](media/03-31.png)
 
 1. **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** コマンドを使用してプロジェクトをビルドおよび実行してください。
 
@@ -567,19 +567,19 @@ SDK 学習時には、オンラインの Azure Cosmos DB SDK アカウントま�
 
 1. Azure Portal ページで、ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB (1)** と入力し、services の下にある **Azure Cosmos DB (2)** を選択してください。
 
-   ![06](media/New-image1.png)
+   ![06](media/03-32.png)
 
 1. **sql-<inject key="DeploymentID" enableCopy="false"/>** を選択してください。
 
-     ![06](media/New-image68.png)
+     ![06](media/01-18.png)
 
 1. **Azure Cosmos DB** アカウント リソースの **overview page (1)** で、**Data Explorer (2)** ペインに移動してください。
 
-    ![06](media/DB04.png)
+    ![06](media/01-18.png)
 
 1. **Items** ノードを選択してください。項目一覧が空になっていることを確認してください。
 
-     ![06](media/New-image73.png)
+     ![06](media/03-33.png)
     
 1. Web ブラウザーのウィンドウまたはタブを閉じてください。
 
