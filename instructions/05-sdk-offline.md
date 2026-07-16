@@ -23,7 +23,7 @@ Azure Cosmos DB Emulator は、開発およびテストのために Azure Cosmos
 環境にはすでにエミュレーターがインストールされているはずです。インストールされていない場合は、[installation instructions][docs.microsoft.com/azure/cosmos-db/local-emulator] を参照して Azure Cosmos DB Emulator をインストールしてください。エミュレーターを起動したら、接続文字列を取得し、Azure SDK for .NET または任意の SDK を使用してエミュレーターに接続できます。
 
 1. Windows のスタート メニューから **Azure Cosmos DB Emulator** を検索して起動してください。
-     ![06](media/DB31.png)
+     ![06](media/02-19.png)
 
 1. **3～4 分待機**してください。エミュレーターが起動すると、既定のブラウザーが自動的に開き、**localhost:8081/_explorer/index.html** のランディング ページに移動します。
 
@@ -33,11 +33,11 @@ Azure Cosmos DB Emulator は、開発およびテストのために Azure Cosmos
 
     1. **Primary Connection String** フィールドの値を記録してください。この演習の後半で **connection string** 値として使用します。
 
-         ![06](media/New-image56.png)
+         ![06](media/02-20.png)
 
 1. **Explorer** ペインに移動してください。**Data Explorer** で、**API for NoSQL** ナビゲーション ツリー内にノードが存在しないことを確認してください。
 
-   ![06](media/New-image57.png)
+   ![06](media/02-21.png)
 
 1. Web ブラウザーのウィンドウまたはタブを閉じてください。
 
@@ -52,17 +52,17 @@ Azure Cosmos DB Emulator は、開発およびテストのために Azure Cosmos
 
 1. 画面左上の **file (1)** を選択し、メニューから **Open Folder (2)** を選択してください。**C:\AllFiles\dp-420-cosmos-db-dev** に移動してください。
 
-     ![06](media/New-image51.png)
+     ![06](media/02-22.png)
 
 1. **C:\AllFiles\dp-420-cosmos-db-dev** に移動し、**dp-420-cosmos-db-dev** を選択して **Select Folder** をクリックしてください。
 
-    ![06](media/New-image54.png)
+    ![06](media/02-23.png)
 
 1. **05-sdk-offline** フォルダーを選択し、**Select Folder** をクリックしてください。
 
 1. **Visual Studio Code** で、**05-sdk-offline (1)** フォルダー内の空の **script.cs (2)** コード ファイルを開いてください。
 
-    ![06](media/DB32.png)
+    ![06](media/02-24.png)
 
 1. 既存の **connectionString** という名前の変数を更新し、値を Azure Cosmos DB Emulator の **connection string** に設定してください。
   
@@ -102,11 +102,11 @@ Azure Cosmos DB Emulator は、開発およびテストのために Azure Cosmos
 
 1. **script.cs** コード ファイルを **Save** してください。
 
-    ![06](media/DB33.png)
+    ![06](media/02-25.png)
 
 1. **Visual Studio Code** で **05-sdk-offline (1** フォルダーを右クリックし、**Open in Integrated Terminal (2)** を選択して新しいターミナルを開いてください。
     
-    ![06](media/1.png)
+    ![06](media/02-26.png)
     
     >**Note**: このコマンドでは、開始ディレクトリがすでに **05-sdk-offline** フォルダーに設定された状態でターミナルが開きます。
 
@@ -124,7 +124,7 @@ Azure Cosmos DB Emulator は、開発およびテストのために Azure Cosmos
 
     >**Note:** アプリケーション実行中に VS Code がクラッシュした場合は、すべてのアプリを一度閉じてからこの手順を再実行してください。
 
-    ![06](media/DB35.png)
+    ![06](media/02-27.png)
 
 1. 統合ターミナルを閉じてください。
 
@@ -147,7 +147,7 @@ Azure Cosmos DB Emulator で新しいデータベースを作成したので、�
 
 1. **Data Explorer** で、**API for NoSQL** ナビゲーション ツリー内の新しい **cosmicworks** データベース ノードを確認してください。
 
-    ![06](media/DB34.png)
+    ![06](media/02-28.png)
 
 1. Web ブラウザーのウィンドウまたはタブを閉じてください。
 
@@ -159,7 +159,7 @@ Azure Cosmos DB Emulator で新しいデータベースを作成したので、�
 
 1. **Visual Studio Code** で、**05-sdk-offline (1)** フォルダー内の空の **script.cs (2)** コード ファイルを開いてください。
 
-    ![06](media/DB32.png)
+    ![06](media/02-29.png)
 
 1. **database** 変数の [CreateContainerIfNotExistsAsync][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.database.createcontainerifnotexistsasync] メソッドを非同期で呼び出し、新しいコンテナー名（**products**）、パーティション キー パス（**/categoryId**）、スループット（**400**）を渡して **cosmicworks** データベース内に作成し、結果を [Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] 型の変数に格納してください。
 
@@ -192,11 +192,11 @@ Azure Cosmos DB Emulator で新しいデータベースを作成したので、�
 
 1. **script.cs** コード ファイルを **Save** してください。
 
-     ![06](media/DB36.png)
+     ![06](media/02-30.png)
 
 1. **Visual Studio Code** で **05-sdk-offline** フォルダーを右クリックし、**Open in Integrated Terminal** を選択して新しいターミナルを開いてください。
     
-    ![06](media/1.png)
+    ![06](media/02-31.png)
 
 1. [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] コマンドを使用してプロジェクトをビルドし、実行してください。
 
@@ -204,7 +204,7 @@ Azure Cosmos DB Emulator で新しいデータベースを作成したので、�
     dotnet run
     ```
 
-    ![06](media/DB37.png)
+    ![06](media/02-32.png)
 
 1. 統合ターミナルを閉じてください。
 
@@ -216,7 +216,7 @@ Azure Cosmos DB Emulator で新しいデータベースを作成したので、�
 
 1. **Data Explorer** で **cosmicworks** データベース ノードを展開し、**API for NoSQL** ナビゲーション ツリー内の新しい **products** コンテナー ノードを確認してください。
 
-    ![06](media/New-image60.png)
+    ![06](media/02-33.png)
    
 1. Web ブラウザーのウィンドウまたはタブを閉じてください。
 
