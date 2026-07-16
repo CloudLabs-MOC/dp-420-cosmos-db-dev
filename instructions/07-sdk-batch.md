@@ -29,15 +29,15 @@
 
 2. 左側のパネルで **Extensions (1)** を選択してください。**C# (2)** を検索し、**Install (3)** を選択して拡張機能をインストールしてください。インストールが完了するまで待機してください。
 
-    ![06](media/New-image50.png)
+    ![06](media/04-01.png)
 
 3. 画面左上の **File (1)** を選択し、メニューから **Open Folder (2)** を選択してください。
 
-    ![06](media/c3.png)
+    ![06](media/04-02.png)
 
 4. **C:\AllFiles (1)** に移動し、**dp-420-cosmos-db-dev-main (2)** を選択して **Select Folder (3)** をクリックしてください。
 
-    ![06](media/c2.png)
+    ![06](media/04-03.png)
 
 5. **When Do you trust the author of the files in this folder** と表示された場合は、**Yes, I trust the authors** をクリックしてください。
 
@@ -47,15 +47,15 @@
 
 1. Azure Portal ページに戻り、ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB (1)** と入力し、services の下にある **Azure Cosmos DB (2)** を選択してください。
 
-   ![06](media/New-image1.png)
+   ![06](media/04-04.png)
    
 1. **Azure Cosmos DB for NoSQL** の下で **+ Create (1)** を選択してください。
 
-    ![06](media/New-image2.png)
+    ![06](media/04-05.png)
 
     - **Create (2)** をクリックして **Azure Cosmos DB for NoSQL** アカウントを作成してください。
 
-      ![06](media/New-image3.png)
+      ![06](media/04-06.png)
    
 1. 次の設定を指定し、その他の設定は既定値のままにして **Review + create (8)** を選択してください。
 
@@ -69,8 +69,7 @@
     | **Capacity mode** | *Provisioned throughput* **(6)** |
     | **Apply Free Tier Discount** | *Do Not Apply* **(7)** |
 
-    ![06](media/c4.png)
-    ![06](media/c5.png)
+    ![06](media/04-07.png)
 
 1. 検証が完了したら **Create** をクリックしてください。
 
@@ -78,11 +77,11 @@
 
 1. **Go to resources** を選択してください。
 
-    ![06](media/New-image6.png)
+    ![06](media/04-08.png)
 
 1. 新しく作成した **Azure Cosmos DB** アカウントで、**Settings** の下にある **Keys** ペインに移動してください。
 
-    ![06](media/New-image7.png)
+    ![06](media/04-09.png)
 
 1. このペインには、SDK からアカウントに接続するために必要な接続情報と資格情報が含まれています。具体的には次のとおりです。
 
@@ -90,13 +89,13 @@
 
     - **eye** アイコン **(2)** をクリックしてください。**PRIMARY KEY (3)** フィールドの値を記録してください。この演習の後半でこの **key** 値を使用します。
 
-      ![06](media/New-image9.png)
+      ![06](media/04-10.png)
 
 1. **Visual Studio Code** に戻ってください。
 
 1. **Visual Studio Code** の **Explorer** ペインで **07-sdk-batch (1)** フォルダーを展開し、**script.cs (2)** コード ファイルを選択してください。
 
-    ![06](media/c6.png)
+    ![06](media/04-11.png)
 
 1. **07-sdk-batch** フォルダー内の **script.cs** コード ファイルを開いてください。
 
@@ -107,7 +106,7 @@
     ```
     string endpoint = "<cosmos-endpoint>";
     ```
-    ![06](media/New-image64.png)
+    ![06](media/04-12.png)
 
    >**Note**: たとえば endpoint が **https&shy;://dp420.documents.azure.com:443/** の場合、C# ステートメントは **string endpoint = "https&shy;://dp420.documents.azure.com:443/";** になります。
 
@@ -117,7 +116,7 @@
     string key = "<cosmos-key>";
     ```
 
-    ![06](media/New-image65.png)
+    ![06](media/04-13.png)
 
     >**Note**: たとえば key が **fDR2ci9QgkdkvERTQ==** の場合、C# ステートメントは **string key = "fDR2ci9QgkdkvERTQ==";** になります。
 
@@ -125,7 +124,7 @@
 
 1. **07-sdk-batch** フォルダーのコンテキスト メニューを開き、右クリック **(1)** してから **Open in Integrated Terminal (2)** を選択し、新しいターミナルを開いてください。
 
-    ![06](media/c7.png)
+    ![06](media/04-14.png)
 
      >**Note**: このコマンドでは、開始ディレクトリがすでに **07-sdk-batch** フォルダーに設定された状態でターミナルが開きます。
 
@@ -141,7 +140,7 @@
     dotnet build
     ```
 
-    ![06](media/c8.png)
+    ![06](media/04-15.png)
 
 1. 統合ターミナルを閉じてください。
 
@@ -226,7 +225,7 @@
     Console.WriteLine($"Status:\t{response.StatusCode}");
     ```
 
-    ![06](media/c9.png)
+    ![06](media/04-16.png)
 
 1. **script.cs** コード ファイルを **Save** してください。
 
@@ -240,7 +239,7 @@
 
 1. ターミナル出力を確認してください。ステータス コードは HTTP 200 の **OK** になるはずです。
 
-    ![06](media/c10.png)
+    ![06](media/04-17.png)
 
 1. これで、アプリケーション機能を監視できるようになっているはずです。
 
@@ -347,7 +346,7 @@
 
 1. ターミナル出力を確認してください。ステータス コードは HTTP 400 **Bad Request** または 409 **Conflict** のいずれかになるはずです。これは、トランザクション内のすべての項目がトランザクション バッチと同じパーティション キー値を共有していないためです。
 
-    ![06](media/c11.png)
+    ![06](media/04-17.png)
 
 1. 統合ターミナルを閉じてください。
 
