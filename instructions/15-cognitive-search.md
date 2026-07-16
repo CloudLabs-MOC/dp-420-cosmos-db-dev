@@ -27,13 +27,13 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
 1. Azure Portal ページに戻り、ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB** と入力して、services の **Azure Cosmos DB** を選択します。
 
-   ![06](media/New-image1.png)
+   ![06](media/14LB-14.png)
 
 1. **Azure Cosmos DB for NoSQL** の下にある **+ Create** を選択し、**Create** をクリックして **Azure Cosmos DB for NoSQL** アカウントを作成します。
 
-    ![06](media/New-image2.png)
+    ![06](media/14LB-15.png)
 
-    ![06](media/New-image3.png)
+    ![06](media/14LB-16.png)
 
 1. 次の設定でリソースを作成し、その他の設定は既定値のままにして **Review + create** **(7)** を選択します。
 
@@ -46,19 +46,19 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
     | **Location** | Select any available location **(5)** |
     | **Capacity mode** | Serverless **(6)** |
 
-    ![06](media/DB51.png)
+    ![06](media/11LB-2.png)
 
 1. 設定を確認し、**Create** をクリックします。
 
-     ![06](media/DB52.png)
+     ![06](media/11LB-3.png)
 
 1. このタスクを続行する前に、デプロイの完了を待ちます。
 
 1. **Go to resources** を選択します。新しく作成した **Azure Cosmos DB** アカウントの **Settings** で **Keys** ペインに移動します。
 
-    ![06](media/New-image6.png)
+    ![06](media/12LB-10.png)
 
-    ![06](media/New-image7.png)
+    ![06](media/11LB-9.png)
 
 1. このペインには、SDK からアカウントに接続するために必要な接続情報と資格情報が含まれています。具体的には次のとおりです。
 
@@ -66,15 +66,15 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
     - **PRIMARY KEY (2)** フィールドの値を記録します。この演習の後半でこの **key** 値を使用します。
 
-        ![06](media/New-image9.png)
+        ![06](media/12LB-12.png)
 
 1. **Azure Cosmos DB** アカウント リソースの **overview page (1)** で、**Data Explorer (2)** ペインに移動します。
 
-    ![06](media/DB04.png)
+    ![06](media/11LB-4.png)
 
 1. **Data Explorer (1)** ページで **New (2)** をクリックし、**New Container (3)** を選択します。
 
-     ![06](media/DB42.png)
+     ![06](media/11LB-5.png)
 
 1. **New Container** ペインで、次の詳細を入力します。
 
@@ -84,13 +84,14 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
     | **Container id** | `products` **(2)** |
     | **Partition key** | `/categoryId` **(3)** |
 
-    ![06](media/DB044.png)
+    ![06](media/11LB-6.png)
+    ![06](media/11LB-7.png)
 
 1. **OK (4)** をクリックします。
 
 1. **Data Explorer** ペインに戻り、**cosmicworks** データベース ノードを展開して、階層内の **products** コンテナー ノードを確認します。
 
-    ![06](media/cosmosdbproducts.png)
+    ![06](media/11LB-8.png)
 
     > **Congratulations** タスク完了です。次に検証を行います。手順は次のとおりです。
     > - 対応するタスクの Validate ボタンを押します。成功メッセージが表示されたら次のタスクに進みます。
@@ -109,7 +110,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
 1. **Visual Studio Code** で、**... (ellipses) (1)** を選択して **Terminal (2)** を選び、**New Terminal (3)** を選択して既存のインスタンスと並べて新しいターミナルを開きます。
 
-    ![06](media/New-image36.png)
+    ![06](media/14LB-23.png)
 
 1. [cosmicworks][nuget.org/packages/cosmicworks] コマンドライン ツールをマシン全体で利用できるようにインストールします。
 
@@ -146,11 +147,11 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
     1. **Firewall** で **Add your current IP (3)** をクリックするか、IP アドレスを手動入力します。
 
-        ![06](media/DB60.png)
+        ![06](media/10LB-5.png)
 
     1. **Save (4)** をクリックして変更を適用します。
 
-        ![06](media/DB61.png)
+        ![06](media/10LB-6.png)
 
     1. ファイアウォール ルールが有効になるまで数分待機します。
 
@@ -158,7 +159,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
     1. **Primary Connection String (4)** をコピーし、必要に応じて **Show/Hide (3)** を使用して値を表示します。
 
-     ![06](media/DB63.png)
+     ![06](media/10LB-7.png)
 
     ```
     cosmicworks --connection-string "<your-connection-string>" --datasets product
@@ -174,11 +175,11 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
 1. Azure portal に戻り、**Create a resource** をクリックします。
 
-     ![06](media/DB53.png)
+     ![06](media/10LB-8.png)
 
 1. **Azure AI Search (1)** を検索し、**Create (2)** を選択して **Azure AI Search (3)** を選びます。
 
-    ![06](media/DB55.png)
+    ![06](media/10LB-9.png)
 
 1. 次の詳細を入力します。
 
@@ -191,17 +192,17 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
 1. **Review + create (5)** をクリックします。
 
-    ![06](media/DB56.png)
+    ![06](media/10LB-10.png)
 
     >**Note:** サブスクリプション エラーが表示される場合は、**Next: Scale** を選択してから **Previous** を選択してください。
 
 1. 検証が成功したら設定を確認し、**Create** をクリックします。
 
-    ![06](media/DB57.png)
+    ![06](media/10LB-11.png)
 
 4. デプロイ完了後、**Go to resource** をクリックして新しく作成した **Azure AI Search** アカウント リソースに移動します。
 
-    ![06](media/DB58.png)
+    ![06](media/10LB-12.png)
 
 > **Congratulations** タスク完了です。次に検証を行います。手順は次のとおりです。
 > - 対応するタスクの Validate ボタンを押します。成功メッセージが表示されたら次のタスクに進みます。
@@ -216,11 +217,11 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
 1. **AI Search** リソース ブレードで **Import data** を選択します。
 
-    ![06](media/importdata.png)
+    ![06](media/10LB-13.png)
 
 1. **Import data** ウィザードの **Data Source** リストで **Azure Cosmos DB** を選択します。
 
-    ![06](media/DB59.png)
+    ![06](media/10LB-14.png)
 
 1. 次の設定でデータ ソースを構成し、その他の設定は既定値のままにします。
 
@@ -231,7 +232,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
     | **Database** | **cosmicworks (4)** |
     | **Collection** | **products (5)** |
 
-    ![06](media/importyourdata.png)
+    ![06](media/10LB-16.png)
 
 1. **query** フィールドに次の SQL クエリを入力し、コンテナー内データのサブセットのマテリアライズド ビューを作成します。
 
@@ -288,7 +289,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
     >**Note:** 自動更新されない場合は、ブレードを更新するために **Refresh** を使用する必要があります。
 
-    ![06](media/indexers.png)
+    ![06](media/10LB-24.png)
 
 1. 左ナビゲーション ペインの **Search Management** 配下で **Indexes** タブに移動し、**products-index** インデックスを選択します。
 
