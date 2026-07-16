@@ -22,13 +22,13 @@ products コンテナーに加えて、ETL 変換とロード操作のターゲ�
 
 1. Azure ポータルの上部にある「Search resources, services and docs (G+/)」ボックスに **Azure Cosmos DB (1)** と入力し、サービス一覧から **Azure Cosmos DB (2)** を選択します。
 
-   ![06](media/New-image1.png)
+   ![06](media/00-06.png)
    
 1. **Azure Cosmos DB for NoSQL** の下で **+ Create (1)** を選択し、**Create (2)** をクリックして **Azure Cosmos DB for NoSQL** アカウントを作成します。
 
-    ![06](media/New-image2.png)
+    ![06](media/00-07.png)
 
-    ![06](media/New-image3.png)
+    ![06](media/00-08.png)
 
 1. 以下の設定を指定し、残りはデフォルトのままにして **Next: Global Distribution (9)** を選択します:
 
@@ -43,31 +43,31 @@ products コンテナーに加えて、ETL 変換とロード操作のターゲ�
     | **Capacity mode** | *Provisioned throughput* **(7)** |
     | **Limit the total amount of throughput that can be provisioned on this account** | *チェックを外したままにする* **(8)** |
 
-     ![06](media/DB1000000.png)
+     ![06](media/01-06.png)
 
 1. Global Distribution ページで **Next: Networking** をクリックします。**Connectivity method** で **All networks (1)** を選択し、**Review + Create (2)** をクリックします。
 
-     ![06](media/DB0002.png)
+     ![06](media/01-07.png)
 
 1. **Create** をクリックします。
 
-    ![06](media/New-image5.png)
+    ![06](media/01-08.png)
 
 1. デプロイが完了するまで待ちます。
 
 1. デプロイが完了したら **Go to resources** を選択します。
 
-    ![06](media/New-image6.png)
+    ![06](media/01-09.png)
 
 1. **Azure Cosmos DB account** の左メニューで **Settings (1)** を展開し、**Keys (2)** を選択します。
 
-    ![06](media/DB15.png)
+    ![06](media/01-10.png)
 
 1. このペインには、SDK からアカウントに接続するための接続情報と資格情報が含まれています。具体的には:
 
 1. **Keys (1)** ページで **Show (2)** アイコンをクリックして接続文字列を表示し、**Copy (3)** アイコンをクリックしてコピーし、メモ帳などに保存します。今後の手順で使用します。
 
-    ![06](media/conn-string-2304.png)
+    ![06](media/01-11.png)
 
 1. 後で戻るので、ブラウザーのタブは開いたままにしておいてください。
 
@@ -77,7 +77,7 @@ products コンテナーに加えて、ETL 変換とロード操作のターゲ�
 
 1. **Visual Studio Code** で、**... (ellipsis) (1)** → **Terminal (2)** → **New Terminal (3)** の順に選択して新しいターミナルを開きます。
 
-    ![06](media/New-image36.png)
+    ![06](media/01-13.png)
 
 1. ターミナルで次のコマンドを実行し、[cosmicworks][nuget.org/packages/cosmicworks] コマンドライン ツールをグローバルにインストールします。
 
@@ -115,31 +115,31 @@ products コンテナーに加えて、ETL 変換とロード操作のターゲ�
 
 1. Azure ポータルの上部にある「Search resources, services and docs (G+/)」ボックスに **Azure Cosmos DB (1)** と入力し、サービス一覧から **Azure Cosmos DB (2)** を選択します。
 
-   ![06](media/New-image1.png)
+   ![06](media/01-17.png)
 
 1. **sql-<inject key="DeploymentID" enableCopy="false"/>** を選択します。
 
-     ![06](media/New-image68.png)
+     ![06](media/01-18.png)
 
 1. **Azure Cosmos DB** アカウント リソースの **overview page (1)** で、**Data Explorer (2)** ペインに移動します。
 
-    ![06](media/DB04.png)
+    ![06](media/01-19.png)
 
 1. **Data Explorer** で、**cosmicworks (2)** データベース ノードを展開し、**products (3)** コンテナー ノードを展開してから、**Items (4)** を選択します。
 
-    ![06](media/DB19.png)
+    ![06](media/01-20.png)
 
 1. **products** コンテナー内のさまざまな JSON アイテムを確認して選択します。これらは前の手順で使用したコマンドライン ツールによって作成されたアイテムです。
 
-   ![06](media/New-image12.png)
+   ![06](media/01-21.png)
 
 1. **Scale (1)** タブを選択します。Scale タブで **Manual (2)** を選択し、**required throughput** 設定を **4000 RU/s** から **400 RU/s (3)** に変更してから、変更内容を **Save (4)** します。
 
-    ![06](media/step23-2304.png)
+    ![06](media/01-22.png)
 
 1. **Data Explorer** ペインで **+ New Container (1)** を選択し、**+ New Container (2)** を選択します。
 
-    ![06](media/New-image14.png)
+    ![06](media/01-23.png)
 
 1. **New Container** ポップアップで、各設定に対して次の値を入力します。
 
@@ -152,15 +152,15 @@ products コンテナーに加えて、ETL 変換とロード操作のターゲ�
     | **Container throughput (autoscale)** | *Manual (6)* |
     | **RU/s** | *`400` (7)* |
     
-    ![06](media/step25-2304.png)
+    ![06](media/01-24.png)
 
 1. 下にスクロールして **OK** をクリックします。
 
-   ![06](media/New-image16.png)
+   ![06](media/01-25.png)
 
 1. **Data Explorer** ペインに戻り、**cosmicworks** データベース ノードを展開して、階層内の **flatproducts** コンテナー ノードを確認します。
 
-     ![06](media/New-image17.png)
+     ![06](media/01-26.png)
    
 1. Azure ポータルの **Home** に戻ります。
 
@@ -179,15 +179,15 @@ Azure Cosmos DB for NoSQL リソースの準備ができたので、Azure Data F
 
 1. Azure ポータルのホームページで **+ Create a resource** を選択します。
   
-     ![06](media/New-image37.png)
+     ![06](media/01-27.png)
    
 1. **Create a resource** ページで検索して **Azure Data Factory (1)** を選択し、次の設定で新しい **Azure Data Factory (2)** リソースを作成します（その他はデフォルトのままにします）。
 
-    ![06](media/New-image18.png)
+    ![06](media/01-28.png)
 
 1. **Data Factory** で **Create (1)** を選択し、**Data Factory (2)** を選びます。
 
-    ![06](media/New-image19.png)
+    ![06](media/01-29.png)
 
 1. 以下の設定を指定し、残りはすべてデフォルトのままにして **Next (6)** をクリックします。
 
@@ -199,39 +199,39 @@ Azure Cosmos DB for NoSQL リソースの準備ができたので、Azure Data F
     | **Region** | *任意の利用可能なリージョンを選択* **(4)**|
     | **Version** | *V2* **(5)**|
 
-    ![06](media/New-image20.png)
+    ![06](media/01-30.png)
 
 1. **Git configuration** ブレードで **Configure Git later (1)** のチェックボックスを選択し、**Review + Create (2)** をクリックして **Create (3)** を選択します。
 
-    ![06](media/DB21.png)
+    ![06](media/01-31.png)
 
-    ![06](media/DB23.png)
+    ![06](media/01-32.png)
 
 1. リソースのデプロイが完了したら **Go to resource** をクリックします。
 
-    ![06](media/New-image21.png)
+    ![06](media/01-33.png)
 
 1. リソース グループで、一覧から **datafactory** リソースを選択します。
 
-    ![06](media/DB20.png)
+    ![06](media/01-34.png)
 
 1. **Azure Data Factory Studio** の下で **Launch studio** を選択します。
 
-    ![06](media/New-image22.png)
+    ![06](media/01-35.png)
    
     > 💡 代替方法として、``adf.azure.com/home`` に移動し、作成した Data Factory リソースを選択してからホーム アイコンを選択することもできます。
 
 1. **Home** 画面から、**Ingest** オプションを選択して、ワンタイムの大規模データ コピー操作を行うクイックウィザードを開始し、ウィザードの **Properties** ステップに移動します。
 
-   ![06](media/New-image23.png)
+   ![06](media/01-36.png)
 
 1. ウィザードの **Properties** ステップで、**Task type** セクションから **Built-in copy task (1)** を選択します。**Task cadence or task schedule** セクションで **Run once now (2)** を選択し、**Next (3)** を選択してウィザードの **Source** ステップに進みます。
 
-    ![06](media/New-image24.png)
+    ![06](media/01-37.png)
    
 1. **Source** ステップで、**Source type** リストから **Azure Cosmos DB NoSQL (1)** を選択し、**Connection** セクションで **+ New connection (2)** を選択します。
 
-    ![06](media/New-image25.png)
+    ![06](media/01-38.png)
 
 1. **New connection (Azure Cosmos DB for NoSQL)** ポップアップで、次の値を使用して新しい接続を構成し、**Create (9)** を選択します:
 
@@ -245,11 +245,11 @@ Azure Cosmos DB for NoSQL リソースの準備ができたので、Azure Data F
     | **Azure Cosmos DB account name** | *このラボで先に作成した既存の Azure Cosmos DB アカウント名* **(7)** |
     | **Database name** | *cosmicworks* **(8)**|
 
-    ![06](media/New-image26.png)
+    ![06](media/01-39.png)
 
 1. **Source data store** セクションに戻り、**Source tables** 内で **Query (1)** を選択し、**Table name** リストから **products (2)** を選択します。
 
-    ![06](media/New-image27.png)
+    ![06](media/01-40.png)
 
 1. **Query** エディターで既存の内容を削除し、次のクエリを入力します **(1)**:
 
@@ -264,25 +264,25 @@ Azure Cosmos DB for NoSQL リソースの準備ができたので、Azure Data F
 
 1. 下にスクロールして **Preview data (2)** を選択し、クエリの妥当性をテストします。**Next (3)** を選択してウィザードの **Destination** ステップに進みます。
 
-    ![06](media/New-image28.png)
+    ![06](media/01-41.png)
    
 1. **Destination** ステップで、**Destination type** リストから **Azure Cosmos DB for NoSQL (1)** を選択し、**Connection** リストから **CosmosSqlConn (2)** を選択して、**Custom query** で **flatproducts (3)** を選択し、**Next (4)** を選択してウィザードの **Settings** ステップに進みます。
 
-   ![06](media/New-image29.png)
+   ![06](media/01-42.png)
 
    > **注意:** 表示されるまでに少し時間がかかる場合があります。
 
 1. ウィザードの **Settings** ステップの **Task name** フィールドに **`FlattenAndMoveData`(1)** と入力し、**Next (2)** を選択します。
 
-    ![06](media/New-image30.png)
+    ![06](media/01-43.png)
 
 1. 残りのフィールドはすべて空のままにして **Next** を選択し、ウィザードの最終ステップに進みます。
 
-    ![06](media/New-image31.png)
+    ![06](media/01-44.png)
 
 1. ウィザードで選択した手順の **Summary** を確認し、**Finish** を選択します。
 
-    ![06](media/New-image32.png)
+    ![06](media/01-45.png)
 
 1. Web ブラウザーのウィンドウまたはタブを閉じます。
 
@@ -290,13 +290,13 @@ Azure Cosmos DB for NoSQL リソースの準備ができたので、Azure Data F
 
 1. Azure ポータルの上部にある「Search resources, services and docs (G+/)」ボックスに **Azure Cosmos DB (1)** と入力し、サービス一覧から **Azure Cosmos DB (2)** を選択します。
 
-   ![06](media/New-image1.png)
+   ![06](media/01-46.png)
 
 1. **sql-<inject key="DeploymentID" enableCopy="false"/>** を選択します。
 
 1. **Azure Cosmos DB** アカウント リソース内で **Data Explorer (1)** ペインに移動します。**Data Explorer** で **cosmicworks** データベース ノードを展開し、**flatproducts (2)** コンテナー ノードを選択して **New SQL Query (3)** を選択します。
 
-    ![06](media/New-image33.png)
+    ![06](media/01-47.png)
 
 1. エディター領域の内容を削除します。
 
@@ -313,7 +313,7 @@ Azure Cosmos DB for NoSQL リソースの準備ができたので、Azure Data F
         p.name = 'HL Headset'
     ```
 
-    ![06](media/New-image34.png)
+    ![06](media/01-48.png)
 
 1. クエリ結果を確認します。
 
