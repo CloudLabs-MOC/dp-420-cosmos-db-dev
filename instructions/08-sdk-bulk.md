@@ -27,17 +27,17 @@
 
 3. 左側ペインの **Extension (1)** アイコンを選択してください。検索バーに **C# (2)** と入力し、表示された **Extension (3)** を選択して、最後に拡張機能の **Install (4)** を選択してください。
 
-    ![](media/visualstudioo.png)
+    ![](media/05-01.png)
 
 4. 画面左上の **file** を選択し、メニューから **Open Folder** を選択して **C:\AllFiles** に移動してください。
 
 5. **dp-420-cosmos-db-dev-main** フォルダーを選択し、**Select Folder** をクリックしてください。
 
-   ![06](media/New-image54.png)
+   ![06](media/05-02.png)
 
    >**Note:** **Do you trust the authors of the files in this folder?** ポップアップでは、**Yes, I trust authors** を選択してください。
 
-    ![06](media/DB24.png)
+    ![06](media/05-03.png)
 
 ### タスク 1: Azure Cosmos DB for NoSQL アカウントを作成し、SDK プロジェクトを構成する
 
@@ -45,13 +45,13 @@
 
 1. Azure Portal ページで、ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB (1)** と入力し、services の下にある **Azure Cosmos DB (2)** を選択してください。
 
-   ![06](media/New-image1.png)
+   ![06](media/05-04.png)
 
 1. **Azure Cosmos DB for NoSQL** の下で **+ Create (1)** を選択し、**Create (2)** をクリックして **Azure Cosmos DB for NoSQL** アカウントを作成してください。
 
-    ![06](media/New-image2.png)
+    ![06](media/05-05.png)
 
-    ![06](media/New-image3.png)
+    ![06](media/05-06.png)
 
 1. 次の設定を指定し、その他の設定は既定値のままにして **Review + create (10)** を選択してください。
 
@@ -66,21 +66,21 @@
     | **Apply Free Tier Discount** | *Do Not Apply* (7) |
     | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* (8) |
 
-     ![06](media/DB25.png)
+     ![06](media/05-07.png)
 
 1. **Create** をクリックしてください。
 
-    ![06](media/New-image5.png)
+    ![06](media/05-08.png)
 
 1. このタスクを続行する前に、デプロイが完了するまで待機してください。
 
 1. デプロイ完了後、**Go to resources** を選択してください。
 
-    ![06](media/New-image6.png)
+    ![06](media/05-09.png)
 
 1. **Azure Cosmos DB account** で、左側メニューの **Settings (1)** を展開し、**Keys (2)** を選択してください。
 
-    ![06](media/DB15.png)
+    ![06](media/05-10.png)
 
 1. このペインには、SDK からアカウントに接続するために必要な接続情報と資格情報が含まれています。具体的には次のとおりです。
 
@@ -88,15 +88,15 @@
 
    - **PRIMARY KEY** フィールドをコピーしてください。この演習の後半でこの **key** 値を使用します。
 
-       ![06](media/New-image9.png)
+       ![06](media/05-11.png)
 
 1. **Azure Cosmos DB** アカウント リソースの **overview page (1)** で、**Data Explorer (2)** ペインに移動してください。
 
-    ![06](media/DB04.png)
+    ![06](media/05-12.png)
 
 1. **Data Explorer (1)** ページで **New (2)** をクリックし、次に **New Container (3)** を選択してください。
 
-     ![06](media/DB42.png)
+     ![06](media/05-13.png)
 
 1. **New Container** ペインで次の内容を入力し、**OK (6)** をクリックしてください。
 
@@ -108,7 +108,8 @@
     | **Partition key** | `/categoryId` **(4)** |
     | **Container throughput** | Autoscale \| `4000` **(5)** |
 
-    ![06](media/DB44.png)
+    ![06](media/05-14.png)
+    ![06](media/05-15.png)
 
 1. **Visual Studio Code** に戻ってください。
 
@@ -116,7 +117,7 @@
 
 1. **Visual Studio Code** の **06-sdk-crud (1)** フォルダーで、空の **script.cs (2)** コード ファイルを開いてください。
 
-    ![06](media/DB45.png)
+    ![06](media/05-16.png)
 
     >**Note**: **[Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1]** ライブラリは NuGet からすでに事前にインポートされています。
 
@@ -140,7 +141,7 @@
 
 1. **08-sdk-bulk (1)** フォルダーのコンテキスト メニューを開き、**Open in Integrated Terminal (2)** を選択して新しいターミナルを開いてください。
 
-    ![](media/DB46.png)
+    ![](media/05-17.png)
 
    >**Note**: このコマンドでは、開始ディレクトリがすでに **08-sdk-bulk** フォルダーに設定された状態でターミナルが開きます。
 
@@ -287,7 +288,7 @@
 
 1. **08-sdk-bulk (1)** フォルダーのコンテキスト メニューを開き、**Open in Integrated Terminal (2)** を選択して新しいターミナルを開いてください。
 
-    ![](media/DB46.png)
+    ![](media/05-18.png)
 
 1. **[dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run]** コマンドを使用してプロジェクトをビルドおよび実行してください。
 
@@ -297,7 +298,7 @@
 
 1. アプリケーションは無言で実行され、完了までに約 1～2 分かかるはずです。
 
-    ![](media/DB47.png)
+    ![](media/05-19.png)
 
 1. 統合ターミナルを閉じてください。
 
@@ -318,15 +319,15 @@
 
 1. **Azure Cosmos DB** アカウント リソースの **overview page (1)** で、**Data Explorer (2)** ペインに移動してください。
 
-    ![06](media/DB04.png)
+    ![06](media/05-20.png)
 
 1. **Data Explorer** で、**cosmicworks (2)** データベース ノードを展開し、**products (3)** コンテナー ノードを展開してください。
 
-    ![06](media/DB41.png)
+    ![06](media/05-21.png)
 
 1. **NoSQL API** ナビゲーション ツリー内の **products** コンテナー ノードを選択し、**... (1)** をクリックしてから **New SQL Query (2)** を選択してください。
 
-   ![](media/DB48.png)
+   ![](media/05-22.png)
 
 1. エディター領域の内容を削除してください。
 
@@ -336,7 +337,7 @@
     SELECT COUNT(1) FROM items
     ```
 
-     ![](media/DB49.png)
+     ![](media/05-23.png)
 
 1. **results (3)** を表示し、コンテナー内の項目数を確認してください。
 
