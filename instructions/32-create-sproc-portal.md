@@ -29,13 +29,13 @@
 
 1. Azure Portal ページに戻ってください。ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB** と入力し、services の **Azure Cosmos DB** を選択してください。
 
-   ![06](media/New-image1.png)
+   ![06](media/13LB-5.png)
    
 1. **Azure Cosmos DB for NoSQL** の下にある **+ Create** を選択し、**Create** をクリックして **Azure Cosmos DB for NoSQL** アカウントを作成してください。
 
-    ![06](media/New-image2.png)
+    ![06](media/13LB-6.png)
 
-    ![06](media/New-image3.png)
+    ![06](media/13LB-7.png)
 
 1. 次の設定を指定し、それ以外の設定は既定値のままにして、**Review + create** を選択してください。
 
@@ -56,7 +56,7 @@
 
 1. **Data Explorer** で **+ New Container** > **+ New Container** を選択してください。
 
-     ![06](media/New-image85.png)
+     ![06](media/13LB-13.png)
 
  1. 次の設定で新しいコンテナーを作成し、それ以外の設定は既定値のままにして、**OK** を選択してください。
 
