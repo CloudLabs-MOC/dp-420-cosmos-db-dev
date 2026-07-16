@@ -1,19 +1,19 @@
-# Lab 11b - Azure Cosmos DB SQL API ソリューションを監視およびトラブルシューティングする
+# Lab 11b - Azure Cosmos DB for NoSQL ソリューションを監視およびトラブルシューティングする
 
-## ラボのシナリオ
+## ラボ シナリオ
 
-Azure Cosmos DB は、さまざまな操作タイプで発生する可能性がある問題のトラブルシューティングに役立つ豊富なレスポンス コードを提供します。ポイントは、Azure Cosmos DB 向けのアプリを作成するときに適切なエラー処理を実装することです。
+Azure Cosmos DB には広範な応答コードのセットが用意されており、さまざまな操作種別で発生する可能性のある問題を容易にトラブルシューティングできます。重要なのは、Azure Cosmos DB 向けアプリを作成するときに、適切なエラー処理を実装することです。
 
-このラボでは、2 つのドキュメントのいずれかを挿入または削除できるメニュー形式のプログラムを作成します。このラボの主な目的は、一般的なレスポンス コードのいくつかをどのように使用し、それらをアプリのエラー処理コードでどのように扱うかを紹介することです。複数のレスポンス コードのエラー処理を実装しますが、実際に発生させる条件は 2 種類のみになります。また、エラー処理は複雑な動作を行わず、レスポンス コードに応じて画面にメッセージを表示するか、10 秒待機して操作をもう一度実行します。
+このラボでは、2 つのドキュメントのいずれかを挿入または削除できるメニュー駆動型プログラムを作成します。このラボの主な目的は、よく使われる応答コードのいくつかをどのように使い、アプリのエラー処理コードでどのように活用するかを理解することです。複数の応答コードに対するエラー処理を実装しますが、実際に発生させる条件は 2 種類のみです。また、エラー処理自体は複雑なものではなく、応答コードに応じて画面にメッセージを表示するか、10 秒待ってもう一度操作を再試行するだけです。
 
-## ラボの目標
+## ラボの目的
 
-このラボでは、次のタスクを完了します:
-- タスク 1: 開発環境を準備します。
-- タスク 2: Cosmos DB アカウントからキーとエンドポイントを取得します。
-- タスク 3: Microsoft.Azure.Cosmos ライブラリを .NET スクリプトにインポートします。
-- タスク 4: ドキュメントの挿入と削除を行うメニュー形式のオプションを作成するスクリプトを実行します。
-- タスク 5: ドキュメントを挿入および削除します。
+このラボでは、次のタスクを完了します。
+- タスク 1: 開発環境を準備する。
+- タスク 2: Cosmos DB アカウントからキーと endpoint を取得する。
+- タスク 3: .NET スクリプトに Microsoft.Azure.Cosmos ライブラリをインポートする。
+- タスク 4: ドキュメントの挿入および削除を行うメニュー駆動型オプションを作成するスクリプトを実行する。
+- タスク 5: ドキュメントを挿入および削除する。
 
 ## 推定所要時間: 30 分
 
@@ -21,88 +21,88 @@ Azure Cosmos DB は、さまざまな操作タイプで発生する可能性が�
 
 ![image](architecturedia/lab26.png)
 
-## Exercise 1: Azure Cosmos DB SQL API SDK を使用してアプリケーションをトラブルシューティングする
+## 演習 1: Azure Cosmos DB for NoSQL SDK を使用してアプリケーションをトラブルシューティングする
 
 ### タスク 1: 開発環境を準備する
 
-1. Visual Studio Code を起動します（プログラム アイコンがデスクトップにピン留めされています）。
+1. Visual Studio Code を起動してください（プログラム アイコンはデスクトップにピン留めされています）。
 
-2. 左側のペインから **Extension (1)** アイコンを選択します。検索バーに **C# (2)** と入力し、表示された **extension (3)** を選択して、最後に拡張機能の **Install (4)** をクリックします。
+2. 左側ペインの **Extension (1)** アイコンを選択してください。検索バーに **C# (2)** を入力し、表示された **extension (3)** を選択して、最後に拡張機能の **Install (4)** を選択してください。
 
     ![](media/C-hash-extension.png)
 
-3. 画面左上の **file** オプションを選択し、ペインのオプションから **Open Folder** を選択して **C:\AllFiles** に移動します。
+3. 画面左上の **file** オプションを選択し、メニューから **Open Folder** を選択して **C:\AllFiles** に移動してください。
 
-4. **dp-420-cosmos-db-dev** フォルダーを選択し、**Select Folder** をクリックします。
-
-
-### タスク 2: Cosmos DB アカウントからキーとエンドポイントを取得する
-
-Azure Cosmos DB SQL API アカウントでは、エンドポイントとキーを取得して、Azure SDK for .NET や任意の SDK を使用してアカウントに接続できます。
-
-1. 新しい Web ブラウザー ウィンドウまたはタブで、Azure ポータル (``portal.azure.com``) に移動します。
-
-1. まだサインインしていない場合は、サブスクリプションに関連付けられた Microsoft 資格情報でポータルにサインインします。
-
-1. リソース グループ **DP-420-DeploymentID** を選択し、ラボ 1 で作成した **Cosmos DB** アカウントを選択します。
-
-1. **Keys** ペインに移動します。
-
-1. このペインには、SDK からアカウントに接続するために必要な接続情報と資格情報が含まれています。具体的には:
-
-1. **URI** フィールドの値を記録します。この **endpoint** 値を後でこの演習で使用します。
-    
-1. **PRIMARY KEY** フィールドの値を記録します。この **key** 値を後でこの演習で使用します。
-
-1. Web ブラウザー ウィンドウまたはタブを閉じます。
+4. **dp-420-cosmos-db-dev** フォルダーを選択し、**Select Folder** をクリックしてください。
 
 
-### タスク 3: Microsoft.Azure.Cosmos ライブラリを .NET スクリプトにインポートする
+### タスク 2: Cosmos DB アカウントからキーと endpoint を取得する
 
-.NET CLI には、事前構成されたパッケージ フィードからパッケージをインポートするための [add package][docs.microsoft.com/dotnet/core/tools/dotnet-add-package] コマンドが含まれています。.NET のインストールでは、NuGet がデフォルトのパッケージ フィードとして使用されます。
+Azure Cosmos DB for NoSQL アカウントでは、endpoint と key を取得し、Azure SDK for .NET または任意の SDK を使用して Azure Cosmos DB for NoSQL アカウントに接続できます。
 
-1. **Visual Studio Code** の **Explorer** ペインで **26-sdk-troubleshoot** フォルダーに移動します。
+1. 新しい Web ブラウザーのウィンドウまたはタブで Azure portal (``portal.azure.com``) に移動してください。
 
-1. **26-sdk-troubleshoot** フォルダーのコンテキスト メニューを開き、**Open in Integrated Terminal** を選択して新しいターミナルを開きます。
+1. まだサインインしていない場合は、サブスクリプションに関連付けられた Microsoft 資格情報を使用してポータルにサインインしてください。
 
-    > &#128221; このコマンドは、開始ディレクトリが既に **26-sdk-troubleshoot** フォルダーに設定された状態でターミナルを開きます。
+1. リソース グループ **DP-420-DeploymentID** を選択し、ラボ 1 で作成した **Cosmos DB** アカウントを選択してください。
 
-1. 次のコマンドを実行して、NuGet から [Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1] パッケージを追加します。
+1. **Keys** ペインに移動してください。
+
+1. このペインには、SDK からアカウントに接続するために必要な接続情報と資格情報が含まれています。具体的には次のとおりです。
+
+1. **URI** フィールドの値を記録してください。この演習の後半でこの **endpoint** 値を使用します。
+
+1. **PRIMARY KEY** フィールドの値を記録してください。この演習の後半でこの **key** 値を使用します。
+
+1. Web ブラウザーのウィンドウまたはタブを閉じてください。
+
+
+### タスク 3: .NET スクリプトに Microsoft.Azure.Cosmos ライブラリをインポートする
+
+.NET CLI には、事前構成済みのパッケージ フィードからパッケージをインポートするための [add package][docs.microsoft.com/dotnet/core/tools/dotnet-add-package] コマンドが含まれています。.NET インストールでは、既定のパッケージ フィードとして NuGet を使用します。
+
+1. **Visual Studio Code** の **Explorer** ペインで **26-sdk-troubleshoot** フォルダーに移動してください。
+
+1. **26-sdk-troubleshoot** フォルダーのコンテキスト メニューを開き、**Open in Integrated Terminal** を選択して新しいターミナルを開いてください。
+
+    > &#128221; このコマンドを実行すると、開始ディレクトリが **26-sdk-troubleshoot** フォルダーに設定された状態でターミナルが開きます。
+
+1. 次のコマンドを使用して、NuGet から [Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1] パッケージを追加してください。
 
     ```
     dotnet add package Microsoft.Azure.Cosmos --version 3.22.1
     ```
 
-### タスク 4: ドキュメントの挿入および削除オプションを作成するメニューを実現するスクリプトを実行する
+### タスク 4: ドキュメントの挿入および削除を行うメニュー駆動型オプションを作成するスクリプトを実行する
 
-アプリケーションを実行する前に、Azure Cosmos DB アカウントへの接続を設定する必要があります。
+アプリケーションを実行する前に、Azure Cosmos DB アカウントへ接続する必要があります。
 
-1. **Visual Studio Code** の **Explorer** ペインで **26-sdk-troubleshoot** フォルダーに移動します。
+1. **Visual Studio Code** の **Explorer** ペインで **26-sdk-troubleshoot** フォルダーに移動してください。
 
-1. **Program.cs** コード ファイルを開きます。
+1. **Program.cs** コード ファイルを開いてください。
 
-1. 既存の **endpoint** という名前の変数を、前に作成した Azure Cosmos DB アカウントの **endpoint** に設定します。
-  
+1. 既存の **endpoint** という変数を更新し、先ほど作成した Azure Cosmos DB アカウントの **endpoint** を設定してください。
+
     ```
     private static readonly string endpoint = "<cosmos-endpoint>";
     ```
 
-    > &#128221; たとえば、endpoint が **https&shy;://dp420.documents.azure.com:443/** の場合、C# の文は次のようになります: **private static readonly string endpoint = "https&shy;://dp420.documents.azure.com:443/";**.
+    > &#128221; たとえば endpoint が **https&shy;://dp420.documents.azure.com:443/** の場合、C# ステートメントは **private static readonly string endpoint = "https&shy;://dp420.documents.azure.com:443/";** になります。
 
-1. 既存の **key** という名前の変数を、前に作成した Azure Cosmos DB アカウントの **key** に設定します。
+1. 既存の **key** という変数を更新し、先ほど作成した Azure Cosmos DB アカウントの **key** を設定してください。
 
     ```
     private static readonly string key = "<cosmos-key>";
     ```
 
-    > &#128221; たとえば、key が **fDR2ci9QgkdkvERTQ==** の場合、C# の文は次のようになります: **private static readonly string key = "fDR2ci9QgkdkvERTQ==";**.
+    > &#128221; たとえば key が **fDR2ci9QgkdkvERTQ==** の場合、C# ステートメントは **private static readonly string key = "fDR2ci9QgkdkvERTQ==";** になります。
 
-1. [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] コマンドを使用してプロジェクトをビルドして実行します:
+1. [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] コマンドを使用してプロジェクトをビルドおよび実行してください。
 
     ```
     dotnet run
     ```
-    > &#128221; これは非常にシンプルなプログラムです。以下のように、あらかじめ定義されたドキュメントを挿入する 2 つのオプション、あらかじめ定義されたドキュメントを削除する 2 つのオプション、およびプログラムを終了するオプションの 5 つのオプションを表示します。
+    > &#128221; これは非常に単純なプログラムです。次のように 5 つのオプションを持つメニューを表示します。定義済みドキュメントを挿入するオプションが 2 つ、定義済みドキュメントを削除するオプションが 2 つ、そしてプログラムを終了するオプションが 1 つあります。
 
     >```
     >1) Add Document 1 with id = '0C297972-BE1B-4A34-8AE1-F39E6AA3D828'
@@ -113,9 +113,9 @@ Azure Cosmos DB SQL API アカウントでは、エンドポイントとキー�
     >Select an option:
     >```
 
-### タスク 5: ドキュメントを挿入および削除する時間
+### タスク 5: ドキュメントを挿入および削除する
 
-1. **1** を選択して **ENTER** を押し、最初のドキュメントを挿入します。プログラムは最初のドキュメントを挿入し、次のメッセージを返します。
+1. 最初のドキュメントを挿入するため、**1** を入力して **ENTER** を押してください。プログラムは最初のドキュメントを挿入し、次のメッセージを返します。
 
     ```
     Insert Successful.
@@ -123,28 +123,28 @@ Azure Cosmos DB SQL API アカウントでは、エンドポイントとキー�
     Press [ENTER] to continue
     ```
 
-1. 再度 **1** を選択して **ENTER** を押し、最初のドキュメントを挿入します。今回は、プログラムは例外でクラッシュします。エラー スタックを確認すると、プログラムの失敗理由がわかります。エラー スタックから抽出したメッセージを見ると、処理されていない例外「Conflict (409)」が発生していることがわかります。
+1. もう一度、最初のドキュメントを挿入するために **1** を入力して **ENTER** を押してください。今回は、プログラムは例外でクラッシュします。エラー スタックを確認すると、プログラム失敗の理由を確認できます。エラー スタックから抽出されたメッセージを見ると、未処理例外 "Conflict (409)" が発生しています。
 
     ```
     Unhandled exception. Microsoft.Azure.Cosmos.CosmosException : Response status code does not indicate success: Conflict (409);
     ```
 
-1. ドキュメントを挿入しているので、ドキュメント作成時に返される一般的な [create document status codes][/rest/api/cosmos-db/create-a-document#status-codes] の一覧を確認する必要があります。このコードの説明は、*新しいドキュメントに指定された ID が既存のドキュメントによって使用されている* です。これは、先ほど同じドキュメントを作成するメニュー オプションを実行したため、明らかです。
+1. ドキュメントを挿入しているため、ドキュメント作成時に返される一般的な [create document status codes][/rest/api/cosmos-db/create-a-document#status-codes] の一覧を確認する必要があります。このコードの説明は、*新しいドキュメントに指定した ID が既存ドキュメントにより使用済みである* というものです。これは明らかで、少し前に同じドキュメントを作成するメニュー オプションを実行したためです。
 
-1. スタックをさらに掘り下げると、この例外は行 100 から呼び出され、さらにその行 100 は行 64 から呼び出されていることがわかります。
+1. さらにスタックを確認すると、この例外が 100 行目から呼び出され、さらにその呼び出し元が 64 行目であることが分かります。
 
     ```
-    at Program.CreateDocument1(Container Customer) in C:\Git\dp-420-cosmos-db-dev\26-sdk-troubleshoot\Program.cs:line 100   
+    at Program.CreateDocument1(Container Customer) in C:\Git\dp-420-cosmos-db-dev\26-sdk-troubleshoot\Program.cs:line 100
    at Program.CompleteTaskOnCosmosDB(String consoleinputcharacter, Container container) in C:\Git\dp-420-cosmos-db-dev\26-sdk-troubleshoot\Program.cs:line 64
     ```
 
-1. 行 100 を確認すると、予想どおりエラーは *CreateItemAsync* 操作によって発生していました。
+1. 100 行目を確認すると、予想どおり *CreateItemAsync* 操作がエラーの原因です。
 
     ```C#
         ItemResponse<customerInfo> response = await Customer.CreateItemAsync<customerInfo>(customer, new PartitionKey(customerID));
     ```
 
-1. さらに行 100 から 103 を確認すると、このコードにエラー処理がまったくないことが明らかです。これを修正する必要があります。
+1. さらに 100 行目から 103 行目を確認すると、このコードにはエラー処理がないことが分かります。修正が必要です。
 
     ```C#
         ItemResponse<customerInfo> response = await Customer.CreateItemAsync<customerInfo>(customer, new PartitionKey(customerID));
@@ -152,11 +152,11 @@ Azure Cosmos DB SQL API アカウントでは、エンドポイントとキー�
         Console.WriteLine("Document for customer with id = '" + customerID + "' Inserted.");
     ```
 
-1. エラー処理コードで何を行うべきかを決める必要があります。[create document status codes][/rest/api/cosmos-db/create-a-document#status-codes] を確認すると、この操作に対して考えられるすべてのステータス コードに対するエラー処理コードを作成できます。このラボでは、この一覧から 403 と 409 のステータス コードのみを考慮します。他のすべてのステータス コードは、システムのエラーメッセージを表示するだけにします。
+1. エラー処理コードで何を行うべきかを決める必要があります。[create document status codes][/rest/api/cosmos-db/create-a-document#status-codes] を確認すると、この操作に対して返され得るすべての状態コードに対するエラー処理を作成することもできます。このラボでは、この一覧のうち status code 403 から 409 のみを考慮します。それ以外の状態コードが返された場合は、システムのエラー メッセージを表示するだけにします。
 
-    > &#128221; ここでは 403 の例外に対するエラー処理コードも実装しますが、このラボでは 403 の例外は発生させません。
+    > &#128221; 403 例外に対するエラー処理も実装しますが、このラボでは 403 例外自体は発生させません。
 
-1. **CompleteTaskOnCosmosDB** という名前の関数にエラー処理を追加しましょう。**Main** 関数の行 **45** にある **while** ループを見つけ、**CompleteTaskOnCosmosDB** の呼び出しをエラー処理コードで囲みます。行 **47** の **CompleteTaskOnCosmosDB** 文を以下のコードに置き換えます。この新しいコードで最初に注目すべき点は、**catch** で **CosmosException** 型の例外をキャッチしていることです。このクラスには **StatusCode** プロパティがあり、Azure Cosmos DB サービスからの要求完了ステータス コードを返します。**StatusCode** プロパティは **System.Net.HttpStatusCode** 型であり、この値を使用して .NET の [HTTP Status Code][dotnet/api/system.net.httpstatuscode] のフィールド名と比較できます。
+1. **CompleteTaskOnCosmosDB** という名前の関数に対するエラー処理を追加してください。**Main** 関数の **while** ループを 45 行目付近で見つけ、**CompleteTaskOnCosmosDB** の呼び出しをエラー処理コードで囲んでください。47 行目付近の **CompleteTaskOnCosmosDB** ステートメントを以下のコードに置き換えます。この新しいコードでまず注目すべき点は、**catch** で **CosmosException** クラス型の例外を捕捉していることです。このクラスには **StatusCode** プロパティがあり、Azure Cosmos DB サービスから返される要求完了状態コードを返します。**StatusCode** プロパティは **System.Net.HttpStatusCode** 型であり、この値を使用して .NET の [HTTP Status Code][dotnet/api/system.net.httpstatuscode] のフィールド名と比較できます。
 
     ```C#
         try
@@ -169,7 +169,7 @@ Azure Cosmos DB SQL API アカウントでは、エンドポイントとキー�
                     {
                         case ("Conflict"):
                             Console.WriteLine("Insert Failed. Response Code (409).");
-                            Console.WriteLine("Can not insert a duplicate partition key, customer with the same ID already exists."); 
+                            Console.WriteLine("Can not insert a duplicate partition key, customer with the same ID already exists.");
                             break;
                         case ("Forbidden"):
                             Console.WriteLine("Response Code (403).");
@@ -187,21 +187,21 @@ Azure Cosmos DB SQL API アカウントでは、エンドポイントとキー�
 
     ```
 
-1. ファイルを保存し、クラッシュしたのでメニュー プログラムを再度実行します。次のコマンドを実行してください:
+1. ファイルを保存してください。先ほどクラッシュしたため、メニュー プログラムをもう一度実行する必要があります。次のコマンドを実行してください。
 
     ```
     dotnet run
     ```
- 
-1. 再度 **1** を選択して **ENTER** を押し、最初のドキュメントを挿入します。今度はクラッシュせず、何が起きたのかがよりユーザー向けに表示されます。
+
+1. 再度、最初のドキュメントを挿入するために **1** を入力して **ENTER** を押してください。今回はクラッシュせず、何が起きたかを示す、より分かりやすいメッセージが表示されます。
 
     ```
-    Insert Failed. 
+    Insert Failed.
     Response Code (409).
     Can not insert a duplicate partition key, customer with the same ID already exists.
     ```
 
-1. このコードでは *403* と *409* の例外に対するエラー処理を追加しました。次に、一般的な通信系の例外に対するコードも追加します。一般的な通信系の例外には、*429*、*503*、*408* の 3 つがあります。これはそれぞれ Too Many Requests、Service Unavailable、Request Timeout に対応します。行 *66* 付近には **default** 文があるはずなので、前の **break;** の直後、**default** 文の直前に次のコードを追加します。このコードは通信例外を検出した場合に 10 秒待機し、もう一度ドキュメントの挿入を試行します。次のコードを追加します:
+1. このコードにより *403* と *409* 例外へのエラー処理が追加されました。次に、一般的な通信系例外に対するコードも追加します。一般的な通信系例外には *429*、*503*、*408* の 3 つがあり、それぞれ too many request、service unavailable、request time out を意味します。66 行目付近には **default** ステートメントがあるはずなので、前の **break;** ステートメントの直後、**default** ステートメントの直前に次のコードを追加してください。このコードは、これらの通信系例外が発生したかどうかを確認し、発生した場合は 10 秒待機した後、ドキュメント挿入をもう一度試行します。次のコードを追加してください。
 
     ```C#
                         case ("TooManyRequests"):
@@ -223,9 +223,9 @@ Azure Cosmos DB SQL API アカウントでは、エンドポイントとキー�
                             break;
     ```
 
-    > &#128221; ここでは 429、503、408 の例外に対処するコードを追加しますが、このラボではこれらのタイプの例外を実際に発生させません。
+    > &#128221; 429、503、408 例外に遭遇した場合の処理も実装しますが、このラボではその種類の例外は発生させません。
 
-1. **Main** 関数は次のようになります。
+1. **Main** 関数は次のような形になるはずです。
 
     ```C#
         public static async Task Main(string[] args)
@@ -245,10 +245,10 @@ Azure Cosmos DB SQL API アカウントでは、エンドポイントとキー�
             Console.WriteLine("4) Delete Document 2 with id = 'AAFF2225-A5DD-4318-A6EC-B056F96B94B7'");
             Console.WriteLine("5) Exit");
             Console.Write("\r\nSelect an option: ");
-    
+
             string consoleinputcharacter;
-        
-            while((consoleinputcharacter = Console.ReadLine()) != "5") 
+
+            while((consoleinputcharacter = Console.ReadLine()) != "5")
             {
                  try
                  {
@@ -260,7 +260,7 @@ Azure Cosmos DB SQL API アカウントでは、エンドポイントとキー�
                      {
                         case ("Conflict"):
                             Console.WriteLine("Insert Failed. Response Code (409).");
-                            Console.WriteLine("Can not insert a duplicate partition key, customer with the same ID already exists."); 
+                            Console.WriteLine("Can not insert a duplicate partition key, customer with the same ID already exists.");
                             break;
                         case ("Forbidden"):
                             Console.WriteLine("Response Code (403).");
@@ -291,7 +291,7 @@ Azure Cosmos DB SQL API アカウントでは、エンドポイントとキー�
                             break;
                      }
                 }
-                
+
 
                 Console.WriteLine("Choose an action:");
                 Console.WriteLine("1) Add Document 1 with id = '0C297972-BE1B-4A34-8AE1-F39E6AA3D828'");
@@ -304,25 +304,25 @@ Azure Cosmos DB SQL API アカウントでは、エンドポイントとキー�
         }
     ```
 
-1. **CreateDocument2** 関数も上記の変更によって修正されることに注意してください。
+1. 上記の変更により **CreateDocument2** 関数も修正されることに注意してください。
 
-1. 最後に、**DeleteDocument1** と **DeleteDocument2** の関数も、**CreateDocument1** 関数と同様のエラー処理コードに置き換える必要があります。これらの関数の唯一の違いは、**CreateItemAsync** の代わりに **DeleteItemAsync** を使用している点であり、[deletes status codes][/rest/api/cosmos-db/delete-a-document] は挿入時のステータス コードとは異なる点です。削除では、ドキュメントが見つからないことを示す **404** ステータス コードのみが重要です。**Main** 関数の **default** ケースの上に、次のコードを追加して **CompleteTaskOnCosmosDB** のエラー処理を更新します:
+1. 最後に、**DeleteDocument1** および **DeleteDocument2** 関数についても、**CreateDocument1** 関数と同様に適切なエラー処理コードへ置き換える必要があります。これらの関数は **CreateItemAsync** の代わりに **DeleteItemAsync** を使う点以外に、[deletes status codes][/rest/api/cosmos-db/delete-a-document] が挿入時の状態コードと異なります。削除では、ドキュメントが見つからないことを示す **404** 状態コードのみを考慮します。**CompleteTaskOnCosmosDB** 関数呼び出しのエラー処理に追加の case を加えてください。**Main** 関数では、次のコードを **default** case の前に追加する必要があります。
 
     ```C#
                     case ("NotFound"):
                         Console.WriteLine("Delete Failed. Response Code (404).");
                         Console.WriteLine("Can not delete customer, customer not found.");
-                        break;         
+                        break;
     ```
 
-1. すべての関数の修正が完了したら、メニューのすべてのオプションを何度かテストし、例外が発生したときにクラッシュせずメッセージを返すことを確認します。アプリがクラッシュする場合は、エラーを修正して次のコマンドを再実行します:
+1. すべての関数の修正が完了したら、すべてのメニュー オプションを数回テストし、例外発生時にアプリがクラッシュせずメッセージを返すことを確認してください。もしアプリがクラッシュする場合はエラーを修正し、次のコマンドを再実行してください。
 
     ```
     dotnet run
     ```
 
 
-1. 覗かないでください。修正が完了したら、`Main` のコードは次のようになっているはずです。
+1. 先に答えを見ないでください。完了後、`Main` コードはおおよそ次のようになります。
 
     ```C#
         public static async Task Main(string[] args)
@@ -341,10 +341,10 @@ Azure Cosmos DB SQL API アカウントでは、エンドポイントとキー�
             Console.WriteLine("4) Delete Document 2 with id = 'AAFF2225-A5DD-4318-A6EC-B056F96B94B7'");
             Console.WriteLine("5) Exit");
             Console.Write("\r\nSelect an option: ");
-    
+
             string consoleinputcharacter;
-        
-            while((consoleinputcharacter = Console.ReadLine()) != "5") 
+
+            while((consoleinputcharacter = Console.ReadLine()) != "5")
             {
                     try
                     {
@@ -356,7 +356,7 @@ Azure Cosmos DB SQL API アカウントでは、エンドポイントとキー�
                         {
                             case ("Conflict"):
                                 Console.WriteLine("Insert Failed. Response Code (409).");
-                                Console.WriteLine("Can not insert a duplicate partition key, customer with the same ID already exists."); 
+                                Console.WriteLine("Can not insert a duplicate partition key, customer with the same ID already exists.");
                                 break;
                             case ("Forbidden"):
                                 Console.WriteLine("Response Code (403).");
@@ -381,11 +381,11 @@ Azure Cosmos DB SQL API アカウントでは、エンドポイントとキー�
                                     Console.WriteLine("Can not insert a duplicate partition key, Connectivity issues encountered.");
                                     break;
                                 }
-                                break;    
+                                break;
                             case ("NotFound"):
                                 Console.WriteLine("Delete Failed. Response Code (404).");
                                 Console.WriteLine("Can not delete customer, customer not found.");
-                                break; 
+                                break;
                             default:
                                 Console.WriteLine(e.Message);
                                 break;
@@ -406,7 +406,7 @@ Azure Cosmos DB SQL API アカウントでは、エンドポイントとキー�
 
 ## 結論
 
-最も経験の浅い開発者でも、すべてのコードに適切なエラー処理を追加する必要があることは知っています。このコードのエラー処理はシンプルですが、Azure Cosmos DB の例外コンポーネントについて基本を理解し、堅牢なエラー処理ソリューションを作成するための土台になったはずです。
+経験の浅い開発者であっても、すべてのコードに適切なエラー処理を追加しなければならないことは理解しています。このコードにおけるエラー処理はシンプルですが、Azure Cosmos DB の例外コンポーネントの基本を理解し、堅牢なエラー処理ソリューションをコード内で作成するための土台になるはずです。
 
 
 [code.visualstudio.com/docs/getstarted]: https://code.visualstudio.com/docs/getstarted/tips-and-tricks
@@ -419,12 +419,12 @@ Azure Cosmos DB SQL API アカウントでは、エンドポイントとキー�
 
 ### レビュー
 
-このラボでは、次のことを完了しました:
+このラボでは、次を完了しました。
 
-- 開発環境を準備しました。
-- Cosmos DB アカウントからキーとエンドポイントを取得しました。
-- Microsoft.Azure.Cosmos ライブラリを .NET スクリプトにインポートしました。
-- ドキュメントの挿入と削除を行うメニュー形式のオプションを作成するスクリプトを実行しました。
-- ドキュメントを挿入および削除しました。
+- 開発環境を準備した。
+- Cosmos DB アカウントからキーと endpoint を取得した。
+- .NET スクリプトに Microsoft.Azure.Cosmos ライブラリをインポートした。
+- ドキュメントの挿入および削除を行うメニュー駆動型オプションを作成するスクリプトを実行した。
+- ドキュメントを挿入および削除した。
 
-### ラボを正常に完了しました
+### ラボは正常に完了しました
