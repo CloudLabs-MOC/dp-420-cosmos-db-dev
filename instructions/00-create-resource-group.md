@@ -1,31 +1,31 @@
 ---
 lab:
-    title: 'ラボ用リソースグループの作成'
+    title: 'ラボ用リソース グループを作成する'
     module: 'Setup'
 ---
 
-# ラボ用の Azure リソース グループを作成する
+# ラボ用 Azure リソース グループを作成する
 
-このラボを完了する前に、新しくデプロイされる Azure リソースを配置するための新しい [リソース グループ][docs.microsoft.com/azure/azure-resource-manager/management/manage-resource-groups-portal] を作成してください。
+このラボを完了する前に、新しくデプロイする Azure リソースを配置するための新しい [resource group][docs.microsoft.com/azure/azure-resource-manager/management/manage-resource-groups-portal] を作成してください。
 
-1. 新しいウェブブラウザーのウィンドウまたはタブで、Azure ポータル（``portal.azure.com``）に移動します。
+1. 新しい Web ブラウザーのウィンドウまたはタブで Azure portal (``portal.azure.com``) に移動してください。
 
-1. サブスクリプションに紐づいた Microsoft の資格情報を使用してポータルにサインインします。
+1. サブスクリプションに関連付けられた Microsoft 資格情報を使用してポータルにサインインしてください。
 
-1. **ホーム** ページで **リソース グループ** を選択します。
+1. **Home** ページで **Resource groups** を選択してください。
 
-    > &#128161; 補足：**&#8801;** メニューを展開し、**すべてのサービス (All Services)** を選択し、**すべて (All)** カテゴリで **リソース グループ** を選択することもできます。
+    > &#128161; 別の方法として、**&#8801;** メニューを展開し、**All Services** を選択して、**All** カテゴリで **Resource groups** を選択してください。
 
-1. **+ 作成** を選択します。
+1. **+ Create** を選択してください。
 
-1. **リソース グループの作成** ポップアップで、以下の設定を使用して新しいリソース グループを作成し、残りの設定はすべて既定値のままにします:
+1. **Create a resource group** ポップアップで、次の設定を使用して新しいリソース グループを作成してください。残りの設定は既定値のままにしてください。
 
-    | **設定** | **値** |
+    | **Setting** | **Value** |
     | ---: | :--- |
-    | **サブスクリプション** | *既存の Azure サブスクリプション* |
-    | **リソース グループ** | *リソース グループに固有の名前を付ける* |
-    | **リージョン** | *利用可能な任意のリージョンを選択* |
+    | **Subscription** | *Your existing Azure subscription* |
+    | **Resource group** | *Give your resource group a unique name* |
+    | **Region** | *Choose any available region* |
 
-1. このタスクを続行する前に、デプロイ作業が完了するまで待ちます。
+1. このタスクを続行する前に、デプロイ タスクが完了するまで待機してください。
 
 [docs.microsoft.com/azure/azure-resource-manager/management/manage-resource-groups-portal]: https://docs.microsoft.com/azure/azure-resource-manager/management/manage-resource-groups-portal
