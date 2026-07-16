@@ -1,184 +1,186 @@
-# Lab 06b - Azure Cosmos DB for NoSQL のインデックス戦略を定義して実装する
+# ポータルを使用して Azure Cosmos DB for NoSQL コンテナーの既定インデックス ポリシーを確認する
 
 ## ラボ シナリオ
 
-インデックス ポリシーは、Azure Cosmos DB のいずれの SDK からでも管理できます。特に .NET SDK には、Azure Cosmos DB for NoSQL のコンテナーに新しいインデックス ポリシーを設計して適用するためのクラス群が用意されています。
+Azure Cosmos DB のすべてのコンテナーには、コンテナー内の項目をどのようにインデックス化するかをサービスに指示するインデックス ポリシーがあります。既定では、このインデックス ポリシーはすべての項目のすべてのプロパティをインデックス化します。既定のインデックス ポリシーにより、プロジェクト開始時にインデックス、パフォーマンス、管理を細かく考えなくても、Azure Cosmos DB をすばやく使い始めることができます。
 
-このラボでは、.NET SDK を使用してコンテナーのカスタム インデックス ポリシーを作成します。
+このラボでは、Data Explorer を使用していくつかのコンテナーの既定インデックス ポリシーを確認し、操作します。
 
 ## ラボの目的
 
 このラボでは、次のタスクを完了します。
-- タスク 1: 開発環境を準備する。
-- タスク 2: .NET SDK を使用して新しいインデックス ポリシーを作成する。
-- タスク 3: .NET SDK で作成したインデックス ポリシーを Data Explorer で確認する。
+- タスク 1: Azure Cosmos DB NoSQL API アカウントを作成する。
+- タスク 2: Azure Cosmos DB NoSQL API アカウントにデータを投入する。
+- タスク 3: 既定のインデックス ポリシーを表示および操作する。
 
 ## 推定所要時間: 30 分
 
 ## アーキテクチャ図
 
-![image](architecturedia/lab12.png)
+![image](architecturedia/lab11.png)
+
+## タスク 1: ポータルを使用して Azure Cosmos DB SQL API コンテナーの既定インデックス ポリシーを確認する
+
+このタスクでは、Azure Cosmos DB SQL アカウントをプロビジョニングし、基本設定を構成するとともに、今後の開発に必要な接続情報を取得します。
+
+Azure Cosmos DB は複数の API をサポートするクラウドベースの NoSQL データベース サービスです。初めて Azure Cosmos DB アカウントをプロビジョニングする際には、そのアカウントでサポートする API（例: Mongo API または NoSQL API）を選択します。Azure Cosmos DB for NoSQL アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得し、Azure SDK for .NET または任意の SDK を使用して Azure Cosmos DB for NoSQL アカウントに接続できます。
+
+1. Azure Portal ページで、ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB (1)** と入力し、services の下にある **Azure Cosmos DB (2)** を選択してください。
+
+   ![06](media/New-image1.png)
+
+1. **Azure Cosmos DB for NoSQL** の下で **+ Create (1)** を選択し、**Create (2)** をクリックして **Azure Cosmos DB for NoSQL** アカウントを作成してください。
+
+    ![06](media/New-image2.png)
+
+    ![06](media/New-image3.png)
+
+1. 次の設定を指定し、その他の設定は既定値のままにして **Review + create (10)** を選択してください。
+
+    | **Setting**         | **Value** |
+    | --------------------|--------------------------------------------------- |
+    | **Workload Type**   | *Production* (1) |
+    | **Subscription**    | *Your existing Azure subscription* (2) |
+    | **Resource group**  | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* (3) |
+    | **Account Name**    | *sql-<inject key="DeploymentID" enableCopy="false"/>* (4) |
+    | **Location**        | *Choose the default region* (5) |
+    | **Capacity mode**   | *Provisioned throughput* (6) |
+    | **Apply Free Tier Discount** | *Do Not Apply* (7) |
+    | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* (8) |
+
+     ![06](media/DB25.png)
+
+1. **Create** をクリックしてください。
+
+    ![06](media/New-image5.png)
+
+1. このタスクを続行する前に、デプロイが完了するまで待機してください。
+
+1. デプロイ完了後、**Go to resources** を選択してください。
+
+    ![06](media/New-image6.png)
+
+1. **Azure Cosmos DB account** で、左側メニューの **Settings (1)** を展開し、**Keys (2)** を選択してください。
+
+    ![06](media/DB15.png)
 
 
-## 演習 1: ポータルを使用して Azure Cosmos DB for NoSQL コンテナーのインデックス ポリシーを構成する
+1. このペインには、SDK からアカウントに接続するために必要な接続情報と資格情報が含まれています。具体的には次のとおりです。
 
-### タスク 1: 開発環境を準備する
+    1. **URI (1)** フィールドの値を記録してください。この演習の後半でこの **endpoint** 値を使用します。
 
-作業環境に **DP-420** のラボ コード リポジトリをまだクローンしていない場合は、次の手順でクローンしてください。すでにクローン済みの場合は、以前クローンしたフォルダーを **Visual Studio Code** で開いてください。
+    1. **PRIMARY KEY (2)** フィールドの値を記録してください。この演習の後半でこの **key** 値を使用します。
 
-1. **Visual Studio Code** を起動してください（プログラム アイコンはデスクトップにピン留めされています）。
+        ![06](media/New-image9.png)
 
-    > &#128221; Visual Studio Code のインターフェイスにまだ慣れていない場合は、[Get Started guide for Visual Studio Code][code.visualstudio.com/docs/getstarted] を確認してください。
+1. Web ブラウザーのウィンドウまたはタブは開いたままにしてください。
 
-1. 左側ペインの **Extension (1)** アイコンを選択してください。検索バーに **C# (2)** を入力し、表示された **extension (3)** を選択して、最後に拡張機能の **Install (4)** を選択してください。
+    > タスク完了おめでとうございます。次は検証です。手順は次のとおりです。
+    > - 対応するタスクの Validate ボタンを押してください。成功メッセージが表示された場合、次のタスクに進めます。
+    > - 表示されない場合は、エラーメッセージをよく確認し、ラボ ガイドの手順に従って再試行してください。
+    > - サポートが必要な場合は cloudlabs-support@spektrasystems.com までご連絡ください。24 時間 365 日対応しています。
 
-    ![](media/C-hash-extension.png)
+    <validation step="140fa89d-d46a-4ae0-a198-9c51019a9b40" />
 
-1. ファイルを開きます。左上メニューから **file->Open Folder** をクリックし、**C:\AllFiles** に移動してください。
+### タスク 2: Azure Cosmos DB NoSQL API アカウントにデータを投入する
 
-1. **dp-420-cosmos-db-dev-stage** フォルダーを選択し、**Select Folder** をクリックしてください。
+このタスクでは、CosmicWorks ツールを使用して Azure Cosmos DB NoSQL アカウントにサンプル製品データを投入します。Visual Studio Code のターミナルにツールをインストールした後、Cosmos DB の endpoint と key を指定して投入コマンドを実行します。ツールはデータベースとコンテナーを作成し、製品データをアカウントに挿入します。
 
-### タスク 2: .NET SDK を使用して新しいインデックス ポリシーを作成する
+[cosmicworks][nuget.org/packages/cosmicworks] コマンドライン ツールは、任意の Azure Cosmos DB SQL API アカウントにサンプル データをデプロイします。このツールはオープンソースで NuGet から利用できます。このツールを Azure Cloud Shell にインストールし、データベースへのデータ投入に使用します。
 
-.NET SDK には、親クラス [Microsoft.Azure.Cosmos.IndexingPolicy][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.indexingpolicy] に関連するクラス群が含まれており、コードで新しいインデックス ポリシーを構築できます。
+1. Visual Studio Code を起動してください（プログラム アイコンはデスクトップにピン留めされています）。
 
-1. **Visual Studio Code** の **Explorer** ペインで、**12-custom-index-policy** フォルダーに移動してください。
+   ![Visual Studio Code Icon](./media/vscode1.jpg)
 
-1. **script.cs** コード ファイルを開いてください。
+1. **Visual Studio Code** で、**... (ellipses) (1)** を選択し、**Terminal (2)** を選択してから **New Terminal (3)** を選択し、既存インスタンス内で新しいターミナルを開いてください。
 
-1. 既存の **endpoint** という名前の変数を更新し、前のラボで作成した Azure Cosmos DB アカウントの **endpoint** を設定してください。
+    ![06](media/New-image36.png)
 
-    ```
-    string endpoint = "<cosmos-endpoint>";
-    ```
-
-    > &#128221; たとえば endpoint が **https&shy;://dp420.documents.azure.com:443/** の場合、C# ステートメントは **string endpoint = "https&shy;://dp420.documents.azure.com:443/";** になります。
-
-1. 既存の **key** という名前の変数を更新し、前のラボで作成した Azure Cosmos DB アカウントの **key** を設定してください。
-
-    ```
-    string key = "<cosmos-key>";
-    ```
-
-    > &#128221; たとえば key が **fDR2ci9QgkdkvERTQ==** の場合、C# ステートメントは **string key = "fDR2ci9QgkdkvERTQ==";** になります。
-
-1. 既定の空コンストラクターを使用して、**policy** という名前の [IndexingPolicy][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.indexingpolicy] 型の新しい変数を作成してください。
-
-    ```
-    IndexingPolicy policy = new ();
-    ```
-
-1. **policy** 変数の [IndexingMode][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.indexingpolicy.indexingmode] プロパティを [IndexingMode.Consistent][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.indexingmode#fields] に設定してください。
-
-    ```
-    policy.IndexingMode = IndexingMode.Consistent;
-    ```
-
-1. [ExcludedPath][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.excludedpath] 型の新しいオブジェクトを作成し、[Path][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.excludedpath.path] プロパティを **/*** に設定して、**policy** 変数の [ExcludedPaths][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.indexingpolicy.excludedpaths] コレクション プロパティに追加してください。
-
-    ```
-    policy.ExcludedPaths.Add(
-        new ExcludedPath{ Path = "/*" }
-    );
-    ```
-
-1. [IncludedPath][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.includedpath] 型の新しいオブジェクトを作成し、[Path][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.includedpath.path] プロパティを **/name/?** に設定して、**policy** 変数の [IncludedPaths][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.indexingpolicy.includedpaths] コレクション プロパティに追加してください。
-
-    ```
-    policy.IncludedPaths.Add(
-        new IncludedPath{ Path = "/name/?" }
-    );
-    ```
-
-1. ``products`` と ``/categoryId`` の値をコンストラクター パラメーターとして渡し、**options** という名前の [ContainerProperties][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.containerproperties] 型の新しい変数を作成してください。
-
-    ```
-    ContainerProperties options = new ("products", "/categoryId");
-    ```
-
-1. **options** 変数の [IndexingPolicy][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.containerproperties.indexingpolicy] プロパティに **policy** 変数を割り当ててください。
-
-    ```
-    options.IndexingPolicy = policy;
-    ```
-
-1. **database** 変数の [CreateContainerIfNotExistsAsync][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.database.createcontainerifnotexistsasync] メソッドを非同期で呼び出し、コンストラクター パラメーターとして **options** 変数を渡し、結果を **container** という名前の [Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] 型変数に格納してください。
+1. [cosmicworks][nuget.org/packages/cosmicworks] コマンドライン ツールをマシン全体で利用できるようにインストールしてください。
 
     ```
-    Container container = await database.CreateContainerIfNotExistsAsync(options);
+    dotnet tool install cosmicworks --global --version 1.*
     ```
 
-1. 組み込みの静的 **Console.WriteLine** メソッドを使用して、Container クラスの [Id][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.id] プロパティを **Container Created** ヘッダー付きで出力してください。
+    ![06](media/DB50.png)
+
+    > &#128161; このコマンドの完了には数分かかる場合があります。過去にこのツールの最新バージョンをすでにインストールしている場合、このコマンドは警告メッセージ（*Tool 'cosmicworks' is already installed'）を出力します。
+
+1. インストール完了後、以下のコマンドを実行するために **Visual Studio Code** を一度閉じて再度開いてください。
+
+1. 次のコマンドライン オプションで cosmicworks を実行し、Azure Cosmos DB アカウントにデータを投入してください。
+
+    | **Option** | **Value** |
+    | --- | --- |
+    | **--endpoint** | *このラボで先ほどコピーした endpoint 値* |
+    | **--key** | *このラボで先ほどコピーした key 値* |
+    | **--datasets** | *product* |
 
     ```
-    Console.WriteLine($"Container Created [{container.Id}]");
+    cosmicworks --endpoint <cosmos-endpoint> --key <cosmos-key> --datasets product
     ```
 
-1. 完了後、コード ファイルに次の内容が含まれていることを確認してください。
+    > &#128221; たとえば endpoint が **https&shy;://dp420.documents.azure.com:443/** で key が **fDR2ci9QgkdkvERTQ==** の場合、コマンドは次のようになります。
+    > ``cosmicworks --endpoint https://dp420.documents.azure.com:443/ --key fDR2ci9QgkdkvERTQ== --datasets product``
 
-    ```
-    using System;
-    using Microsoft.Azure.Cosmos;
+    >**Note**: エラーが発生する場合は、Visual Studio Code を閉じて再度開き、もう一度コマンドを実行してください。
 
-    string endpoint = "<cosmos-endpoint>";
-
-    string key = "<cosmos-key>";
-
-    CosmosClient client = new CosmosClient(endpoint, key);
-
-    Database database = await client.CreateDatabaseIfNotExistsAsync("cosmicworks");
-
-    IndexingPolicy policy = new ();
-    policy.IndexingMode = IndexingMode.Consistent;
-    policy.ExcludedPaths.Add(
-        new ExcludedPath{ Path = "/*" }
-    );
-    policy.IncludedPaths.Add(
-        new IncludedPath{ Path = "/name/?" }
-    );
-
-    ContainerProperties options = new ("products", "/categoryId");
-    options.IndexingPolicy = policy;
-
-    Container container = await database.CreateContainerIfNotExistsAsync(options);
-    Console.WriteLine($"Container Created [{container.Id}]");
-    ```
-
-1. **script.cs** ファイルを **Save** してください。
-
-1. **Visual Studio Code** で **12-custom-index-policy** フォルダーのコンテキスト メニューを開き、**Open in Integrated Terminal** を選択して新しいターミナルを開いてください。
-
-1. [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] コマンドを使用してプロジェクトをビルドおよび実行してください。
-
-    ```
-    dotnet run
-    ```
-
-1. スクリプトにより、新しく作成されたコンテナー名が出力されます。
-
-    ```
-    Container Created [products]
-    ```
+1. **cosmicworks** コマンドがアカウントへのデータベース、コンテナー、項目の投入を完了するまで待機してください。
 
 1. 統合ターミナルを閉じてください。
 
 1. **Visual Studio Code** を閉じてください。
 
-### タスク 3: .NET SDK で作成したインデックス ポリシーを Data Explorer で確認する
+    > タスク完了おめでとうございます。次は検証です。手順は次のとおりです。
+    > - 対応するタスクの Validate ボタンを押してください。成功メッセージが表示された場合、次のタスクに進めます。
+    > - 表示されない場合は、エラーメッセージをよく確認し、ラボ ガイドの手順に従って再試行してください。
+    > - サポートが必要な場合は cloudlabs-support@spektrasystems.com までご連絡ください。24 時間 365 日対応しています。
 
-他のインデックス ポリシーと同様に、.NET SDK で適用したポリシーは Data Explorer で確認できます。ここではポータルを使用して、このラボでコードから作成したポリシーを確認します。
+    <validation step="eb8c6d06-bc6e-4170-a124-a95072d907a0" />
 
-1. Web ブラウザーで Azure portal (``portal.azure.com``) に移動してください。
+### タスク 3: 既定のインデックス ポリシーを表示および操作する
 
-1. **Resource groups** を選択し、このラボで作成または確認したリソース グループを選択してから、このラボで作成した **Azure Cosmos DB account** リソースを選択してください。
+このタスクでは、Cosmos DB コンテナーの既定インデックス ポリシーを表示および変更します。Azure portal で Azure Cosmos DB に移動した後、_etag を除くすべてのパスをインデックス化する既定ポリシーを確認します。次に、**/price** パスのみをインデックス化するようポリシーを変更します。変更後、SQL クエリを実行してインデックス変更前後の要求料金を比較し、どのフィールドがインデックス化されているかによってクエリ効率がどのように変化するかを確認します。
 
-1. **Azure Cosmos DB** アカウント リソース内で **Data Explorer** ペインに移動してください。
+コンテナーをコード、ポータル、ツールのいずれかで作成した場合、明示的に指定しない限り、インデックス ポリシーは既定の推奨設定になります。ここでは、その既定ポリシーを確認し、変更を加えます。
 
-1. **Data Explorer** で **cosmicworks** データベース ノードを展開し、**API for NoSQL** ナビゲーション ツリー内の新しい **products** コンテナー ノードを確認してください。
+1. **Azure portal** に移動してください。
 
-1. **API for NoSQL** ナビゲーション ツリーの **products** コンテナー ノード内で **Scale & Settings** を選択してください。
+1. Azure Portal ページで、ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB** と入力し、services の下にある **Azure Cosmos DB** を選択してください。
 
-1. **Indexing Policy** セクション内のインデックス ポリシーを確認してください。
+   ![06](media/New-image1.png)
+
+1. **sql-<inject key="DeploymentID" enableCopy="false"/>** を選択してください。
+
+     ![06](media/New-image68.png)
+
+1. **Azure Cosmos DB** アカウント リソース内で、**Data Explorer** ペインに移動してください。
+
+1. **Data Explorer** で **cosmicworks** データベース ノードを展開し、ナビゲーション ツリー内の新しい **products** コンテナー ノードを確認してから **New SQL Query** を選択してください。
+
+     ![06](media/New-image74.png)
+
+1. エディター領域の内容を削除してください。
+
+1. **name** が **HL Headset** と等しいすべてのドキュメントを返す新しい SQL クエリを作成し、**Execute Query** を選択してください。
+
+    ```
+    SELECT * FROM p WHERE p.name = 'HL Headset'
+    ```
+
+   ![06](media/New-image75.png)
+
+1. クエリ結果を確認してください。
+
+1. **Query Stats** を選択し、**Query Statistics** セクション内の **Request Charge** フィールドの値を確認してください。
+
+     ![06](media/New-image76.png)
+
+    > &#128221; 現在はすべてのパスがインデックス化されているため、このクエリは比較的効率的です。
+
+1. **products** コンテナー ノード内で **Scale & Settings** を選択してください。
+
+1. **Indexing Policy** セクション内の既定インデックス ポリシーを確認してください。
 
     ```
     {
@@ -186,13 +188,10 @@
       "automatic": true,
       "includedPaths": [
         {
-          "path": "/name/?"
+          "path": "/*"
         }
       ],
       "excludedPaths": [
-        {
-          "path": "/*"
-        },
         {
           "path": "/\"_etag\"/?"
         }
@@ -200,16 +199,73 @@
     }
     ```
 
-    > &#128221; これは、このラボで .NET SDK を使用して作成したインデックス ポリシーの JSON 表現です。
+    > &#128221; この既定ポリシーは **_etag** を除くすべての可能なパスをインデックス化します。
 
-1. Web ブラウザーのウィンドウまたはタブを閉じてください。
+1. エディター内でインデックス ポリシーの内容を **/price** パスのみをインデックス化する設定に置き換え、**Save** を選択して変更を保存してください。
+
+    ```
+    {
+      "indexingMode": "consistent",
+      "automatic": true,
+      "includedPaths": [
+        {
+          "path": "/price/?"
+        }
+      ],
+      "excludedPaths": [
+        {
+          "path": "/*"
+        }
+      ]
+    }
+    ```
+
+   ![06](media/New-image77.png)
+
+1. **New SQL Query** を選択してください。
+
+1. エディター領域の内容を削除してください。
+
+1. **name** が **HL Headset** と等しいすべてのドキュメントを返す新しい SQL クエリを作成し、**Execute Query** を選択してください。
+
+    ```
+    SELECT * FROM p WHERE p.name = 'HL Headset'
+    ```
+
+   ![06](media/New-image78.png)
+
+1. クエリ結果を確認してください。
+
+1. **Query Stats** を選択し、**Query Statistics** セクション内の **Request Charge** フィールドの値を確認してください。
+
+    > &#128221; **name** プロパティがインデックス化されなくなったため、要求料金が増加しています。
+
+    ![06](media/New-image79.png)
+
+1. エディター領域の内容を削除してください。
+
+1. **price** が **$3,000** より大きいすべてのドキュメントを返す新しい SQL クエリを作成してください。
+
+    ```
+    SELECT * FROM p WHERE p.price > 3000
+    ```
+
+1. **Execute Query** を選択してください。
+
+1. クエリ結果を確認してください。
+
+1. **Query Stats** を選択し、**Query Statistics** セクション内の **Request Charge** フィールドの値を確認してください。
+
+## まとめ
+
+このラボでは、コンテナー内の項目をどのようにインデックス化するかを制御する Azure Cosmos DB のインデックス ポリシーを学習しました。既定ではすべてのプロパティがインデックス化されるため、手動でインデックス管理を行わなくても効率的にクエリできます。ラボでは、Cosmos DB NoSQL アカウントのプロビジョニング、サンプル データの投入、既定インデックス ポリシーの確認を行いました。次に、**/price** パスのみをインデックス化するようポリシーを変更し、クエリ効率および要求料金への影響を確認しました。この演習を通して、インデックス ポリシーのカスタマイズが Cosmos DB のパフォーマンスとクエリ コストに与える影響を理解しました。
 
 ### レビュー
 
 このラボでは、次を完了しました。
 
-- 開発環境を準備した。
-- .NET SDK を使用して新しいインデックス ポリシーを作成した。
-- .NET SDK で作成したインデックス ポリシーを Data Explorer で確認した。
+- Azure Cosmos DB for NoSQL アカウントを作成した。
+- Azure Cosmos DB for NoSQL アカウントにデータを投入した。
+- 既定インデックス ポリシーを表示および操作した。
 
 ### ラボは正常に完了しました
