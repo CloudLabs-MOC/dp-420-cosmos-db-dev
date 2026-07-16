@@ -27,13 +27,13 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
 1. Azure Portal ページで、ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB (1)** と入力し、services の下にある **Azure Cosmos DB (2)** を選択してください。
 
-   ![06](media/New-image1.png)
+   ![06](media/07-01.png)
 
 1. **Azure Cosmos DB for NoSQL** の下で **+ Create (1)** を選択し、**Create (2)** をクリックして **Azure Cosmos DB for NoSQL** アカウントを作成してください。
 
-    ![06](media/New-image2.png)
+    ![06](media/07-02.png)
 
-    ![06](media/New-image3.png)
+    ![06](media/07-03.png)
 
 1. 次の設定を指定し、その他の設定は既定値のままにして **Review + create (10)** を選択してください。
 
@@ -48,21 +48,21 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
     | **Apply Free Tier Discount** | *Do Not Apply* (7) |
     | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* (8) |
 
-     ![06](media/DB25.png)
+     ![06](media/07-04.png)
 
 1. **Create** をクリックしてください。
 
-    ![06](media/New-image5.png)
+    ![06](media/07-05.png)
 
 1. このタスクを続行する前に、デプロイが完了するまで待機してください。
 
 1. デプロイ完了後、**Go to resources** を選択してください。
 
-    ![06](media/New-image6.png)
+    ![06](media/07-06.png)
 
 1. **Azure Cosmos DB account** で、左側メニューの **Settings (1)** を展開し、**Keys (2)** を選択してください。
 
-    ![06](media/DB15.png)
+    ![06](media/07-07.png)
 
 
 1. このペインには、SDK からアカウントに接続するために必要な接続情報と資格情報が含まれています。具体的には次のとおりです。
@@ -71,7 +71,7 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
     1. **PRIMARY KEY (2)** フィールドの値を記録してください。この演習の後半でこの **key** 値を使用します。
 
-        ![06](media/New-image9.png)
+        ![06](media/07-08.png)
 
 1. Web ブラウザーのウィンドウまたはタブは開いたままにしてください。
 
@@ -94,7 +94,7 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
 1. **Visual Studio Code** で、**... (ellipses) (1)** を選択し、**Terminal (2)** を選択してから **New Terminal (3)** を選択し、既存インスタンス内で新しいターミナルを開いてください。
 
-    ![06](media/New-image36.png)
+    ![06](media/07-09.png)
 
 1. [cosmicworks][nuget.org/packages/cosmicworks] コマンドライン ツールをマシン全体で利用できるようにインストールしてください。
 
@@ -102,7 +102,7 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
     dotnet tool install cosmicworks --global --version 1.*
     ```
 
-    ![06](media/DB50.png)
+    ![06](media/07-10.png)
 
     > &#128161; このコマンドの完了には数分かかる場合があります。過去にこのツールの最新バージョンをすでにインストールしている場合、このコマンドは警告メッセージ（*Tool 'cosmicworks' is already installed'）を出力します。
 
@@ -148,17 +148,17 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
 1. Azure Portal ページで、ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB** と入力し、services の下にある **Azure Cosmos DB** を選択してください。
 
-   ![06](media/New-image1.png)
+   ![06](media/01-03.png)
 
 1. **sql-<inject key="DeploymentID" enableCopy="false"/>** を選択してください。
 
-     ![06](media/New-image68.png)
+     ![06](media/07-11.png)
 
 1. **Azure Cosmos DB** アカウント リソース内で、**Data Explorer** ペインに移動してください。
 
 1. **Data Explorer** で **cosmicworks** データベース ノードを展開し、ナビゲーション ツリー内の新しい **products** コンテナー ノードを確認してから **New SQL Query** を選択してください。
 
-     ![06](media/New-image74.png)
+     ![06](media/07-12.png)
 
 1. エディター領域の内容を削除してください。
 
@@ -168,13 +168,13 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
     SELECT * FROM p WHERE p.name = 'HL Headset'
     ```
 
-   ![06](media/New-image75.png)
+   ![06](media/07-13.png)
 
 1. クエリ結果を確認してください。
 
 1. **Query Stats** を選択し、**Query Statistics** セクション内の **Request Charge** フィールドの値を確認してください。
 
-     ![06](media/New-image76.png)
+     ![06](media/07-14.png)
 
     > &#128221; 現在はすべてのパスがインデックス化されているため、このクエリは比較的効率的です。
 
@@ -220,7 +220,7 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
     }
     ```
 
-   ![06](media/New-image77.png)
+   ![06](media/07-15.png)
 
 1. **New SQL Query** を選択してください。
 
@@ -232,7 +232,7 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
     SELECT * FROM p WHERE p.name = 'HL Headset'
     ```
 
-   ![06](media/New-image78.png)
+   ![06](media/07-16.png)
 
 1. クエリ結果を確認してください。
 
@@ -240,7 +240,7 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
     > &#128221; **name** プロパティがインデックス化されなくなったため、要求料金が増加しています。
 
-    ![06](media/New-image79.png)
+    ![06](media/07-17.png)
 
 1. エディター領域の内容を削除してください。
 
