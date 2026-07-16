@@ -73,11 +73,11 @@
 
 1. **New Stored Procedure** を選択してください。
 
-   ![06](media/New-image123.png)
+   ![06](media/13LB-16b.png)
 
 1. **Stored Procedure Id** フィールドに **createDoc** を入力してください。
 
-    ![06](media/New-image124.png)
+    ![06](media/13LB-17.png)
 
 1. エディター領域の内容を削除してください。
 
@@ -143,7 +143,7 @@
 
 1. **Save** を選択して、ストアド プロシージャへの変更を保存してください。
 
-    ![06](media/New-image125.png)
+    ![06](media/13LB-18.png)
 
 1. **Execute** を選択し、次の入力パラメーターでストアド プロシージャを実行してください。
 
