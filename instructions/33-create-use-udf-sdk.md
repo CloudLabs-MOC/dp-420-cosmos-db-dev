@@ -1,21 +1,21 @@
-# SDK を使ってユーザー定義関数を実装し、その後使用する
+# SDK を使用してユーザー定義関数を実装し利用する
 
 ## ラボ シナリオ
 
-Azure Cosmos DB SQL API 用の .NET SDK を使用すると、コンテナーからサーバー側のプログラミング構造を直接管理および呼び出すことができます。新しいコンテナーを準備する際、Data Explorer を使って手作業で操作する代わりに、.NET SDK を使って UDF をコンテナーに直接公開する方が適している場合があります。
+Azure Cosmos DB SQL API 用 .NET SDK は、サーバー側プログラミング構成要素をコンテナーから直接管理および呼び出すために使用できます。新しいコンテナーを準備する際は、Data Explorer で手動作業を行う代わりに、.NET SDK を使用して UDF をコンテナーへ直接公開する方法が適しています。
 
-このラボでは、.NET SDK を使用して新しい UDF を作成し、Data Explorer を使用して UDF が正しく動作していることを検証します。
+このラボでは、.NET SDK を使用して新しい UDF を作成し、その後 Data Explorer を使用して UDF が正しく動作することを検証します。
 
 ## ラボの目的
 
-このラボでは、次のタスクを完了します:
-- タスク 1: 開発環境を準備します。
-- タスク 2: Azure Cosmos DB for NoSQL アカウントを作成します。
-- タスク 3: Azure Cosmos DB for NoSQL アカウントにデータを投入します。
-- タスク 4: .NET SDK を使用してユーザー定義関数 (UDF) を作成します。
-- タスク 5: Data Explorer を使用して UDF をテストします。
+このラボでは、次のタスクを完了します。
+- タスク 1: 開発環境を準備する。
+- タスク 2: Azure Cosmos DB for NoSQL アカウントを作成する。
+- タスク 3: Azure Cosmos DB SQL API アカウントにデータを投入する。
+- タスク 4: .NET SDK を使用してユーザー定義関数（UDF）を作成する。
+- タスク 5: Data Explorer を使用して UDF をテストする。
 
-## 想定所要時間: 30 分
+## 推定所要時間: 30 分
 
 ## アーキテクチャ図
 
@@ -23,196 +23,196 @@ Azure Cosmos DB SQL API 用の .NET SDK を使用すると、コンテナーか�
 
 ### タスク 1: 開発環境を準備する
 
-このタスクでは、Visual Studio Code をセットアップして Azure Cosmos DB の作業に備えます。
+このタスクでは、Visual Studio Code をセットアップして、Azure Cosmos DB の作業に向けた開発環境を準備します。
 
-1. Visual Studio Code を起動します（プログラムアイコンがデスクトップにピン留めされています）。
+1. Visual Studio Code を起動してください（プログラム アイコンはデスクトップにピン留めされています）。
 
    ![Visual Studio Code Icon](./media/vscode1.jpg)
 
-2. 左ペインの **拡張機能 (1)** アイコンを選択します。検索バーに **C# (2)** と入力し、表示される **拡張機能 (3)** を選択して、**Install (4)** をクリックします。
+2. 左側ペインの **Extension (1)** アイコンを選択してください。検索バーに **C# (2)** を入力し、表示された **extension (3)** を選択して、最後に **Install (4)** を選択してください。
 
     ![](media/visualstudioo.png)
 
-3. 画面左上の **ファイル** オプションを選択し、**Open Folder** を選択して **C:\AllFiles** に移動します。
+3. 画面左上の **file** オプションを選択し、メニューから **Open Folder** を選択して **C:\AllFiles** に移動してください。
 
-4. **dp-420-cosmos-db-dev-main** フォルダーを選択し、**Select Folder** をクリックします。
+4. **dp-420-cosmos-db-dev-main** フォルダーを選択し、**Select Folder** をクリックしてください。
 
    ![](media/lab12-1.png)
 
-    >**注意:** **Do you trust the authors of the files in this folder?** のポップアップが表示されたら、**Yes, I trust authors** を選択します。
+    >**Note:** **Do you trust the authors of the files in this folder?** ポップアップで **Yes, I trust authors** を選択してください。
 
     ![06](media/lab12-2.png)
 
 
 ### タスク 2: Azure Cosmos DB for NoSQL アカウントを作成する
 
-このタスクでは、Azure Cosmos DB SQL アカウントをプロビジョニングし、今後の開発に必要な基本設定と接続情報を取得します。
+このタスクでは、Azure Cosmos DB SQL アカウントをプロビジョニングし、重要な設定を構成して、今後の開発に必要な接続情報を取得します。
 
-Azure Cosmos DB は複数の API をサポートするクラウドベースの NoSQL データベース サービスです。Azure Cosmos DB アカウントを初めてプロビジョニングする際に、サポートする API（例: **Mongo API** や **NoSQL API**）を選択します。Azure Cosmos DB for NoSQL アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得して、Azure SDK for .NET や任意の SDK から Azure Cosmos DB for NoSQL アカウントに接続できます。
+Azure Cosmos DB は複数の API をサポートするクラウドベースの NoSQL データベース サービスです。Azure Cosmos DB アカウントを初めてプロビジョニングする際は、アカウントでサポートする API（例: **Mongo API** または **NoSQL API**）を選択します。Azure Cosmos DB for NoSQL アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得し、Azure SDK for .NET または任意の SDK を使用して Azure Cosmos DB for NoSQL アカウントへ接続できます。
 
-1. Azure ポータルのページに戻り、ポータル上部の「Search resources, services and docs (G+/)」ボックスに **Azure Cosmos DB** と入力し、サービスの下に表示される **Azure Cosmos DB** を選択します。
+1. Azure Portal ページに戻ってください。ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB** と入力し、services の **Azure Cosmos DB** を選択してください。
 
    ![06](media/New-image1.png)
    
-1. **Azure Cosmos DB for NoSQL** の下で **+ Create** を選択し、**Create** をクリックして **Azure Cosmos DB for NoSQL** アカウントを作成します。
+1. **Azure Cosmos DB for NoSQL** の下にある **+ Create** を選択し、**Create** をクリックして **Azure Cosmos DB for NoSQL** アカウントを作成してください。
 
     ![06](media/New-image2.png)
 
     ![06](media/New-image3.png)
 
-1. 以下の設定を指定し、残りの設定はすべて既定値のままにして、**Review + create** を選択します:
+1. 次の設定を指定し、それ以外の設定は既定値のままにして、**Review + create** を選択してください。
 
-    | **設定** | **値** |
-    | --- | :--- |
-    | **サブスクリプション** | *既存の Azure サブスクリプション* |
-    | **リソース グループ** | **Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>** |
-    | **アカウント名** | *グローバルに一意の名前を入力* |
-    | **ロケーション** | *利用可能なリージョンを選択* |
-    | **容量モード** | *Provisioned throughput* |
-    | **無料利用枠割引の適用** | *Do Not Apply* |
+    | **Setting** | **Value** |
+    | ---: | :--- |
+    | **Subscription** | *Your existing Azure subscription* |
+    | **Resource group** | **Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>** |
+    | **Account Name** | *Enter a globally unique name* |
+    | **Location** | *Choose any available region* |
+    | **Capacity mode** | *Provisioned throughput* |
+    | **Apply Free Tier Discount** | *Do Not Apply* |
 
-1. 検証が成功したら **Create** をクリックします。
+1. 検証が Success になったら、**Create** をクリックしてください。
 
-1. このタスクを続行する前に、デプロイが完了するまで待ちます。
+1. このタスクを続行する前に、デプロイ タスクが完了するまで待機してください。
 
-1. **Go to resources** を選択します。新しく作成した **Azure Cosmos DB** アカウントで、**Settings** の下にある **Keys** ペインに移動します。
+1. **Go to resources** を選択してください。新しく作成した **Azure Cosmos DB** アカウントの **Settings** から **Keys** ペインに移動してください。
 
     ![06](media/New-image6.png)
 
     ![06](media/New-image7.png)
 
-1. このペインには、SDK からアカウントに接続するために必要な接続情報と資格情報が表示されます。具体的には:
+1. このペインには、SDK からアカウントへ接続するために必要な接続情報と資格情報が含まれています。具体的には次のとおりです。
 
-    1. **URI** フィールドの値を控えます。この **endpoint** 値は後で本演習で使用します。
+    1. **URI** フィールドの値を記録してください。この演習の後半でこの **endpoint** 値を使用します。
 
-    1. **PRIMARY KEY** フィールドの値を控えます。この **key** 値は後で本演習で使用します。
+    1. **PRIMARY KEY** フィールドの値を記録してください。この演習の後半でこの **key** 値を使用します。
 
         ![06](media/New-image9.png)
 
-1. ブラウザーのウィンドウを閉じずに、**Visual Studio Code** を開きます。
+1. ブラウザー ウィンドウを閉じずに、**Visual Studio Code** を開いてください。
 
-    > **おめでとうございます**。ラボを完了しました。次は検証です。手順は次のとおりです:
-    > - 対応するタスクの「Validate」ボタンを押します。成功メッセージが表示された場合、ラボの検証に成功しています。
-    > - そうでない場合は、エラーメッセージを注意深く読み、ラボ ガイドの指示に従って手順をやり直します。
-    > - 支援が必要な場合は、cloudlabs-support@spektrasystems.com までご連絡ください。24 時間 365 日対応しています。
+    > ラボの完了おめでとうございます。ここで検証を行います。手順は次のとおりです。
+    > - 対応するタスクの Validate ボタンを押してください。成功メッセージが表示された場合、ラボの検証は完了です。
+    > - 失敗した場合は、エラー メッセージを注意深く読み、ラボ ガイドの手順に沿って再試行してください。
+    > - サポートが必要な場合は、cloudlabs-support@spektrasystems.com までご連絡ください。24 時間 365 日対応しています。
     
     <validation step="74eda0bf-4b7b-47d2-9d83-0bb7e6bc8ffa" />
 
 ### タスク 3: Azure Cosmos DB SQL API アカウントにデータを投入する
 
-このタスクでは、cosmicworks コマンドライン ツールを使用して Azure Cosmos DB SQL API アカウントにサンプル データを展開します。このツールは NuGet を通じてインストールされ、製品データなどの事前定義されたデータ セットでデータベースを迅速に埋めることができます。
+このタスクでは、cosmicworks コマンドライン ツールを使用して、Azure Cosmos DB SQL API アカウントにサンプル データを展開します。このツールは NuGet 経由でインストールされ、製品データなどの事前定義データセットを使ってデータベースへ迅速にデータ投入できるため、テストと開発を容易にします。
 
-[cosmicworks][nuget.org/packages/cosmicworks] コマンドライン ツールは、任意の Azure Cosmos DB SQL API アカウントにサンプル データをデプロイします。このツールはオープンソースで NuGet から利用できます。Azure Cloud Shell にこのツールをインストールし、データベースのシードに使用します。
+[cosmicworks][nuget.org/packages/cosmicworks] コマンドライン ツールは、任意の Azure Cosmos DB SQL API アカウントにサンプル データを展開します。このツールはオープンソースで、NuGet から利用できます。Azure Cloud Shell にインストールし、データベースへのデータ投入に使用します。
 
-1. **Visual Studio Code** で、**Terminal** メニューを開き、**... (ellipses) (1)** > **Terminal (2)** > **New Terminal (3)** を選択して、既存のインスタンスで新しいターミナルを開きます。
+1. **Visual Studio Code** で **... (ellipses) (1)** > **Terminal (2)** > **New Terminal (3)** を選択して **Terminal** メニューを開き、既存インスタンスで新しいターミナルを開いてください。
 
     ![06](media/terminal.png)
 
-1. [cosmicworks][nuget.org/packages/cosmicworks] コマンドライン ツールをマシンでグローバルに使用するためにインストールします。
+1. [cosmicworks][nuget.org/packages/cosmicworks] コマンドライン ツールを、マシンでグローバルに利用できるようにインストールしてください。
 
     ```
     dotnet tool install --global cosmicworks
     ```
 
-    >**注意:** このコマンドは完了まで数分かかる場合があります。最新バージョンをすでにインストール済みの場合は、警告メッセージ (*Tool 'cosmicworks' is already installed*) が出力されます。
+    >**Note:** このコマンドの完了には数分かかる場合があります。すでにこのツールの最新バージョンをインストール済みの場合、このコマンドは警告メッセージ（*Tool 'cosmicworks' is already installed'*）を出力します。
 
-1. インストールが完了したら、**Visual Studio Code** を閉じて再度開き、次のコマンドを実行します。
+1. インストール完了後、次のコマンドを実行するために **Visual Studio Code** を一度閉じて再度開いてください。
 
-1. Azure Cosmos DB アカウントにサンプル データを投入するために、次のコマンド ライン オプションを使用して cosmicworks を実行します:
+1. 次のコマンドライン オプションを使用して cosmicworks を実行し、Azure Cosmos DB アカウントにデータを投入してください。
 
-    | **オプション** | **値** |
+    | **Option** | **Value** |
     | --- | --- |
-    | **--endpoint** | *このラボの前の手順でコピーしたエンドポイントの値* |
-    | **--key** | *このラボの前の手順でコピーしたキーの値* |
+    | **--endpoint** | *The endpoint value you copied earlier in this lab* |
+    | **--key** | *The key value you coped earlier in this lab* |
     | **--datasets** | *product* |
 
     ```
     cosmicworks --endpoint <cosmos-endpoint> --key <cosmos-key> --datasets product
     ```
 
-    >**例:** エンドポイントが **https&shy;://dp420.documents.azure.com:443/** で、キーが **fDR2ci9QgkdkvERTQ==** の場合、コマンドは次のようになります:
+    >**For example:** endpoint が **https&shy;://dp420.documents.azure.com:443/** で key が **fDR2ci9QgkdkvERTQ==** の場合、コマンドは次のようになります。
     > ``cosmicworks --endpoint https://dp420.documents.azure.com:443/ --key fDR2ci9QgkdkvERTQ== --datasets product``
     
-    >**注意:** **What is your connection string** と表示された場合は、左側のナビゲーション ペインで Azure Cosmos DB を再度選択し、**Key** を選択して **primary connection string** をコピーし、Visual Studio の入力欄に貼り付けてください。
+    >**Note**: **What is your connection string** と表示された場合は、Azure Cosmos DB に戻り、左側ナビゲーション ペインで **Key** を選択して **primary connection string** をコピーし、Visual Studio 上で右クリックして貼り付けてください。
 
      ![06](media/New-image127.png)
     
-1. **cosmicworks** コマンドが、データベース、コンテナー、およびアイテムの作成を完了するまで待ちます。
+1. **cosmicworks** コマンドが、アカウントへのデータベース、コンテナー、および項目の投入を完了するまで待機してください。
    
-   >**注意:** エラーが発生した場合は、Visual Studio Code を閉じて再度開き、もう一度コマンドを実行してください。
+    >**Note**: エラーが発生した場合は Visual Studio Code を閉じて再度開き、コマンドをもう一度実行してください。
 
-1. 統合ターミナルを閉じます。
+1. 統合ターミナルを閉じてください。
 
-    > **おめでとうございます**。ラボを完了しました。次は検証です。手順は次のとおりです:
-    > - 対応するタスクの **Validate** ボタンを押します。成功メッセージが表示された場合、ラボの検証に成功しています。
-    > - 成功しない場合は、エラーメッセージを注意深く読み、ラボ ガイドの指示に従って手順を再試行してください。
-    > - 支援が必要な場合は、cloudlabs-support@spektrasystems.com までご連絡ください。24 時間年中無休で対応しています。
+    > ラボの完了おめでとうございます。ここで検証を行います。手順は次のとおりです。
+    > - 対応するタスクの Validate ボタンを押してください。成功メッセージが表示された場合、ラボの検証は完了です。
+    > - 失敗した場合は、エラー メッセージを注意深く読み、ラボ ガイドの手順に沿って再試行してください。
+    > - サポートが必要な場合は、cloudlabs-support@spektrasystems.com までご連絡ください。24 時間 365 日対応しています。
     
     <validation step="dd92f2ca-c14f-4181-8374-d60868d94589" />
 
-### タスク 4: .NET SDK を使用してユーザー定義関数 (UDF) を作成する
+### タスク 4: .NET SDK を使用してユーザー定義関数（UDF）を作成する
 
-このタスクでは、Azure Cosmos DB .NET SDK を使用して、製品価格に税金を加算する UDF を作成します。このタスクでは、C# スクリプトを記述して UDF を定義し、Azure Cosmos DB SQL API コンテナーにデプロイします。これにより、製品の価格に税金を適用したクエリを実行できるようになります。
+このタスクでは、Azure Cosmos DB .NET SDK を使用して、税込み製品価格を計算する UDF を作成します。このタスクでは C# スクリプトを記述して UDF を定義し、Azure Cosmos DB SQL API コンテナーにデプロイして、製品価格に対する税計算クエリを実行できるようにします。
 
-.NET SDK の [Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] クラスには、Stored Procedures、UDF、Triggers に対して CRUD 操作を直接実行するための [Scripts][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.scripts] プロパティがあります。このプロパティを使用して新しい UDF を作成し、その UDF を Azure Cosmos DB SQL API コンテナーに公開します。SDK で作成する UDF は、税金を含めた製品価格を計算し、その結果を使って SQL クエリを実行できるようにします。
+.NET SDK の [Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] クラスには [Scripts][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.scripts] プロパティがあり、SDK から直接、ストアド プロシージャ、UDF、トリガーに対する CRUD 操作を実行できます。このプロパティを使用して新しい UDF を作成し、その UDF を Azure Cosmos DB SQL API コンテナーにプッシュします。このラボで SDK を使って作成する UDF は、製品価格に税率を適用した価格を計算し、税込み価格を使った SQL クエリを製品に対して実行できるようにします。
 
-1. **Visual Studio Code** の **Explorer** ペインで、**33-create-use-udf-sdk** フォルダーに移動します。
+1. **Visual Studio Code** の **Explorer** ペインで **33-create-use-udf-sdk** フォルダーに移動してください。
 
-1. **script.cs** コード ファイルを開きます。
+1. **script.cs** コード ファイルを開いてください。
 
-1. [Microsoft.Azure.Cosmos.Scripts][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.scripts] 名前空間の using ブロックを追加します:
+1. [Microsoft.Azure.Cosmos.Scripts][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.scripts] 名前空間の using ブロックを追加してください。
 
     ```
     using Microsoft.Azure.Cosmos.Scripts;
     ```
 
-1. 既存の **endpoint** 変数を、前の手順で作成した Azure Cosmos DB アカウントの **endpoint** に更新します。
+1. 既存の **endpoint** 変数を更新し、先ほど作成した Azure Cosmos DB アカウントの **endpoint** 値を設定してください。
   
     ```
     string endpoint = "<cosmos-endpoint>";
     ```
 
-    > **例:** エンドポイントが **https&shy;://dp420.documents.azure.com:443/** の場合、C# のステートメントは次のようになります: **string endpoint = "https&shy;://dp420.documents.azure.com:443/";**。
+    > **For example:** endpoint が **https&shy;://dp420.documents.azure.com:443/** の場合、C# ステートメントは **string endpoint = "https&shy;://dp420.documents.azure.com:443/";** になります。
 
-1. 既存の **key** 変数を、前の手順で作成した Azure Cosmos DB アカウントの **key** に更新します。
+1. 既存の **key** 変数を更新し、先ほど作成した Azure Cosmos DB アカウントの **key** 値を設定してください。
 
     ```
     string key = "<cosmos-key>";
     ```
 
-    > **例:** キーが **fDR2ci9QgkdkvERTQ==** の場合、C# のステートメントは次のようになります: **string key = "fDR2ci9QgkdkvERTQ==";**。
+    > **For example:** key が **fDR2ci9QgkdkvERTQ==** の場合、C# ステートメントは **string key = "fDR2ci9QgkdkvERTQ==";** になります。
 
-1. [UserDefinedFunctionProperties][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.scripts.userdefinedfunctionproperties] 型の新しい変数 **props** を、デフォルト コンストラクターで作成します:
+1. 既定の空コンストラクターを使用し、[UserDefinedFunctionProperties][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.scripts.userdefinedfunctionproperties] 型の **props** という新しい変数を作成してください。
 
     ```
     UserDefinedFunctionProperties props = new ();
     ```
 
-1. **props** 変数の [Id][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.scripts.userdefinedfunctionproperties.id] プロパティに **tax** を設定します:
+1. **props** 変数の [Id][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.scripts.userdefinedfunctionproperties.id] プロパティを **tax** に設定してください。
 
     ```
     props.Id = "tax";
     ```
 
-1. **props** 変数の [Body][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.scripts.userdefinedfunctionproperties.body] プロパティに次の値を設定します: **props.Body = "function tax(i) { return i * 1.25; }";**
+1. **props** 変数の [Body][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.scripts.userdefinedfunctionproperties.body] プロパティを **props.Body = "function tax(i) { return i * 1.25; }";** に設定してください。
 
     ```
     props.Body = "function tax(i) { return i * 1.25; }";
     ```
 
-1. **container** 変数の [Scripts.CreateUserDefinedFunctionAsync][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.scripts] メソッドを非同期で呼び出し、**props** 変数をパラメーターとして渡し、その結果を [UserDefinedFunctionResponse][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.scripts.userdefinedfunctionresponse] 型の **udf** 変数に保存します:
+1. **container** 変数の [Scripts.CreateUserDefinedFunctionAsync][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.scripts] メソッドを非同期で呼び出し、**props** 変数をパラメーターとして渡してください。結果は [UserDefinedFunctionResponse][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.scripts.userdefinedfunctionresponse] 型の **udf** 変数に保存してください。
 
     ```
     UserDefinedFunctionResponse udf = await container.Scripts.CreateUserDefinedFunctionAsync(props);
     ```
 
-1. 組み込みの **Console.WriteLine** 静的メソッドを使用して、UserDefinedFunctionResponse クラスの [Resource.Id][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.scripts.userdefinedfunctionresponse.resource] プロパティを **Created UDF** という見出し付きで出力します:
+1. 組み込みの **Console.WriteLine** 静的メソッドを使用し、UserDefinedFunctionResponse クラスの [Resource.Id][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.scripts.userdefinedfunctionresponse.resource] プロパティを **Created UDF** という見出し付きで出力してください。
 
     ```
     Console.WriteLine($"Created UDF [{udf.Resource?.Id}]");
     ```
 
-1. 作業が完了したら、コード ファイルは次のようになっているはずです:
+1. 完了後、コード ファイルは次の内容になります。
   
     ```
     using System;
@@ -238,75 +238,75 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
     Console.WriteLine($"Created UDF [{udf.Resource?.Id}]");
     ```
 
-1. **script.cs** ファイルを保存します。
+1. **script.cs** ファイルを **Save** してください。
 
-1. **Visual Studio Code** で、**33-create-use-udf-sdk** フォルダーを右クリックし、**Open in Integrated Terminal** を選択して新しいターミナル インスタンスを開きます。
+1. **Visual Studio Code** で **33-create-use-udf-sdk** フォルダーを右クリックし、**Open in Integrated Terminal** を選択して新しいターミナルを開いてください。
 
-1. [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] コマンドを使用してプロジェクトをビルドして実行します:
+1. [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] コマンドを使用してプロジェクトをビルドし実行してください。
 
     ```
     dotnet run
     ```
 
-1. スクリプトは、作成された新しい UDF の名前を出力します:
+1. スクリプトは新しく作成された UDF の名前を出力します。
 
     ```
     Created UDF [tax]
     ```
 
-1. 統合ターミナルを閉じます。
+1. 統合ターミナルを閉じてください。
 
-1. **Visual Studio Code** を閉じます。
+1. **Visual Studio Code** を閉じてください。
 
-    > **おめでとうございます**。ラボを完了しました。次は検証です。手順は次のとおりです:
-    > - 対応するタスクの **Validate** ボタンを押します。成功メッセージが表示された場合、ラボの検証に成功しています。
-    > - 成功しない場合は、エラーメッセージを注意深く読み、ラボ ガイドの指示に従って手順を再試行してください。
-    > - 支援が必要な場合は、cloudlabs-support@spektrasystems.com までご連絡ください。24 時間年中無休で対応しています。
+    > ラボの完了おめでとうございます。ここで検証を行います。手順は次のとおりです。
+    > - 対応するタスクの Validate ボタンを押してください。成功メッセージが表示された場合、ラボの検証は完了です。
+    > - 失敗した場合は、エラー メッセージを注意深く読み、ラボ ガイドの手順に沿って再試行してください。
+    > - サポートが必要な場合は、cloudlabs-support@spektrasystems.com までご連絡ください。24 時間 365 日対応しています。
     
     <validation step="01aa9434-9775-4fd0-baa1-1dcfc60bdba6" />
 
 ### タスク 5: Data Explorer を使用して UDF をテストする
 
-このタスクでは、Data Explorer で SQL クエリを実行し、先ほど作成したユーザー定義関数 (UDF) を検証します。
+このタスクでは、Data Explorer で SQL クエリを実行し、先ほど Azure Cosmos DB で作成したユーザー定義関数（UDF）を検証します。
 
-1. ブラウザーに戻ります。
+1. Web ブラウザーに戻ってください。
 
-1. **Azure Cosmos DB** アカウント リソース内で、**Data Explorer** ペインに移動します。
+1. **Azure Cosmos DB** アカウント リソース内で **Data Explorer** ペインに移動してください。
 
-1. **Data Explorer** で **cosmicworks** データベース ノードを展開し、**NOSQL API** ナビゲーション ツリー内に新しく作成された **products** コンテナー ノードがあることを確認します。
+1. **Data Explorer** で **cosmicworks** データベース ノードを展開し、**NOSQL API** ナビゲーション ツリー内に新しい **products** コンテナー ノードがあることを確認してください。
 
-1. **NOSQL API** ナビゲーション ツリー内の **products** コンテナー ノード (**...**) を選択し、**New SQL Query** を選択します。
+1. **NOSQL API** ナビゲーション ツリー内の **products** コンテナー ノード（**...**）を選択し、**New SQL Query** を選択してください。
 
-1. クエリ タブで **Execute Query** を選択して、すべてのアイテムをフィルターなしで選択する標準クエリを表示します。
+1. クエリ タブで **Execute Query** を選択し、フィルターなしで全アイテムを取得する標準クエリを表示してください。
 
-1. エディター領域の内容を削除します。
+1. エディター領域の内容を削除してください。
 
-1. すべてのドキュメントを返し、2 つの価格値を投影する新しい SQL クエリを作成します。最初の値はコンテナー内の元の価格値で、2 番目の値は UDF で計算された価格です:
+1. 2 つの価格値を投影してすべてのドキュメントを返す新しい SQL クエリを作成してください。1 つ目はコンテナー内の生の価格値、2 つ目は UDF によって計算された価格値です。
 
     ```
     SELECT p.id, p.price, udf.tax(p.price) AS priceWithTax FROM products p
     ```
 
-1. **Execute Query** を選択します。
+1. **Execute Query** を選択してください。
 
-1. ドキュメントを確認し、**price** と **priceWithTax** のフィールドを比較します。
+1. ドキュメントを確認し、**price** フィールドと **priceWithTax** フィールドを比較してください。
 
-    >**注意:** **priceWithTax** フィールドの値は、**price** フィールドの値より 25% 大きくなるはずです。
+    >**Note:** **priceWithTax** フィールドは **price** フィールドより 25% 大きい値になるはずです。
 
-1. ブラウザーのウィンドウまたはタブを閉じます。
+1. Web ブラウザーのウィンドウまたはタブを閉じてください。
 
-### サマリー
+### まとめ
 
-このラボでは、.NET SDK を使用して Azure Cosmos DB でユーザー定義関数 (UDF) を実装およびテストしました。主な目的は、開発環境に慣れ、Azure Cosmos DB for NoSQL アカウントを作成および構成し、データをシードし、税金を含めた製品価格を計算する UDF を作成することでした。
+このラボでは、.NET SDK を使用して Azure Cosmos DB のユーザー定義関数（UDF）を実装およびテストしました。主な目的は、開発環境の準備、Azure Cosmos DB for NoSQL アカウントの作成と構成、データ投入、および税込み製品価格を計算する UDF の開発でした。
 
 ### レビュー
 
-このラボで完了した内容:
+このラボでは、次を完了しました。
 
-- 開発環境を準備しました。
-- Azure Cosmos DB for NoSQL アカウントを作成しました。
-- Azure Cosmos DB SQL API アカウントにデータを投入しました。
-- .NET SDK を使用してユーザー定義関数 (UDF) を作成しました。
-- Data Explorer を使用して UDF をテストしました。
+- 開発環境を準備した。
+- Azure Cosmos DB for NoSQL アカウントを作成した。
+- Azure Cosmos DB SQL API アカウントにデータを投入した。
+- .NET SDK を使用してユーザー定義関数（UDF）を作成した。
+- Data Explorer を使用して UDF をテストした。
 
-### このラボを正常に完了しました
+### ラボは正常に完了しました
