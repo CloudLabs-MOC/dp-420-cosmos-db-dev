@@ -1,10 +1,10 @@
-# Lab 01 - Azure Cosmos DB SQL API を使い始める
+# Lab 01 - Azure Cosmos DB for NoSQL を使って始める
 
 ## ラボ シナリオ
 
 Azure Cosmos DB を深く学ぶ前に、最もよく使用するリソースの作成に関する基本を理解しておくことが重要です。ほとんどのシナリオでは、アカウント、データベース、コンテナー、項目を作成できることが必要になります。実運用のシナリオでは、すべてのリソースが正しく作成されたことを確認するために、いくつかの基本クエリを手元に用意しておくことも重要です。
 
-このラボでは、SQL API を使用して新しい Azure Cosmos DB アカウントを作成します。次に Data Explorer を使用してデータベース、コンテナー、および 2 つの項目を作成します。最後に、作成した項目をデータベースに対してクエリします。
+このラボでは、API for NoSQL を使用して新しい Azure Cosmos DB アカウントを作成します。その後、Data Explorer を使ってデータベース、コンテナー、2 つのアイテムを作成し、最後に作成したアイテムをクエリします。
 
 ## ラボの目的
 
@@ -20,11 +20,11 @@ Azure Cosmos DB を深く学ぶ前に、最もよく使用するリソースの�
 
 ![image](architecturedia/lab1.png)
 
-## 演習 1: Azure Cosmos DB SQL API アカウントを作成する
+## 演習 1: Azure Cosmos DB for NoSQL アカウントを作成する
 
 ### タスク 1: 新しい Azure Cosmos DB アカウントを作成する
 
-Azure Cosmos DB は、複数の API をサポートするクラウドベースの NoSQL データベース サービスです。Azure Cosmos DB アカウントを初めてプロビジョニングする際には、アカウントでサポートする API（例: **Mongo API** または **SQL API**）を選択します。
+Azure Cosmos DB は複数の API をサポートするクラウドベースの NoSQL データベース サービスです。Azure Cosmos DB アカウントを初めてプロビジョニングする際は、アカウントでサポートする API（例: **API for MongoDB** や **API for NoSQL**）を選択します。
 
 1. 新しい Web ブラウザー ウィンドウまたはタブで Azure portal (``portal.azure.com``) に移動してください。
 
@@ -53,7 +53,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
 1. **Review + Create** を選択して **Review + Create** タブに移動し、次に **Create** を選択してください。
 
-    > &#128221; Azure Cosmos DB SQL API アカウントが使用可能になるまでに 10〜15 分かかる場合があります。
+    > &#128221; Azure Cosmos DB for NoSQL アカウントが使用可能になるまでに 10～15 分かかることがあります。
 
 1. **Deployment** ペインを確認してください。デプロイが完了すると、ペインは **Deployment successful** メッセージで更新されます。
 
@@ -61,7 +61,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
 ### タスク 2: Data Explorer を使用して新しいデータベースとコンテナーを作成する
 
-Data Explorer は、Azure portal で Azure Cosmos DB SQL API のデータベースとコンテナーを管理するための主要ツールです。このラボでは、基本的なデータベースとコンテナーを作成します。
+Data Explorer は、Azure ポータル内で Azure Cosmos DB for NoSQL のデータベースとコンテナーを管理するための主要なツールです。このラボでは、基本的なデータベースとコンテナーを作成します。
 
 1. **Azure Cosmos DB account** ペイン内で、リソース メニューから **Data Explorer** を選択してください。
 
@@ -82,7 +82,7 @@ Data Explorer は、Azure portal で Azure Cosmos DB SQL API のデータベー�
 
 ### タスク 3: Data Explorer を使用して新しい項目を作成する
 
-Data Explorer には、Azure Cosmos DB SQL API コンテナー内の項目をクエリ、作成、管理するための機能群も含まれています。ここでは Data Explorer で生の JSON を使用して 2 つの基本項目を作成します。
+Data Explorer には、Azure Cosmos DB for NoSQL コンテナー内のアイテムをクエリ、作成、管理するための機能が一式含まれています。ここでは、Data Explorer の生の JSON を使って 2 つの基本アイテムを作成します。
 
 1. **Data Explorer** ペインで、**cosmicworks** データベース ノードを展開し、**products** コンテナー ノードを展開して、**Items** を選択してください。
 

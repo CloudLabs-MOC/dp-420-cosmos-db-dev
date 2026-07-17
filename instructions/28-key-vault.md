@@ -42,7 +42,7 @@ Azure Cosmos DB アカウントの接続コードをアプリケーションに�
 
 ### タスク 2: Azure Cosmos DB for NoSQL アカウントを作成する
 
-Azure Cosmos DB は複数の API をサポートするクラウドベースの NoSQL データベース サービスです。初めて Azure Cosmos DB アカウントをプロビジョニングするときは、アカウントでサポートする API（例: **API for MongoDB** または **API for NoSQL**）を選択します。Azure Cosmos DB for NoSQL アカウントのプロビジョニング完了後、endpoint と key を取得できます。endpoint と key を使用して Azure Cosmos DB for NoSQL アカウントへプログラムから接続します。Azure SDK for .NET またはその他の SDK の接続文字列でも endpoint と key を使用します。
+Azure Cosmos DB は、複数の API をサポートするクラウドベースの NoSQL データベース サービスです。Azure Cosmos DB アカウントを初めてプロビジョニングする際には、サポートする API を選択します（たとえば、**API for MongoDB** や **API for NoSQL**）。Azure Cosmos DB for NoSQL アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得できます。これらのエンドポイントとキーを使用して、Azure Cosmos DB for NoSQL アカウントにプログラムから接続します。.NET 用 Azure SDK やその他の SDK の接続文字列にエンドポイントとキーを使用します。
 
 1. 新しい Web ブラウザーのウィンドウまたはタブで Azure portal (``portal.azure.com``) に移動してください。
 

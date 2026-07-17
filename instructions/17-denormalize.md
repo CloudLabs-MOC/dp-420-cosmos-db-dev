@@ -1,4 +1,4 @@
-# Lab 08b - Azure Cosmos DB for NoSQL のデータ モデリングおよびパーティション戦略を実装する
+# Lab 08b - Azure Cosmos DB for NoSQL に対するデータ モデリングとパーティション戦略を実装する
 
 ## ラボ シナリオ
 

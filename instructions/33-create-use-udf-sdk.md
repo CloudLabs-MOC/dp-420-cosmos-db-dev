@@ -2,7 +2,7 @@
 
 ## ラボ シナリオ
 
-Azure Cosmos DB SQL API 用 .NET SDK は、サーバー側プログラミング構成要素をコンテナーから直接管理および呼び出すために使用できます。新しいコンテナーを準備する際は、Data Explorer で手動作業を行う代わりに、.NET SDK を使用して UDF をコンテナーへ直接公開する方法が適しています。
+Azure Cosmos DB for NoSQL 用の .NET SDK を使用すると、コンテナーからサーバー側のプログラミング構造を直接管理および呼び出すことができます。新しいコンテナーを準備する際、Data Explorer を使って手作業で操作する代わりに、.NET SDK を使って UDF をコンテナーに直接公開する方が適している場合があります。
 
 このラボでは、.NET SDK を使用して新しい UDF を作成し、その後 Data Explorer を使用して UDF が正しく動作することを検証します。
 
@@ -35,7 +35,7 @@ Azure Cosmos DB SQL API 用 .NET SDK は、サーバー側プログラミング�
 
 3. 画面左上の **file** オプションを選択し、メニューから **Open Folder** を選択して **C:\AllFiles** に移動してください。
 
-4. **dp-420-cosmos-db-dev-main** フォルダーを選択し、**Select Folder** をクリックしてください。
+4. **dp-420-cosmos-db-dev** フォルダーを選択し、**Select Folder** をクリックしてください。
 
    ![](media/14LB-12.png)
 
@@ -48,7 +48,7 @@ Azure Cosmos DB SQL API 用 .NET SDK は、サーバー側プログラミング�
 
 このタスクでは、Azure Cosmos DB SQL アカウントをプロビジョニングし、重要な設定を構成して、今後の開発に必要な接続情報を取得します。
 
-Azure Cosmos DB は複数の API をサポートするクラウドベースの NoSQL データベース サービスです。Azure Cosmos DB アカウントを初めてプロビジョニングする際は、アカウントでサポートする API（例: **Mongo API** または **NoSQL API**）を選択します。Azure Cosmos DB for NoSQL アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得し、Azure SDK for .NET または任意の SDK を使用して Azure Cosmos DB for NoSQL アカウントへ接続できます。
+Azure Cosmos DB は複数の API をサポートするクラウドベースの NoSQL データベース サービスです。Azure Cosmos DB アカウントを初めてプロビジョニングする際に、サポートする API（例: **API for MongoDB** や **API for NoSQL**）を選択します。Azure Cosmos DB for NoSQL アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得して、Azure SDK for .NET や任意の SDK から Azure Cosmos DB for NoSQL アカウントに接続できます。
 
 1. Azure Portal ページに戻ってください。ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB** と入力し、services の **Azure Cosmos DB** を選択してください。
 
@@ -98,11 +98,11 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
     
     <validation step="74eda0bf-4b7b-47d2-9d83-0bb7e6bc8ffa" />
 
-### タスク 3: Azure Cosmos DB SQL API アカウントにデータを投入する
+### タスク 3: Azure Cosmos DB for NoSQL アカウントにデータを投入する
 
-このタスクでは、cosmicworks コマンドライン ツールを使用して、Azure Cosmos DB SQL API アカウントにサンプル データを展開します。このツールは NuGet 経由でインストールされ、製品データなどの事前定義データセットを使ってデータベースへ迅速にデータ投入できるため、テストと開発を容易にします。
+このタスクでは、cosmicworks コマンドライン ツールを使用して Azure Cosmos DB for NoSQL アカウントにサンプル データを展開します。このツールは NuGet を通じてインストールされ、製品データなどの事前定義されたデータ セットでデータベースを迅速に埋めることができます。
 
-[cosmicworks][nuget.org/packages/cosmicworks] コマンドライン ツールは、任意の Azure Cosmos DB SQL API アカウントにサンプル データを展開します。このツールはオープンソースで、NuGet から利用できます。Azure Cloud Shell にインストールし、データベースへのデータ投入に使用します。
+[cosmicworks][nuget.org/packages/cosmicworks] コマンドライン ツールは、任意の Azure Cosmos DB for NoSQL アカウントにサンプル データをデプロイします。このツールはオープンソースで NuGet から利用できます。Azure Cloud Shell にこのツールをインストールし、データベースのシードに使用します。
 
 1. **Visual Studio Code** で **... (ellipses) (1)** > **Terminal (2)** > **New Terminal (3)** を選択して **Terminal** メニューを開き、既存インスタンスで新しいターミナルを開いてください。
 
@@ -132,6 +132,12 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
     >**For example:** endpoint が **https&shy;://dp420.documents.azure.com:443/** で key が **fDR2ci9QgkdkvERTQ==** の場合、コマンドは次のようになります。
     > ``cosmicworks --endpoint https://dp420.documents.azure.com:443/ --key fDR2ci9QgkdkvERTQ== --datasets product``
+
+    > **Note:** If the command using the Cosmos DB endpoint and key does not execute successfully, use the **Primary Connection String** copied in the previous task and run the following command instead:
+
+    ```bash
+    cosmicworks --connection-string "<primary-connection-string>" --datasets product
+    ```
     
     >**Note**: **What is your connection string** と表示された場合は、Azure Cosmos DB に戻り、左側ナビゲーション ペインで **Key** を選択して **primary connection string** をコピーし、Visual Studio 上で右クリックして貼り付けてください。
 
@@ -152,9 +158,9 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
 ### タスク 4: .NET SDK を使用してユーザー定義関数（UDF）を作成する
 
-このタスクでは、Azure Cosmos DB .NET SDK を使用して、税込み製品価格を計算する UDF を作成します。このタスクでは C# スクリプトを記述して UDF を定義し、Azure Cosmos DB SQL API コンテナーにデプロイして、製品価格に対する税計算クエリを実行できるようにします。
+このタスクでは、Azure Cosmos DB .NET SDK を使用して、製品価格に税金を加算する UDF を作成します。このタスクでは、C# スクリプトを記述して UDF を定義し、Azure Cosmos DB for NoSQL コンテナーにデプロイします。これにより、製品の価格に税金を適用したクエリを実行できるようになります。
 
-.NET SDK の [Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] クラスには [Scripts][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.scripts] プロパティがあり、SDK から直接、ストアド プロシージャ、UDF、トリガーに対する CRUD 操作を実行できます。このプロパティを使用して新しい UDF を作成し、その UDF を Azure Cosmos DB SQL API コンテナーにプッシュします。このラボで SDK を使って作成する UDF は、製品価格に税率を適用した価格を計算し、税込み価格を使った SQL クエリを製品に対して実行できるようにします。
+.NET SDK の [Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] クラスには、Stored Procedures、UDF、Triggers に対して CRUD 操作を直接実行するための [Scripts][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.scripts] プロパティがあります。このプロパティを使用して新しい UDF を作成し、その UDF を Azure Cosmos DB for NoSQL コンテナーに公開します。SDK で作成する UDF は、税金を含めた製品価格を計算し、その結果を使って SQL クエリを実行できるようにします。
 
 1. **Visual Studio Code** の **Explorer** ペインで **33-create-use-udf-sdk** フォルダーに移動してください。
 
@@ -273,9 +279,9 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
 1. **Azure Cosmos DB** アカウント リソース内で **Data Explorer** ペインに移動してください。
 
-1. **Data Explorer** で **cosmicworks** データベース ノードを展開し、**NOSQL API** ナビゲーション ツリー内に新しい **products** コンテナー ノードがあることを確認してください。
+1. **Data Explorer** で **cosmicworks** データベース ノードを展開し、**API for NoSQL** ナビゲーション ツリー内に新しい **products** コンテナー ノードがあることを確認してください。
 
-1. **NOSQL API** ナビゲーション ツリー内の **products** コンテナー ノード（**...**）を選択し、**New SQL Query** を選択してください。
+1. **API for NoSQL** ナビゲーション ツリー内の **products** コンテナー ノード（**...**）を選択し、**New SQL Query** を選択してください。
 
 1. クエリ タブで **Execute Query** を選択し、フィルターなしで全アイテムを取得する標準クエリを表示してください。
 
@@ -283,7 +289,7 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
 1. 2 つの価格値を投影してすべてのドキュメントを返す新しい SQL クエリを作成してください。1 つ目はコンテナー内の生の価格値、2 つ目は UDF によって計算された価格値です。
 
-    ```
+    ```sql
     SELECT p.id, p.price, udf.tax(p.price) AS priceWithTax FROM products p
     ```
 
@@ -305,7 +311,7 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
 - 開発環境を準備した。
 - Azure Cosmos DB for NoSQL アカウントを作成した。
-- Azure Cosmos DB SQL API アカウントにデータを投入した。
+- Azure Cosmos DB for NoSQL アカウントにデータを投入した。
 - .NET SDK を使用してユーザー定義関数（UDF）を作成した。
 - Data Explorer を使用して UDF をテストした。
 

@@ -29,7 +29,7 @@ Azure はデータの暗号化バックアップを自動的に取得します�
 
 ### タスク 1: Azure Cosmos DB for NoSQL アカウントを作成する
 
-Azure Cosmos DB は複数の API をサポートするクラウドベースの NoSQL データベース サービスです。初めて Azure Cosmos DB アカウントをプロビジョニングするときは、アカウントでサポートする API（例: **API for MongoDB** または **API for NoSQL**）を選択します。Azure Cosmos DB for NoSQL アカウントのプロビジョニング完了後、endpoint と key を取得できます。endpoint と key を使用して Azure Cosmos DB for NoSQL アカウントへプログラムから接続します。Azure SDK for .NET またはその他の SDK の接続文字列でも endpoint と key を使用します。
+Azure Cosmos DB は、複数の API をサポートするクラウドベースの NoSQL データベース サービスです。Azure Cosmos DB アカウントを初めて作成するときは、サポートする API（たとえば **API for MongoDB** または **API for NoSQL**）を選択します。Azure Cosmos DB for NoSQL アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得できます。エンドポイントとキーを使用して Azure Cosmos DB for NoSQL アカウントにプログラムから接続します。Azure SDK for .NET や他の SDK の接続文字列にエンドポイントとキーを使用します。
 
 1. 新しい Web ブラウザーのウィンドウまたはタブで Azure portal (``portal.azure.com``) に移動してください。
 

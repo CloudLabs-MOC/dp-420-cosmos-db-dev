@@ -9,8 +9,8 @@ Azure Cosmos DB のすべてのコンテナーには、コンテナー内の項�
 ## ラボの目的
 
 このラボでは、次のタスクを完了します。
-- タスク 1: Azure Cosmos DB NoSQL API アカウントを作成する。
-- タスク 2: Azure Cosmos DB NoSQL API アカウントにデータを投入する。
+- タスク 1: Azure Cosmos DB for NoSQL アカウントを作成する。
+- タスク 2: Azure Cosmos DB for NoSQL アカウントにデータを投入する。
 - タスク 3: 既定のインデックス ポリシーを表示および操作する。
 
 ## 推定所要時間: 30 分
@@ -19,11 +19,11 @@ Azure Cosmos DB のすべてのコンテナーには、コンテナー内の項�
 
 ![image](architecturedia/lab11.png)
 
-## タスク 1: ポータルを使用して Azure Cosmos DB SQL API コンテナーの既定インデックス ポリシーを確認する
+## タスク 1: ポータルを使用して Azure Cosmos DB for NoSQL コンテナーの既定インデックス ポリシーを確認する
 
 このタスクでは、Azure Cosmos DB SQL アカウントをプロビジョニングし、基本設定を構成するとともに、今後の開発に必要な接続情報を取得します。
 
-Azure Cosmos DB は複数の API をサポートするクラウドベースの NoSQL データベース サービスです。初めて Azure Cosmos DB アカウントをプロビジョニングする際には、そのアカウントでサポートする API（例: Mongo API または NoSQL API）を選択します。Azure Cosmos DB for NoSQL アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得し、Azure SDK for .NET または任意の SDK を使用して Azure Cosmos DB for NoSQL アカウントに接続できます。
+Azure Cosmos DB は複数の API をサポートするクラウドベースの NoSQL データベース サービスです。Azure Cosmos DB アカウントを初めてプロビジョニングする際には、アカウントでサポートする API を選択します（例: API for MongoDB や API for NoSQL）。Azure Cosmos DB for NoSQL アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得し、Azure SDK for .NET やその他の SDK を使用してそのアカウントに接続できます。
 
 1. Azure Portal ページで、ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB (1)** と入力し、services の下にある **Azure Cosmos DB (2)** を選択してください。
 
@@ -82,11 +82,11 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
     <validation step="140fa89d-d46a-4ae0-a198-9c51019a9b40" />
 
-### タスク 2: Azure Cosmos DB NoSQL API アカウントにデータを投入する
+### タスク 2: Azure Cosmos DB for NoSQL アカウントにデータを投入する
 
 このタスクでは、CosmicWorks ツールを使用して Azure Cosmos DB NoSQL アカウントにサンプル製品データを投入します。Visual Studio Code のターミナルにツールをインストールした後、Cosmos DB の endpoint と key を指定して投入コマンドを実行します。ツールはデータベースとコンテナーを作成し、製品データをアカウントに挿入します。
 
-[cosmicworks][nuget.org/packages/cosmicworks] コマンドライン ツールは、任意の Azure Cosmos DB SQL API アカウントにサンプル データをデプロイします。このツールはオープンソースで NuGet から利用できます。このツールを Azure Cloud Shell にインストールし、データベースへのデータ投入に使用します。
+[cosmicworks][nuget.org/packages/cosmicworks] コマンドライン ツールは、任意の Azure Cosmos DB for NoSQL アカウントにサンプル データをデプロイします。このツールはオープンソースで NuGet から利用できます。このツールを Azure Cloud Shell にインストールし、データベースへのデータ投入に使用します。
 
 1. Visual Studio Code を起動してください（プログラム アイコンはデスクトップにピン留めされています）。
 

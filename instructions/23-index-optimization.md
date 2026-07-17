@@ -4,7 +4,7 @@
 
 書き込みが多いワークロードや大きな JSON オブジェクトを扱うワークロードでは、クエリで使用することが分かっているプロパティのみをインデックス化するように、インデックス作成ポリシーを最適化すると有利な場合があります。
 
-このラボでは、テスト用 .NET アプリケーションを使用して、既定のインデックス作成ポリシーで大きな JSON アイテムを Azure Cosmos DB SQL API コンテナーに挿入し、その後、少し調整したインデックス作成ポリシーでも同様に挿入します。
+このラボでは、テスト .NET アプリケーションを使用して、デフォルトのインデックス ポリシーを利用した場合と、わずかに調整したインデックス ポリシーを利用した場合に、Azure Cosmos DB for NoSQL コンテナーに大きな JSON アイテムを挿入する方法を学習します。
 
 ## ラボの目的
 
@@ -48,7 +48,7 @@
 
 このタスクでは、Azure Cosmos DB SQL アカウントをプロビジョニングし、重要な設定を行ったうえで、今後の開発に必要な接続情報を取得します。
 
-Azure Cosmos DB は複数の API をサポートするクラウドベースの NoSQL データベース サービスです。初めて Azure Cosmos DB アカウントをプロビジョニングするときは、アカウントでサポートする API（例: **Mongo API** または **NoSQL API**）を選択します。Azure Cosmos DB for NoSQL アカウントのプロビジョニング完了後、エンドポイントとキーを取得し、Azure SDK for .NET または任意の SDK を使用して Azure Cosmos DB for NoSQL アカウントに接続できます。
+Azure Cosmos DB は複数の API をサポートするクラウドベースの NoSQL データベース サービスです。Azure Cosmos DB アカウントを初めてプロビジョニングする際には、アカウントでサポートする API を選択します（たとえば **API for MongoDB** や **API for NoSQL**）。Azure Cosmos DB for NoSQL アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得し、Azure SDK for .NET または他の任意の SDK を使用して Azure Cosmos DB for NoSQL アカウントに接続できます。
 
 1. **Azure Portal** ページで、ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB** と入力し、services の **Azure Cosmos DB** を選択してください。
 

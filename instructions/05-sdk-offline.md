@@ -1,10 +1,10 @@
-# オフライン開発用に Azure Cosmos DB for NoSQL SDK を構成する
+# オフライン開発のための Azure Cosmos DB for NoSQL SDK の構成
 
 ### 推定所要時間: 60 分
 
 ## ラボ シナリオ
 
-Azure Cosmos DB Emulator は、開発およびテストのために Azure Cosmos DB サービスをローカルでシミュレートするツールです。API for NoSQL をサポートしており、クラウド サービスを使用せずにアプリケーションを構築およびテストできます。
+Azure Cosmos DB Emulator は、開発とテストのために Azure Cosmos DB サービスをローカルでシミュレートするツールです。API for NoSQL をサポートしており、クラウド サービスを使用せずにアプリケーションの構築とテストを行えます。
 
 このラボでは、Azure SDK for .NET を使用して Azure Cosmos DB Emulator に接続します。
 
@@ -35,7 +35,7 @@ Azure Cosmos DB Emulator は、開発およびテストのために Azure Cosmos
 
          ![06](media/02-20.png)
 
-1. **Explorer** ペインに移動してください。**Data Explorer** で、**API for NoSQL** ナビゲーション ツリー内にノードが存在しないことを確認してください。
+1. **Explorer** ペインに移動します。**Data Explorer** で **API for NoSQL** ナビゲーション ツリーにノードが存在しないことを確認します。
 
    ![06](media/02-21.png)
 
@@ -137,15 +137,15 @@ Azure Cosmos DB Emulator は、開発およびテストのために Azure Cosmos
 
 ###  タスク 3: エミュレーターで変更を確認する
 
-このタスクでは、Azure Cosmos DB Emulator の Data Explorer を使用して、作成した新しい NoSQL データベースを確認します。ブラウザー経由でエミュレーターにアクセスし、API for NoSQL ナビゲーション ツリー内に新しい "cosmicworks" データベースが表示されることを確認します。
+このタスクでは、Azure Cosmos DB Emulator の Data Explorer を使用して、作成した新しい NoSQL データベースを表示します。ブラウザー経由でエミュレーターにアクセスすると、API for NoSQL ナビゲーション ツリーに新しい "cosmicworks" データベースが表示されることを確認できます。
 
-Azure Cosmos DB Emulator で新しいデータベースを作成したので、オンラインの **Data Explorer** を使用して、エミュレーター内の新しい API for NoSQL データベースを確認します。
+Azure Cosmos DB Emulator 内に新しいデータベースを作成したので、オンラインの **Data Explorer** を使用してエミュレーター内の新しい API for NoSQL データベースを確認します。
 
 1. Windows のシステム トレイにあるエミュレーター アイコンに移動し、コンテキスト メニューを開いて **Open Data Explorer...** を選択し、既定のブラウザーで **localhost:8081/_explorer/** のランディング ページに移動してください。
 
 1. **Azure Cosmos DB Emulator** のランディング ページで、**Explorer** ペインに移動してください。
 
-1. **Data Explorer** で、**API for NoSQL** ナビゲーション ツリー内の新しい **cosmicworks** データベース ノードを確認してください。
+1. **Data Explorer** で **API for NoSQL** ナビゲーション ツリー内の新しい **cosmicworks** データベース ノードを確認します。
 
     ![06](media/02-28.png)
 
@@ -214,7 +214,7 @@ Azure Cosmos DB Emulator で新しいデータベースを作成したので、�
 
 1. **Azure Cosmos DB Emulator** のランディング ページで、**Explorer** ペインに移動してください。
 
-1. **Data Explorer** で **cosmicworks** データベース ノードを展開し、**API for NoSQL** ナビゲーション ツリー内の新しい **products** コンテナー ノードを確認してください。
+1. **Data Explorer** で **cosmicworks** データベース ノードを展開し、**API for NoSQL** ナビゲーション ツリー内に新しい **products** コンテナー ノードが表示されていることを確認します。
 
     ![06](media/02-33.png)
    
@@ -229,7 +229,7 @@ Azure Cosmos DB Emulator で新しいデータベースを作成したので、�
 
 ### まとめ
 
-このラボでは、オフライン開発のために API for NoSQL で Azure Cosmos DB Emulator を構成しました。主な作業は、エミュレーターの起動、Azure SDK for .NET を介した接続、"cosmicworks" という新しいデータベースの作成、"products" というコンテナーの追加です。最後に、エミュレーターの Data Explorer で変更内容を確認し、Cosmos DB 開発環境を実践的に体験しました。
+このラボでは、API for NoSQL を使用したオフライン開発向けに Azure Cosmos DB Emulator を構成しました。主なタスクは、エミュレーターの起動、Azure SDK for .NET を使用した接続、新しいデータベース "cosmicworks" の作成、そして "products" というコンテナーの追加です。最後に、エミュレーター内の Data Explorer を使って変更内容を確認し、Cosmos DB 開発環境の操作を実践的に学習しました。
 
 ### レビュー
 

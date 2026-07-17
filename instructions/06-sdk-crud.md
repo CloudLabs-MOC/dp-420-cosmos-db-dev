@@ -1,18 +1,18 @@
-# Azure Cosmos DB for NoSQL SDK を使用してドキュメントを作成および更新する
+# Azure Cosmos DB for NoSQL SDK を使ってドキュメントを作成および更新する
 
 ## ラボ シナリオ
 
-[Microsoft.Azure.Cosmos.Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] クラスには、Azure Cosmos DB for NoSQL コンテナー内の項目を作成、取得、更新、削除するためのメンバー メソッド群が含まれています。これらのメソッドを組み合わせることで、API for NoSQL コンテナー内のさまざまな項目に対する一般的な「CRUD」操作を実行できます。
+[Microsoft.Azure.Cosmos.Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] クラスには、Azure Cosmos DB for NoSQL コンテナー内のアイテムを作成、取得、更新、削除するためのメンバー メソッドが含まれています。これらのメソッドは、API for NoSQL コンテナー内のさまざまなアイテムに対する一般的な CRUD 操作を実行します。
 
 このラボでは、SDK を使用して Azure Cosmos DB for NoSQL コンテナー内の項目に対する日常的な CRUD 操作を実行します。
 
 ## ラボの目的
 
-このラボでは、次のタスクを完了します。
+このラボでは、以下のタスクを完了します:
 - タスク 1: Azure Cosmos DB for NoSQL アカウントを作成する。
 - タスク 2: SDK から Azure Cosmos DB for NoSQL アカウントに接続する。
-- タスク 3: SDK を使用して項目に対する作成および読み取りのポイント操作を実行する。
-- タスク 4: SDK を使用して更新および削除のポイント操作を実行する。
+- タスク 3: SDK を使ってアイテムの作成と読み取りポイント操作を実行する。
+- タスク 4: SDK を使ってアイテムの更新と削除ポイント操作を実行する。
 
 ## 推定所要時間: 60 分
 
@@ -43,11 +43,11 @@
 
    ![06](media/03-04.png)
 
-### タスク 1: Azure Cosmos DB for NoSQL アカウントを作成する
+### タスク 1: Azure Cosmos DB for NoSQL アカウントの作成
 
-このタスクでは、API for NoSQL を使用して Azure Cosmos DB アカウントを作成します。アカウントのプロビジョニング後、エンドポイント (URI) とプライマリ キーを含む接続に必要な情報を取得します。これらの資格情報を使用して、Azure SDK または任意の SDK で Cosmos DB アカウントに接続できます。
+このタスクでは、API for NoSQL を使用して Azure Cosmos DB アカウントを作成します。アカウントのプロビジョニング後、エンドポイント (URI) とプライマリキーなどの接続情報を取得します。これらの資格情報を使用して、Azure SDK またはその他の SDK から Cosmos DB アカウントに接続できます。
 
-Azure Cosmos DB は、複数の API をサポートするクラウド ベースの NoSQL データベース サービスです。初めて Azure Cosmos DB アカウントをプロビジョニングする際には、そのアカウントでサポートする API（例: **API for MongoDB** または **API for NoSQL**）を選択します。Azure Cosmos DB for NoSQL アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得し、Azure SDK for .NET または任意の SDK を使用して接続できます。
+Azure Cosmos DB は、複数の API をサポートするクラウドベースの NoSQL データベース サービスです。Azure Cosmos DB アカウントを初めてプロビジョニングする際には、サポートする API を選択します（たとえば、**API for MongoDB** や **API for NoSQL**）。Azure Cosmos DB for NoSQL アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得し、Azure SDK for .NET や任意の SDK を使って接続できます。
 
 1. Azure Portal ページに戻り、ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB (1)** と入力し、services の下にある **Azure Cosmos DB (2)** を選択してください。
 
@@ -111,7 +111,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウド ベース�
 
 ### タスク 2: SDK から Azure Cosmos DB for NoSQL アカウントに接続する
 
-このタスクでは、Azure SDK for .NET を使用して Azure Cosmos DB for NoSQL アカウントに接続します。Visual Studio Code でスクリプトを実行し、Cosmos DB アカウント内に新しいデータベースとコンテナーを作成します。作成後、Azure portal の Data Explorer を使用して存在を検証します。
+このタスクでは、Azure SDK for .NET を使用して Azure Cosmos DB for NoSQL アカウントに接続します。Visual Studio Code を使い、Cosmos DB アカウント内に新しいデータベースとコンテナーを作成するスクリプトを実行します。データベースとコンテナーが作成されたら、Azure ポータルの Data Explorer を使って存在を確認します。
 
 1. **Visual Studio Code** の **Explorer** ペインで、**06-sdk-crud** フォルダーに移動してください。
 
@@ -231,7 +231,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウド ベース�
 
 ### タスク 3: SDK を使用して項目に対する作成および読み取りのポイント操作を実行する
 
-このタスクでは、Microsoft.Azure.Cosmos.Container クラスの非同期メソッド群を使用して、API for NoSQL コンテナー内の項目に対する一般的な操作を実行します。これらの操作は、C# のタスク ベース非同期プログラミング モデルを使用して行います。
+このタスクでは、`Microsoft.Azure.Cosmos.Container` クラスの一連の非同期メソッドを使用して、API for NoSQL コンテナー内のアイテムに対する一般的な操作を実行します。これらの操作はすべて、C# のタスク非同期プログラミング モデルを使用して実行されます。
 
 1. **Visual Studio Code** に戻り、**06-sdk-crud** フォルダー内の **product.cs** コード ファイルを開いてください。
 
@@ -587,7 +587,7 @@ SDK 学習時には、オンラインの Azure Cosmos DB SDK アカウントま�
 
 ### まとめ
 
-このラボでは、Azure Cosmos DB for NoSQL SDK を使用して基本的な CRUD 操作を実行する方法を学習しました。最初に Azure Cosmos DB for NoSQL アカウントを作成し、SDK を使用してアカウントへの接続を確立した後、データベースとコンテナーを作成しました。次に、コンテナー内の項目に対して作成および読み取り操作を実行し、データ管理の実践的な経験を得ました。最後に、項目の更新と削除を行い、Cosmos DB におけるデータ操作の理解を深めました。ラボの終わりには、CRUD 操作をプログラムで統合するための有益な知見を得て、NoSQL 環境で効率的にデータを管理できるようになりました。
+このラボでは、Azure Cosmos DB for NoSQL SDK を使用して基本的な CRUD 操作を実行する方法を学習しました。まず Azure Cosmos DB for NoSQL アカウントを作成し、次に SDK を使用してアカウントに接続し、データベースとコンテナーを作成しました。続いてコンテナー内のアイテムに対して作成と読み取り操作を実行し、データの管理を実践的に体験しました。最後に、アイテムを更新および削除し、Cosmos DB におけるデータ操作の理解を深めました。ラボの終了時には、プログラムによる CRUD 操作の統合により、NoSQL 環境での効率的なデータ管理が可能になることを理解しました。
 
 ### レビュー
 

@@ -23,7 +23,7 @@
 
 ### タスク 1: ストアド プロシージャを作成する
 
-このタスクでは、Azure Cosmos DB SQL API アカウントをプロビジョニングします。
+このタスクでは、Azure Cosmos DB for NoSQL アカウントをプロビジョニングします。
 
 ストアド プロシージャは、言語統合された JavaScript で作成され、データベース エンジン内で基本的な CRUD 操作の実行をサポートします。データベース エンジン内で実行される JavaScript は、Azure Cosmos DB のサーバー側 JavaScript SDK と一連のヘルパー メソッドによって実現されています。
 
@@ -257,7 +257,7 @@
 
 このタスクでは、仕上げとして Data Explorer を使用し、このラボで作成した 2 つのドキュメントを返す SQL クエリを実行します。
 
-1. **Data Explorer** で **cosmicworks** データベース ノードを展開し、**NOSQL API** ナビゲーション ツリー内の **products** コンテナー ノードを選択してください。
+1. **Data Explorer** で **cosmicworks** データベース ノードを展開し、**API for NoSQL** ナビゲーション ツリー内の **products** コンテナー ノードを選択してください。
 
 1. **New SQL Query** を選択してください。
 

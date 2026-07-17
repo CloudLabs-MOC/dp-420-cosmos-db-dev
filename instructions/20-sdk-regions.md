@@ -1,4 +1,4 @@
-# Lab 09a - Azure Cosmos DB for NoSQL のレプリケーション戦略を設計および実装する
+# Lab 09a - Azure Cosmos DB for NoSQL のレプリケーション戦略を設計・実装する
 
 ## ラボ シナリオ
 
@@ -10,7 +10,7 @@
 - タスク 1: 開発環境を準備する。
 - タスク 2: Azure Cosmos DB for NoSQL アカウントを作成する。
 - タスク 3: SDK から Azure Cosmos DB for NoSQL アカウントに接続する。
-- タスク 4: 優先リージョン リストで .NET SDK を構成する。
+- タスク 4: .NET SDK を優先リージョン リストで構成する。
 
 ## 推定所要時間: 60 分
 
@@ -18,9 +18,9 @@
 
 ![image](architecturedia/lab20.png)
 
-## 演習 1: Azure Cosmos DB for NoSQL SDK を使用して異なるリージョンへ接続する
+## 演習 1: Azure Cosmos DB for NoSQL SDK で異なるリージョンに接続する
 
-Azure Cosmos DB for NoSQL アカウントで geo-redundancy を有効にすると、構成した任意の順序で SDK から各リージョンのデータを読み取れるようになります。この手法は、利用可能なすべての読み取りリージョンへ読み取り要求を分散するときに有効です。
+Azure Cosmos DB for NoSQL アカウントでジオ冗長性を有効にすると、SDK を使用して構成した任意の順序でリージョンからデータを読み取ることができます。この手法は、利用可能な読み取りリージョン全体に読み取りリクエストを分散させるときに有効です。
 
 このラボでは、手動で構成したフォールバック順序で読み取りリージョンへ接続するように CosmosClient クラスを構成します。
 
@@ -38,7 +38,7 @@ Azure Cosmos DB for NoSQL アカウントで geo-redundancy を有効にする�
 
 ### タスク 2: Azure Cosmos DB for NoSQL アカウントを作成する
 
-Azure Cosmos DB は、複数の API をサポートするクラウドベースの NoSQL データベース サービスです。初めて Azure Cosmos DB アカウントをプロビジョニングするときは、アカウントでサポートする API（例: **API for MongoDB** または **API for NoSQL**）を選択します。Azure Cosmos DB for NoSQL アカウントのプロビジョニング完了後、エンドポイントとキーを取得し、Azure SDK for .NET または任意の SDK を使用して Azure Cosmos DB for NoSQL アカウントに接続できます。
+Azure Cosmos DB は複数の API をサポートするクラウドベースの NoSQL データベース サービスです。Azure Cosmos DB アカウントを初めてプロビジョニングするときは、アカウントでサポートする API を選択します（たとえば **API for MongoDB** や **API for NoSQL**）。Azure Cosmos DB for NoSQL アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得して、Azure SDK for .NET やその他の SDK を使用して接続できます。
 
 1. 新しい Web ブラウザー ウィンドウまたはタブで Azure portal (``portal.azure.com``) に移動してください。
 
@@ -124,7 +124,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
 1. Web ブラウザーのウィンドウまたはタブを閉じてください。
 
-### タスク 3: SDK から Azure Cosmos DB for NoSQL アカウントへ接続する
+### タスク 3: SDK から Azure Cosmos DB for NoSQL アカウントに接続する
 
 新しく作成したアカウントの資格情報を使用し、SDK クラスで接続して、別リージョンからデータベースおよびコンテナーのインスタンスへアクセスします。
 
@@ -170,7 +170,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
 **CosmosClientOptions** クラスには、SDK で接続したいリージョン リストを構成するプロパティが含まれています。このリストはフェールオーバー優先順位で並び、構成した順序で各リージョンへの接続を試行します。
 
-1. **List\<string\>** ジェネリック型の新しい変数を作成し、アカウントで構成したリージョンを 3 番目のリージョンから 1 番目（プライマリ）リージョンの順で含めてください。たとえば Azure Cosmos DB for NoSQL アカウントを **West US** で作成し、次に **South Africa North**、最後に **East Asia** を追加した場合、リスト変数は次のようになります。
+1. ジェネリック型 **List\<string\>** の新しい変数を作成し、アカウントで構成したリージョンのリストを、3 番目のリージョンから開始して 1 番目の（プライマリ）リージョンで終わるように指定します。たとえば、Azure Cosmos DB for NoSQL アカウントを **West US** リージョンに作成し、その後に **South Africa North** と **East Asia** を追加した場合、リスト変数は次のようになります:
 
     ```
     List<string> regions = new()
@@ -283,9 +283,9 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
 このラボでは、次を完了しました。
 
-- 開発環境を準備した。
-- Azure Cosmos DB for NoSQL アカウントを作成した。
-- SDK から Azure Cosmos DB for NoSQL アカウントへ接続した。
-- 優先リージョン リストで .NET SDK を構成した。
+- 開発環境を準備しました。
+- Azure Cosmos DB for NoSQL アカウントを作成しました。
+- SDK から Azure Cosmos DB for NoSQL アカウントに接続しました。
+- 優先リージョン リストで .NET SDK を構成しました。
 
 ### ラボは正常に完了しました

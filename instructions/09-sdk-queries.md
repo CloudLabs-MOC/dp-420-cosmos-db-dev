@@ -12,9 +12,9 @@ Azure Cosmos DB for NoSQL 向け .NET SDK の最新バージョンでは、C# �
 
 このラボでは、次のタスクを完了します。
 - タスク 1: 開発環境を準備する。
-- タスク 2: Azure Cosmos DB NoSQL API アカウントを作成する。
-- タスク 3: Azure Cosmos DB NoSQL API アカウントにデータを投入する。
-- タスク 4: SDK を使用して SQL クエリ結果を反復処理する。
+- タスク 2: Azure Cosmos DB for NoSQL アカウントを作成する。
+- タスク 3: Azure Cosmos DB for NoSQL アカウントにデータをシードする。
+- タスク 4: SDK を使用して SQL クエリの結果を反復処理する。
 
 ## 推定所要時間: 30 分
 
@@ -44,11 +44,11 @@ Azure Cosmos DB for NoSQL 向け .NET SDK の最新バージョンでは、C# �
 
 5. **When Do you trust the author of the files in this folder** と表示された場合は、**Yes, I trust the authors** をクリックしてください。
 
-### タスク 2: Azure Cosmos DB NoSQL API アカウントを作成する
+### タスク 2: Azure Cosmos DB for NoSQL アカウントを作成する
 
-このタスクでは、NoSQL API を使用して Azure Cosmos DB アカウントを作成します。アカウントのプロビジョニング後、エンドポイント (URI) とプライマリ キーを含む接続情報を取得します。これらの資格情報を使用して、Azure SDK または任意の SDK で Cosmos DB アカウントに接続できます。
+このタスクでは、API for NoSQL を使用して Azure Cosmos DB アカウントを作成します。アカウントのプロビジョニングが完了したら、エンドポイント (URI) とプライマリキーなど、必要な接続情報を取得します。これらの資格情報を使用して、Azure SDK または他の SDK で Cosmos DB アカウントに接続できます。
 
-Azure Cosmos DB は、複数の API をサポートするクラウドベースの NoSQL データベース サービスです。初めて Azure Cosmos DB アカウントをプロビジョニングする際は、サポート対象 API（例: **Mongo API** または **SQL API**）を選択します。Azure Cosmos DB SQL API アカウントのプロビジョニング完了後、エンドポイントとキーを取得し、Azure SDK for .NET または任意の SDK で Azure Cosmos DB SQL API アカウントに接続できます。
+Azure Cosmos DB は、複数の API をサポートするクラウドベースの NoSQL データベースサービスです。Azure Cosmos DB アカウントを初めてプロビジョニングするときは、サポートする API を選択します（例: **API for MongoDB** や **API for NoSQL**）。Azure Cosmos DB for NoSQL アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得し、.NET 用 Azure SDK やその他の SDK を使用して Azure Cosmos DB for NoSQL アカウントに接続できます。
 
 1. Azure Portal ページに戻り、ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB (1)** と入力し、services の下にある **Azure Cosmos DB (2)** を選択してください。
 
@@ -111,11 +111,11 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
     <validation step="1365501c-f12d-434e-9c4f-6262ecb20955" />
 
-### タスク 3: Azure Cosmos DB NoSQL API アカウントにデータを投入する
+### タスク 3: Azure Cosmos DB for NoSQL アカウントにデータをシードする
 
-このタスクでは、cosmicworks コマンドライン ツールをインストールし、アカウントの endpoint と key を含むコマンドを実行して、Azure Cosmos DB NoSQL API アカウントにサンプル製品データを投入します。
+このタスクでは、cosmicworks コマンドライン ツールをインストールして、アカウントのエンドポイントとキーを含むコマンドを実行することで、Azure Cosmos DB for NoSQL アカウントにサンプル製品データをシードします。
 
-[cosmicworks][nuget.org/packages/cosmicworks] コマンドライン ツールは、任意の Azure Cosmos DB SQL API アカウントにサンプル データをデプロイします。このツールはオープンソースで、NuGet から利用できます。このツールを Azure Cloud Shell にインストールし、データベースの初期データ投入に使用します。
+[cosmicworks][nuget.org/packages/cosmicworks] コマンドライン ツールは、任意の Azure Cosmos DB for NoSQL アカウントにサンプルデータをデプロイします。このツールはオープンソースで NuGet で提供されています。Azure Cloud Shell にこのツールをインストールし、その後データベースをシードするために使用します。
 
 1. **Visual Studio Code** で、**... (ellipses) (1)** > **Terminal (2)** > **New Terminal (3)** を選択して **Terminal** メニューを開き、既存インスタンス内で新しいターミナルを開いてください。
 
@@ -274,7 +274,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
 ### まとめ
 
-このラボでは、Visual Studio Code をセットアップし、Azure Cosmos DB NoSQL API アカウントを作成しました。次に cosmicworks ツールを使って製品データを投入した後、C# スクリプトを修正してデータベースを非同期クエリしました。Cosmos DB SDK を使用して SQL クエリを実行し、非同期ループで結果を反復処理して製品情報を効率よく表示しました。このラボを通して、.NET SDK と C# を使った Azure Cosmos DB のクエリおよびデータ処理を実践的に学習しました。
+このラボでは、Visual Studio Code をセットアップし、Azure Cosmos DB for NoSQL アカウントを作成しました。cosmicworks ツールを使用して製品データでデータベースにシードした後、C# スクリプトを変更してデータベースを非同期的にクエリしました。Cosmos DB SDK を使用して SQL クエリを実行し、非同期ループで結果を反復処理し、製品情報を効率的に表示しました。このラボでは、.NET SDK と C# を使用して Azure Cosmos DB のデータをクエリし、処理する実践的な経験が得られました。
 
 
 ### ラボは正常に完了しました

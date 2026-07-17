@@ -45,9 +45,9 @@ Azure Monitor は Azure リソースを監視するための機能を包括的�
 
 ### タスク 2: Azure Cosmos DB for NoSQL アカウントを作成する
 
-このタスクでは、NoSQL API を使用して Azure Cosmos DB アカウントを作成します。アカウントのプロビジョニング後、endpoint (URI) と primary key を含む必要な接続情報を取得します。
+このタスクでは、API for NoSQL を使用して Azure Cosmos DB アカウントを作成します。アカウントのプロビジョニング後に、エンドポイント (URI) とプライマリ キーなどの必要な接続情報を取得します。
 
-Azure Cosmos DB は複数の API をサポートするクラウドベースの NoSQL データベース サービスです。初めて Azure Cosmos DB アカウントをプロビジョニングするときは、アカウントでサポートする API（例: **Mongo API** または **NoSQL API**）を選択します。Azure Cosmos DB for NoSQL アカウントのプロビジョニング完了後、エンドポイントとキーを取得し、Azure SDK for .NET または任意の SDK を使用して Azure Cosmos DB for NoSQL アカウントに接続できます。
+Azure Cosmos DB は複数の API をサポートするクラウドベースの NoSQL データベース サービスです。Azure Cosmos DB アカウントを初めてプロビジョニングするときは、アカウントでサポートする API を選択します（たとえば **API for MongoDB** や **API for NoSQL**）。Azure Cosmos DB for NoSQL アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得し、Azure SDK for .NET または任意の他の SDK を使用して Azure Cosmos DB for NoSQL アカウントに接続できます。
 
 1. **Azure Portal** に戻ってください。
 
@@ -67,15 +67,16 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
     | **Setting** | **Value** |
     | :--- | :--- |
-    | **Subscription** | *Your existing Azure subscription* |
-    | **Resource group** | **cosmosdb-<inject key="DeploymentID" enableCopy="false"/>** |
-    | **Account Name** | **cosmosdb-<inject key="DeploymentID" enableCopy="false"/>** |
-    | **Location** | *Choose any available region* |
-    | **Capacity mode** | *Provisioned throughput* |
-    | **Apply Free Tier Discount** | *`Do Not Apply`* |
-    | **Limit the total amount of throughput that can be provisioned on this account** | *Uncheck* |
+    | **Workload Type** | *Learning* **(1)** |    
+    | **Subscription** | *Your existing Azure subscription* **(2)** |
+    | **Resource group** | *Select an existing Cosmosdb-<inject key="DeploymentID" enableCopy="false"/>* **(3)** |
+    | **Account Name** | *sql-<inject key="DeploymentID" enableCopy="false"/>* **(4)** |
+    | **Location** | *Choose any available region* **(5)** |
+    | **Capacity mode** | *Provisioned throughput* **(6)** |
+    | **Apply Free Tier Discount** | *Do Not Apply* **(7)** |
+    | **Limit total account throughput** | *Disable* **(8)** |        
 
-     ![05](media/lab12-7.png)
+     ![05](media/12LB-7.png)
 
 1. **Review + Create** をクリックし、検証で Success が表示されたら **Create** をクリックしてください。
 
@@ -248,7 +249,7 @@ Azure Monitor Metrics の診断レポートは、微調整に時間をかける�
 このラボでは、次を完了しました。
 
 - 開発環境を準備した。
-- Azure Cosmos DB NoSQL API アカウントを作成した。
+- Azure Cosmos DB for NoSQL アカウントを作成した。
 - .NET スクリプトに Microsoft.Azure.Cosmos と Newtonsoft.Json ライブラリをインポートした。
 - コンテナーとワークロードを作成するスクリプトを実行した。
 - Azure Monitor を使用して Azure Cosmos DB アカウント使用状況を分析した。

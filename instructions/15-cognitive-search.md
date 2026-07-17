@@ -2,9 +2,9 @@
 
 ## ラボ シナリオ
 
-Azure Cognitive Search は、サービスとしての検索エンジンと、AI 機能との高度な統合を組み合わせることで、検索インデックス内の情報を強化します。
+Azure AI Search は、サービスとしての検索エンジンと AI 機能の深い統合を組み合わせ、検索インデックス内の情報を強化します。
 
-このラボでは、Azure Cosmos DB SQL API コンテナー内のデータを自動的にインデックス化し、Azure Cognitive Services Translator 機能を使用してデータを強化する Azure Cognitive Search インデックスを構築します。
+このラボでは、Azure Cosmos DB for NoSQL コンテナー内のデータを自動的にインデックス化し、Azure AI Translator 機能を使用してデータを強化する Azure AI Search インデックスを作成します。
 
 ## ラボの目的
 
@@ -23,9 +23,9 @@ Azure Cognitive Search は、サービスとしての検索エンジンと、AI 
 
 ### タスク 1: Azure Cosmos DB for NoSQL アカウントを作成する
 
-Azure Cosmos DB は、複数の API をサポートするクラウドベースの NoSQL データベース サービスです。初めて Azure Cosmos DB アカウントをプロビジョニングする際は、アカウントでサポートする API（例: **Mongo API** または **NoSQL API**）を選択します。Azure Cosmos DB for NoSQL アカウントのプロビジョニング完了後、エンドポイントとキーを取得し、Azure SDK for .NET または任意の SDK を使用して Azure Cosmos DB for NoSQL アカウントに接続できます。
+Azure Cosmos DB は複数の API をサポートするクラウドベースの NoSQL データベース サービスです。Azure Cosmos DB アカウントを初めてプロビジョニングする際には、アカウントでサポートする API を選択します（たとえば **API for MongoDB** や **API for NoSQL**）。Azure Cosmos DB for NoSQL アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得し、Azure SDK for .NET やその他の SDK を使用してそのアカウントに接続できます。
 
-1. Azure Portal ページに戻り、ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB** と入力して、services の **Azure Cosmos DB** を選択します。
+1. Azure Portal ページに戻り、ポータル上部の「Search resources, services and docs (G+/)」ボックスに **Azure Cosmos DB (1)** と入力し、サービス一覧から **Azure Cosmos DB (2)** を選択します。
 
    ![06](media/14LB-14.png)
 
@@ -54,7 +54,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
 1. このタスクを続行する前に、デプロイの完了を待ちます。
 
-1. **Go to resources** を選択します。新しく作成した **Azure Cosmos DB** アカウントの **Settings** で **Keys** ペインに移動します。
+1. **Go to resources** を選択します。新しく作成した **Azure Cosmos DB** アカウントの **Settings (1)** で **Keys (2)** ペインに移動します。
 
     ![06](media/12LB-10.png)
 
@@ -171,7 +171,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
 ### タスク 3: Azure AI Search リソースを作成する
 
-この演習を続行する前に、まず新しい Azure Cognitive Search インスタンスを作成する必要があります。
+この演習を続行する前に、まず新しい Azure AI Search インスタンスを作成する必要があります。
 
 1. Azure portal に戻り、**Create a resource** をクリックします。
 
@@ -215,27 +215,28 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
 
 特定の Azure Cosmos DB for NoSQL コンテナー内のデータのサブセットを 1 時間ごとにインデックス化するインデクサーを作成します。
 
-1. **AI Search** リソース ブレードで **Import data** を選択します。
+1. **Azure AI Search** サービスの Overview ページで、**Import data** をクリックして Azure Cosmos DB から検索インデックスの作成を開始します。
 
     ![06](media/10LB-13.png)
 
-1. **Import data** ウィザードの **Data Source** リストで **Azure Cosmos DB** を選択します。
+1. **Choose a data source** ページで、検索インデックスのデータ ソースとして **Azure Cosmos DB** を選択します。
 
     ![06](media/10LB-14.png)
 
-1. 次の設定でデータ ソースを構成し、その他の設定は既定値のままにします。
+1. **What scenario are you targeting?** ページで、**Keyword search** を選択してキーワード検索エクスペリエンスを構成します。
 
-    | **Setting** | **Value** |
-    | :--- | :--- |
-    | **Data source name** | **products-cosmossql-source (2)** |
-    | **Connection string** | **Choose an existing connection of the Azure Cosmos DB for NoSQL account created earlier (3)** |
-    | **Database** | **cosmicworks (4)** |
-    | **Collection** | **products (5)** |
+    ![06](media/CDB6.png)
 
-    ![06](media/10LB-16.png)
+1. **Configure your Azure Cosmos DB** ページで、次の設定を構成し、**Next (6)** をクリックします。
 
-1. **query** フィールドに次の SQL クエリを入力し、コンテナー内データのサブセットのマテリアライズド ビューを作成します。
-
+    | Setting | Value |
+    |----------|----------|
+    | **Subscription** | Select your Azure subscription **(1)** |
+    | **Cosmos DB account** | Select the Cosmos DB account created earlier **(2)** |
+    | **Database** | `cosmicworks` **(3)** |
+    | **Collection** | `products` **(4)** |
+    | **Query** | Paste the query below **(5)** |
+    
     ```SQL
     SELECT
         p.id,
@@ -251,39 +252,39 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
         p._ts
     ```
 
-1. **Query results ordered by _ts** チェック ボックスを選択します。
+    ![06](media/CDB7.png)
 
-    >**Note:** このチェック ボックスは、クエリ結果が **_ts** フィールドでソートされることを Azure AI Search に通知します。この種のソートにより増分進行の追跡が可能になります。インデクサーが失敗した場合でも、結果がタイムスタンプ順に並んでいるため、同じ **_ts** 値から再開できます。
+1. **Apply AI enrichments** ページでは、このラボで構成する必要はありません。既定の設定を変更せずに **Next** をクリックして続行します。
 
-1. **Next: Add cognitive skills** を選択します。
+1. **Preview index fields** ページで **Add field (1)** をクリックします。新しい行の **Source column (2)** に **id** と入力し、**Target index field name (3)** に **categoryId** と入力し、**Target index field type (4)** で **Edm.String** を選択して、フィールドの構成を続けます。
 
-1. **Skip to: Customize target index** を選択します。
+     ![06](media/CDB14.png)
 
-1. ウィザードの **Customize target index** ステップで、次の設定でインデックスを構成し、その他の設定は既定値のままにします。
+1. **Preview index fields** ページで、**categoryid** フィールドの省略記号 (**...**) **(1)** をクリックし、**Configure field (2)** を選択します。
 
-    | **Setting** | **Value** |
-    | :--- | :--- |
-    | **Index name** | *``products-index``* |
-    | **Key** | *id* |
+     ![06](media/CDB012.png)
 
-1. フィールド テーブルで、次の表に従って各フィールドの **Retrievable**、**Filterable**、**Sortable**、**Facetable**、**Searchable** オプションを設定します。
+1. **Configure field** ペインで **Key (1)** を選択し、**Save (2)** をクリックします。
 
-    ![06](media/categoryid.png)
+    ![06](media/CDB11.png)
 
-1. **Next: Create an indexer** を選択します。
+1. インデックス フィールド マッピングを確認し、**id**、**name**、**price**、**categoryid** の各フィールドが図のように構成されていることを確認したら、**Next** をクリックします。
 
-1. ウィザードの **Create an indexer** ステップで、次の設定でインデクサーを構成し、その他の設定は既定値のままにします。
+    ![06](media/CDB15.png)
 
-    | **Setting** | **Value** |
-    | :--- | :--- |
-    | **Name** | *``products-cosmosdb-indexer``* |
-    | **Schedule** | *Hourly* |
+1. **Advanced settings** ページで、インデックスの **Schedule (1)** が **Hourly** に設定されていることを確認し、**Next (2)** をクリックします。
 
-1. **Submit** を選択して、データ ソース、インデックス、インデクサーを作成します。
+    ![06](media/CDB9.png)
 
-    >**Note:** 最初のインデクサー作成後、アンケートのポップアップを閉じる必要がある場合があります。
+1. **Review and create** ページで構成設定を確認し、**Create** をクリックしてデータ ソース、インデクサー、および検索インデックスを作成します。
 
-1. **AI Search** リソース ブレードの左ナビゲーション メニューで、**Search Management** タブ配下の **Indexers (1)** を選択し、最初のインデックス処理結果を確認します。
+    ![06](media/CDB10.png)
+
+1. **Create succeeded** 確認ダイアログで **Go to Search explorer** をクリックし、検索インデックスを開いてインデックス化されたデータの探索を開始します。
+
+    ![06](media/CDB16.png)
+
+1. **AI Search** リソース ブレードの左側のナビゲーション メニューから **Search Management** タブの **Indexers (1)** を選択し、最初のインデックス処理の結果を確認します。
 
 1. **products-cosmosdb-indexer** のステータスが **Success (2)** になるまで待ってから、このタスクを続行します。
 
@@ -407,6 +408,6 @@ Azure Cosmos DB for NoSQL データのマテリアライズド ビューが検�
 
 ### まとめ
 
-このラボでは、Azure AI Search と Azure Cosmos DB for NoSQL の統合手順を学習します。Cosmos DB アカウントの作成、サンプル データの投入、Azure Cognitive Search リソースの設定、インデクサーの構築を実施します。
+このラボでは、Azure AI Search と Azure Cosmos DB for NoSQL の統合手順を案内します。Cosmos DB アカウントを作成し、サンプルデータを投入し、Azure AI Search リソースをセットアップして、インデクサーを構築します。
 
 ### ラボは正常に完了しました

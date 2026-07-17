@@ -9,7 +9,7 @@ Azure Data Factory では、Azure Cosmos DB をデータ取り込みのソース
 ## ラボの目的
 
 このラボで完了するタスク:
-- タスク 1: Azure Cosmos DB SQL API アカウントを作成してシードする。
+- タスク 1: Azure Cosmos DB for NoSQL アカウントを作成してシードする。
 - タスク 2: Azure Data Factory リソースを作成する。
 
 ### タスク 1: Azure Cosmos DB for NoSQL アカウントの作成とシード
@@ -32,18 +32,18 @@ products コンテナーに加えて、ETL 変換とロード操作のターゲ�
 
 1. 以下の設定を指定し、残りはデフォルトのままにして **Next: Global Distribution (9)** を選択します:
 
-    | **Setting**         | **Value** |
-    | --------------------|--------------------------------------------------- |
-    | **Workload Type**   | *Production* (1) |
-    | **Subscription**    | *Your existing Azure subscription* (2) |
-    | **Resource group**  | *既存の Cosmosdb-<inject key="DeploymentID" enableCopy="false"/> を選択* (3) |
-    | **Account Name**    | *sql-<inject key="DeploymentID" enableCopy="false"/>* (4) |
-    | **Location**        | *デフォルトのリージョンを選択* (5) |
-    | **Capacity mode**   | *Provisioned throughput* (6) |
-    | **Apply Free Tier Discount** | *Do Not Apply* (7) |
-    | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* (8) |
+    | Setting | Value |
+    |----------|----------|
+    | **Workload Type** | *Production* **(1)** |
+    | **Subscription** | *既存の Azure サブスクリプション* **(2)** |
+    | **Resource group** | *既存の Cosmosdb-<inject key="DeploymentID" enableCopy="false"/> を選択* **(3)** |
+    | **Account Name** | *sql-<inject key="DeploymentID" enableCopy="false"/>* **(4)** |
+    | **Availability Zones** | *Disabled* **(5)** |
+    | **Location** | *任意の利用可能なリージョンを選択* **(6)** |
+    | **Capacity mode** | *Provisioned throughput* **(7)** |
+    | **Limit the total amount of throughput that can be provisioned on this account** | *チェックを外したままにする* **(8)** |
 
-     ![06](media/00-09.png)
+     ![06](media/01-06.png)
 
 1. Global Distribution ページで **Next: Networking** をクリックします。**Connectivity method** で **All networks (1)** を選択し、**Review + Create (2)** をクリックします。
 
@@ -175,7 +175,7 @@ products コンテナーに加えて、ETL 変換とロード操作のターゲ�
 
 このタスクでは、Azure Data Factory リソースを作成し、1 回限りの ETL（抽出、変換、読み込み）操作を実行するように構成します。目標は、1 つの Azure Cosmos DB NoSQL コンテナー（products）から別のコンテナー（flatproducts）へデータを移動し、その過程で変換を適用することです。
 
-Azure Cosmos DB for NoSQL リソースの準備ができたので、Azure Data Factory リソースを作成し、1 つの NoSQL API コンテナーから別のコンテナーへ 1 回限りのデータ移動を実行するために必要なすべてのコンポーネントと接続を構成して、データを抽出、変換、および別の NoSQL API コンテナーにロードします。
+Azure Cosmos DB for NoSQL リソースの準備ができたので、Azure Data Factory リソースを作成し、1 つの API for NoSQL コンテナーから別のコンテナーへ 1 回限りのデータ移動を実行するために必要なすべてのコンポーネントと接続を構成して、データを抽出、変換、および別の API for NoSQL コンテナーにロードします。
 
 1. Azure ポータルのホームページで **+ Create a resource** を選択します。
   
@@ -336,7 +336,7 @@ Azure Cosmos DB for NoSQL リソースの準備ができたので、Azure Data F
 
 このラボで完了した項目:
 
-- Azure Cosmos DB NoSQL API アカウントを作成し、データをシードしました。
+- Azure Cosmos DB for NoSQL アカウントを作成し、データをシードしました。
 - Azure Data Factory リソースを作成しました。
 
 ### ラボは正常に完了しました。

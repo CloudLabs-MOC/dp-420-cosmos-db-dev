@@ -6,15 +6,15 @@
 
 Azure SDK for .NET は、Azure サービスとやり取りするために一貫した開発体験を提供するライブラリ群です。.NET Standard 2.0 をベースとしており、.NET Framework 4.6.1 以降、.NET Core 2.1 以降、.NET 5 以降と互換性があります。
 
-このラボでは、Azure SDK for .NET を使用して Azure Cosmos DB SQL API アカウントに接続します。
+このラボでは、Azure SDK for .NET を使用して Azure Cosmos DB for NoSQL アカウントに接続します。
 
 ## ラボの目的
 
-このラボでは、次のタスクを完了します。
-- タスク 1: 開発環境を準備する。
-- タスク 2: Azure Cosmos DB SQL API アカウントを作成する。
-- タスク 3: NuGet で Microsoft.Azure.Cosmos ライブラリを確認する。
-- タスク 4: Microsoft.Azure.Cosmos ライブラリを .NET プロジェクトにインポートする。
+このラボで完了するタスク:
+- タスク 1: 開発環境の準備。
+- タスク 2: Azure Cosmos DB for NoSQL アカウントの作成。
+- タスク 3: NuGet 上の Microsoft.Azure.Cosmos ライブラリを確認。
+- タスク 4: Microsoft.Azure.Cosmos ライブラリを .NET プロジェクトに追加。
 - タスク 5: Microsoft.Azure.Cosmos ライブラリを使用する。
 - タスク 6: スクリプトをテストする。
 
@@ -42,11 +42,11 @@ Azure SDK for .NET は、Azure サービスとやり取りするために一貫�
 
    ![06](media/02-04.png)
 
-### タスク 2: Azure Cosmos DB SQL API アカウントを作成する
+### タスク 2: Azure Cosmos DB for NoSQL アカウントの作成
 
-このタスクでは、Azure Cosmos DB SQL API アカウントをプロビジョニングし、主要な設定を構成して、今後の開発に必要な接続情報を取得します。
+このタスクでは、Azure Cosmos DB for NoSQL アカウントをプロビジョニングし、今後の開発で使用するために必要な接続情報を取得します。
 
-Azure Cosmos DB は、複数の API をサポートするクラウドベースの NoSQL データベース サービスです。初めて Azure Cosmos DB アカウントをプロビジョニングするときは、アカウントでサポートする API（例: **Mongo API** または **NoSQL API**）を選択します。Azure Cosmos DB SQL API アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得し、それらを使用して Azure SDK for .NET または任意の SDK から Azure Cosmos DB NoSQL API アカウントに接続できます。
+Azure Cosmos DB は複数の API をサポートするクラウドベースの NoSQL データベース サービスです。初めてアカウントをプロビジョニングする際に、アカウントでサポートする API（例: **API for MongoDB** や **API for NoSQL**）を選択します。Azure Cosmos DB for NoSQL アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得して、Azure SDK for .NET または任意の SDK を使って接続できます。
 
 1. Azure Portal ページで、ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB (1)** と入力し、services の **Azure Cosmos DB (2)** を選択してください。
 
@@ -147,7 +147,7 @@ NuGet Web サイトには、.NET アプリケーションにインポート可�
 
 このタスクでは、Microsoft.Azure.Cosmos ライブラリを使用して Azure Cosmos DB アカウントに接続します。Visual Studio Code で script.cs ファイルを開き、アカウントの endpoint と key の変数を定義し、CosmosClient インスタンスを作成します。次に、アカウント名とプライマリ リージョンをコンソールに表示してから、ファイルを保存します。
 
-Azure SDK for .NET の Azure Cosmos DB ライブラリをインポートすると、[Microsoft.Azure.Cosmos][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos] 名前空間内のクラスをすぐに使用して Azure Cosmos DB SQL API アカウントに接続できます。[CosmosClient][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.cosmosclient] クラスは、Azure Cosmos DB SQL API アカウントへの初期接続に使用する中心的なクラスです。
+.NET 用 Azure SDK の Azure Cosmos DB ライブラリをインポートすると、`Microsoft.Azure.Cosmos` 名前空間内のクラスをすぐに使用して Azure Cosmos DB for NoSQL アカウントに接続できます。`CosmosClient` クラスは、Azure Cosmos DB for NoSQL アカウントへの初期接続を行うための中核クラスです。
 
 1. **Visual Studio Code** で、**04-sdk-connect (1)** フォルダー内の空の **script.cs (2)** コード ファイルを開いてください。
 
@@ -224,7 +224,7 @@ Azure SDK for .NET の Azure Cosmos DB ライブラリをインポートする�
 ### タスク 6: スクリプトをテストする
 このタスクでは、Visual Studio Code の統合ターミナルを開き、dotnet run コマンドでプロジェクトを実行してスクリプトをテストします。出力にはアカウント名と最初の書き込み可能リージョンが表示されます。
 
-Azure Cosmos DB SQL API アカウントに接続する .NET コードが完成したので、スクリプトをテストできます。このスクリプトはアカウント名と最初の書き込み可能リージョン名を表示します。アカウント作成時に指定した location と同じ値が結果として表示されるはずです。
+.NET コードによる Azure Cosmos DB for NoSQL アカウントへの接続処理が完成したので、スクリプトを実行して検証します。スクリプトはアカウント名と最初の書き込み可能リージョン名を出力します。アカウント作成時に指定したリージョン名が表示されるはずです。
 
 1. **Visual Studio Code** で **04-sdk-connect (1)** フォルダーを右クリックし、**Open in Integrated Terminal (2)** を選択して新しいターミナルを開いてください。
 
@@ -251,15 +251,15 @@ Azure Cosmos DB SQL API アカウントに接続する .NET コードが完成�
 
 ### まとめ
 
-このラボでは、Azure SDK for .NET を使用して Azure Cosmos DB SQL API アカウントに接続する方法を学習しました。最初に Visual Studio Code をセットアップし、Cosmos DB アカウントをプロビジョニングして endpoint と key を取得しました。次に NuGet で Microsoft.Azure.Cosmos ライブラリを確認し、.NET プロジェクトにインポートする方法を学びました。さらに、Cosmos DB に接続してアカウント名とプライマリ書き込みリージョンを取得するスクリプトを作成し、動作を検証しました。
+このラボでは、Azure SDK for .NET を使用して Azure Cosmos DB for NoSQL アカウントに接続する方法を学びました。手順は Visual Studio Code のセットアップ、Cosmos DB アカウントのプロビジョニング（エンドポイントとキーの取得）、NuGet での Microsoft.Azure.Cosmos ライブラリの確認、ライブラリのプロジェクトへの追加、スクリプト作成（アカウント名とプライマリ書き込みリージョンの取得）、そしてスクリプトの実行による検証です。
 
 ### レビュー
 
-このラボでは、次を完了しました。
+このラボで完了した項目:
 
-- 開発環境を準備した。
-- Azure Cosmos DB NoSQL API アカウントを作成した。
-- NuGet で Microsoft.Azure.Cosmos ライブラリを確認した。
-- Microsoft.Azure.Cosmos ライブラリを .NET プロジェクトにインポートした。
-- Microsoft.Azure.Cosmos ライブラリを使用した。
-- スクリプトをテストした。
+- 開発環境の準備。
+- Azure Cosmos DB for NoSQL アカウントの作成。
+- NuGet 上で Microsoft.Azure.Cosmos ライブラリを確認。
+- Microsoft.Azure.Cosmos ライブラリを .NET プロジェクトに追加。
+- Microsoft.Azure.Cosmos ライブラリを使用して接続を確認。
+- スクリプトのテスト。

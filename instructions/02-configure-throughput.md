@@ -1,9 +1,9 @@
-# Lab 02a - Azure Cosmos DB for NoSQL を計画して実装する
+# Lab 02a - Azure Cosmos DB for NoSQL の計画と実装
 
 ## ラボ シナリオ
 
-Azure Cosmos DB for NoSQL で最も重要なポイントの 1 つは、スループット構成を理解することです。Azure Cosmos DB for NoSQL コンテナーを作成するには、順番として最初にアカウントを作成し、次にデータベースを作成する必要があります。
-このラボでは、Data Explorer のさまざまな方法を使用してスループットをプロビジョニングします。データベース レベルとコンテナー レベルの両方で、手動またはオートスケールを使用してスループットをプロビジョニングします。
+理解しておくべき最も重要な点のひとつは、Azure Cosmos DB for NoSQL におけるスループットの構成です。Azure Cosmos DB for NoSQL のコンテナーを作成するには、まずアカウントを作成し、その後にデータベースを作成する必要があります。
+このラボでは、Data Explorer でさまざまな方法を使ってスループットをプロビジョニングします。データベース レベルとコンテナー レベルで、手動またはオートスケールを使用してスループットをプロビジョニングします。
 
 ## ラボの目的
 
@@ -17,7 +17,7 @@ Azure Cosmos DB for NoSQL で最も重要なポイントの 1 つは、スルー
 
 ![image](architecturedia/lab2.png)
 
-## 演習 1: Azure portal で Azure Cosmos DB for NoSQL のスループットを構成する
+## 演習 1: Azure ポータルを使用して Azure Cosmos DB for NoSQL のスループットを構成する
 
 ### タスク 1: サーバーレス アカウントを作成する
 
@@ -47,7 +47,7 @@ Azure Cosmos DB for NoSQL で最も重要なポイントの 1 つは、スルー
 
 1. **Review + Create** を選択して **Review + Create** タブに移動し、次に **Create** を選択してください。
 
-    > &#128221; Azure Cosmos DB for NoSQL アカウントが使用可能になるまでに 10〜15 分かかる場合があります。
+    > &#128221; Azure Cosmos DB for NoSQL アカウントが使用可能になるまでに 10～15 分かかることがあります。
 
 1. **Deployment** ペインを確認してください。デプロイが完了すると、ペインは **Deployment successful** メッセージで更新されます。
 
