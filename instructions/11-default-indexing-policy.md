@@ -27,13 +27,13 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
-   ![06](media/L1E1T1S1.png)
+      ![06](media/L1E1T1S1.png)
    
 1. Select **+ Create (1)** under **Azure Cosmos DB for NoSQL** click on **Create (2)** to create  **Azure Cosmos DB for NoSQL** account.
 
-    ![06](media/L1E1T1S2.png)
+      ![06](media/L1E1T1S2.png)
 
-    ![06](media/New-image3.png)
+      ![06](media/New-image3.png)
 
 1. Specify the following settings, leaving all remaining settings to their default values and select **Review + create (10)**:
 
@@ -48,21 +48,21 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     | **Apply Free Tier Discount** | *Do Not Apply* (7) |
     | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* (8) |
 
-     ![06](media/DB25.png)
+      ![06](media/DB25.png)
 
 1. Click on **Create**.
 
-    ![06](media/New-image5.png)
+      ![06](media/New-image5.png)
 
 1. Wait for the deployment task to complete before continuing with this task.
 
 1. Once deployment is completed, select **Go to resources**. 
 
-    ![06](media/New-image6.png)
+      ![06](media/New-image6.png)
 
 1. In the **Azure Cosmos DB account**, expand **Settings (1)** from the left menu, then select **Keys (2)**.
 
-    ![06](media/DB15.png)
+      ![06](media/DB15.png)
 
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
