@@ -1,17 +1,17 @@
 # Lab 05b - Azure Cosmos DB for NoSQL でクエリを実行する
 
-## ラボシナリオ
+## ラボ シナリオ
 
-Azure Cosmos DB のクエリは通常、複数ページの結果になります。Azure Cosmos DB が単一の実行で全クエリ結果を返せない場合、ページネーションはサーバー側で自動的に行われます。多くのアプリケーションでは、SDK を使用してクエリ結果をバッチ単位で効率的に処理するコードを書く必要があります。
+Azure Cosmos DB のクエリでは、通常、結果が複数ページに分かれます。Azure Cosmos DB が 1 回の実行で全結果を返せない場合、ページ分割はサーバー側で自動的に行われます。多くのアプリケーションでは、SDK を使用してクエリ結果を高性能にバッチ処理するコードを実装したくなります。
 
-このラボでは、一連の結果セット全体をループで反復処理するために使用できるフィード イテレータを作成します。
+このラボでは、ループ内で使用して結果セット全体を反復処理できる feed iterator を作成します。
 
 ## ラボの目的
 
-このラボでは、次のタスクを完了します:
+このラボでは、次のタスクを完了します。
 - タスク 1: 開発環境を準備する。
-- タスク 2: Azure Cosmos DB for NoSQL アカウントにデータをシードする。
-- タスク 3: SDK を使用して SQL クエリの小さな結果セットをページネーションする。
+- タスク 2: Azure Cosmos DB for NoSQL アカウントにデータを投入する。
+- タスク 3: SDK を使用して SQL クエリの小さな結果セットをページ分割して処理する。
 
 ## 推定所要時間: 30 分
 
@@ -19,127 +19,127 @@ Azure Cosmos DB のクエリは通常、複数ページの結果になります�
 
 ![image](architecturedia/lab10.png)
 
-## 演習 1: Azure Cosmos DB for NoSQL SDK でクロスプロダクト クエリ結果をページネーションする
+## 演習 1: Azure Cosmos DB for NoSQL SDK を使用してクロスプロダクト クエリ結果をページ分割する
 
 ### タスク 1: 開発環境を準備する
 
-1. Visual Studio Code を起動します（プログラムアイコンはデスクトップにピン留めされています）。
+1. Visual Studio Code を起動してください（プログラム アイコンはデスクトップにピン留めされています）。
 
-2. 左ペインから **拡張機能 (1)** アイコンを選択します。検索バーに **C# (2)** と入力し、表示された **拡張機能 (3)** を選択して、最後に **インストール (4)** をクリックします。
+2. 左側ペインの **Extension (1)** アイコンを選択してください。検索バーに **C# (2)** と入力し、表示された **extension (3)** を選択して、最後に拡張機能の **Install (4)** を選択してください。
 
     ![](media/C-hash-extension.png)
 
-3. 画面左上の **ファイル** オプションを選択し、ペインのオプションから **フォルダーを開く** を選択し、**C:\AllFiles** に移動します。
+3. 画面左上の **file** を選択し、メニューから **Open Folder** を選択して **C:\AllFiles** に移動してください。
 
-4. **dp-420-cosmos-db-dev** フォルダーを選択し、**フォルダーの選択** をクリックします。
+4. **dp-420-cosmos-db-dev** フォルダーを選択し、**Select Folder** をクリックしてください。
 
-### タスク 2: Azure Cosmos DB for NoSQL アカウントにデータをシードする
+### タスク 2: Azure Cosmos DB for NoSQL アカウントにデータを投入する
 
-[cosmicworks][nuget.org/packages/cosmicworks] コマンドライン ツールは、任意の Azure Cosmos DB for NoSQL アカウントにサンプルデータをデプロイします。このツールはオープンソースで NuGet で提供されています。このツールを Azure Cloud Shell にインストールし、データベースへのシードに使用します。
+[cosmicworks][nuget.org/packages/cosmicworks] コマンドライン ツールは、任意の Azure Cosmos DB for NoSQL アカウントにサンプル データをデプロイします。このツールはオープンソースで NuGet から利用できます。このツールを Azure Cloud Shell にインストールし、データベースへのデータ投入に使用します。
 
-1. **Visual Studio Code** で、**ターミナル** メニューを開き、**新しいターミナル** を選択して新しいターミナル インスタンスを開きます。
+1. **Visual Studio Code** で **Terminal** メニューを開き、**New Terminal** を選択して新しいターミナルを開いてください。
 
-1. マシンでグローバルに使用するために [cosmicworks][nuget.org/packages/cosmicworks] コマンドライン ツールをインストールします。
+1. [cosmicworks][nuget.org/packages/cosmicworks] コマンドライン ツールをマシン全体で使えるようにインストールしてください。
 
     ```
     dotnet tool install --global cosmicworks
     ```
 
-    >**注意**: このコマンドの完了には数分かかる場合があります。すでに最新バージョンをインストールしている場合は、(*Tool 'cosmicworks' is already installed*) という警告メッセージが表示されることがあります。
+    >**Note**: このコマンドは完了までに数分かかる場合があります。過去にこのツールの最新バージョンをすでにインストールしている場合、このコマンドは警告メッセージ（*Tool 'cosmicworks' is already installed'）を出力します。
 
-1. 次のコマンドライン オプションで cosmicworks を実行し、Azure Cosmos DB アカウントにデータをシードします:
+1. 次のコマンドライン オプションで cosmicworks を実行し、Azure Cosmos DB アカウントにデータを投入してください。
 
-    | **オプション** | **値** |
+    | **Option** | **Value** |
     | --- | --- |
-    | **--endpoint** | *このラボで先ほどコピーした endpoint の値* |
-    | **--key** | *このラボで先ほどコピーした key の値* |
+    | **--endpoint** | *このラボで先ほどコピーした endpoint 値* |
+    | **--key** | *このラボで先ほどコピーした key 値* |
     | **--datasets** | *product* |
 
     ```
     cosmicworks --endpoint <cosmos-endpoint> --key <cosmos-key> --datasets product
     ```
 
-    >**注意**: たとえば、endpoint が **https&shy;://dp420.documents.azure.com:443/** で、key が **fDR2ci9QgkdkvERTQ==** の場合、コマンドは次のようになります:
+    >**Note**: たとえば endpoint が **https&shy;://dp420.documents.azure.com:443/**、key が **fDR2ci9QgkdkvERTQ==** の場合、コマンドは次のようになります。
     > ``cosmicworks --endpoint https://dp420.documents.azure.com:443/ --key fDR2ci9QgkdkvERTQ== --datasets product``
 
-1. **cosmicworks** コマンドがアカウントにデータベース、コンテナー、およびアイテムを作成し終えるまで待ちます。
+1. **cosmicworks** コマンドがアカウントにデータベース、コンテナー、項目を投入し終えるまで待機してください。
 
-1. 統合ターミナルを閉じます。
+1. 統合ターミナルを閉じてください。
 
-### タスク 3: SDK を使用して SQL クエリの小さな結果セットをページネーションする
+### タスク 3: SDK を使用して SQL クエリの小さな結果セットをページ分割して処理する
 
-クエリ結果を処理する際は、すべてのページを順に進み、次のリクエストを行う前に追加のページが残っているかを確認する必要があります。
+クエリ結果を処理する際は、後続リクエストを行う前に、結果の全ページを順に処理し、さらにページが残っているかどうかを確認する必要があります。
 
-1. **Visual Studio Code** の **エクスプローラー** ペインで、**10-paginate-results-sdk** フォルダーに移動します。
+1. **Visual Studio Code** の **Explorer** ペインで、**10-paginate-results-sdk** フォルダーに移動してください。
 
-1. **product.cs** コードファイルを開きます。
+1. **product.cs** コード ファイルを開いてください。
 
-1. **Product** クラスとそのプロパティを確認します。このラボでは、特に **id**、**name**、**price** プロパティを使用します。
+1. **Product** クラスと対応するプロパティを確認してください。特にこのラボでは **id**、**name**、**price** プロパティを使用します。
 
-1. **Visual Studio Code** の **エクスプローラー** ペインに戻り、**script.cs** コードファイルを開きます。
+1. **Visual Studio Code** の **Explorer** ペインに戻り、**script.cs** コード ファイルを開いてください。
 
-1. 既存の **endpoint** という名前の変数を、前のラボで作成した Azure Cosmos DB アカウントの **endpoint** に設定します。
-  
+1. 既存の **endpoint** という名前の変数を更新し、前のラボで作成した Azure Cosmos DB アカウントの **endpoint** を設定してください。
+
     ```
     string endpoint = "<cosmos-endpoint>";
     ```
 
-    >**注意**: たとえば、endpoint が **https&shy;://dp420.documents.azure.com:443/** の場合、C# 文は **string endpoint = "https&shy;://dp420.documents.azure.com:443/";** になります。
+    >**Note**: たとえば endpoint が **https&shy;://dp420.documents.azure.com:443/** の場合、C# ステートメントは **string endpoint = "https&shy;://dp420.documents.azure.com:443/";** になります。
 
-1. 既存の **key** という名前の変数を、前のラボで作成した Azure Cosmos DB アカウントの **key** に設定します。
+1. 既存の **key** という名前の変数を更新し、前のラボで作成した Azure Cosmos DB アカウントの **key** を設定してください。
 
     ```
     string key = "<cosmos-key>";
     ```
 
-    >**注意**: たとえば、key が **fDR2ci9QgkdkvERTQ==** の場合、C# 文は **string key = "fDR2ci9QgkdkvERTQ==";** になります。
+    >**Note**: たとえば key が **fDR2ci9QgkdkvERTQ==** の場合、C# ステートメントは **string key = "fDR2ci9QgkdkvERTQ==";** になります。
 
-1. 値が **SELECT p.id, p.name, p.price FROM products p** の *string* 型の新しい変数 **sql** を作成します。
+1. 型 *string* の新しい変数 **sql** を作成し、値を **SELECT p.id, p.name, p.price FROM products p** に設定してください。
 
     ```
     string sql = "SELECT p.id, p.name, p.price FROM products p ";
     ```
 
-1. **sql** 変数をコンストラクターに渡して、[QueryDefinition][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.querydefinition] 型の新しい変数を作成します。
+1. [QueryDefinition][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.querydefinition] 型の新しい変数を作成し、コンストラクターのパラメーターとして **sql** 変数を渡してください。
 
     ```
     QueryDefinition query = new (sql);
     ```
 
-1. 既定の空コンストラクターを使って、[QueryRequestOptions][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.queryrequestoptions] 型の新しい変数 **options** を作成します。
+1. 既定の空コンストラクターを使用して、**options** という名前の [QueryRequestOptions][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.queryrequestoptions] 型の新しい変数を作成してください。
 
     ```
     QueryRequestOptions options = new ();
     ```
 
-1. **options** 変数の [MaxItemCount][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.queryrequestoptions.maxitemcount] プロパティを **50** に設定します。
+1. **options** 変数の [MaxItemCount][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.queryrequestoptions.maxitemcount] プロパティを **50** に設定してください。
 
     ```
     options.MaxItemCount = 50;
     ```
 
-1. [Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] クラスのジェネリック [GetItemQueryIterator][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.getitemqueryiterator] メソッドを呼び出し、**query** と **options** 変数を渡して、[FeedIterator<>][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.feediterator-1] 型の新しい変数 **iterator** を作成します。
+1. [Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] クラスのジェネリック [GetItemQueryIterator][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container.getitemqueryiterator] メソッドを呼び出し、パラメーターとして **query** と **options** 変数を渡して、[FeedIterator<>][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.feediterator-1] 型の新しい変数 **iterator** を作成してください。
 
     ```
     FeedIterator<Product> iterator = container.GetItemQueryIterator<Product>(query, requestOptions: options);
     ```
 
-1. **iterator** 変数の [HasMoreResults][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.feediterator-1.hasmoreresults] プロパティをチェックする **while** ループを作成します。
+1. **iterator** 変数の [HasMoreResults][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.feediterator-1.hasmoreresults] プロパティを確認する **while** ループを作成してください。
 
     ```
     while (iterator.HasMoreResults)
     {
-        
+
     }
     ```
 
-1. **while** ループ内で、**iterator** 変数の [ReadNextAsync][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.feediterator-1.readnextasync] メソッドを非同期に呼び出し、結果を **Product** クラスのジェネリック型 [FeedResponse][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.feedresponse-1] の **products** 変数に格納します。
+1. **while** ループ内で、**iterator** 変数の [ReadNextAsync][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.feediterator-1.readnextasync] メソッドを非同期で呼び出し、結果を **Product** クラスを使用したジェネリック型 [FeedResponse][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.feedresponse-1] の **products** という変数に格納してください。
 
     ```
     FeedResponse<Product> products = await iterator.ReadNextAsync();
     ```
 
-1. 引き続き **while** ループ内で、**products** 変数を反復処理する新しい **foreach** ループを作成し、**Product** 型のインスタンスを表す **product** 変数を使用します。
+1. 同じく **while** ループ内で、**products** 変数を反復処理する新しい **foreach** ループを作成し、型 **Product** のインスタンスを表す変数として **product** を使用してください。
 
     ```
     foreach (Product product in products)
@@ -148,26 +148,26 @@ Azure Cosmos DB のクエリは通常、複数ページの結果になります�
     }
     ```
 
-1. **foreach** ループ内で、組み込みの **Console.WriteLine** 静的メソッドを使用して、**product** 変数の **id**、**name**、**price** プロパティを整形して出力します。
+1. **foreach** ループ内で、組み込みの静的 **Console.WriteLine** メソッドを使用し、**product** 変数の **id**、**name**、**price** プロパティを整形して出力してください。
 
     ```
     Console.WriteLine($"[{product.id}]\t[{product.name,40}]\t[{product.price,10}]");
     ```
 
-1. **while** ループ内に戻り、組み込みの **Console.WriteLine** 静的メソッドを使用して *Press any key to get more results* というメッセージを出力します。
+1. **while** ループに戻り、組み込みの静的 **Console.WriteLine** メソッドを使用して *Press any key to get more results* というメッセージを出力してください。
 
     ```
     Console.WriteLine("Press any key to get more results");
     ```
 
-1. **while** ループ内で、組み込みの **Console.ReadKey** 静的メソッドを使用して次のキー入力を待ちます。
+1. 同じく **while** ループ内で、組み込みの静的 **Console.ReadKey** メソッドを使用して次のキー入力を待機してください。
 
     ```
     Console.ReadKey();
     ```
 
-1. 作業が完了したら、コードファイルには次の内容が含まれているはずです:
-  
+1. 完了後、コード ファイルに次の内容が含まれていることを確認してください。
+
     ```
     using System;
     using Microsoft.Azure.Cosmos;
@@ -199,27 +199,27 @@ Azure Cosmos DB のクエリは通常、複数ページの結果になります�
         }
 
         Console.WriteLine("Press any key for next page of results");
-        Console.ReadKey();        
+        Console.ReadKey();
     }
     ```
 
-1. **script.cs** ファイルを保存します。
+1. **script.cs** ファイルを **Save** してください。
 
-1. **Visual Studio Code** で **10-paginate-results-sdk** フォルダーのコンテキスト メニューを開き、**統合ターミナルで開く** を選択して新しいターミナル インスタンスを開きます。
+1. **Visual Studio Code** で **10-paginate-results-sdk** フォルダーのコンテキスト メニューを開き、**Open in Integrated Terminal** を選択して新しいターミナルを開いてください。
 
-1. [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] コマンドを使用してプロジェクトをビルドして実行します。
+1. [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] コマンドを使用してプロジェクトをビルドおよび実行してください。
 
     ```
     dotnet run
     ```
 
-1. スクリプトは、クエリに一致する最初の 50 件のアイテムを出力します。次の 50 件を取得するには任意のキーを押し、すべての一致アイテムを反復処理するまで繰り返します。
+1. スクリプトにより、クエリに一致する最初の 50 件が出力されます。任意のキーを押して次の 50 件を取得し、すべての一致項目を反復処理し終えるまで続けてください。
 
-    >**注意**: このクエリは、products コンテナー内の何百件ものアイテムに一致します。
+    >**Note**: クエリは products コンテナー内の数百件に一致します。
 
-1. 統合ターミナルを閉じます。
+1. 統合ターミナルを閉じてください。
 
-1. **Visual Studio Code** を閉じます。
+1. **Visual Studio Code** を閉じてください。
 
 [code.visualstudio.com/docs/getstarted]: https://code.visualstudio.com/docs/getstarted/tips-and-tricks
 [docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container]: https://docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container
@@ -236,10 +236,10 @@ Azure Cosmos DB のクエリは通常、複数ページの結果になります�
 
 ### レビュー
 
-このラボでは、次の作業を完了しました:
+このラボでは、次を完了しました。
 
-- 開発環境を準備しました。
-- Azure Cosmos DB for NoSQL アカウントにデータをシードしました。
-- SDK を使用して SQL クエリの小さな結果セットをページネーションしました。
+- 開発環境を準備した。
+- Azure Cosmos DB for NoSQL アカウントにデータを投入した。
+- SDK を使用して SQL クエリの小さな結果セットをページ分割して処理した。
 
-### ラボを正常に完了しました
+### ラボは正常に完了しました

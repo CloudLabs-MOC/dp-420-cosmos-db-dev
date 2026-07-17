@@ -1,10 +1,10 @@
-# SDK を使って Azure Cosmos DB for NoSQL に接続する
+# SDK を使用して Azure Cosmos DB for NoSQL に接続する
 
 ### 推定所要時間: 60 分
 
 ## ラボ シナリオ
 
-.NET 用 Azure SDK は、Azure サービスとやり取りするための一貫した開発者体験を提供するライブラリ群です。.NET Standard 2.0 上に構築されており、.NET Framework 4.6.1 以降、.NET Core 2.1 以降、および .NET 5 以降と互換性があります。
+Azure SDK for .NET は、Azure サービスとやり取りするために一貫した開発体験を提供するライブラリ群です。.NET Standard 2.0 をベースとしており、.NET Framework 4.6.1 以降、.NET Core 2.1 以降、.NET 5 以降と互換性があります。
 
 このラボでは、Azure SDK for .NET を使用して Azure Cosmos DB for NoSQL アカウントに接続します。
 
@@ -16,31 +16,31 @@
 - タスク 3: NuGet 上の Microsoft.Azure.Cosmos ライブラリを確認。
 - タスク 4: Microsoft.Azure.Cosmos ライブラリを .NET プロジェクトに追加。
 - タスク 5: Microsoft.Azure.Cosmos ライブラリを使用する。
-- タスク 6: スクリプトのテスト。
+- タスク 6: スクリプトをテストする。
 
-### タスク 1: 開発環境の準備
+### タスク 1: 開発環境を準備する
 
-このタスクでは、Visual Studio Code を設定して Azure Cosmos DB を扱うための開発環境を準備します。
+このタスクでは、Visual Studio Code をセットアップして、Azure Cosmos DB を操作するための開発環境を準備します。
 
-1. デスクトップから Visual Studio Code を開きます。
+1. デスクトップから Visual Studio Code を開いてください。
 
-    ![Visual Studio Code Icon](./media/vscode1.jpg)
+     ![Visual Studio Code Icon](./media/vscode1.jpg)
 
-1. 左ペインから **Extensions (1)** ブレードを選択します。**C# (2)** で検索し、**Install (3)** を選択して拡張機能をインストールします。
+1. 左側パネルの **Extensions (1)** ブレードを選択してください。**C# (2)** で検索し、**Install (3)** を選択して拡張機能をインストールしてください。
 
-   ![06](media/New-image50.png)
+    ![06](media/02-01.png)
 
-1. 画面左上の **file (1)** オプションを選択し、ペインのオプションから **Open Folder (2)** を選択します。**C:\AllFiles\dp-420-cosmos-db-dev** に移動します。
+1. 画面左上の **file (1)** を選択し、メニューから **Open Folder (2)** を選択してください。**C:\AllFiles\dp-420-cosmos-db-dev** に移動してください。
 
-    ![06](media/New-image51.png)
+     ![06](media/02-02.png)
 
-1. **C:\AllFiles\dp-420-cosmos-db-dev** に移動し、**dp-420-cosmos-db-dev** を選択して **Select Folder** をクリックします。
+1. **C:\AllFiles\dp-420-cosmos-db-dev** に移動し、**dp-420-cosmos-db-dev** を選択して **Select Folder** をクリックしてください。
 
-   ![06](media/New-image54.png)
+    ![06](media/02-03.png)
 
-1. 「このフォルダー内のファイルの作成者を信頼しますか（Do you trust the author of the files in this folder）」と表示された場合は **Yes, I trust the authors** をクリックします。
+1. **Do you trust the author of the files in this folder** と表示された場合は、**Yes, I trust the authors** をクリックしてください。
 
-   ![06](media/DB24.png)
+   ![06](media/02-04.png)
 
 ### タスク 2: Azure Cosmos DB for NoSQL アカウントの作成
 
@@ -48,158 +48,158 @@
 
 Azure Cosmos DB は複数の API をサポートするクラウドベースの NoSQL データベース サービスです。初めてアカウントをプロビジョニングする際に、アカウントでサポートする API（例: **API for MongoDB** や **API for NoSQL**）を選択します。Azure Cosmos DB for NoSQL アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得して、Azure SDK for .NET または任意の SDK を使って接続できます。
 
-1. Azure ポータルの上部にある「Search resources, services and docs (G+/)」ボックスに **Azure Cosmos DB (1)** と入力し、サービス一覧から **Azure Cosmos DB (2)** を選択します。
+1. Azure Portal ページで、ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB (1)** と入力し、services の **Azure Cosmos DB (2)** を選択してください。
 
-   ![06](media/New-image1.png)
+   ![06](media/02-05.png)
    
-1. **Azure Cosmos DB for NoSQL** の下で **+ Create (1)** を選択し、**Create (2)** をクリックして **Azure Cosmos DB for NoSQL** アカウントを作成します。
+1. **Azure Cosmos DB for NoSQL** の **+ Create (1)** を選択し、**Create (2)** をクリックして **Azure Cosmos DB for NoSQL** アカウントを作成してください。
 
-   ![06](media/New-image2.png)
+    ![06](media/02-06.png)
 
-   ![06](media/New-image3.png)
+    ![06](media/02-07.png)
 
-1. 以下の設定を指定し、残りはすべてデフォルトのままにして **Review + create (10)** を選択します:
+1. 次の設定を指定し、その他の設定は既定値のままにして **Review + create (10)** を選択してください。
 
     | **Setting**         | **Value** |
     | --------------------|--------------------------------------------------- |
-   | **Workload Type**   | *Production* (1) |
-   | **Subscription**    | *既存の Azure サブスクリプション* (2) |
-   | **Resource group**  | *既存の Cosmosdb-<inject key="DeploymentID" enableCopy="false"/> を選択* (3) |
-   | **Account Name**    | *sql-<inject key="DeploymentID" enableCopy="false"/>* (4) |
-   | **Location**        | *デフォルトのリージョンを選択* (5) |
-   | **Capacity mode**   | *Provisioned throughput* (6) |
-   | **Apply Free Tier Discount** | *Do Not Apply* (7) |
-   | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* (8) |
+    | **Workload Type**   | *Production* (1) |
+    | **Subscription**    | *既存の Azure サブスクリプション* (2) |
+    | **Resource group**  | *既存の Cosmosdb-<inject key="DeploymentID" enableCopy="false"/> を選択する* (3) |
+    | **Account Name**    | *sql-<inject key="DeploymentID" enableCopy="false"/>* (4) |
+    | **Location**        | *既定のリージョンを選択する* (5) |
+    | **Capacity mode**   | *Provisioned throughput* (6) |
+    | **Apply Free Tier Discount** | *Do Not Apply* (7) |
+    | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* (8) |
 
-    ![06](media/DB25.png)
+     ![06](media/02-08.png)
 
-1. **Create** をクリックします。
+1. **Create** をクリックしてください。
 
-   ![06](media/New-image5.png)
+    ![06](media/02-09.png)
 
-1. デプロイが完了するまで待ちます。
+1. このタスクを続行する前に、デプロイが完了するまで待機してください。
 
-1. デプロイが完了したら **Go to resources** を選択します。
+1. デプロイ完了後、**Go to resources** を選択してください。
 
-   ![06](media/New-image6.png)
+    ![06](media/02-10.png)
 
-1. **Azure Cosmos DB アカウント** で左メニューの **Settings (1)** を展開し、**Keys (2)** を選択します。
+1. **Azure Cosmos DB account** で、左メニューの **Settings (1)** を展開し、**Keys (2)** を選択してください。
 
-   ![06](media/DB15.png)
+    ![06](media/02-11.png)
 
-1. このペインには、SDK からアカウントに接続するために必要な接続情報と資格情報が含まれています。具体的には:
+1. このペインには、SDK からアカウントに接続するために必要な接続情報と資格情報が含まれています。具体的には次のとおりです。
 
-   1. **URI (1)** フィールドの値を記録します。後でこの **endpoint** 値を使用します。
+    1. **URI (1)** フィールドの値を記録してください。この演習の後半で **endpoint** 値として使用します。
 
-   1. **PRIMARY KEY (2)** フィールドの値を記録します。後でこの **key** 値を使用します。
+    1. **PRIMARY KEY (2)** フィールドの値を記録してください。この演習の後半で **key** 値として使用します。
 
-      ![06](media/New-image9.png)
+        ![06](media/02-12.png)
        
-   > **おめでとうございます** — ラボを完了しました！ 検証手順は次のとおりです:
-   > - 対応するタスクの検証ボタンをクリックします。成功メッセージが表示されれば、ラボの検証に成功しています。
-   > - そうでない場合は、エラーメッセージを注意深く読み、ラボ ガイドの指示に従って手順を再実行してください。
-   > - サポートが必要な場合は、cloudlabs-support@spektrasystems.com までお問い合わせください。24時間対応でサポートを提供しています。
+    > ラボ完了おめでとうございます。次は検証です。手順は次のとおりです。
+    > - 対応するタスクの Validate ボタンを押してください。成功メッセージが表示された場合、ラボは正常に検証されています。
+    > - 表示されない場合は、エラーメッセージをよく確認し、ラボ ガイドの手順に従って再試行してください。
+    > - サポートが必要な場合は cloudlabs-support@spektrasystems.com までご連絡ください。24 時間 365 日対応しています。
  
-   <validation step="ade422fd-22ef-466a-80b1-bd33186d9b51" />
+    <validation step="ade422fd-22ef-466a-80b1-bd33186d9b51" />
     
-### タスク 3: NuGet 上の Microsoft.Azure.Cosmos ライブラリを確認
-このタスクでは、NuGet のウェブサイトを調べて Microsoft.Azure.Cosmos ライブラリの情報を確認します。NuGet の基本機能を学び、該当ライブラリを検索して、.NET プロジェクトにインポートするためのコマンドを確認します。これは後続の手順でライブラリを取得するための準備となります。
+### タスク 3: NuGet で Microsoft.Azure.Cosmos ライブラリを確認する
+このタスクでは、NuGet Web サイトで Microsoft.Azure.Cosmos ライブラリを確認します。これは .NET アプリケーションで Azure Cosmos DB を操作するために重要なライブラリです。NuGet のパッケージ マネージャーとしての機能を理解し、対象ライブラリを検索し、.NET プロジェクトにインポートするためのコマンドを確認します。このタスクは、後続の開発作業に向けて、ライブラリ パッケージへのアクセスと管理に慣れるための準備となります。
 
-NuGet のサイトには、.NET アプリケーションにインポート可能なパッケージの検索インデックスが含まれています。**Microsoft.Azure.Cosmos** のようなプレリリースパッケージをインポートする場合も、NuGet サイトで適切なバージョンとインポートコマンドを確認できます。
+NuGet Web サイトには、.NET アプリケーションにインポート可能なパッケージの検索可能なインデックスがあります。**Microsoft.Azure.Cosmos** のようなプレリリース パッケージをインポートするには、NuGet Web サイトを使用して適切なバージョンとインポート コマンドを確認できます。
 
-1. ブラウザーを開き、**nuget.org (1)** に移動して利用可能な .NET パッケージを表示します。
+1. ブラウザーを開いて **nuget.org (1)** に移動し、利用可能な .NET パッケージ **(2)** を確認してください。
 
-   ![06](media/DB26.png)
+    ![06](media/02-13.png)
 
-2. **NuGet** ページで **Packages (1)** を選択し、**Microsoft.Azure.Cosmos (2)** を検索して **.NET Standard (3)** を展開し、**netstandard2.0 (4)** を選択します。
+2. **NuGet** ページで **Packages (1)** を選択し、**Microsoft.Azure.Cosmos (2)** を検索し、**.NET Standard (3)** を展開して **netstandard2.0 (4)** を選択してください。
 
-   ![06](media/DB27.png)
+   ![06](media/02-14.png)
 
-3. **.NET CLI** タブを選択して、このライブラリを .NET プロジェクトにインポートするために必要なコマンドを確認します。
+3. **.NET CLI** タブを選択して、このライブラリの最新バージョンを .NET プロジェクトにインポートするためのコマンドを確認してください。
    
-     >**注意**: このコマンドを記録する必要はありません。後の手順で特定のバージョンを使用します。
+      >**Note**: このコマンドを記録する必要はありません。この演習の後半では特定バージョンのライブラリを使用します。
      
-4. ブラウザーのウィンドウまたはタブを閉じます。
+4. Web ブラウザーのウィンドウまたはタブを閉じてください。
 
-### タスク 4: Microsoft.Azure.Cosmos ライブラリを .NET プロジェクトに追加
-このタスクでは、Visual Studio Code を開いてプロジェクト ディレクトリに移動し、統合ターミナルでコマンドを実行して Microsoft.Azure.Cosmos ライブラリをプロジェクトに追加します。このライブラリを使って Azure Cosmos DB とやり取りできます。
+### タスク 4: Microsoft.Azure.Cosmos ライブラリを .NET プロジェクトにインポートする
+このタスクでは、Visual Studio Code を開いてプロジェクト ディレクトリに移動します。次に統合ターミナルにアクセスし、Microsoft.Azure.Cosmos ライブラリを .NET プロジェクトにインポートするコマンドを実行します。このライブラリにより Azure Cosmos DB とやり取りできるようになります。
 
-.NET CLI には、事前に構成されたパッケージフィードからパッケージをインポートするための `dotnet add package` コマンドが含まれています。.NET のインストールは NuGet をデフォルトのパッケージフィードとして使用します。
+.NET CLI には、事前構成済みのパッケージ フィードからパッケージをインポートする [add package][docs.microsoft.com/dotnet/core/tools/dotnet-add-package] コマンドが含まれています。.NET のインストールでは、既定のパッケージ フィードとして NuGet が使用されます。
      
-1. Visual Studio Code を開きます。
+1. **Visual Studio Code** を開いてください。
 
    ![Visual Studio Code Icon](./media/vscode1.jpg)
 
-1. **Visual Studio Code** で、**04-sdk-connect (1)** フォルダーを右クリックし、**Open in Integrated Terminal (2)** を選択して新しいターミナル インスタンスを開きます。
+1. **Visual Studio Code** で **04-sdk-connect (1)** フォルダーを右クリックし、**Open in Integrated Terminal (2)** を選択して新しいターミナルを開いてください。
 
-    ![06](media/2.png)
+     ![06](media/02-15.png)
 
-    >**注意**: この操作により、ターミナルの開始ディレクトリが **04-sdk-connect** フォルダーに設定された状態で開きます。
+     >**Note**: このコマンドでは、開始ディレクトリがすでに **04-sdk-connect** フォルダーに設定された状態でターミナルが開きます。
 
-1. 次のコマンドを使って、NuGet から Microsoft.Azure.Cosmos パッケージを追加します。
+1. 次のコマンドを使用して、NuGet から [Microsoft.Azure.Cosmos][nuget.org/packages/microsoft.azure.cosmos/3.22.1] パッケージを追加してください。
 
    ```
    dotnet add package Microsoft.Azure.Cosmos --version 3.*
-   ```     
-1. 統合ターミナルを閉じます。
+   ```
+1. 統合ターミナルを閉じてください。
 
 ### タスク 5: Microsoft.Azure.Cosmos ライブラリを使用する
 
-このタスクでは、`Microsoft.Azure.Cosmos` ライブラリを使用して Azure Cosmos DB アカウントに接続します。Visual Studio Code で `script.cs` ファイルを開き、アカウントのエンドポイントとキーを表す変数を定義して `CosmosClient` インスタンスを作成します。その後、アカウント名とプライマリリージョンを取得してコンソールに表示し、ファイルを保存します。
+このタスクでは、Microsoft.Azure.Cosmos ライブラリを使用して Azure Cosmos DB アカウントに接続します。Visual Studio Code で script.cs ファイルを開き、アカウントの endpoint と key の変数を定義し、CosmosClient インスタンスを作成します。次に、アカウント名とプライマリ リージョンをコンソールに表示してから、ファイルを保存します。
 
 .NET 用 Azure SDK の Azure Cosmos DB ライブラリをインポートすると、`Microsoft.Azure.Cosmos` 名前空間内のクラスをすぐに使用して Azure Cosmos DB for NoSQL アカウントに接続できます。`CosmosClient` クラスは、Azure Cosmos DB for NoSQL アカウントへの初期接続を行うための中核クラスです。
 
-1. **Visual Studio Code** で `04-sdk-connect (1)` フォルダー内の空の `script.cs (2)` コード ファイルを開きます。
+1. **Visual Studio Code** で、**04-sdk-connect (1)** フォルダー内の空の **script.cs (2)** コード ファイルを開いてください。
 
-    ![06](media/DB28.png)
+    ![06](media/02-16.png)
 
-1. 組み込みの `System` と `System.Linq` 名前空間の using ブロックを追加します:
+1. 組み込みの **System** と **System.Linq** 名前空間の using ブロックを追加してください。
    
    ```
    using System;
    using System.Linq;
    ```
-1. `Microsoft.Azure.Cosmos` 名前空間の using ブロックを追加します:
+1. [Microsoft.Azure.Cosmos][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos] 名前空間の using ブロックを追加してください。
    
    ```
    using Microsoft.Azure.Cosmos;
    ```
-1. 以前に作成した Azure Cosmos DB アカウントのエンドポイントを値として持つ `string` 型の変数 `endpoint` を追加します。
+1. **endpoint** という名前の **string** 変数を追加し、値を先ほど作成した Azure Cosmos DB アカウントの **endpoint** に設定してください。
    
    ```
    string endpoint = "<cosmos-endpoint>";
    ```
-   > **注意**: 例えばエンドポイントが `https://dp420.documents.azure.com:443/` の場合、C# の文は `string endpoint = "https://dp420.documents.azure.com:443/";` となります。
+   >**Note**: たとえば endpoint が **https&shy;://dp420.documents.azure.com:443/** の場合、C# ステートメントは **string endpoint = "https&shy;://dp420.documents.azure.com:443/";** となります。
 
-1. 以前に作成した Azure Cosmos DB アカウントのキーを値として持つ `string` 型の変数 `key` を追加します。
+1. **key** という名前の **string** 変数を追加し、値を先ほど作成した Azure Cosmos DB アカウントの **key** に設定してください。
    
    ```
    string key = "<cosmos-key>";
    ```
-   > **注意**: 例えばキーが `fDR2ci9QgkdkvERTQ==` の場合、C# の文は `string key = "fDR2ci9QgkdkvERTQ==";` となります。
+   >**Note**: たとえば key が **fDR2ci9QgkdkvERTQ==** の場合、C# ステートメントは **string key = "fDR2ci9QgkdkvERTQ==";** となります。
 
-1. `endpoint` と `key` をコンストラクターに渡して、`CosmosClient` 型の新しい変数 `client` を追加します:
+1. コンストラクターで **endpoint** 変数と **key** 変数を使用して、[CosmosClient][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.cosmosclient] 型の **client** という新しい変数を追加してください。
    
    ```
    CosmosClient client = new (endpoint, key);
    ```
-1. `client` の `ReadAccountAsync` メソッドを呼び出した非同期結果から、`AccountProperties` 型の変数 `account` を取得します:
+1. **client** 変数の [ReadAccountAsync][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.cosmosclient.readaccountasync] メソッドを呼び出した非同期結果を使用して、[AccountProperties][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.accountproperties] 型の **account** という新しい変数を追加してください。
    
    ```
    AccountProperties account = await client.ReadAccountAsync();
    ```
-1. 組み込みの `Console.WriteLine` を使用して、`AccountProperties` クラスの `Id` プロパティを **Account Name** ヘッダー付きで出力します:
+1. 組み込みの **Console.WriteLine** 静的メソッドを使用して、AccountProperties クラスの [Id][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.accountproperties.id] プロパティを **Account Name** ヘッダー付きで出力してください。
 
    ```
    Console.WriteLine($"Account Name:\t{account.Id}");
    ```
    
-1. `AccountProperties` の `WritableRegions` プロパティを参照して最初の要素の `Name` を取得し、**Primary Region** ヘッダー付きで出力します:
+1. 組み込みの **Console.WriteLine** 静的メソッドを使用し、AccountProperties クラスの [WritableRegions][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.accountproperties.writableregions] プロパティを参照して、最初の結果の [Name][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.accountregion.name] プロパティを **Primary Region** ヘッダー付きで出力してください。
     
       ```
       Console.WriteLine($"Primary Region:\t{account.WritableRegions.FirstOrDefault()?.Name}");
-      ```     
-1. ここまでの内容をまとめると、ファイルは次のようになります:
+      ```
+1. 完了したら、コード ファイルに次の内容が含まれていることを確認してください。
    
     ```
     using System;
@@ -217,50 +217,49 @@ NuGet のサイトには、.NET アプリケーションにインポート可能
     Console.WriteLine($"Account Name:\t{account.Id}");
     Console.WriteLine($"Primary Region:\t{account.WritableRegions.FirstOrDefault()?.Name}");
     ```
-1. `script.cs` コード ファイルを **保存** します。
+1. **script.cs** コード ファイルを **Save** してください。
 
-    ![06](media/DB29.png)
-       ![06](media/DB29.png)
+    ![06](media/02-17.png)
 
-   ### タスク 6: スクリプトのテスト
-   このタスクでは、Visual Studio Code の統合ターミナルを開いてプロジェクトを `dotnet run` コマンドで実行し、スクリプトをテストします。出力にはアカウント名と最初の書き込み可能リージョンが表示されます。
+### タスク 6: スクリプトをテストする
+このタスクでは、Visual Studio Code の統合ターミナルを開き、dotnet run コマンドでプロジェクトを実行してスクリプトをテストします。出力にはアカウント名と最初の書き込み可能リージョンが表示されます。
 
-   .NET コードによる Azure Cosmos DB for NoSQL アカウントへの接続処理が完成したので、スクリプトを実行して検証します。スクリプトはアカウント名と最初の書き込み可能リージョン名を出力します。アカウント作成時に指定したリージョン名が表示されるはずです。
+.NET コードによる Azure Cosmos DB for NoSQL アカウントへの接続処理が完成したので、スクリプトを実行して検証します。スクリプトはアカウント名と最初の書き込み可能リージョン名を出力します。アカウント作成時に指定したリージョン名が表示されるはずです。
 
-   1. **Visual Studio Code** で `04-sdk-connect (1)` フォルダーを右クリックし、**Open in Integrated Terminal (2)** を選択して新しいターミナルを開きます。
+1. **Visual Studio Code** で **04-sdk-connect (1)** フォルダーを右クリックし、**Open in Integrated Terminal (2)** を選択して新しいターミナルを開いてください。
 
-        ![06](media/2.png)
+     ![06](media/02-15.png)
 
-   2. 次のコマンドで `Newtonsoft.Json` パッケージを追加します。
+2. 次のコマンドで Newtonsoft.JSON パッケージをインストールしてください。
 
-      ```
-      dotnet add package Newtonsoft.Json --version 13.0.3
-      ```
+   ```
+   dotnet add package Newtonsoft.Json --version 13.0.3
+   ```
 
-   3. プロジェクトをビルドして実行します:
+2. [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] コマンドを使用してプロジェクトをビルドし、実行してください。
 
-      ```
-      dotnet run
-      ```
-   4. スクリプトはアカウント名と最初の書き込み可能リージョンを出力します。例えば、アカウント名が `sql-<inject key="DeploymentID" enableCopy="false"/>` で、最初の書き込み可能リージョンが `West US 3` の場合、そのように表示されます。
+   ```
+   dotnet run
+   ```
+3. スクリプトによって、アカウント名と最初の書き込み可能リージョンが出力されます。たとえばアカウント名が **sql-<inject key="DeploymentID" enableCopy="false"/>** で、最初の書き込み可能リージョンが **West US 3** の場合です。
 
-   5. 統合ターミナルを閉じます。
+4. 統合ターミナルを閉じてください。
 
-        ![06](media/DB30.png)
+     ![06](media/02-18.png)
 
-   6. **Visual Studio Code** を閉じます。
+5. **Visual Studio Code** を閉じてください。
 
-   ### 要約
+### まとめ
 
-   このラボでは、Azure SDK for .NET を使用して Azure Cosmos DB for NoSQL アカウントに接続する方法を学びました。手順は Visual Studio Code のセットアップ、Cosmos DB アカウントのプロビジョニング（エンドポイントとキーの取得）、NuGet での Microsoft.Azure.Cosmos ライブラリの確認、ライブラリのプロジェクトへの追加、スクリプト作成（アカウント名とプライマリ書き込みリージョンの取得）、そしてスクリプトの実行による検証です。
- 
-   ### レビュー
+このラボでは、Azure SDK for .NET を使用して Azure Cosmos DB for NoSQL アカウントに接続する方法を学びました。手順は Visual Studio Code のセットアップ、Cosmos DB アカウントのプロビジョニング（エンドポイントとキーの取得）、NuGet での Microsoft.Azure.Cosmos ライブラリの確認、ライブラリのプロジェクトへの追加、スクリプト作成（アカウント名とプライマリ書き込みリージョンの取得）、そしてスクリプトの実行による検証です。
 
-   このラボで完了した項目:
+### レビュー
 
-   - 開発環境の準備。
-   - Azure Cosmos DB for NoSQL アカウントの作成。
-   - NuGet 上で Microsoft.Azure.Cosmos ライブラリを確認。
-   - Microsoft.Azure.Cosmos ライブラリを .NET プロジェクトに追加。
-   - Microsoft.Azure.Cosmos ライブラリを使用して接続を確認。
-   - スクリプトのテスト。
+このラボで完了した項目:
+
+- 開発環境の準備。
+- Azure Cosmos DB for NoSQL アカウントの作成。
+- NuGet 上で Microsoft.Azure.Cosmos ライブラリを確認。
+- Microsoft.Azure.Cosmos ライブラリを .NET プロジェクトに追加。
+- Microsoft.Azure.Cosmos ライブラリを使用して接続を確認。
+- スクリプトのテスト。

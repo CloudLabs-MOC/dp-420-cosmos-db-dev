@@ -1,118 +1,118 @@
 # Lab 11c - Azure Cosmos DB for NoSQL ソリューションを監視およびトラブルシューティングする
 
-## ラボのシナリオ
+## ラボ シナリオ
 
-Azure はデータの暗号化バックアップを自動的に取得します。これらのバックアップは **定期バックアップ (Periodic)** と **継続バックアップ (Continuous)** の 2 つのモードで取得されます。
+Azure はデータの暗号化バックアップを自動的に取得します。これらのバックアップは **Periodic** と **Continuous** の 2 つのバックアップ モードで取得されます。
 
-このラボでは、継続バックアップ モードを使用して `バックアップ` と `リストア` を行います。最初に Azure Cosmos DB アカウントを作成します。次に 2 つのコンテナーを作成し、いくつかのドキュメントを追加します。その後、これらのコンテナー内のいくつかのドキュメントを更新します。最後に、各削除前のポイントまでアカウントをリストアします。
+このラボでは、continuous backup mode を使用して `backup` と `restores` を行います。最初に Azure Cosmos DB アカウントを作成します。次に 2 つのコンテナーを作成し、それらにいくつかのドキュメントを追加します。その後、それらのコンテナー内のドキュメントをいくつか更新します。最後に、各削除操作の前の時点にアカウントを復元します。
 
 ## ラボの目的
 
-このラボでは、次のタスクを完了します:
-- タスク 1: Azure Cosmos DB for NoSQL アカウントを作成します。
-- タスク 2: アカウントにデータベースと 2 つのコンテナーを追加します。
-- タスク 3: コンテナーにアイテムを追加します。
-- タスク 4: デフォルトのバックアップ モードを継続に変更します。
-- タスク 5: salesOrder ドキュメントの 1 つを削除します。
-- タスク 6: salesOrder ドキュメントを削除する前のポイントまでデータベースを復元します。
-- タスク 7: customer コンテナーを削除します。
-- タスク 8: salesOrder ドキュメントを削除する前のポイントまでデータベースを復元します。
-- タスク 9: 復元されたデータを確認します。
+このラボでは、次のタスクを完了します。
+- タスク 1: Azure Cosmos DB for NoSQL アカウントを作成する。
+- タスク 2: アカウントにデータベースと 2 つのコンテナーを追加する。
+- タスク 3: コンテナーにアイテムを追加する。
+- タスク 4: 既定のバックアップ モードを continuous に変更する。
+- タスク 5: salesOrder ドキュメントの 1 つを削除する。
+- タスク 6: salesOrder ドキュメントを削除する前の時点にデータベースを復元する。
+- タスク 7: customer コンテナーを削除する。
+- タスク 8: salesOrder ドキュメントを削除する前の時点にデータベースを復元する。
+- タスク 9: 復元されたデータを確認する。
 
-## 所要時間の目安: 30 分
+## 推定所要時間: 30 分
 
 ## アーキテクチャ図
 
 ![image](architecturedia/lab27.png)
 
-## 演習 1: リカバリ ポイントからデータベースまたはコンテナーを復元する
+## 演習 1: 復旧ポイントからデータベースまたはコンテナーを復元する
 
 ### タスク 1: Azure Cosmos DB for NoSQL アカウントを作成する
 
 Azure Cosmos DB は、複数の API をサポートするクラウドベースの NoSQL データベース サービスです。Azure Cosmos DB アカウントを初めて作成するときは、サポートする API（たとえば **API for MongoDB** または **API for NoSQL**）を選択します。Azure Cosmos DB for NoSQL アカウントのプロビジョニングが完了したら、エンドポイントとキーを取得できます。エンドポイントとキーを使用して Azure Cosmos DB for NoSQL アカウントにプログラムから接続します。Azure SDK for .NET や他の SDK の接続文字列にエンドポイントとキーを使用します。
 
-1. 新しい Web ブラウザー ウィンドウまたはタブで Azure ポータル (``portal.azure.com``) に移動します。
+1. 新しい Web ブラウザーのウィンドウまたはタブで Azure portal (``portal.azure.com``) に移動してください。
 
-1. サブスクリプションに関連付けられた Microsoft 資格情報を使用してポータルにサインインします。
+1. サブスクリプションに関連付けられた Microsoft 資格情報を使用してポータルにサインインしてください。
 
-1. **Azure サービス** カテゴリで **Create a resource** を選択し、**Azure Cosmos DB** を選択します。
+1. **Azure services** カテゴリで **Create a resource** を選択し、次に **Azure Cosmos DB** を選択してください。
 
-    > &#128161; 代替方法として、**&#8801;** メニューを展開し、**すべてのサービス** を選択します。**データベース** カテゴリで **Azure Cosmos DB** を選択し、**Create** を選択します。
+  > &#128161; 別の方法として、**&#8801;** メニューを展開し、**All Services** を選択して、**Databases** カテゴリの **Azure Cosmos DB** を選択し、**Create** を選択してください。
 
-1. **Select API option** ペインで、**Azure Cosmos DB for NoSQL** セクションの **Create** オプションを選択します。
+1. **Select API option** ペインで、**Azure Cosmos DB for NoSQL** セクション内の **Create** オプションを選択してください。
 
-1. **Create Azure Cosmos DB Account** ペインで、**Basics** タブを確認します。
+1. **Create Azure Cosmos DB Account** ペインで **Basics** タブを確認してください。
 
-    | **設定** | **値** |
-    | --- | --- |
-    | **Subscription** | *既存の Azure サブスクリプション* |
-    | **Resource group** | *DP-420-DeploymentID* |
-    | **Account Name** | *グローバルに一意の名前を入力* |
-    | **Location** | *使用可能なリージョンを選択* |
-    | **Capacity mode** | *プロビジョニングされたスループット* |
-    | **Apply Free Tier Discount** | *適用しない* |
-    | **Global Distribution** TAB | マルチリージョン書き込みを無効にする |
+  | **Setting** | **Value** |
+  | --- | --- |
+  | **Subscription** | *Your existing Azure subscription* |
+  | **Resource group** | *DP-420-DeploymentID* |
+  | **Account Name** | *Enter a globally unique name* |
+  | **Location** | *Choose any available region* |
+  | **Capacity mode** | *Provisioned throughput* |
+  | **Apply Free Tier Discount** | *Do Not Apply* |
+  | **Global Distribution** TAB | Disable Multi-region Writes |
 
-    >**注**: DeploymentID は各環境に関連付けられた一意の ID です。環境の詳細ページで値を確認できます。
-    
-    >&#128221;**注**: Azure Cosmos DB アカウントの作成時に、**Backup Policy** タブで **Continuous** モードを有効にできます。このラボでは、アカウント作成時に機能を有効にするか、作成後に以下のオプション セクションで有効にするかを選択できます。**アカウント作成後に機能を有効にすると、5 分以上かかる場合があります。**
-    
-    > &#128221;**注**: *[マルチリージョン書き込みアカウントは現在、継続バックアップではサポートされていません][/azure/cosmos-db/continuous-backup-restore-introduction]*。
-    
-    > &#128221; **注**: ラボ環境では新規リソース グループの作成が制限されている場合があります。その場合は、既存の事前作成されたリソース グループを使用してください。
-   
-1. **Next: Networking** をクリックし、Networking ブレードは既定のままにします。**Next: Backup Policy** をクリックします。
+  >**Note** : DeploymentID は各環境に関連付けられた一意の ID です。値は environment details ページで確認できます。
 
-1. Backup Policy ブレードで Backup policy を **Continuous (7 days)** に選択します。
+  >&#128221;**Note**: Azure Cosmos DB アカウント作成時に、**Backup Policy** タブで **Continuous** モードを選択することで有効化できます。このラボでは、アカウント作成時にこの機能を有効にするか、以下のオプション手順でアカウント作成後に有効化するかを選択できます。**アカウント作成後に機能を有効化すると、5 分以上かかる場合があります。**
 
-1. **Review + Create** をクリックし、検証が成功したら **Create** をクリックします。
+  > &#128221;**Note** : *[Multi-regions write accounts are not currently supported for continuous backups][/azure/cosmos-db/continuous-backup-restore-introduction]* です。
+
+  > &#128221; **Note** : ラボ環境によっては新しいリソース グループの作成が制限されている場合があります。その場合は、既存の事前作成済みリソース グループを使用してください。
+
+1. **Next: Networking** をクリックしてください。Networking ブレードは既定値のままにし、**Next: Backup Policy** をクリックしてください。
+
+1. Backup Policy ブレードで Backup policy を **Continuous (7 days)** に設定してください。
+
+1. **Review + Create** をクリックし、検証で Success が表示されたら **Create** をクリックしてください。
 
 ### タスク 2: アカウントにデータベースと 2 つのコンテナーを追加する
 
-データベースとコンテナーを作成しましょう。
+データベースと 2 つのコンテナーを作成します。
 
-1. Azure ポータルで Azure Cosmos DB アカウント ページに移動します。
+1. Azure portal で Azure Cosmos DB アカウントのページに移動してください。
 
-1. **Data Explorer** ペインで **New Container** を展開し、**New Database** を選択します。
+1. **Data Explorer** ペインで **New Container** を展開し、**New Database** を選択してください。
 
-1. **New Database** ポップアップで、次の設定値を入力し、**OK** を選択します。
+1. **New Database** ポップアップで各設定に次の値を入力し、**OK** を選択してください。
 
-    | **設定** | **値** |
-    | --- | --- |
-    | **Database id** | *`Sales`* |
-    | **Provision throughput** | *選択しない* |
+  | **Setting** | **Value** |
+  | --- | --- |
+  | **Database id** | *`Sales`* |
+  | **Provision throughput** | *Do not select* |
 
-1. **Data Explorer** ペインで **New Container** を選択します。
+1. **Data Explorer** ペインで **New Container** を選択してください。
 
-1. **New Container** ポップアップで、次の設定値を入力し、**OK** を選択します。
+1. **New Container** ポップアップで各設定に次の値を入力し、**OK** を選択してください。
 
-    | **設定** | **値** |
-    | --- | --- |
-    | **Database id** | *既存を使用* 名前: *Sales* |
-    | **Container id** | *`customer`* |
-    | **Partition key** | *`/id`* |
-    | **Container throughput (400 - unlimited RU/s)** | *手動* スループット: *400* |
+  | **Setting** | **Value** |
+  | --- | --- |
+  | **Database id** | *Use existing* name: *Sales* |
+  | **Container id** | *`customer`* |
+  | **Partition key** | *`/id`* |
+  | **Container throughput (400 - unlimited RU/s)** | *Manual* throughput: *400*|
 
-1. **Data Explorer** ペインで **New Container** を選択します。
+1. **Data Explorer** ペインで **New Container** を選択してください。
 
-1. **New Container** ポップアップで、次の設定値を入力し、**OK** を選択します。
+1. **New Container** ポップアップで各設定に次の値を入力し、**OK** を選択してください。
 
-    | **設定** | **値** |
-    | --- | --- |
-    | **Database id** | *既存を使用* 名前: *Sales* |
-    | **Container id** | *`salesOrder`* |
-    | **Partition key** | *`/id`* |
-    | **Container throughput (400 - unlimited RU/s)** | *手動* スループット: *400* |
+  | **Setting** | **Value** |
+  | --- | --- |
+  | **Database id** | *Use existing* name: *Sales* |
+  | **Container id** | *`salesOrder`* |
+  | **Partition key** | *`/id`* |
+  | **Container throughput (400 - unlimited RU/s)** | *Manual* throughput: *400*|
 
 ### タスク 3: コンテナーにアイテムを追加する
 
 これらのコンテナーにドキュメントを追加します。
 
-1. Azure ポータルで Azure Cosmos DB アカウント ページに移動します。
+1. Azure portal で Azure Cosmos DB アカウントのページに移動してください。
 
-2. **Data Explorer** で、**customer** コンテナーに次の 2 つのドキュメントを追加します。
+2. **Data Explorer** で、次の 2 つのドキュメントを **customer** コンテナーに追加してください。
 
-3. **customer** コンテナーで **Items** を選択し、**New Items** をクリックしてから **Save** をクリックします。
+3. **customer** コンテナーで **Items** を選択し、**New Items** をクリックして、**Save** をクリックしてください。
 
 ```
   {
@@ -140,7 +140,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
   }
 ```
 
-4. **Items** を選択し、**New Items** をクリックしてから **Save** をクリックします。
+4. **Items** を選択し、**New Items** をクリックして、**Save** をクリックしてください。
 
 ```
   {
@@ -167,9 +167,9 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
     }
   }
 ```
-5. **Data Explorer** で、**salesOrder** コンテナーに次の 3 つのドキュメントを追加します。
+5. **Data Explorer** で、次の 3 つのドキュメントを **salesOrder** コンテナーに追加してください。
 
-6. **Items** を選択し、**New Items** をクリックしてから **Save** をクリックします。
+6. **Items** を選択し、**New Items** をクリックして、**Save** をクリックしてください。
 
 ```
   {
@@ -194,7 +194,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
   }
   ```
 
-7. **Items** を選択し、**New Items** をクリックしてから **Save** をクリックします。
+7. **Items** を選択し、**New Items** をクリックして、**Save** をクリックしてください。
 
   ```
   {
@@ -219,7 +219,7 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
   }
   ```
 
-8. **Items** を選択し、**New Items** をクリックしてから **Save** をクリックします。
+8. **Items** を選択し、**New Items** をクリックして、**Save** をクリックしてください。
 
   ```
   {
@@ -250,105 +250,105 @@ Azure Cosmos DB は、複数の API をサポートするクラウドベース�
   }
 ```
 
-### タスク 4: デフォルトのバックアップ モードを継続に変更する（アカウント作成時に有効にしていない場合）
+### タスク 4: 既定のバックアップ モードを continuous に変更する（アカウント作成時に機能を有効化していない場合は任意）
 
-*Azure Cosmos DB アカウントの作成時にこの機能を有効にしていない場合は、ここで有効にする必要があります。* バックアップ モードの変更は簡単で、1 つの設定を **On** にするだけです。今すぐ変更しましょう。
+*Azure Cosmos DB アカウント作成時にこの機能を有効化していない場合は、ここで有効化する必要があります。* バックアップ モードの変更は簡単で、1 つの設定を **On** にするだけです。ここで変更してください。
 
-1. Azure ポータルで Azure Cosmos DB アカウント ページに移動します。
+1. Azure portal で Azure Cosmos DB アカウントのページに移動してください。
 
-1. **Settings** セクションで **Features** を選択します。
+1. **Settings** セクションで **Features** を選択してください。
 
-1. **Continuous Backup** オプションを選択して機能を有効にします。このオプションを選択するとウィンドウが表示されるので、**Enable** ボタンを選択します。機能の有効化には 5 分以上かかる場合があります。
+1. **Continuous Backup** オプションを選択して機能を有効にしてください。このオプションを選択するとウィンドウが表示されるので、**Enable** ボタンを選択してください。この機能の有効化には 5 分以上かかる場合があります。
 
-    > &#128221; *[マルチリージョン書き込みアカウントは現在、継続バックアップではサポートされていません][/azure/cosmos-db/continuous-backup-restore-introduction]*。Azure Cosmos DB アカウントを作成したときにマルチリージョン書き込みを無効にしていない場合は、今すぐ無効にする必要があります。さもないと継続バックアップ機能の有効化に失敗します。**Replicate data globally** の *Settings* セクションでマルチリージョン書き込みを無効にできます。
+  > &#128221; *[Multi-regions write accounts are not currently supported for continuous backups][/azure/cosmos-db/continuous-backup-restore-introduction]* であることに注意してください。Azure Cosmos DB アカウント作成時に Multi-region writes を無効化していない場合は、ここで無効化する必要があります。無効化しないと continuous backup 機能の有効化は失敗します。multi-region writes は **Replicate data globally** の *Settings* セクションで無効化できます。
 
 ### タスク 5: salesOrder ドキュメントの 1 つを削除する
 
-1. **Data Explorer** で次のクエリを実行して現在の日付と時刻を取得します。そのタイムスタンプをメモ帳にコピーします。このタイムスタンプは UTC である必要があります。
+1. **Data Explorer** で、現在の日付と時刻を取得するために次のクエリを実行してください。このタイムスタンプをメモ帳にコピーしてください。このタイムスタンプは UTC である必要があります。
 
-    ```
-    SELECT GetCurrentDateTime ()
-    ```
+  ```
+  SELECT GetCurrentDateTime ()
+  ```
 
-1. **Data Explorer** で **id** が `0019092E-BD25-48F5-8050-7051B2655BC5` の **salesOrder** ドキュメントを見つけます。ドキュメントを削除し、そのドキュメントが存在しなくなったことを確認します。
+1. **Data Explorer** で **id** が `0019092E-BD25-48F5-8050-7051B2655BC5` の **salesOrder** ドキュメントを見つけてください。ドキュメントを削除し、存在しなくなったことを確認してください。
 
-### タスク 6: salesOrder ドキュメントを削除する前のポイントまでデータベースを復元する
+### タスク 6: salesOrder ドキュメントを削除する前の時点にデータベースを復元する
 
-1. Azure ポータルで Azure Cosmos DB アカウント ページに移動します。
+1. Azure portal で Azure Cosmos DB アカウントのページに移動してください。
 
-1. **Settings** セクションで **Point in Time Restore** を選択します。次の設定を使用し、**Submit** をクリックします。
+1. *Settings* セクションで **Point in Time Restore** を選択してください。次の設定を使用して、**Submit** をクリックしてください。
 
-    | **設定** | **値** |
-    | --- | --- |
-    | **Restore Point (UTC)** | 日付と時刻を適切に変換します。時刻は AM/PM 形式で指定する必要があります |
-    | **Location** | *使用可能な場所を選択* |
-    | **復元するリソースを選択します** | *復元するデータベース/コンテナーを選択* |
-    | **復元するリソース** | *salesOrder* |
-    | **Resource Group** | _DP-420-DeploymentID_ |
-    | **復元先アカウント** | *新しい* Azure Cosmos DB アカウント名を選択 |
+  | **Setting** | **Value** |
+  | --- | --- |
+  | **Restore Point (UTC)** | 日付と時刻を適切に変換してください。時刻は AM/PM 形式である必要があります |
+  | **Location** | *Selected an available location* |
+  | **Select resources you would like to restore** | *Selected database/containers* |
+  | **Restore Resource** | *salesOrder* |
+  | **Resource Group** | _DP-420-DeploymentID_|
+  | **Restore Target Account** | *choose a* ***new*** *Azure Cosmos DB account name* |
 
-    > &#128221; Azure Cosmos DB の復元では、既存のアカウントに上書きして復元することは ***決して*** なく、常に新しい Azure Cosmos DB アカウントを作成する必要があります。
+  > &#128221; Azure Cosmos DB の復元では、*existing* アカウントの上に復元することは ***決して*** なく、常に新しい Azure Cosmos DB アカウントを作成する必要があります。
 
-    > &#128221; データベース全体やアカウント全体を復元することもできますが、本番環境ではデータベースが非常に大きくなる可能性があります。多くの場合、必要なコンテナーやデータベースだけを復元した方が速い場合があります。
+  > &#128221; データベース全体やアカウント全体を復元することもできますが、実際の本番環境ではデータベースが非常に大きい場合があります。多くのシナリオでは、必要なコンテナーやデータベースだけを復元した方が速い可能性があります。
 
-1. この復元には 15 分以上かかる場合があります。次のセクションに進み、この復元をバックグラウンドで実行したままにします。
+1. この復元には 15 分以上かかる場合があります。次のセクションに進み、この復元はバックグラウンドで実行したままにしてください。
 
 ### タスク 7: customer コンテナーを削除する
 
-1. **Data Explorer** で次のクエリを実行して現在の日付と時刻を取得します。そのタイムスタンプをメモ帳にコピーします。
+1. **Data Explorer** で、現在の日付と時刻を取得するために次のクエリを実行してください。このタイムスタンプをメモ帳にコピーしてください。
 
-    ```
-    SELECT GetCurrentDateTime ()
-    ```
+  ```
+  SELECT GetCurrentDateTime ()
+  ```
 
-1. **customer** コンテナーを削除します。
+1. **customer** コンテナーを削除してください。
 
-### タスク 8: salesOrder ドキュメントを削除する前のポイントまでデータベースを復元する
+### タスク 8: salesOrder ドキュメントを削除する前の時点にデータベースを復元する
 
-1. Azure ポータルで Azure Cosmos DB アカウント ページに移動します。
+1. Azure portal で Azure Cosmos DB アカウントのページに移動してください。
 
-1. **Settings** セクションで **Point in Time Restore** を選択します。次の設定を使用します。
+1. *Settings* セクションで **Point in Time Restore** を選択してください。次の設定を使用してください。
 
-    | **設定** | **値** |
-    | --- | --- |
-    | **Location** | *使用可能な場所を選択* |
-    | **Restore Point (UTC)** | 日付と時刻を適切に変換します。時刻は AM/PM 形式で指定する必要があります |
-    | **復元するリソースを選択します** | *復元するデータベース/コンテナーを選択* |
-    | **復元するリソース** | *`customer`* |
-    | **復元先アカウント** | *新しい* Azure Cosmos DB アカウント名を選択 |
+  | **Setting** | **Value** |
+  | --- | --- |
+  | **Location** | *Selected an available location* |
+  | **Restore Point (UTC)** | 日付と時刻を適切に変換してください。時刻は AM/PM 形式である必要があります |
+  | **Select resources you would like to restore** | *Selected database/containers* |
+  | **Restore Resource** | *`customer`* |
+  | **Restore Target Account** | *choose a* ***new*** *Azure Cosmos DB account name* |
 
-    > &#128221; Azure Cosmos DB の復元では、既存のアカウントに上書きして復元することは ***決して*** なく、常に新しい Azure Cosmos DB アカウントを作成する必要があります。
+  > &#128221; Azure Cosmos DB の復元では、*existing* アカウントの上に復元することは ***決して*** なく、常に新しい Azure Cosmos DB アカウントを作成する必要があります。
 
-    > &#128221; データベース全体やアカウント全体を復元することもできますが、本番環境ではデータベースが非常に大きくなる可能性があります。多くの場合、必要なコンテナーやデータベースだけを復元した方が速い場合があります。
+  > &#128221; データベース全体やアカウント全体を復元することもできますが、実際の本番環境ではデータベースが非常に大きい場合があります。多くのシナリオでは、必要なコンテナーやデータベースだけを復元した方が速い可能性があります。
 
-1. この復元には 15 分以上かかる場合があります。次のセクションに進み、この復元をバックグラウンドで実行したままにします。
+1. この復元には 15 分以上かかる場合があります。次のセクションに進み、この復元はバックグラウンドで実行したままにしてください。
 
 ### タスク 9: 復元されたデータを確認する
 
-復元には、データベースのサイズやその他の要因に応じて時間がかかる場合があります。Azure Cosmos DB アカウントの復元が完了したら:
+データベースのサイズやその他の要因によっては、復元に長い時間がかかる場合があります。Azure Cosmos DB アカウントの復元が完了したら、次を確認してください。
 
-1. 最初の復元では、3 番目のドキュメントが回復されていることを確認します。
+1. 最初の復元では、3 つ目のドキュメントが復旧していることを確認してください。
 
-1. 2 番目の復元では、customer テーブルが復元されているはずです。
+1. 2 回目の復元では、customer テーブルが復元されているはずです。
 
 ## クリーンアップ
 
-1. アカウント復元によって作成された 2 つの新しい Azure Cosmos DB アカウントを削除します。
+1. アカウント復元により作成された 2 つの新しい Azure Cosmos DB アカウントを削除してください。
 
-1. Sales データベースを削除し、必要に応じて元の Azure Cosmos DB アカウントを削除します。
+1. Sales データベースを削除し、必要であれば元の Azure Cosmos DB アカウントも削除してください。
 
 ### レビュー
 
-このラボでは、次のことを完了しました:
+このラボでは、次を完了しました。
 
-- Azure Cosmos DB for NoSQL アカウントを作成しました。
-- アカウントにデータベースと 2 つのコンテナーを追加しました。
-- コンテナーにアイテムを追加しました。
-- デフォルトのバックアップ モードを継続に変更しました。
-- salesOrder ドキュメントの 1 つを削除しました。
-- salesOrder ドキュメントを削除する前のポイントまでデータベースを復元しました。
-- customer コンテナーを削除しました。
-- salesOrder ドキュメントを削除する前のポイントまでデータベースを復元しました。
-- 復元されたデータを確認しました。
+- Azure Cosmos DB for NoSQL アカウントを作成した。
+- アカウントにデータベースと 2 つのコンテナーを追加した。
+- コンテナーにアイテムを追加した。
+- 既定のバックアップ モードを continuous に変更した。
+- salesOrder ドキュメントの 1 つを削除した。
+- salesOrder ドキュメントを削除する前の時点にデータベースを復元した。
+- customer コンテナーを削除した。
+- salesOrder ドキュメントを削除する前の時点にデータベースを復元した。
+- 復元されたデータを確認した。
 
-### ラボを正常に完了しました
+### ラボは正常に完了しました

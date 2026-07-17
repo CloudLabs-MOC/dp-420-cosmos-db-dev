@@ -2,17 +2,17 @@
 
 ## ラボ シナリオ
 
-Azure Cosmos DB を深く掘り下げる前に、最もよく使用するリソースの作成に関する基本を把握しておくことが重要です。多くのシナリオでは、アカウント、データベース、コンテナー、アイテムの作成に慣れている必要があります。実運用に近いシナリオでは、作成したリソースが正しく動作するか確認するための基本的なクエリをいくつか用意しておくと良いでしょう。
+Azure Cosmos DB を深く学ぶ前に、最もよく使用するリソースの作成に関する基本を理解しておくことが重要です。ほとんどのシナリオでは、アカウント、データベース、コンテナー、項目を作成できることが必要になります。実運用のシナリオでは、すべてのリソースが正しく作成されたことを確認するために、いくつかの基本クエリを手元に用意しておくことも重要です。
 
 このラボでは、API for NoSQL を使用して新しい Azure Cosmos DB アカウントを作成します。その後、Data Explorer を使ってデータベース、コンテナー、2 つのアイテムを作成し、最後に作成したアイテムをクエリします。
 
 ## ラボの目的
 
-このラボで完了するタスク:
+このラボでは、次のタスクを完了します。
 - タスク 1: 新しい Azure Cosmos DB アカウントを作成する。
 - タスク 2: Data Explorer を使用して新しいデータベースとコンテナーを作成する。
-- タスク 3: Data Explorer を使用して新しいアイテムを作成する。
-- タスク 4: Data Explorer を使用して基本的なクエリを実行する。
+- タスク 3: Data Explorer を使用して新しい項目を作成する。
+- タスク 4: Data Explorer を使用して基本クエリを実行する。
 
 ## 推定所要時間: 30 分
 
@@ -26,48 +26,48 @@ Azure Cosmos DB を深く掘り下げる前に、最もよく使用するリソ�
 
 Azure Cosmos DB は複数の API をサポートするクラウドベースの NoSQL データベース サービスです。Azure Cosmos DB アカウントを初めてプロビジョニングする際は、アカウントでサポートする API（例: **API for MongoDB** や **API for NoSQL**）を選択します。
 
-1. 新しい Web ブラウザーのウィンドウまたはタブで、Azure ポータル (``portal.azure.com``) に移動します。
+1. 新しい Web ブラウザー ウィンドウまたはタブで Azure portal (``portal.azure.com``) に移動してください。
 
-1. サブスクリプションに関連付けられた Microsoft の資格情報を使用してポータルにサインインします。
+1. サブスクリプションに関連付けられた Microsoft 資格情報を使用してポータルにサインインしてください。
 
-1. **Azure services** カテゴリで **Create a resource** を選択し、次に **Azure Cosmos DB** を選択します。
+1. **Azure services** カテゴリ内で **Create a resource** を選択し、次に **Azure Cosmos DB** を選択してください。
 
-    > &#128161; 代替手順: **&#8801;** メニューを展開し **All Services** を選択、**Databases** カテゴリで **Azure Cosmos DB** を選択してから **Create** を選びます。
+    > &#128161; 別の方法として、**&#8801;** メニューを展開し、**All Services** を選択して、**Databases** カテゴリ内の **Azure Cosmos DB** を選択し、**Create** を選択してください。
 
-1. **Select API option** ウィンドウで、**Azure Cosmos DB for NoSQL** セクション内の **Create** オプションを選択します。
+1. **Select API option** ペインで、**Azure Cosmos DB for NoSQL** セクション内の **Create** オプションを選択してください。
 
-1. **Create Azure Cosmos DB Account** ウィンドウの **Basics** タブを確認します。
+1. **Create Azure Cosmos DB Account** ペインで **Basics** タブを確認してください。
 
-1. **Basics** タブで、各設定に対して次の値を入力します:
+1. **Basics** タブで、各設定に次の値を入力してください。
 
-    | **設定** | **値** |
+    | **Setting** | **Value** |
     | --: | :-- |
-    | **Subscription** | *既存の Azure サブスクリプション* |
+    | **Subscription** | *Your existing Azure subscription* |
     | **Resource Group** | *DP-420-DeploymentID* |
-    | **Account Name** | *グローバルに一意の名前を入力* |
-    | **Location** | *利用可能なリージョンを選択* |
-    | **Capacity mode** | *プロビジョニング済みスループットを選択* |
-    | **Apply Free Tier Discount** | *適用しない* |
+    | **Account Name** | *Enter a globally unique name* |
+    | **Location** | *Choose any available region* |
+    | **Capacity mode** | *Select provisioned throughput* |
+    | **Apply Free Tier Discount** | *Do Not Apply* |
 
-    >**注** : DeploymentID は各環境に関連付けられた一意の ID です。値は環境の詳細ページで確認できます。
+    >**Note** : DeploymentID は各環境に紐づく一意の ID です。この値は環境の詳細ページで確認できます。
 
-1. **Review + Create** を選択して **Review + Create** タブに移動し、続けて **Create** を選択します。
+1. **Review + Create** を選択して **Review + Create** タブに移動し、次に **Create** を選択してください。
 
     > &#128221; Azure Cosmos DB for NoSQL アカウントが使用可能になるまでに 10～15 分かかることがあります。
 
-1. **Deployment** ペインを確認します。デプロイが完了すると、ペインに **Deployment successful** のメッセージが表示されます。
+1. **Deployment** ペインを確認してください。デプロイが完了すると、ペインは **Deployment successful** メッセージで更新されます。
 
-1. 引き続き **Deployment** ペイン内で、**Go to resource** を選択します。
+1. 引き続き **Deployment** ペイン内で **Go to resource** を選択してください。
 
-### タスク 2: Data Explorer を使って新しいデータベースとコンテナーを作成する
+### タスク 2: Data Explorer を使用して新しいデータベースとコンテナーを作成する
 
 Data Explorer は、Azure ポータル内で Azure Cosmos DB for NoSQL のデータベースとコンテナーを管理するための主要なツールです。このラボでは、基本的なデータベースとコンテナーを作成します。
 
-1. **Azure Cosmos DB account** ペイン内のリソース メニューから **Data Explorer** を選択します。
+1. **Azure Cosmos DB account** ペイン内で、リソース メニューから **Data Explorer** を選択してください。
 
-1. **Data Explorer** ペインで **New Container** を選択します。
+1. **Data Explorer** ペインで **New Container** を選択してください。
 
-1. **New Container** ポップアップで、各設定に対して次の値を入力し、**OK** を選択します:
+1. **New Container** ポップアップで、各設定に次の値を入力し、**OK** を選択してください。
 
     | **Setting** | **Value** |
     | --: | :-- |
@@ -78,15 +78,15 @@ Data Explorer は、Azure ポータル内で Azure Cosmos DB for NoSQL のデー
     | **Container throughput (autoscale)** | *Manual* |
     | **RU/s** | *400* |
 
-1. **Data Explorer** ペインに戻り、**cosmicworks** データベース ノードを展開して、階層内の **products** コンテナー ノードを確認します。
+1. **Data Explorer** ペインに戻り、**cosmicworks** データベース ノードを展開し、階層内の **products** コンテナー ノードを確認してください。
 
-### タスク 3: Data Explorer を使って新しいアイテムを作成する
+### タスク 3: Data Explorer を使用して新しい項目を作成する
 
 Data Explorer には、Azure Cosmos DB for NoSQL コンテナー内のアイテムをクエリ、作成、管理するための機能が一式含まれています。ここでは、Data Explorer の生の JSON を使って 2 つの基本アイテムを作成します。
 
-1. **Data Explorer** ペインで **cosmicworks** データベース ノードを展開し、**products** コンテナー ノードを展開してから **Items** を選択します。
+1. **Data Explorer** ペインで、**cosmicworks** データベース ノードを展開し、**products** コンテナー ノードを展開して、**Items** を選択してください。
 
-1. 引き続き **Data Explorer** ペインで、コマンド バーから **New Item** を選択します。エディターでプレースホルダーの JSON アイテムを次の内容に置き換えます:
+1. 引き続き **Data Explorer** ペインで、コマンド バーから **New Item** を選択してください。エディターでプレースホルダーの JSON 項目を次の内容に置き換えてください。
 
     ```
     {
@@ -98,9 +98,9 @@ Data Explorer には、Azure Cosmos DB for NoSQL コンテナー内のアイテ�
     }
     ```
 
-1. コマンド バーの **Save** を選択して、最初の JSON アイテムを追加します。
+1. コマンド バーから **Save** を選択し、最初の JSON 項目を追加してください。
 
-1. **Items** タブに戻り、コマンド バーから **New Item** を選択します。エディターでプレースホルダーの JSON アイテムを次の内容に置き換えます:
+1. **Items** タブに戻り、コマンド バーから **New Item** を選択してください。エディターでプレースホルダーの JSON 項目を次の内容に置き換えてください。
 
     ```
     {
@@ -112,47 +112,47 @@ Data Explorer には、Azure Cosmos DB for NoSQL コンテナー内のアイテ�
     }
     ```
 
-1. コマンド バーの **Save** を選択して、2 つ目の JSON アイテムを追加します。
+1. コマンド バーから **Save** を選択し、2 つ目の JSON 項目を追加してください。
 
-1. **Items** タブで、**Items** ペインに 2 つの新しいアイテムが表示されていることを確認します。
+1. **Items** タブで、**Items** ペイン内に 2 つの新しい項目があることを確認してください。
 
-### タスク 4: Data Explorer を使って基本的なクエリを実行する
+### タスク 4: Data Explorer を使用して基本クエリを実行する
 
-最後に、Data Explorer には組み込みのクエリエディターがあり、クエリの発行、結果の確認、および要求単位（RU/s）での影響測定に使用されます。
+最後に、Data Explorer には組み込みのクエリ エディターがあり、クエリの実行、結果の確認、および 1 秒あたりの要求ユニット（RU/s）の観点で影響を測定できます。
 
-1. **Data Explorer** ペインで **New SQL Query** を選択します。
+1. **Data Explorer** ペインで **New SQL Query** を選択してください。
 
-1. クエリ タブで **Execute Query** を選択し、フィルターなしで全アイテムを選択する標準クエリを表示します。
+1. クエリ タブで **Execute Query** を選択し、フィルターなしで全項目を選択する標準クエリを表示してください。
 
-1. エディター領域の内容を削除します。
+1. エディター領域の内容を削除してください。
 
-1. **Query** タブで、プレースホルダーのクエリを次の内容に置き換えます:
+1. **Query** タブで、プレースホルダー クエリを次の内容に置き換えてください。
 
     ```
     SELECT * FROM products p WHERE p.price > 500
     ```
 
-    > &#128221; このクエリは **price** が $500 より大きいすべてのアイテムを選択します。
+    > &#128221; このクエリは、**price** が $500 を超えるすべての項目を選択します。
 
-1. **Execute Query** を選択します。
+1. **Execute Query** を選択してください。
 
-1. クエリの結果を確認します。結果には単一の JSON アイテムとそのすべてのプロパティが含まれているはずです。
+1. クエリ結果を確認してください。結果には 1 つの JSON 項目とそのすべてのプロパティが含まれるはずです。
 
-1. **Query** タブで **Query Stats** を選択します。
+1. **Query** タブで **Query Stats** を選択してください。
 
-1. 引き続き **Query** タブで、**Query Statistics** セクション内の **Request Charge** フィールドの値を確認します。
+1. 引き続き **Query** タブで、**Query Statistics** セクション内の **Request Charge** フィールドの値を確認してください。
 
-    > &#128221; 通常、この単純なクエリのリクエスト チャージは、コンテナー サイズが小さい場合に約 2～3 RU/s です。
+    > &#128221; 一般的に、コンテナー サイズが小さい場合、この単純なクエリの要求課金は 2〜3 RU/s の範囲です。
 
-1. Web ブラウザーのウィンドウまたはタブを閉じます。
+1. Web ブラウザーのウィンドウまたはタブを閉じてください。
 
 ### レビュー
 
-このラボで行ったこと:
-- 新しい Azure Cosmos DB アカウントを作成しました。
-- Data Explorer を使用して新しいデータベースとコンテナーを作成しました。
-- Data Explorer を使用して新しいアイテムを作成しました。
-- Data Explorer を使用して基本的なクエリを実行しました。
+このラボでは、次を完了しました。
 
-### ラボを正常に完了しました
+- 新しい Azure Cosmos DB アカウントを作成した。
+- Data Explorer を使用して新しいデータベースとコンテナーを作成した。
+- Data Explorer を使用して新しい項目を作成した。
+- Data Explorer を使用して基本クエリを実行した。
 
+### ラボは正常に完了しました

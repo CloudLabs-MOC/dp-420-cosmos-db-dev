@@ -1,65 +1,63 @@
 ---
 lab:
-    title: 'ラボ環境のセットアップ'
-    module: 'セットアップ'
+    title: 'ラボ環境をセットアップする'
+    module: 'Setup'
 ---
 
-# ローカルラボ環境のセットアップ
+# ローカル ラボ環境をセットアップする
 
-理想的には、これらのラボはホストされたラボ環境で実施してください。ご自身のコンピュータで実施する場合は、以下のソフトウェアをインストールすることで進められます。ご自身の環境では予期しないダイアログや動作が発生することがあり得ます。ローカル環境の構成は多岐にわたるため、コースチームは個別の環境で発生する問題についてサポートできない場合があります。
+理想的には、これらのラボはホストされたラボ環境で実施してください。自身のコンピューターで実施する場合は、以下のソフトウェアをインストールすることで実施できます。独自環境を使用すると、予期しないダイアログや動作が発生する場合があります。ローカル構成には非常に多くのパターンがあるため、コース チームは独自環境で発生する問題をサポートできません。
 
-## Windows のインストール
+## Windows インストール
 
-> &#128221; 以下の手順は Windows 10 コンピュータ向けです。Linux や MacOS でも実行できます。選択した OS に合わせてラボ手順を調整する必要があるかもしれません。
+> &#128221; 以下の手順は Windows 10 コンピューター向けです。Linux または MacOS も利用できます。選択した OS に合わせてラボ手順を調整する必要がある場合があります。
 
 ### Windows 10 (OS)
 
-1. Windows 10 をインストールします（*version 2004 以降*）。
+1. Windows 10（*バージョン 2004 以降*）をインストールしてください。
 
-1. 利用可能なすべての更新プログラムを適用します。
+1. 利用可能なすべての更新プログラムを適用してください。
 
 ### Edge
 
-1. 以下から最新の Microsoft Edge をインストールしてください: [microsoft.com/edge].
+1. [microsoft.com/edge] から Microsoft Edge の最新バージョンをインストールしてください。
 
 ### .NET 6 SDK
 
-1. SDK（ランタイムではなく）を以下からダウンロードしてインストールしてください: [dotnet.microsoft.com/download/dotnet/6.0].
+1. [dotnet.microsoft.com/download/dotnet/6.0] から SDK（ランタイムではなく SDK）をダウンロードしてインストールしてください。
 
 ### PowerShell 7
 
-1. 以下からダウンロードしてインストールしてください: [github.com/powershell/powershell/releases].
+1. [github.com/powershell/powershell/releases] からダウンロードしてインストールしてください。
 
 ### Git
 
-1. 以下からダウンロードしてインストールしてください: [git-scm.com/downloads].
+1. [git-scm.com/downloads] からダウンロードしてインストールしてください。
 
-    - インストーラーではデフォルトのオプションを使用してください。
+    - インストーラーでは既定のオプションを使用してください。
 
 ### Windows Terminal
 
-1. 以下からダウンロードしてインストールしてください: [github.com/microsoft/terminal/releases].
+1. [github.com/microsoft/terminal/releases] からダウンロードしてインストールしてください。
 
-1. **PowerShell** を既定のターミナルとして設定してください
+1. **PowerShell** を既定のターミナルとして構成してください。
 
 ### Visual Studio Code (and extensions)
 
-### Visual Studio Code（および拡張機能）
+1. [code.visualstudio.com/download] からダウンロードしてインストールしてください。
 
-1. 以下からダウンロードしてインストールしてください: [code.visualstudio.com/download].
-
-    - インストーラーではデフォルトのオプションを使用してください。
+    - インストーラーでは既定のオプションを使用してください。
 
 1. インストール後、Visual Studio Code を起動してください。
 
-1. **Extensions**（拡張機能）メニューで、Microsoft の以下の拡張機能を検索してインストールしてください:
+1. **Extensions** メニューで、次の Microsoft 拡張機能を検索してインストールしてください。
 
     - [C#][marketplace.visualstudio.com/ms-dotnettools.csharp]
 
-### Azure Cosmos DB エミュレーター
+### Azure Cosmos DB Emulator
 
-1. 以下からダウンロードしてインストールしてください: [docs.microsoft.com/azure/cosmos-db/local-emulator].
-    - インストーラーではデフォルトのオプションを使用してください。
+1. [docs.microsoft.com/azure/cosmos-db/local-emulator] からダウンロードしてインストールしてください。
+    - インストーラーでは既定のオプションを使用してください。
 
 [code.visualstudio.com/download]: https://code.visualstudio.com/download
 [docs.microsoft.com/azure/cosmos-db/local-emulator]: https://docs.microsoft.com/azure/cosmos-db/local-emulator#download-the-emulator
