@@ -19,13 +19,7 @@
 
 1. **Azure Portal** ページ上部にある「Search resources, services and docs (G+/)」ボックスに **Azure Cosmos DB (1)** と入力し、サービス一覧から **Azure Cosmos DB (2)** を選択します。
 
-   ![06](media/L1E1T1S1.png)
-
 1. **Azure Cosmos DB for NoSQL** の下で **+ Create (1)** を選択し、**Create (2)** をクリックして **Azure Cosmos DB for NoSQL** アカウントを作成します。
-
-    ![06](media/L1E1T1S2.png)
-
-    ![06](media/New-image3.png)
 
 1. 以下の詳細を入力します。
 
@@ -42,15 +36,12 @@
 
 1. **Review + create (9)** をクリックします。
 
-    ![](media/DB1.png)
 
 1. 構成の検証が完了したら、**Create** を選択します。
 
-    ![](media/DB2.png)
 
 1. デプロイが完了するまで待ちます。完了したら、デプロイされたリソースに移動します。
 
-    ![](media/DB3.png)
 
 ## タスク 2: サンプル データベースを作成する
 
@@ -59,23 +50,20 @@
 
 1. **Azure Cosmos DB account** で、左側のメニューから **Overview (1)** を選択し、続いて **Data Explorer (2)** をクリックします。
 
-     ![](media/DB4.png)
+
 
     >**注:** Welcome What is Cosmos DB というポップアップが表示された場合は、**X** をクリックして閉じてください。
 
-     ![](media/DB5.png)
-
 1. **Data Explorer (1)** ページで、**Launch quick start (2)** を選択します。
 
-     ![](media/DB6.png)
+  
 
 1. **New container** タブで、サンプル データベース用に事前入力された設定を確認し、**OK** を選択します。
 
-    ![](media/DB7.png)
 
 1. 画面下部のパネルでステータスを確認し、**SampleDB** データベースとその **SampleContainer** コンテナーが作成されるまで待ちます（1 分程度かかる場合があります）。
 
-    ![](media/DB8.png)
+   
 
 ## タスク 3: アイテムの表示と作成を行う
 
@@ -87,7 +75,6 @@
 
 1. ページ上部の **New Item (5)** をクリックして、新しい空のアイテムを作成します。
 
-    ![](media/DB9.png)
 
 1. 新しいアイテムの JSON を以下のように変更し (1)、**Save (2)** をクリックします。
 
@@ -103,7 +90,6 @@
     }
     ```
 
-    ![](media/DB10.png)
 
 1. 新しいアイテムを保存すると、追加のメタデータ プロパティが自動的に付与されることが確認できます。
 
@@ -113,15 +99,12 @@
 
 1. **Data Explorer (1)** ページで、**New SQL Query (2)** アイコンを選択します。
 
-    ![](media/DB11.png)
 
 2. 既定でクエリ **SELECT * FROM c (1)** が表示されています。**Execute Query (2)** をクリックします。
 
-     ![](media/DB12.png)
 
 1. すべてのアイテムの完全な JSON 表現を含む結果を確認します。
 
-     ![](media/DB13.png)
 
 1. クエリを次のように変更します **(1)**:
 
@@ -132,7 +115,6 @@
 
 1. **Execute Query (2)** ボタンをクリックして変更後のクエリを実行し、**name** フィールドに **Helmet (3)** というテキストを含むアイテムの JSON エンティティが結果に含まれていることを確認します。
 
-    ![](media/DB14.png)
 
 1. 変更を破棄して SQL Query エディターを閉じます。
 
