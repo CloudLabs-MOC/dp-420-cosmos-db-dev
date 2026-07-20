@@ -1,99 +1,97 @@
-# Lab 01: Explore Azure Cosmos DB
+# ラボ 01: Azure Cosmos DB を探索する
 
-## Lab scenario
-In this lab, you'll provision an Azure Cosmos DB database in your Azure subscription, and explore the various ways you can use it to store non-relational data.
+## ラボ シナリオ
 
-## Lab objectives
+このラボでは、Azure サブスクリプション内に Core (SQL) API を使用する Azure Cosmos DB データベースをプロビジョニングし、非リレーショナル データの格納にどのように活用できるかを、さまざまな方法で確認します。
 
-In this lab, you will perform the following tasks:
+## ラボの目的
 
-+ Task 1: Create a Cosmos DB account
-+ Task 2: Create a sample database
-+ Task 3: View and create items
-+ Task 4: Query the database
+このラボでは、以下のタスクを実行します。
 
-### Exercise 1: Explore Azure Cosmos DB
++ タスク 1: Cosmos DB アカウントを作成する
++ タスク 2: サンプル データベースを作成する
++ タスク 3: アイテムの表示と作成を行う
++ タスク 4: データベースにクエリを実行する
 
-To use Cosmos DB, you must provision a Cosmos DB account in your Azure subscription. In this exercise, you'll provision a Cosmos DB account that uses the core (SQL) API.
+## タスク 1: Cosmos DB アカウントを作成する
 
-#### Task 1: Create a Cosmos DB account
-In this task, you will provision an Azure Cosmos DB SQL account, configuring essential settings and retrieving the necessary connection details for future development.
+このタスクでは、Azure Cosmos DB SQL アカウントをプロビジョニングし、必要な設定を構成した上で、今後の開発に必要な接続情報を取得します。
 
-1. On **Azure Portal** page, in Search resources, services and docs (G+/) box at the top of the portal, **enter Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
+1. **Azure Portal** ページ上部にある「Search resources, services and docs (G+/)」ボックスに **Azure Cosmos DB (1)** と入力し、サービス一覧から **Azure Cosmos DB (2)** を選択します。
 
-   ![06](media/New-image1.png)
-   
-1. Select **+ Create (1)** under **Azure Cosmos DB for NoSQL** click on **Create (2)** to create **Azure Cosmos DB for NoSQL** account.
+   ![06](media/L1E1T1S1.png)
 
-    ![06](media/New-image2.png)
+1. **Azure Cosmos DB for NoSQL** の下で **+ Create (1)** を選択し、**Create (2)** をクリックして **Azure Cosmos DB for NoSQL** アカウントを作成します。
+
+    ![06](media/L1E1T1S2.png)
 
     ![06](media/New-image3.png)
 
-1. Enter the following details:
+1. 以下の詳細を入力します。
 
     | Setting | Value |
     |----------|----------|
     | Workload type | Learning **(1)** |
-    | Subscription | Select your Azure subscription **(2)** |
+    | Subscription | ご利用の Azure サブスクリプションを選択 **(2)** |
     | Resource group | DP-900-Module-3-<inject key="DeploymentID" enableCopy="false"/> **(3)** |
     | Account name | cosmosdb-<inject key="DeploymentID" enableCopy="false"/> **(4)** |
-    | Location | Select any available location **(5)** |
+    | Location | 利用可能な任意のリージョンを選択 **(5)** |
     | Capacity mode | Provisioned throughput **(6)** |
     | Apply Free Tier Discount | Apply **(7)** |
-    | Limit total account throughput | Leave unchecked **(8)** |
+    | Limit total account throughput | チェックを外したままにする **(8)** |
 
-1. Click **Review + create (9)**.
+1. **Review + create (9)** をクリックします。
 
     ![](media/DB1.png)
 
-1.  When the configuration has been validated, select  **Create**.
+1. 構成の検証が完了したら、**Create** を選択します。
 
     ![](media/DB2.png)
 
-1.  Wait for deployment to complete. Then go to the deployed resource.
+1. デプロイが完了するまで待ちます。完了したら、デプロイされたリソースに移動します。
 
     ![](media/DB3.png)
 
-### Task 2 : Create a sample database
+## タスク 2: サンプル データベースを作成する
 
-This task involves reviewing pre-configured settings and observing the creation process of the SampleDB database and its container.
-*Throughout this procedure, close any tips that are displayed in the portal*.
+このタスクでは、事前構成済みの設定を確認しながら、SampleDB データベースとそのコンテナーが作成される過程を観察します。
+*この手順を通して、ポータルに表示されるヒントはすべて閉じてください*。
 
-1. In the **Azure Cosmos DB account**, select **Overview (1)** from the left menu, then click **Data Explorer (2)**.
+1. **Azure Cosmos DB account** で、左側のメニューから **Overview (1)** を選択し、続いて **Data Explorer (2)** をクリックします。
 
      ![](media/DB4.png)
 
-    >**Note** If you see a pop up saying Welcome What is Cosmos DB click on **X** to close it
+    >**注:** Welcome What is Cosmos DB というポップアップが表示された場合は、**X** をクリックして閉じてください。
 
      ![](media/DB5.png)
 
-1. In the **Data Explorer (1)** page, select **Launch quick start (2)**.
+1. **Data Explorer (1)** ページで、**Launch quick start (2)** を選択します。
 
      ![](media/DB6.png)
 
-1. In the **New container** tab, review the pre-populated settings for the sample database, and then select **OK**.
+1. **New container** タブで、サンプル データベース用に事前入力された設定を確認し、**OK** を選択します。
 
     ![](media/DB7.png)
 
-1. Observe the status in the panel at the bottom of the screen until the **SampleDB** database and its **SampleContainer** container has been created (which may take a minute or so).
+1. 画面下部のパネルでステータスを確認し、**SampleDB** データベースとその **SampleContainer** コンテナーが作成されるまで待ちます（1 分程度かかる場合があります）。
 
     ![](media/DB8.png)
 
-### Task 3 : View and create items
+## タスク 3: アイテムの表示と作成を行う
 
-This task demonstrates how to view existing items, create new items, and work with JSON data in a Cosmos DB container using the Data Explorer interface, simulating how developers interact with and manage data in real world applications.
+このタスクでは、Data Explorer インターフェイスを使用して、Cosmos DB コンテナー内の既存アイテムの表示、新しいアイテムの作成、および JSON データの操作方法を紹介します。これは、実際のアプリケーションで開発者がデータを操作・管理する方法を模したものです。
 
-1. In the **Data Explorer** page, expand **SampleDB (1)**, then expand **SampleContainer (2)**, and select **Items (3)** to view the list of items.
+1. **Data Explorer** ページで **SampleDB (1)** を展開し、続いて **SampleContainer (2)** を展開して、**Items (3)** を選択しアイテムの一覧を表示します。
 
-1. Select any item from the list (4) to view its JSON representation, then unselect it and proceed to create a new item.
+1. 一覧からいずれかのアイテム (4) を選択して JSON 表現を確認し、その後選択を解除して新しいアイテムの作成に進みます。
 
-1. At the top of the page, click **New Item (5)** to create a new blank item.
+1. ページ上部の **New Item (5)** をクリックして、新しい空のアイテムを作成します。
 
     ![](media/DB9.png)
 
-1. Modify the JSON for the new item as shown below (1), then click **Save (2)**.
+1. 新しいアイテムの JSON を以下のように変更し (1)、**Save (2)** をクリックします。
 
-    
+
     ```json
     {
         "name": "Road Helmet,45",
@@ -106,57 +104,57 @@ This task demonstrates how to view existing items, create new items, and work wi
     ```
 
     ![](media/DB10.png)
-    
-1.  After saving the new item, notice that additional metadata properties are added automatically.
 
-### Task 4  : Query the database
+1. 新しいアイテムを保存すると、追加のメタデータ プロパティが自動的に付与されることが確認できます。
 
-This task demonstrates how to create, view, and query items in a Cosmos DB container using the Data Explorer interface, simulating how developers would interact with the database using SDKs in real-world applications.
+## タスク 4: データベースにクエリを実行する
 
-1. In the **Data Explorer (1)** page, select the **New SQL Query (2)** icon.
+このタスクでは、Data Explorer インターフェイスを使用して Cosmos DB コンテナー内のアイテムを作成・表示・クエリする方法を紹介します。これは、実際のアプリケーションで開発者が SDK を使用してデータベースを操作する方法を模したものです。
+
+1. **Data Explorer (1)** ページで、**New SQL Query (2)** アイコンを選択します。
 
     ![](media/DB11.png)
 
-2. The query **SELECT * FROM c (1)** is present by default, click **Execute Query (2)**.
+2. 既定でクエリ **SELECT * FROM c (1)** が表示されています。**Execute Query (2)** をクリックします。
 
      ![](media/DB12.png)
 
-1. Review the results, which includes the full JSON representation of all items.
+1. すべてのアイテムの完全な JSON 表現を含む結果を確認します。
 
      ![](media/DB13.png)
 
-1. Modify the query as follows **(1)**:
-   
+1. クエリを次のように変更します **(1)**:
+
     ```sql
     SELECT * FROM c
     WHERE CONTAINS(c.name,"Helmet")
     ```
 
-1. Click **Execute Query (2)** button to run the revised query and review the results, which includes JSON entities for any items with a **name** field containing the text **Helmet (3)** .
+1. **Execute Query (2)** ボタンをクリックして変更後のクエリを実行し、**name** フィールドに **Helmet (3)** というテキストを含むアイテムの JSON エンティティが結果に含まれていることを確認します。
 
     ![](media/DB14.png)
-    
-1. Close the SQL Query editor, discarding your changes.
-    
-    >**Note**: You've seen how to create and query JSON entities in a Cosmos DB database by using the data explorer interface in the Azure portal. In a real scenario, an application developer would use one of the many programming language specific software development kits (SDKs) to call the core (SQL) API and work with data in the database.
-    
-    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
-    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out. 
+
+1. 変更を破棄して SQL Query エディターを閉じます。
+
+    >**注:** ここまでで、Azure ポータルの Data Explorer インターフェイスを使用して、Cosmos DB データベース内の JSON エンティティを作成・クエリする方法を確認しました。実際のシナリオでは、アプリケーション開発者は、さまざまなプログラミング言語向けのソフトウェア開発キット (SDK) のいずれかを使用して Core (SQL) API を呼び出し、データベース内のデータを操作します。
+
+    > **おめでとうございます** — ラボを完了しました！ 次に検証を行います。手順は次のとおりです。
+    > - 対応するタスクの Validate ボタンをクリックします。成功メッセージが表示されれば、ラボの検証に成功しています。
+    > - 表示されない場合は、エラー メッセージを注意深く読み、ラボ ガイドの手順に従って再実行してください。
+    > - サポートが必要な場合は、cloudlabs-support@spektrasystems.com までお問い合わせください。24 時間対応でサポートいたします。
 
     <validation step="0c506d8c-06e7-4eb7-aa88-fed3d24ffcfc" />
 
-## Summary 
+## 要約
 
-In this lab you gained hands-on experience with creating, viewing, modifying, and querying data in Azure Cosmos DB, which is valuable for storing non-relational data in real-world applications.
+このラボでは、Azure Cosmos DB でのデータの作成、表示、変更、クエリを実際に体験しました。これは、実際のアプリケーションで非リレーショナル データを格納する際に役立つスキルです。
 
-## Review
-In this lab, you have completed:
-- Create a Cosmos DB account
-- Create a sample database
-- View and create items
-- Query the database
-  
-## You have successfully completed this lab
+## レビュー
 
+このラボで完了した項目:
+- Cosmos DB アカウントを作成しました
+- サンプル データベースを作成しました
+- アイテムの表示と作成を行いました
+- データベースにクエリを実行しました
+
+## ラボは正常に完了しました

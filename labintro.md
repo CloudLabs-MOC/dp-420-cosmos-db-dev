@@ -1,80 +1,80 @@
-# Developing Cloud-Native Applications Using Microsoft Azure Cosmos DB
- 
-Welcome to your Developing Cloud-Native Applications Using Microsoft Azure Cosmos DB! We've prepared a seamless environment designed to facilitate hands-on learning and exploration of Microsoft Azure Cosmos DB for building cloud-native applications. Let's begin by making the most of this experience:
- 
-## Accessing Your Lab Environment
- 
-Once you're ready to dive in, your virtual machine and lab guide will be right at your fingertips within your web browser.
- 
+# Microsoft Azure Cosmos DB を使用したクラウド ネイティブ アプリケーションの開発
+
+Microsoft Azure Cosmos DB を使用したクラウド ネイティブ アプリケーションの開発へようこそ！クラウド ネイティブ アプリケーションを構築するための Microsoft Azure Cosmos DB について、実践的な学習と探求を促進するシームレスな環境をご用意しました。それでは、この体験を最大限に活用するために始めましょう。
+
+## ラボ環境へのアクセス
+
+準備ができたら、仮想マシンとラボ ガイドは Web ブラウザー内ですぐにご利用いただけます。
+
 ![Access Your VM and Lab Guide](./instructions/media/DBGS.png)
 
-### Virtual Machine & Lab Guide
- 
-Your virtual machine is your workhorse throughout the workshop. The lab guide is your roadmap to success.
- 
-## Exploring Your Lab Resources
- 
-To get a better understanding of your lab resources and credentials, navigate to the **Environment Details** tab.
- 
+### 仮想マシンとラボ ガイド
+
+仮想マシンは、ワークショップを通してあなたの作業環境となります。ラボ ガイドは、成功への道しるべです。
+
+## ラボ リソースの確認
+
+ラボのリソースと資格情報について理解を深めるには、**Environment Details** タブに移動してください。
+
 ![Explore Lab Resources](./instructions/media/new002.png)
 
-## Utilizing the Split Window Feature
- 
-For convenience, you can open the lab guide in a separate window by selecting the **Split Window** button from the Top right corner.
- 
+## Split Window 機能の利用
+
+便利な機能として、右上隅にある **Split Window** ボタンを選択することで、ラボ ガイドを別のウィンドウで開くことができます。
+
 ![Use the Split Window Feature](./instructions/media/new3.png)
 
-## Managing Your Virtual Machine
- 
-Feel free to start, stop, or restart your virtual machine as needed from the **Resources** tab. Your experience is in your hands!
- 
+## 仮想マシンの管理
+
+**Resources** タブから、必要に応じて仮想マシンの開始、停止、再起動を自由に行ってください。操作はすべてあなた次第です！
+
 ![Manage Your Virtual Machine](./instructions/media/RT1.png)
 
-## Lab Guide Zoom In / Zoom Out
+## ラボ ガイドのズームイン / ズームアウト
 
-Adjust the zoom level using the **A↕ : 100%** icon located next to the timer.
+タイマーの隣にある **A↕ : 100%** アイコンを使用して、ズーム レベルを調整できます。
 
 ![Manage Your Virtual Machine](./instructions/media/new1.png)
 
-## Let's Get Started with Azure Portal
- 
-1. On your virtual machine, click on the Azure Portal icon as shown below:
+## Azure Portal を使い始めましょう
+
+1. 仮想マシン上で、以下のように Azure Portal アイコンをクリックします。
 
    ![](./instructions/media/azureportal.png)
 
-1. Log in to Azure Portal.
+1. Azure Portal にログインします。
 
-1. You'll see the **Sign into Microsoft Azure** tab. Here, enter your credentials:
- 
+1. **Sign into Microsoft Azure** タブが表示されます。ここに資格情報を入力します。
+
    - **Email/Username:** <inject key="AzureAdUserEmail"></inject>
 
      ![](instructions/media/sign1.png)
 
-1. Next, provide your password:
- 
+1. 次に、パスワードを入力します。
+
    - **Password:** <inject key="AzureAdUserPassword"></inject>
 
      ![](instructions/media/tpwrd.png)
 
-1. If prompted to stay signed in, you can click **No**
+1. サインインを維持するかどうか確認されたら、**No** をクリックして構いません。
 
    ![](instructions/media/sign001.png)
- 
-1. If a **Welcome to Microsoft Azure** pop-up window appears, simply click **Maybe later** to skip the tour.
+
+1. **Welcome to Microsoft Azure** というポップアップ ウィンドウが表示された場合は、**Maybe later** をクリックしてツアーをスキップします。
 
    ![](instructions/media/skip01.png)
 
-## Support Contact
+## サポートへのお問い合わせ
 
-The CloudLabs support team is available 24/7, 365 days a year, via email and live chat to ensure seamless assistance at any time. We offer dedicated support channels tailored specifically for both learners and instructors, ensuring that all your needs are promptly and efficiently addressed.
+CloudLabs サポート チームは、年中無休 24 時間体制で、メールおよびライブ チャットを通じて、いつでもシームレスなサポートを提供しています。受講者とインストラクターの双方に向けた専用のサポート チャネルをご用意しており、あらゆるご要望に迅速かつ効率的に対応いたします。
 
-Learner Support Contacts:
+受講者向けサポート窓口:
 
-- Email Support: cloudlabs-support@spektrasystems.com
+- メール サポート: cloudlabs-support@spektrasystems.com
 
-- Live Chat Support: https://cloudlabs.ai/labs-support
-   
-Now, click on Next from the lower right corner to move to the next page.
+- ライブ チャット サポート: https://cloudlabs.ai/labs-support
+
+それでは、右下の Next をクリックして次のページに進んでください。
 
 ![](./instructions/media/nextpage1.png)
 
