@@ -148,7 +148,7 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
 1. Azure Portal ページで、ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB** と入力し、services の下にある **Azure Cosmos DB** を選択してください。
 
-   ![06](media/01-03.png)
+   ![06](media/unsorted-screenshots/01-03.png)
 
 1. **sql-<inject key="DeploymentID" enableCopy="false"/>** を選択してください。
 

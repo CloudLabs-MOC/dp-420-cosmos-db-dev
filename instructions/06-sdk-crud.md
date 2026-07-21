@@ -420,15 +420,15 @@ SDK 学習時には、オンラインの Azure Cosmos DB SDK アカウントま�
 
 1. Azure Portal ページで、ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB (1)** と入力し、services の下にある **Azure Cosmos DB (2)** を選択してください。
 
-   ![06](media/01-17.png)
+   ![06](media/unsorted-screenshots/01-17.png)
 
 1. **sql-<inject key="DeploymentID" enableCopy="false"/>** を選択してください。
 
-     ![06](media/01-18.png)
+     ![06](media/unsorted-screenshots/01-18.png)
 
 1. **Azure Cosmos DB** アカウント リソースの **overview page (1)** で、**Data Explorer (2)** ペインに移動してください。
 
-    ![06](media/01-19.png)
+    ![06](media/unsorted-screenshots/01-19.png)
 
 1. **Data Explorer** で **cosmicworks (2)** データベース ノードを展開し、**products (3)** コンテナー ノードを展開して、**Items (4)** を選択してください。その後、項目の **name** と **price** プロパティの値を確認してください。
 
@@ -513,15 +513,15 @@ SDK 学習時には、オンラインの Azure Cosmos DB SDK アカウントま�
 
 1. Azure Portal ページに戻り、ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB (1)** と入力し、services の下にある **Azure Cosmos DB (2)** を選択してください。
 
-   ![06](media/01-17.png)
+   ![06](media/unsorted-screenshots/01-17.png)
 
 1. **sql-<inject key="DeploymentID" enableCopy="false"/>** を選択してください。
 
-     ![06](media/01-18.png)
+     ![06](media/unsorted-screenshots/01-18.png)
 
 1. **Azure Cosmos DB** アカウント リソースの **overview page (1)** で、**Data Explorer (2)** ペインに移動し、項目の **name** と **price** プロパティの値を確認してください。
 
-    ![06](media/01-19.png)
+    ![06](media/unsorted-screenshots/01-19.png)
 
     | **Property** | **Value** |
     | --- | --- |
@@ -571,11 +571,11 @@ SDK 学習時には、オンラインの Azure Cosmos DB SDK アカウントま�
 
 1. **sql-<inject key="DeploymentID" enableCopy="false"/>** を選択してください。
 
-     ![06](media/01-18.png)
+     ![06](media/unsorted-screenshots/01-18.png)
 
 1. **Azure Cosmos DB** アカウント リソースの **overview page (1)** で、**Data Explorer (2)** ペインに移動してください。
 
-    ![06](media/01-18.png)
+    ![06](media/unsorted-screenshots/01-18.png)
 
 1. **Items** ノードを選択してください。項目一覧が空になっていることを確認してください。
 
