@@ -23,7 +23,8 @@ Azure Cosmos DB Emulator は、開発とテストのために Azure Cosmos DB �
 環境にはすでにエミュレーターがインストールされているはずです。インストールされていない場合は、[installation instructions][docs.microsoft.com/azure/cosmos-db/local-emulator] を参照して Azure Cosmos DB Emulator をインストールしてください。エミュレーターを起動したら、接続文字列を取得し、Azure SDK for .NET または任意の SDK を使用してエミュレーターに接続できます。
 
 1. Windows のスタート メニューから **Azure Cosmos DB Emulator** を検索して起動してください。
-     ![06](media/02-19.png)
+    
+     ![06](media/unsorted-screenshots/02-19.png)
 
 1. **3～4 分待機**してください。エミュレーターが起動すると、既定のブラウザーが自動的に開き、**localhost:8081/_explorer/index.html** のランディング ページに移動します。
 
@@ -33,7 +34,7 @@ Azure Cosmos DB Emulator は、開発とテストのために Azure Cosmos DB �
 
     1. **Primary Connection String** フィールドの値を記録してください。この演習の後半で **connection string** 値として使用します。
 
-         ![06](media/02-20.png)
+         ![06](media/unsorted-screenshots/02-20.png)
 
 1. **Explorer** ペインに移動します。**Data Explorer** で **API for NoSQL** ナビゲーション ツリーにノードが存在しないことを確認します。
 

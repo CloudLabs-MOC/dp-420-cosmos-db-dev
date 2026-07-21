@@ -28,19 +28,19 @@ Azure SDK for .NET は、Azure サービスとやり取りするために一貫�
 
 1. 左側パネルの **Extensions (1)** ブレードを選択してください。**C# (2)** で検索し、**Install (3)** を選択して拡張機能をインストールしてください。
 
-    ![06](media/02-01.png)
+    ![06](media/unsorted-screenshots/02-01.png)
 
 1. 画面左上の **file (1)** を選択し、メニューから **Open Folder (2)** を選択してください。**C:\AllFiles\dp-420-cosmos-db-dev** に移動してください。
 
-     ![06](media/02-02.png)
+     ![06](media/unsorted-screenshots/02-02.png)
 
 1. **C:\AllFiles\dp-420-cosmos-db-dev** に移動し、**dp-420-cosmos-db-dev** を選択して **Select Folder** をクリックしてください。
 
-    ![06](media/02-03.png)
+    ![06](media/unsorted-screenshots/02-03.png)
 
 1. **Do you trust the author of the files in this folder** と表示された場合は、**Yes, I trust the authors** をクリックしてください。
 
-   ![06](media/02-04.png)
+   ![06](media/unsorted-screenshots/02-04.png)
 
 ### タスク 2: Azure Cosmos DB for NoSQL アカウントの作成
 
@@ -50,13 +50,13 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
 1. Azure Portal ページで、ポータル上部の Search resources, services and docs (G+/) ボックスに **Azure Cosmos DB (1)** と入力し、services の **Azure Cosmos DB (2)** を選択してください。
 
-   ![06](media/02-05.png)
+   ![06](media/unsorted-screenshots/02-05.png)
    
 1. **Azure Cosmos DB for NoSQL** の **+ Create (1)** を選択し、**Create (2)** をクリックして **Azure Cosmos DB for NoSQL** アカウントを作成してください。
 
-    ![06](media/02-06.png)
+    ![06](media/unsorted-screenshots/02-06.png)
 
-    ![06](media/02-07.png)
+    ![06](media/unsorted-screenshots/02-07.png)
 
 1. 次の設定を指定し、その他の設定は既定値のままにして **Review + create (10)** を選択してください。
 
@@ -71,21 +71,21 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
     | **Apply Free Tier Discount** | *Do Not Apply* (7) |
     | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* (8) |
 
-     ![06](media/02-08.png)
+     ![06](media/unsorted-screenshots/02-08.png)
 
 1. **Create** をクリックしてください。
 
-    ![06](media/02-09.png)
+    ![06](media/unsorted-screenshots/02-09.png)
 
 1. このタスクを続行する前に、デプロイが完了するまで待機してください。
 
 1. デプロイ完了後、**Go to resources** を選択してください。
 
-    ![06](media/02-10.png)
+    ![06](media/unsorted-screenshots/02-10.png)
 
 1. **Azure Cosmos DB account** で、左メニューの **Settings (1)** を展開し、**Keys (2)** を選択してください。
 
-    ![06](media/02-11.png)
+    ![06](media/unsorted-screenshots/02-11.png)
 
 1. このペインには、SDK からアカウントに接続するために必要な接続情報と資格情報が含まれています。具体的には次のとおりです。
 
@@ -93,7 +93,7 @@ Azure Cosmos DB は複数の API をサポートするクラウドベースの N
 
     1. **PRIMARY KEY (2)** フィールドの値を記録してください。この演習の後半で **key** 値として使用します。
 
-        ![06](media/02-12.png)
+        ![06](media/unsorted-screenshots/02-12.png)
        
     > ラボ完了おめでとうございます。次は検証です。手順は次のとおりです。
     > - 対応するタスクの Validate ボタンを押してください。成功メッセージが表示された場合、ラボは正常に検証されています。
@@ -109,11 +109,11 @@ NuGet Web サイトには、.NET アプリケーションにインポート可�
 
 1. ブラウザーを開いて **nuget.org (1)** に移動し、利用可能な .NET パッケージ **(2)** を確認してください。
 
-    ![06](media/02-13.png)
+    ![06](media/unsorted-screenshots/02-13.png)
 
 2. **NuGet** ページで **Packages (1)** を選択し、**Microsoft.Azure.Cosmos (2)** を検索し、**.NET Standard (3)** を展開して **netstandard2.0 (4)** を選択してください。
 
-   ![06](media/02-14.png)
+   ![06](media/unsorted-screenshots/02-14.png)
 
 3. **.NET CLI** タブを選択して、このライブラリの最新バージョンを .NET プロジェクトにインポートするためのコマンドを確認してください。
    
@@ -132,7 +132,7 @@ NuGet Web サイトには、.NET アプリケーションにインポート可�
 
 1. **Visual Studio Code** で **04-sdk-connect (1)** フォルダーを右クリックし、**Open in Integrated Terminal (2)** を選択して新しいターミナルを開いてください。
 
-     ![06](media/02-15.png)
+     ![06](media/unsorted-screenshots/02-15.png)
 
      >**Note**: このコマンドでは、開始ディレクトリがすでに **04-sdk-connect** フォルダーに設定された状態でターミナルが開きます。
 
@@ -151,7 +151,7 @@ NuGet Web サイトには、.NET アプリケーションにインポート可�
 
 1. **Visual Studio Code** で、**04-sdk-connect (1)** フォルダー内の空の **script.cs (2)** コード ファイルを開いてください。
 
-    ![06](media/02-16.png)
+    ![06](media/unsorted-screenshots/02-16.png)
 
 1. 組み込みの **System** と **System.Linq** 名前空間の using ブロックを追加してください。
    
@@ -219,7 +219,7 @@ NuGet Web サイトには、.NET アプリケーションにインポート可�
     ```
 1. **script.cs** コード ファイルを **Save** してください。
 
-    ![06](media/02-17.png)
+    ![06](media/unsorted-screenshots/02-17.png)
 
 ### タスク 6: スクリプトをテストする
 このタスクでは、Visual Studio Code の統合ターミナルを開き、dotnet run コマンドでプロジェクトを実行してスクリプトをテストします。出力にはアカウント名と最初の書き込み可能リージョンが表示されます。
@@ -228,7 +228,7 @@ NuGet Web サイトには、.NET アプリケーションにインポート可�
 
 1. **Visual Studio Code** で **04-sdk-connect (1)** フォルダーを右クリックし、**Open in Integrated Terminal (2)** を選択して新しいターミナルを開いてください。
 
-     ![06](media/02-15.png)
+     ![06](media/unsorted-screenshots/02-15.png)
 
 2. 次のコマンドで Newtonsoft.JSON パッケージをインストールしてください。
 
@@ -245,7 +245,7 @@ NuGet Web サイトには、.NET アプリケーションにインポート可�
 
 4. 統合ターミナルを閉じてください。
 
-     ![06](media/02-18.png)
+     ![06](media/unsorted-screenshots/02-18.png)
 
 5. **Visual Studio Code** を閉じてください。
 
