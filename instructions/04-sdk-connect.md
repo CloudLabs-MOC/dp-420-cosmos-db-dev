@@ -94,14 +94,15 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     - Record the value of the **PRIMARY KEY (2)** field. You will use this **key** value later in this exercise.
 
         ![06](media/M8E1T1S9.png)
-       
-    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
-    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out. 
- 
-    <validation step="ade422fd-22ef-466a-80b1-bd33186d9b51" />
-    
+
+> **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
+> - Hit the Validate button for the corresponding task.
+> - If you receive a success message, you can proceed to the next task.
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
+
+<validation step="ade422fd-22ef-466a-80b1-bd33186d9b51" />
+
 ## Task 3: View the Microsoft.Azure.Cosmos library on NuGet
 In this task, you will explore the NuGet website to review the Microsoft.Azure.Cosmos library, which is essential for working with Azure Cosmos DB in .NET applications. You'll learn about the capabilities of NuGet as a package manager, search for the specific library, and observe the command needed to import it into a .NET project. This task sets the stage for later steps in your development process by familiarizing you with accessing and managing library packages.
 
@@ -109,13 +110,14 @@ The NuGet website contains a searchable index of packages that are available to 
 
 1. Open a browser and navigate to **nuget.org (1)** to view available .NET packages **(2)**.
 
-      ![06](media/DB26.png)
+    ![06](media/DB26.png)
 
 2. On the **NuGet** page, select **Packages (1)**, search for **Microsoft.Azure.Cosmos (2)**, expand **.NET Standard (3)**, and select **netstandard2.0 (4)**.
 
-      ![06](media/DB27.png)
+    ![06](media/DB27.png)
 
 3. Select the **.NET CLI** tab to observe the command required to import the latest version of this library into a .NET project.
+
       >**Note**: No need to record this command. You will use a specific version of the library later in this exercise.
      
 4. Close your web browser window or tab.
@@ -127,11 +129,11 @@ The .NET CLI includes an [add package] [docs.microsoft.com/dotnet/core/tools/dot
      
 1. Open the **Visual Studio Code**.
 
-      ![Visual Studio Code Icon](./media/vscode1.jpg)
+    ![Visual Studio Code Icon](./media/vscode1.jpg)
 
 1. In **Visual Studio Code**, right-click on the **04-sdk-connect (1)** folder and then select **Open in Integrated Terminal (2)** to open a new terminal instance.
 
-      ![06](media/2.png)
+    ![06](media/2.png)
 
       >**Note**: This command will open the terminal with the starting directory already set to the **04-sdk-connect** folder.
 
@@ -155,7 +157,7 @@ Once the Azure Cosmos DB library from the Azure SDK for .NET has been imported, 
 
 1. In **Visual Studio Code**, in the **04-sdk-connect (1)** folder open the empty **script.cs (2)** code file.
 
-      ![06](media/DB28.png)
+    ![06](media/DB28.png)
 
 1. Add using blocks for the built-in **System** and **System.Linq** namespaces:
    
@@ -222,7 +224,7 @@ Once the Azure Cosmos DB library from the Azure SDK for .NET has been imported, 
       ```
 1. **Save** the **script.cs** code file.
 
-      ![06](media/DB29.png)
+    ![06](media/DB29.png)
 
 ## Task 6: Test the script
 
@@ -232,18 +234,19 @@ Now that the .NET code to connect to the Azure Cosmos DB for NoSQL account is co
 
 1. In **Visual Studio Code**, right-click on the **04-sdk-connect (1)** folder and then select **Open in Integrated Terminal (2)** to open a new terminal instance.
 
-      ![06](media/2.png)
+    ![06](media/2.png)
 
 2. Build and run the project using the [dotnet run][docs.microsoft.com/dotnet/core/tools/dotnet-run] command:
 
       ```
       dotnet run
       ```
+
 3. The script will now output the name of the account, and the first writable region. For example, if you named the account **sql-<inject key="DeploymentID" enableCopy="false"/>**, and the first writable region was **West US 3**.
 
 4. Close the integrated terminal.
 
-      ![06](media/DB30.png)
+    ![06](media/DB30.png)
 
 5. Close **Visual Studio Code**.
 
