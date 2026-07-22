@@ -27,14 +27,13 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
-   ![06](media/L1E1T1S1.png)
+    ![06](media/L1E1T1S1.png)
    
 1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
 
     ![06](media/L1E1T1S2.png)
 
     ![06](media/New-image3.png)
-
 
 1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create (9)**:
 
@@ -49,12 +48,13 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     | **Apply Free Tier Discount** | *Do Not Apply* **(7)** |
     | **Limit total account throughput** | *Disable* **(8)** |        
 
-    ![06](media/c28.png) 
-    ![06](media/c29.png)        
-   
+    ![06](media/c28.png)
+
+    ![06](media/c29.png)     
+
 1. Once after validation passed click on **Create**.
 
-     ![06](media/DB52.png)
+    ![06](media/DB52.png)
 
 1. Wait for the deployment task to complete before continuing with this task.
 
@@ -76,12 +76,12 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
         ![06](media/L2E1T1S10.png)    
 
-    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-        > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
-        > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-        > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
+> **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
+> - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
     
-     <validation step="527d4167-c9f9-49aa-9489-c384ed66b37f" />
+<validation step="527d4167-c9f9-49aa-9489-c384ed66b37f" />
 
 ## Task 2: Send your Azure Cosmos DB for NoSQL account with sample data
 
@@ -89,7 +89,7 @@ You will use a command-line utility that creates a **cosmicworks** database and 
 
 1. Start Visual Studio Code (the program icon is pinned to the Desktop).
 
-   ![Visual Studio Code Icon](./media/vscode1.jpg)
+    ![Visual Studio Code Icon](./media/vscode1.jpg)
 
 1. In **Visual Studio Code**, open the **Terminal** menu by selecting **... (ellipses) (1)** then select **Terminal (2)** and choose **New Terminal (3)** to open a new terminal with your existing instance.
 
@@ -158,7 +158,7 @@ Before continuing with this exercise, you must first create a new Azure AI Searc
 
 1. Navigate back to Azure portal, click **Create a resource**.
 
-     ![06](media/DB53.png)
+    ![06](media/DB53.png)
 
 1. Search for **Azure AI Search (1)**, then select **Create (2)** and choose **Azure AI Search (3)**.
 
@@ -241,11 +241,11 @@ You will create an indexer that indexes a subset of data in a specific Azure Cos
 
 1. On the **Preview index fields** page, click **Add field (1)**. In the new row, enter **id** in the **Source column (2)**, enter **categoryId** in the **Target index field name (3)**, select **Edm.String** as the **Target index field type (4)**, and then proceed to configure the field.
 
-     ![06](media/CDB14.png)
+    ![06](media/CDB14.png)
 
 1. In the **Preview index fields** page, click the ellipsis (**...**) for the **categoryid** field **(1)** and select **Configure field (2)**.
 
-     ![06](media/CDB012.png)
+    ![06](media/CDB012.png)
 
 1. In the **Configure field** pane, select **Key (1)** and then click **Save (2)**.
 
@@ -393,4 +393,4 @@ In this lab, you have completed:
 - Built indexer and index for Azure Cosmos DB for NoSQL data.
 - Validated index with example search queries.
 
-## You have successfully completed the lab
+## You have successfully completed the lab.
