@@ -27,13 +27,13 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
-      ![06](media/L1E1T1S1.png)
+    ![06](media/L1E1T1S1.png)
    
 1. Select **+ Create (1)** under **Azure Cosmos DB for NoSQL** click on **Create (2)** to create  **Azure Cosmos DB for NoSQL** account.
 
-      ![06](media/L1E1T1S2.png)
+    ![06](media/L1E1T1S2.png)
 
-      ![06](media/New-image3.png)
+    ![06](media/New-image3.png)
 
 1. Specify the following settings, leaving all remaining settings to their default values and select **Review + create (10)**:
 
@@ -48,22 +48,21 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     | **Apply Free Tier Discount** | *Do Not Apply* (7) |
     | **Limit the total amount of throughput that can be provisioned on this account** | *Unchecked* (8) |
 
-      ![06](media/DB25.png)
+    ![06](media/DB25.png)
 
 1. Click on **Create**.
 
-      ![06](media/New-image5.png)
+    ![06](media/New-image5.png)
 
 1. Wait for the deployment task to complete before continuing with this task.
 
 1. Once deployment is completed, select **Go to resources**. 
 
-      ![06](media/New-image6.png)
+    ![06](media/New-image6.png)
 
 1. In the **Azure Cosmos DB account**, expand **Settings (1)** from the left menu, then select **Keys (2)**.
 
-      ![06](media/DB15.png)
-
+    ![06](media/DB15.png)
 
 1. This pane contains the connection details and credentials necessary to connect to the account from the SDK. Specifically:
 
@@ -71,19 +70,19 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
     - Record the value of the **PRIMARY KEY (2)** field. You will use this **key** value later in this exercise.
 
-        ![06](media/M8E1T1S9.png)
+      ![06](media/M8E1T1S9.png)
 
     - Notice the **Primary Connection String** field on the same page **(1)**. Click in the **eye** icon **(2)**. Copy the value you will use this **connection string** value later in this exercise **(3)**.
 
-        ![06](media/L2E1T1S10.png)    
+      ![06](media/L2E1T1S10.png)    
 1. Keep your web browser window or tab open.
 
-    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
-    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
+> **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
+> - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
 
-    <validation step="140fa89d-d46a-4ae0-a198-9c51019a9b40" />
+<validation step="140fa89d-d46a-4ae0-a198-9c51019a9b40" />
 
 ## Task 2: Seed the Azure Cosmos DB for NoSQL account with data
 
@@ -93,7 +92,7 @@ The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys samp
 
 1. Start Visual Studio Code (the program icon is pinned to the Desktop).
 
-   ![Visual Studio Code Icon](./media/vscode1.jpg)
+    ![Visual Studio Code Icon](./media/vscode1.jpg)
 
 1. In **Visual Studio Code**, open the **Terminal** menu by selecting **... (ellipses) (1)** then select **Terminal (2)** and choose **New Terminal (3)** to open a new terminal with your existing instance.
 
@@ -138,12 +137,12 @@ The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys samp
 
 1. Close **Visual Studio Code**.
 
-    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
-    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
+> **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
+> - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
 
-    <validation step="eb8c6d06-bc6e-4170-a124-a95072d907a0" />
+<validation step="eb8c6d06-bc6e-4170-a124-a95072d907a0" />
 
 ## Task 3: View and manipulate the default indexing policy
 
@@ -155,17 +154,17 @@ When a container is created by code, portal, or a tool; the indexing policy is s
 
 1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB**, and then select **Azure Cosmos DB** under services.
 
-     ![06](media/L1E1T1S1.png)
+    ![06](media/L1E1T1S1.png)
 
 1. Select **sql-<inject key="DeploymentID" enableCopy="false"/>**.
 
-     ![06](media/M8E1T3S3.png)
+    ![06](media/M8E1T3S3.png)
    
 1. Within the **Azure Cosmos DB** account resource, navigate to the **Data Explorer** pane.
 
 1. In the **Data Explorer**, expand the **cosmicworks** database node, then observe the new **products** container node within navigation tree and then select **New SQL Query**.
 
-     ![06](media/M8E1T3S5.png)
+    ![06](media/M8E1T3S5.png)
 
 1. Delete the contents of the editor area.
 
@@ -175,13 +174,13 @@ When a container is created by code, portal, or a tool; the indexing policy is s
     SELECT * FROM p WHERE p.name = 'HL Headset'
     ```
 
-      ![06](media/M8E1T3S7.png)
+    ![06](media/M8E1T3S7.png)
 
 1. Observe the results of the query.
 
 1. Select **Query Stats**. observe the value of the **Request Charge** field within the **Query Statistics** section.
 
-     ![06](media/M8E1T3S9.png)
+    ![06](media/M8E1T3S9.png)
    
     > &#128221; All paths are currently indexed, so this query should be relatively efficient.
 
@@ -227,7 +226,7 @@ When a container is created by code, portal, or a tool; the indexing policy is s
     }
     ```
 
-      ![06](media/M8E1T3S12.png)
+    ![06](media/M8E1T3S12.png)
 
 1. Select **New SQL Query**.
   
@@ -239,7 +238,7 @@ When a container is created by code, portal, or a tool; the indexing policy is s
     SELECT * FROM p WHERE p.name = 'HL Headset'
     ```
 
-      ![06](media/M8E1T3S15.png)
+    ![06](media/M8E1T3S15.png)
     
 1. Observe the results of the query.
 
