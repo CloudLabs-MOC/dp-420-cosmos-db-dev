@@ -24,7 +24,8 @@ In this task, you will launch the Azure Cosmos DB Emulator, a local tool that si
 Your environment should already have the emulator pre-installed. If not, refer to the [installation instructions] [docs.microsoft.com/azure/cosmos-db/local-emulator] to install the Azure Cosmos DB Emulator. Once the emulator has started, you can retrieve the connection string and use it to connect to the emulator using the Azure SDK for .NET or any other SDK of your choice.
 
 1. Search and Start the **Azure Cosmos DB Emulator** from Start Menu of window.
-     ![06](media/DB31.png)
+
+    ![06](media/DB31.png)
 
 1. **Wait for 3 to 4 minutes** to get started the emulator to automatically opens your default browser and navigate to the **localhost:8081/_explorer/index.html** landing page.
 
@@ -34,11 +35,11 @@ Your environment should already have the emulator pre-installed. If not, refer t
 
     - Record the value of the **Primary Connection String** field. You will use this **connection string** value later in this exercise.
 
-         ![06](media/New-image56.png)
+        ![06](media/New-image56.png)
 
 1. Navigate to the **Explorer** pane. In the **Data Explorer**, observe that there are no nodes within the **API for NoSQL** navigation tree.
 
-   ![06](media/M5E1T1S5.png)
+    ![06](media/M5E1T1S5.png)
 
 1. Close your web browser window or tab.
 
@@ -50,11 +51,11 @@ The **Microsoft.Azure.Cosmos** library has already been pre-installed in the .NE
 
 1. Navigate back to Visual Studio Code from the desktop.
 
-     ![Visual Studio Code Icon](./media/vscode1.jpg)
+    ![Visual Studio Code Icon](./media/vscode1.jpg)
 
 1. Select the **file (1)** option on the top left of the screen, from the pane options, select **Open Folder (2)**. navigate to **C:\AllFiles\dp-420-cosmos-db-dev**.
 
-     ![06](media/New-image51.png)
+    ![06](media/New-image51.png)
 
 1. Navigate to **C:\AllFiles\dp-420-cosmos-db-dev** select **dp-420-cosmos-db-dev** and click on **Select Folder**.
 
@@ -130,12 +131,12 @@ The **Microsoft.Azure.Cosmos** library has already been pre-installed in the .NE
 
 1. Close the integrated terminal.
 
-    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
-    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out. 
+> **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+> - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out. 
 
-    <validation step="1e23a88b-ed78-4557-8384-97cc0833dcbb" />
+<validation step="1e23a88b-ed78-4557-8384-97cc0833dcbb" />
 
 ## Task 3: View the changes in the emulator
 
@@ -194,7 +195,7 @@ Creating a new container is similar to the pattern used to create a new database
 
 1. **Save** the **script.cs** code file.
 
-     ![06](media/DB36.png)
+    ![06](media/DB36.png)
 
 1. In **Visual Studio Code**, right-click on **05-sdk-offline** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
     
@@ -222,12 +223,12 @@ Creating a new container is similar to the pattern used to create a new database
    
 1. Close your web browser window or tab.
 
-    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
-    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
+> **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+> - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
 
-    <validation step="d95b17d3-9a2e-4a03-adde-9ad042168bea" />
+<validation step="d95b17d3-9a2e-4a03-adde-9ad042168bea" />
 
 ## Summary
 

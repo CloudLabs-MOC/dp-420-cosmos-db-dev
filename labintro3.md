@@ -28,7 +28,7 @@ This diagram illustrates the process of integrating and interacting with Azure C
 
 ## Architechture Diagram
 
-![](/instructions/architecturedia/archm3.png)
+![](./instructions/architecturedia/archm3.png)
 
 ## Explanation of Components
 
