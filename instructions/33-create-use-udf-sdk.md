@@ -98,8 +98,7 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
     - Notice the **Primary Connection String** field on the same page **(1)**. Click in the **eye** icon **(2)**. Copy the value you will use this **connection string** value later in this exercise **(3)**.
 
-        ![06](media/L2E1T1S10.png)    
-
+        ![06](media/L2E1T1S10.png)
 
 1. Without closing the browser window, open **Visual Studio Code**.
 
