@@ -27,14 +27,13 @@ Stored procedures are authored in language-integrated JavaScript and support the
 
 1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
-   ![06](media/L1E1T1S1.png)
+    ![06](media/L1E1T1S1.png)
    
 1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
 
     ![06](media/L1E1T1S2.png)
 
     ![06](media/New-image3.png)
-
 
 1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create (9)**:
 
@@ -54,7 +53,7 @@ Stored procedures are authored in language-integrated JavaScript and support the
    
 1. Once after validation passed click on **Create**.
 
-     ![06](media/DB52.png)
+    ![06](media/DB52.png)
 
 1. Wait for the deployment task to complete before continuing with this task.
 
@@ -68,7 +67,7 @@ Stored procedures are authored in language-integrated JavaScript and support the
 
 1. In the **Data Explorer** page, click **New Container (1)** and then select **New Container (2)** from the drop-down menu.
 
-     ![06](media/CDB18.png)
+    ![06](media/CDB18.png)
 
  1. In the **New Container** dialog, configure the following settings and then click **OK (7)**.
 
@@ -80,11 +79,11 @@ Stored procedures are authored in language-integrated JavaScript and support the
     | **Container throughput** | Select **Manual (5)** |
     | **Container Required RU/s** | `400` **(6)** |
 
-       ![06](media/CDB19.png)
+    ![06](media/CDB19.png)
 
 1. In **Data Explorer**, expand the **cosmicworks (1)** database and select the **products (2)** container. Then, click **New Stored Procedure (3)** from the toolbar.
 
-   ![06](media/M13E1T1S8.png)
+    ![06](media/M13E1T1S8.png)
 
 1. In the **Stored Procedure Id** field, enter the value **createDoc**.
 
@@ -163,7 +162,6 @@ Stored procedures are authored in language-integrated JavaScript and support the
     | **Partition key value** | *String* | *demo* |
 
 1. Observe the empty result. While the stored procedure was executed successfully, the JavaScript code never returned a human-readable response.
-
 
 > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
 > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
@@ -297,5 +295,4 @@ In this lab, you have completed:
 - Task 2: Implemented best practices for a stored procedure.
 - Task 3: Queried documents.
 
-
-## You have successfully completed the lab
+## You have successfully completed the lab.
