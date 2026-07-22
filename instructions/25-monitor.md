@@ -27,7 +27,7 @@ In this task, you will set up your development environment in Visual Studio Code
 
 1. Start Visual Studio Code (the program icon is pinned to the Desktop).
 
-   ![Visual Studio Code Icon](./media/vscode1.jpg)
+    ![Visual Studio Code Icon](./media/vscode1.jpg)
 
 2. Select the **Extension (1)** icon from the left pane. Enter **C# (2)** in the search bar select the **extension (3)** that shows up and finally select **Install (4)** on the extension. 
 
@@ -39,9 +39,9 @@ In this task, you will set up your development environment in Visual Studio Code
 
     ![](media/lab12-1.png)
 
-      >**Note:** On **Do you trust the authors of the files in this folder?** pop-up, select **Yes, I trust the authors**.
+    >**Note:** On **Do you trust the authors of the files in this folder?** pop-up, select **Yes, I trust the authors**.
 
-      ![06](media/lab12-2.png)
+    ![06](media/lab12-2.png)
 
 ## Task 2: Create an Azure Cosmos DB for NoSQL account
 
@@ -53,14 +53,13 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
-   ![06](media/L1E1T1S1.png)
+    ![06](media/L1E1T1S1.png)
    
 1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
 
     ![06](media/L1E1T1S2.png)
 
     ![06](media/New-image3.png)
-
 
 1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create (9)**:
 
@@ -75,12 +74,13 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     | **Apply Free Tier Discount** | *Do Not Apply* **(7)** |
     | **Limit total account throughput** | *Disable* **(8)** |        
 
-    ![06](media/c28.png) 
-    ![06](media/c29.png)        
-   
+    ![06](media/c28.png)
+
+    ![06](media/c29.png)
+
 1. Once after validation passed click on **Create**.
 
-     ![06](media/DB52.png)
+    ![06](media/DB52.png)
 
 1. Wait for the deployment task to complete before continuing with this task.
 
@@ -98,12 +98,12 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
         ![06](media/M8E1T1S9.png)
 
-    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
-    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
+> **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+> - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
     
-    <validation step="f7d09acb-1ee3-4b09-97b4-04f9af7a3aa9" />
+<validation step="f7d09acb-1ee3-4b09-97b4-04f9af7a3aa9" />
 
 ## Task 3: Import the Microsoft.Azure.Cosmos and Newtonsoft.Json libraries into a .NET script
 
@@ -113,7 +113,7 @@ In this task, you will use the .NET CLI includes an [add package][docs.microsoft
 
 1. Right-click on the **25-monitor** folder and then select **Open in Integrated Terminal** to open a new terminal instance.
 
-      >**Note:** This command will open the terminal with the starting directory already set to the **25-monitor** folder.
+    >**Note:** This command will open the terminal with the starting directory already set to the **25-monitor** folder.
 
 1. Add the [Microsoft.Azure.Cosmos] [nuget.org/packages/microsoft.azure.cosmos/3.22.1] package from NuGet by running the following command:
 
@@ -166,8 +166,7 @@ We're now ready to run a workload to monitor its usage of the Azure Cosmos DB Ac
 
     > &#128221; You will notice a couple of warnings in yellow since the compiler detects that the script runs many operations synchronously and does not wait for a reply of the operations. You can ignore these warnings since that is the expected behaviour to run multiple SQL scripts simultaneously.
 
-    >**Note**: Visual Studio Code might crash after running the above command, you can rerun the command and continue to the next task. If Visual Studio is crashing more 
-      than 2 time uninstall and install the visual studio by following the below steps.
+    >**Note**: Visual Studio Code might crash after running the above command, you can rerun the command and continue to the next task. If Visual Studio is crashing more than 2 time uninstall and install the visual studio by following the below steps.
 
       - From the start meanu search and select **Control Panel**.
       - Under **Programs** select **Uninstall a program** link and locate the **Microsoft visual studio code (user)** right click and select **Uninstall**.
@@ -175,13 +174,12 @@ We're now ready to run a workload to monitor its usage of the Azure Cosmos DB Ac
       - Once downloded is completed, open the downloded file and install the visual studio code.
       - Once installation is done open visual studio code and re-perform step no 7. 
           
-    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
-    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
+> **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+> - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
     
-    <validation step="ff1fcfa9-5e37-4665-85cc-9628e4ffb657" />
-
+<validation step="ff1fcfa9-5e37-4665-85cc-9628e4ffb657" />
 
 ## Task 5: Use Azure Monitor to Analyze the Azure Cosmos DB account usage
 
@@ -261,4 +259,4 @@ In this lab, you have completed:
 - Ran a script to create the containers and the workload.
 - Used Azure Monitor to Analyze the Azure Cosmos DB account usage
 
-### You have successfully completed the lab
+### You have successfully completed the lab.
