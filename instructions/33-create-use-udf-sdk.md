@@ -28,7 +28,7 @@ In this task, you will prepare your development environment for working with Azu
 
 1. Start Visual Studio Code (the program icon is pinned to the Desktop).
 
-   ![Visual Studio Code Icon](./media/vscode1.jpg)
+    ![Visual Studio Code Icon](./media/vscode1.jpg)
 
 2. Select the **Extension (1)** icon from the left pane. Enter **C# (2)** in the search bar and select the **extension (3)** that shows up and finally **Install (4)** on the extension. 
 
@@ -51,14 +51,13 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Navigate back to  Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Azure Cosmos DB (1)**, and then select **Azure Cosmos DB (2)** under services.
 
-   ![06](media/New-image1.png)
+    ![06](media/New-image1.png)
    
 1. Select **+ Create** under **Azure Cosmos DB for NoSQL** click on **Create** to create **Azure Cosmos DB for NoSQL** account.
 
     ![06](media/New-image2.png)
 
     ![06](media/New-image3.png)
-
 
 1. Specify the following settings, leaving all remaining settings to their default values, and select **Review + create (9)**:
 
@@ -73,9 +72,10 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
     | **Apply Free Tier Discount** | *Do Not Apply* **(7)** |
     | **Limit total account throughput** | *Disable* **(8)** |        
 
-    ![06](media/c28.png) 
-    ![06](media/c29.png)        
-   
+    ![06](media/c28.png)
+
+    ![06](media/c29.png)
+
 1. Once after validation passed click on **Create**.
 
      ![06](media/DB52.png)
@@ -103,12 +103,12 @@ Azure Cosmos DB is a cloud-based NoSQL database service that supports multiple A
 
 1. Without closing the browser window, open **Visual Studio Code**.
 
-    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
-    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
+> **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+> - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
     
-    <validation step="74eda0bf-4b7b-47d2-9d83-0bb7e6bc8ffa" />
+<validation step="74eda0bf-4b7b-47d2-9d83-0bb7e6bc8ffa" />
 
 ## Task 3: Seed the Azure Cosmos DB for NoSQL account with data
 
@@ -157,12 +157,12 @@ The [cosmicworks][nuget.org/packages/cosmicworks] command-line tool deploys samp
 
 1. Close the integrated terminal.
 
-    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
-    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
+> **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+> - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
     
-    <validation step="dd92f2ca-c14f-4181-8374-d60868d94589" />
+<validation step="dd92f2ca-c14f-4181-8374-d60868d94589" />
 
 ## Task 4: Create a user-defined function (UDF) using the .NET SDK
 
@@ -279,12 +279,12 @@ The [Container][docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.container] 
 
 1. Close **Visual Studio Code**.
 
-    > **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
-    > - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
-    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-    > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
+> **Congratulations** on completing the lab! Now, it's time to validate it. Here are the steps:
+> - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
     
-    <validation step="01aa9434-9775-4fd0-baa1-1dcfc60bdba6" />
+<validation step="01aa9434-9775-4fd0-baa1-1dcfc60bdba6" />
 
 ## Task 5: Test the UDF using the Data Explorer
 
@@ -334,4 +334,4 @@ In this lab, you have completed:
 - Created a user-defined function (UDF) using the .NET SDK.
 - Tested the UDF using the Data Explorer.
 
-## You have successfully completed the lab
+## You have successfully completed the lab.
