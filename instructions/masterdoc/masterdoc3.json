@@ -5,15 +5,15 @@
     "BaseURL": "https://github.com/CloudLabs-MOC/dp-420-cosmos-db-dev/tree/guided-labs",
     "Files": [
       {
-        "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/dp-420-cosmos-db-dev/gl-japanese/JPintro.md",
+        "RawFilePath": "https://docs-api.cloudlabs.ai/repos/raw.githubusercontent.com/CloudLabs-MOC/dp-420-cosmos-db-dev/gl-japanese/JPintro.md",
         "Order": 1
       },
       {
-        "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/dp-420-cosmos-db-dev/gl-japanese/instructions/04-sdk-connect.md",
+        "RawFilePath": "https://docs-api.cloudlabs.ai/repos/raw.githubusercontent.com/CloudLabs-MOC/dp-420-cosmos-db-dev/gl-japanese/instructions/04-sdk-connect.md",
         "Order": 2
       },
       {
-        "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/dp-420-cosmos-db-dev/gl-japanese/instructions/05-sdk-offline.md",
+        "RawFilePath": "https://docs-api.cloudlabs.ai/repos/raw.githubusercontent.com/CloudLabs-MOC/dp-420-cosmos-db-dev/gl-japanese/instructions/05-sdk-offline.md",
         "Order": 3
       }
     ]

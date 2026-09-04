@@ -5,11 +5,11 @@
     "BaseURL": "https://github.com/CloudLabs-MOC/dp-420-cosmos-db-dev/tree/guided-labs",
     "Files": [
       {
-        "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/dp-420-cosmos-db-dev/gl-japanese/JPintro.md",
+        "RawFilePath": "https://docs-api.cloudlabs.ai/repos/raw.githubusercontent.com/CloudLabs-MOC/dp-420-cosmos-db-dev/gl-japanese/JPintro.md",
         "Order": 1
       },
       {
-        "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/dp-420-cosmos-db-dev/gl-japanese/instructions/08-sdk-bulk.md",
+        "RawFilePath": "https://docs-api.cloudlabs.ai/repos/raw.githubusercontent.com/CloudLabs-MOC/dp-420-cosmos-db-dev/gl-japanese/instructions/08-sdk-bulk.md",
         "Order": 2
       }
     ]
